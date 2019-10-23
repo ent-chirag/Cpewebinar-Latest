@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#003F72</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#003F72</color>
+    <color name="White">#FFFFFF</color>
+    <color name="home_tab_color_unselected">#484848</color>
+    <color name="theme_background">#193f70</color>
+    <color name="uvv_gray">#969696</color>
+    <color name="forgot_password_header">#213B5B</color>
+    <color name="company_detail_bottom">#001F44</color>
+    <color name="login_do_not_have_account">#C9C9C9</color>
+    <color name="background_topics">#C7C6CB</color>
+    <color name="view_edit_profile">#A7A7A8</color>
+    <color name="detail_heading">#fafafa</color>
+
+    <color name="sign_up_heading">#001944</color>
+    <color name="edit_field_hint">#bcbcbc</color>
+    <color name="home_edit_search">#c3c3c3</color>
+
+    <color name="home_filter_selection">#606060</color>
+    <color name="home_filter_unselected_background">#f2f2f2</color>
+    <color name="home_filter_border">#dbdbdb</color>
+
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#f64c73</color>
+    <color name="bg_screen2">#20d2bb</color>
+    <color name="bg_screen3">#3395ff</color>
+    <color name="bg_screen4">#c873f4</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#d1395c</color>
+    <color name="dot_dark_screen2">#14a895</color>
+    <color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#f98da5</color>
+    <color name="dot_light_screen2">#8cf9eb</color>
+    <color name="dot_light_screen3">#93c6fd</color>
+    <color name="dot_light_screen4">#e4b5fc</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen4</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
+
+
+    //Edit Profile
+    <color name="edit_profile_lable_colcr">#000000</color>
+
+    //dashboard
+    <color name="dashboard_bottom_selected">#0E2B4D</color>
+    <color name="dashboard_bottom_unselected">#A6A6A6</color>
+
+    //menu_drawer
+    <color name="drawer_header">#00254C</color>
+    <color name="drawer_child_background">#004C78</color>
+
+    //Custom Alert Dialog
+    <color name="dialog_msg_text">#AAAAAA</color>
+    <color name="dialog_submit">#65788D</color>
+
+    //topics of interest
+    <color name="text_topics_interest">#CECECE</color>
+    <color name="header_topics_interest">#08264c</color>
+    <color name="bottom_submit_footer">#001944</color>
+    <color name="background_color">#efeff4</color>
+
+
+    //vimeo
+    <color name="black">#ff000000</color>
+    <color name="black_full">#000000</color>
+
+
+    //common
+    <color name="background_list">#F5F5F7</color>
+    <color name="guest_popup_color">#DDDEE0</color>
+    <color name="guest_button_color">#91BFF0</color>
+    <color name="topics_popup_label_background">#E6E6E6</color>
+    <color name="topics_popup_label_text">#0F264C</color>
+
+
+    //instructor list
+
+    <color name="inst_background">#CC193f70</color>
+    <color name="write_review_text">#A4A4A5</color>
+    <color name="instructor_company_text_color">#4D4D4D</color>
+    <color name="inst_details_profile_background">#466A9C</color>
+    <color name="selected_tab_text_color_details">#5B5B5B</color>
+    <color name="Unselected_tab_text_color_details">#E1E1E1</color>
+    <color name="instructor_left_panel_color">#DADAE2</color>
+    <color name="instructor_right_panel_color">#486D8F</color>
+    <color name="instructor_details_about_color">#737373</color>
+    <color name="fav_tab_unselected_color">#50484848</color>
+
+
+    //write review popup
+    <color name="review_header">#878788</color>
+
+
+    //webinar favorite list
+    <color name="fav_webinar_title">#00426D</color>
+    <color name="fav_date_time">#777777</color>
+    <color name="fav_bottom_text_color">#303030</color>
+
+    //home
+    <color name="child_tab_background_home">#4d699f</color>
+    <color name="home_topbar_bgcolor">#193f70</color>
+    <color name="webinar_status">#ed9e37</color>
+
+
+    //account
+
+    <color name="viewprofile_lable">#989898</color>
+    <color name="viewprofile_sections">#494949</color>
+
+
+    <color name="account_username">#193f70</color>
+
+
+    //my credit
+    <color name="my_credit_header_username">#151431</color>
+    <color name="my_credit_header_email_id">#aeaeae</color>
+    <color name="my_credit_webinar_report">#193f70</color>
+    <color name="my_credit_webinar_count">#2c2c2c</color>
+    <color name="my_credit_status">#e5e5e5</color>
+
+
+    //webinar details
+    <color name="webinar_detail_titile">#08264c</color>
+    <color name="webinar_detail_form_details">#717171</color>
+
+
+    //feedback popup
+    <color name="feedback_title">#4a4a4a</color>
+    <color name="feedback_field">#80000000</color>
+
+    //transcation row
+    <color name="transcation_webinar_status">#dedede</color>
+    <color name="transcation_status">#087000</color>
+
+    //notification settings
+    <color name="notification_switch_status">#08264c</color>
+    <color name="screen_section_notification_background">#CDCDCD</color>
+    <color name="notification_child_color">#a4a4a4</color>
+    <color name="switch_on">#57DA63</color>
+
+    //topics of interest subcategory
+    <color name="subcategory_topics">#262626</color>
+    <color name="grid_topics">#232323</color>
+
+    //stripe
+
+    <color name="card_hint_number_color">#5008264c</color>
+    <color name="card_text_number_color">#24272c</color>
+
+
+    //question screen
+    <color name="correct_ans">#00C818</color>
+    <color name="wrong_ans">#FF2424</color>
+
+
+</resources>

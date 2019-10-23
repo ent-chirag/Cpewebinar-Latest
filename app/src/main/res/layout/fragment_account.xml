@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.entigrity.fragments.AccountFragment" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_list">
+
+        <RelativeLayout
+            android:id="@+id/rv_account_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/webinar_status"
+            android:padding="@dimen/_10sdp">
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_header_account"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_name_profilepic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_account_title"
+            android:background="@color/White"
+            android:padding="@dimen/_10sdp">
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/account_username"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_viewprofile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_username"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/str_lable_view"
+                android:textColor="@color/black_full"
+                android:textSize="@dimen/_10sdp"
+                app:font_text="Montserrat-Regular.ttf" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivprofilepicture"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop" />
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_name_profilepic"
+            android:scrollIndicators="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rv_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_noti"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="visible" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="visible">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_mytransaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_my_transaction"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_payment_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_payment_method"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rv_credit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_mycredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_my_credit"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rv_topics_of_interest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_topics_of_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_topics_of_interest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_privacy_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_privacy_policy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_privacy_policy"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_terms_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_terms_and_condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_terms_condition"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_contact_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_contact_us"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_contact_us"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rv_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_change_password"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rv_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_faq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_faqs"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_give_feedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_give_us_your_feedback"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_logout"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="invisible">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_logout"
+                        android:textColor="@color/viewprofile_sections"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Bold.ttf" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+</layout>

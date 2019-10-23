@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lv_row_testimonial"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.entigrity.view.CustomTextView
+        android:id="@+id/tv_username_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="@color/webinar_detail_form_details"
+        android:textSize="@dimen/_12sdp"
+        app:font_text="Montserrat-Bold.ttf" />
+
+    <ImageView
+        android:id="@+id/iv_testimonial_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp" />
+
+    <com.entigrity.view.CustomTextView
+        android:id="@+id/tv_review_decription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:inputType="textMultiLine"
+        android:textColor="@color/edit_profile_lable_colcr"
+        android:textSize="@dimen/_10sdp"
+        app:font_text="Montserrat-SemiBold.ttf" />
+
+
+</LinearLayout>

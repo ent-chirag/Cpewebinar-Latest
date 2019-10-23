@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp">
+
+
+    <RelativeLayout
+        android:id="@+id/rel_notification_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_5sdp">
+
+
+        <ImageView
+            android:id="@+id/iv_notification_image"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@mipmap/app_icon"
+            android:visibility="gone" />
+
+        <com.entigrity.view.CustomTextView
+            android:id="@+id/tv_notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:ems="16"
+            android:inputType="textMultiLine"
+            android:textColor="@color/my_credit_header_username"
+            android:textSize="@dimen/_10sdp"
+            app:font_text="Montserrat-SemiBold.ttf" />
+
+        <com.entigrity.view.CustomTextView
+            android:id="@+id/tv_notification_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:layout_toLeftOf="@+id/tv_notification_title"
+            android:textColor="@color/my_credit_header_email_id"
+            android:textSize="@dimen/_8sdp"
+            app:font_text="Montserrat-Medium.ttf" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

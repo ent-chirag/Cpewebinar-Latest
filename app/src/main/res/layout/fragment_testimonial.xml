@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.entigrity.webinarDetail.TestimonialFragment" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/lv_tetimonial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/lv_testimonial_set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+        <com.entigrity.view.CustomTextView
+            android:id="@+id/tv_view_more_testimonial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/str_view_more"
+            android:textColor="@color/webinar_detail_titile"
+            android:textSize="@dimen/_12sdp"
+            app:font_text="Montserrat-SemiBold.ttf" />
+
+
+    </LinearLayout>
+
+
+</layout>

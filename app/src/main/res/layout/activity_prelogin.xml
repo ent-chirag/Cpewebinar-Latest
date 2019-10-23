@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.entigrity.activity.PreLoginActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_background">
+
+
+        <LinearLayout
+            android:id="@+id/lv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/str_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/iv_forward"
+                android:text="Skip"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Montserrat-Regular.ttf" />
+
+
+            <ImageView
+                android:id="@+id/iv_forward"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/forward" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_mycpe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/login_logo" />
+
+        <com.entigrity.view.CustomButtonView
+            android:id="@+id/strsignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_mycpe"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:background="@drawable/rounded_transperent_background"
+            android:text="@string/str_create_account"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_12sdp"
+            app:font_button="Montserrat-Medium.ttf" />
+
+
+        <com.entigrity.view.CustomButtonView
+            android:id="@+id/strlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/strsignup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/str_logi_now"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_12sdp"
+            app:font_button="Montserrat-Medium.ttf" />
+
+       <!-- <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp">
+
+        </com.google.android.gms.common.SignInButton>-->
+
+
+    </RelativeLayout>
+
+</layout>

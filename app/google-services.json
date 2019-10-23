@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "894280537079",
+    "firebase_url": "https://my-cpe.firebaseio.com",
+    "project_id": "my-cpe",
+    "storage_bucket": "my-cpe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894280537079:android:02df28e4621f2c51",
+        "android_client_info": {
+          "package_name": "com.entigrity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894280537079-eu0lumlo3gsor7oioqgbqg5bs0blr05r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.entigrity",
+            "certificate_hash": "2a52656df4c1df14ec449e2fb492cd1108746b05"
+          }
+        },
+        {
+          "client_id": "894280537079-bf72mfqqoj8u97dcetan1cnmso4up150.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6qyxOZhen4art36qBVMNsd3gbftpqIXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894280537079-cujbs5co696s2lpu9sug8qiak9erlthv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "894280537079-kta2qb36i831kk1rl3g2lv7slfsvotr6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Entigrity.inc.MyNewCPE"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

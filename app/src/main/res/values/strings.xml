@@ -1,0 +1,763 @@
+<resources>
+    <string name="app_name">myCPE</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="percentage_value">50%</string>
+    <string name="bearer">Bearer</string>
+    <string name="accept">application/json</string>
+
+
+    //sign up to sign up next screen
+
+    <string name="str_signup_first_name">fname</string>
+    <string name="str_signup_last_name">lname</string>
+    <string name="str_signup_email_id">emailid</string>
+    <string name="str_signup_phone_number">phone number</string>
+    <string name="str_signup_password">password</string>
+    <string name="str_signup_confirm_password">confirm password</string>
+    <string name="str_signup_country_id">country id</string>
+    <string name="str_signup_state_id">state id</string>
+    <string name="str_signup_city_id">city id</string>
+
+    <string name="str_signup_country_pos">country pos</string>
+    <string name="str_signup_state_pos">state pos</string>
+    <string name="str_signup_city_pos">city pos</string>
+
+
+    //progress dialog
+    <string name="progrees_msg">Please Wait</string>
+
+
+    <string-array name="nav_item_activity_titles">
+        <item>DashBoard</item>
+        <item>Change Password</item>
+        <item>Profile</item>
+        <item>Contact Us</item>
+        <item>Instructor</item>
+        <item>Company</item>
+        <item>My Favorites</item>
+
+
+    </string-array>
+
+
+    //common message
+    <string name="please_check_internet_condition">Please Check Internet Connection.</string>
+    <string name="device_token">device token</string>
+    <string name="device_i">device id</string>
+    <string name="no_data_found">No Data Available</string>
+    <string name="exit_validation">Are you sure you want to Exit?</string>
+    <string name="valid_email">Please Enter Valid Email Address</string>
+    <string name="logout_text">Are you sure you want to Logout?</string>
+    <string name="password_regex_validation">Please enter password atleast 6 characters including 1 uppercase,1 lowercase &amp; 1 number.</string>
+    <string name="password_length">Password must be at least 6 characters.</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="cpe">CPE</string>
+    <string name="views">views</string>
+    <string name="register">REGISTER</string>
+    <string name="favorite">Favorite</string>
+    <string name="retry">Retry</string>
+    <string name="guest_user_msg">Please Login</string>
+    <string name="str_comming_soon">Comming Soon</string>
+    <string name="str_guest_user_dialog_msg">Login or Register to access full feature.</string>
+    <string name="str_guest_user_dialog_title">MY CPE</string>
+    <string name="str_login_guest">Login</string>
+    <string name="str_cancel_guest">Cancel</string>
+    <string name="str_sharing_not_avilable">Sharing link is not avilable.</string>
+    <string name="str_joinlink_not_avilable">Join link is not avilable.</string>
+    <string name="str_time_zone_not_found">Time Zone not Found</string>
+    <string name="str_btn_next">NEXT</string>
+    <string name="check_validation_popup_topics">Do you want to add your topic of interests?</string>
+    <string name="str_skip">SKIP</string>
+    <string name="str_download_link_not_found">Download link not found</string>
+    <string name="str_certificate_link_not_found">Certificate not found</string>
+    <string name="str_who_should_attend_lable">Who Should Attend</string>
+    <string name="str_next">Next</string>
+    <string name="str_done">Done</string>
+    <string name="str_goto_meeting_link">GoTo Meeting Link is not Available.</string>
+    <string name="str_video_validation">Please Register the Webinar.</string>
+    <string name="str_video_link_not_avilable">video link is not avilable.</string>
+
+
+    //hashmap key
+
+    <string name="topics_selected">topics</string>
+
+
+    //pre login
+    <string name="str_signup">SIGN UP</string>
+    <string name="str_login">SIGN IN</string>
+    <string name="str_logi_now">LOGIN</string>
+    <string name="str_contactus">Contact Us</string>
+    <string name="str_profile_picture">Profile Picture</string>
+    <string name="str_profile_username">Profile Username</string>
+
+    //login
+    <string name="str_email">Email</string>
+    <string name="str_password">Password</string>
+    <string name="do_not_have_account">Don"'"t have an account?</string>
+    <string name="register_now_login">SIGN UP</string>
+    <string name="validate_email_id">Please Enter Email Address</string>
+    <string name="validate_password">Please Enter Password</string>
+    <string name="str_token">login token</string>
+    <string name="str_emailid">emailid</string>
+    <string name="str_walk_through_screen">walkscreen</string>
+    <string name="str_create_account">Create an Account</string>
+
+
+    //dashboard
+
+
+    <string name="str_completed">COMPLETED</string>
+    <string name="str_ongoing">ONGOING</string>
+    <string name="str_upcoming">UPCOMING</string>
+    <string name="str_total_credit">Total Credit</string>
+    <string name="str_my_favorites">My Favorites</string>
+
+
+    //Home Screen
+    <string name="str_home_title">Webinars</string>
+    <string name="str_home_title_detail">Webinar</string>
+    <string name="str_all">ALL</string>
+    <string name="str_my_webinar">MY WEBINAR</string>
+    <string name="str_live">LIVE</string>
+    <string name="str_self_study">ON-DEMAND</string>
+    <string name="str_archive">ARCHIVED</string>
+    <string name="str_favorite">FAVAROITE</string>
+    <string name="str_price_status">FREE</string>
+    <string name="str_credit_score">1 CREDIT</string>
+    <string name="str_webinar_status">RESUME</string>
+    <string name="str_webinar_type">SELF STUDY</string>
+
+
+    //filter option with home screen
+    <string name="str_filter_live">live</string>
+    <string name="str_filter_selfstudy">self_study</string>
+    <string name="str_self_study_on_demand">ON-DEMAND</string>
+    <string name="str_filter_archieve">Archieve</string>
+    <string name="str_filter_favourite">Favourite</string>
+    <string name="str_filter_webinar">MyWebinar</string>
+
+
+    //new filter option with home screen
+
+    <string name="str_filter_home_live">live</string>
+    <string name="str_filter_home_self_study">self-study</string>
+    <string name="str_filter_home_fields_of_study">fields_of_study</string>
+    <string name="str_filter_home_price_free">free</string>
+    <string name="str_filter_home_price_premium">premium</string>
+    <string name="str_filter_home_date_filter">date_filter</string>
+
+
+    //edit profile
+    <string name="view_profile_firstname">First Name</string>
+    <string name="view_profile_lastname">Last Name</string>
+    <string name="view_profile_email">Email</string>
+    <string name="view_profile_firm_name">Firm Name</string>
+    <string name="view_profile_mobile_number">Mobile Number</string>
+    <string name="view_profile_ptin_number">PTIN Number</string>
+    <string name="view_profile_country">Country</string>
+    <string name="view_profile_state">State</string>
+    <string name="view_profile_city">City</string>
+    <string name="view_profile_zipcode">Zipcode</string>
+    <string name="view_profile_topics_interest">Topics of Interest</string>
+    <string name="view_profile_who_you_are">Who you are?</string>
+    <string name="edit_profile_header">Edit Profile</string>
+    <string name="view_profile_job_title">Job Title</string>
+    <string name="view_profile_industry">Industry</string>
+
+
+    //change password
+
+    <string name="str_change_password">Change Password</string>
+    <string name="str_change_password_submit">SUBMIT</string>
+    <string name="str_old_password">Old  Password</string>
+    <string name="str_new_password">New  Password</string>
+
+
+    //validate
+    <string name="validate_oldpassword">Please Enter Old Password</string>
+    <string name="validate_newpassword">Please Enter New Password</string>
+    <string name="validate_confirmpassword">Please Enter Confirm Password</string>
+    <string name="val_new_confirm_password_not_match">New Password and Confirm Password does not match</string>
+
+
+    <string name="payment_validate_msg">To Register this webinar please visit our web application and complete your payment.</string>
+
+
+    //vimeo
+
+    <string name="loading_video">Loading video</string>
+
+    //forgot password
+
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_header">Forgot Password</string>
+    <string name="forgot_password_submit_button">SUBMIT</string>
+    <string name="forgot_edit_email">Enter Your Email Address</string>
+    <string name="forgot_header_text">Please Enter Your Registered Email</string>
+    action_settings
+
+    //contact us
+
+    <string name="contact_us">Contact Us</string>
+    <string name="contact_name">Name</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="email_id">Email</string>
+    <string name="contact_message">Message</string>
+    <string name="subject">Subject</string>
+    <string name="contact_send">SEND</string>
+    <string name="str_need_help">Need Help?</string>
+    <string name="str_address">Patel Society</string>
+    <string name="str_number">+18002800282</string>
+    <string name="str_contactus_emailid">hello@entigrity.com</string>
+    <string name="str_or">OR</string>
+
+
+    //Register
+
+    <string name="str_register">REGISTER</string>
+    <string name="str_confirm_password">Confirm Password</string>
+    <string name="str_mobil_number">Mobile Number</string>
+    <string name="str_phone_number">Phone Number</string>
+    <string name="str_first_name">First Name</string>
+    <string name="str_last_name">Last Name</string>
+    <string name="str_email_id">Email ID</string>
+    <string name="str_topics_interset">Topics of Interest</string>
+    <string name="str_who_you_are">Professional  Credentials?</string>
+    <string name="str_profestional_credential">Professional  Credentials</string>
+    <string name="str_additional_qualification">Additional Qualifications</string>
+    <string name="str_topic_home">Topics</string>
+    <string name="str_reg_password">Password</string>
+    <string name="str_reg_confirm_password">Confirm Password</string>
+    <string name="str_firm_name">Company Name</string>
+    <string name="str_alredy_account">Already have an account?</string>
+    <string name="str_login_now">SIGN IN</string>
+    <string name="str_accepted">I accept these</string>
+    <string name="str_accepted_condition">Terms and Conditions</string>
+    <string name="str_other_option">Please select other option</string>
+    <string name="str_select_country">Select Country</string>
+    <string name="str_select_state">Select State</string>
+    <string name="str_select_city">Select City</string>
+
+
+    //topics of interset
+
+    <string name="str_lable_apply">APPLY</string>
+    <string name="str_lable_cancel">CANCEL</string>
+    <string name="str_search">Search</string>
+
+
+    //validate
+    <string name="val_firstname">Please Enter First Name</string>
+    <string name="val_lastname">Please Enter Last Name</string>
+    <string name="val_emailid">Please Enter Email Address</string>
+    <string name="val_emailid_pattern">Please Enter Valid Email Address</string>
+    <string name="val_phone_number">Please Enter Phone Number</string>
+    <string name="val_phone_validate">Please Enter Phone Number in 10 digits</string>
+    <string name="val_password_register">Please Enter Password</string>
+    <string name="val_confirm_password_register">Please Enter Confirm Password</string>
+    <string name="val_confirm_password_not_match">Password and Confirm Password does not match</string>
+    <string name="val_firm_name_register">Please Enter Company Name</string>
+    <string name="val_mobile_number">Please Enter Mobile Number</string>
+    <string name="val_terms_and_condition">Please Accept Terms and Condition</string>
+    <string name="val_zip_code">Please Enter Zip code</string>
+    <string name="val_mobile_nunmber">Please Enter Mobile Number</string>
+    <string name="val_ptin_number">PLease Enter PTIN Number</string>
+
+
+    <string name="val_topics">Please select at least one topics of interest</string>
+
+
+    <string name="validation_professional_credential">Please select professional credential</string>
+    <string name="validation_additional_qualification">Please select additional qualification</string>
+
+
+    <string name="val_zipcode">Please enter zipcode</string>
+    <string name="val_user_type">Please select Profession credentials?</string>
+
+
+    <string name="val_industry">Please select industry</string>
+    <string name="val_job_title">Please select job title/designation</string>
+
+    <string name="str_country">Please Select Country</string>
+    <string name="str_state">Please Select State</string>
+    <string name="str_city">please select city</string>
+
+
+    //contact us
+    <string name="cus_valname">Please Enter Name</string>
+    <string name="cus_valnumber">Please Enter Contact Number</string>
+    <string name="cus_valsubject">Please Select Subject</string>
+    <string name="cus_valemailid">Please Enter Email Address</string>
+    <string name="cus_valmsg">Please Enter Message</string>
+    <string name="subject_hint">Subjects</string>
+
+
+    //forgot password
+    <string name="forgot_passoword_email">Please Enter Email Address</string>
+    //logout
+    <string name="logout">Are you sure you want to Logout?</string>
+
+
+    //pass data from view profile to edit profile
+    <string name="pass_fname">firstname</string>
+    <string name="pass_lname">lastname</string>
+    <string name="pass_email">email</string>
+    <string name="pass_firm_name">firmname</string>
+    <string name="pass_mobile_number">mobilenumber</string>
+    <string name="pass_ptin_number">ptin number</string>
+    <string name="pass_country">country</string>
+    <string name="pass_state">state</string>
+    <string name="pass_city">city</string>
+    <string name="pass_job_title">job title</string>
+    <string name="pass_industry">industry</string>
+    <string name="pass_state_text">statetext</string>
+    <string name="pass_city_text">citytext</string>
+    <string name="pass_country_text">countrytext</string>
+    <string name="pass_job_title_text">jobtitletext</string>
+    <string name="pass_industry_text">industrytext</string>
+    <string name="pass_zipcode">zipcode</string>
+    <string name="pass_who_you_are">whoyouareposition</string>
+    <string name="pass_job_title_id">jobtitileposition</string>
+    <string name="pass_industry_id">industryposition</string>
+    <string name="pass_who_you_are_text">whoyouare</string>
+    <string name="pass_topics_of_interesr">topicsofinterest</string>
+    <string name="pass_view_topics_of_interest">viewtopicsofinterest</string>
+    <string name="pass_selected_list">selectedlist</string>
+    <string name="pass_selected_signup_list">signupselected</string>
+    <string name="pass_who_you_are_list">whoyouarelist</string>
+    <string name="pass_who_you_are_list_review_question">reviewquestion</string>
+
+
+    //instructor list
+
+    <string name="ints_name">Instructor Name :</string>
+    <string name="company_name">Company Name :</string>
+
+    //instructor details
+
+    <string name="instructor_header">Instructor Profiles</string>
+    <string name="instructor_bottom_webinar">MY WEBINARS</string>
+    <string name="write_review">Write a Review</string>
+    <string name="about">ABOUT</string>
+    <string name="company_details">COMPANY DETAILS</string>
+    <string name="str_company_name">Company Name</string>
+    <string name="str_area_expertise">Area of Expertise</string>
+    <string name="str_email_id_inst_details">Email ID</string>
+    <string name="str_mobile_number_inst_details">Mobile Number</string>
+    <string name="str_state_inst_details">State</string>
+    <string name="str_city_inst_details">City</string>
+    <string name="str_rating">Rating</string>
+
+
+    //pass data from instructor list to details
+
+    <string name="pass_inst_id">id</string>
+    <string name="pass_inst_name">name</string>
+    <string name="pass_inst_email">email</string>
+    <string name="pass_inst_contact_number">contact number</string>
+    <string name="pass_inst_logo">logo</string>
+    <string name="pass_inst_expiritise">expiritise</string>
+    <string name="pass_inst_about_speaker">about</string>
+    <string name="pass_inst_company">company name</string>
+    <string name="pass_inst_state">state name</string>
+    <string name="pass_inst_city">city name</string>
+    <string name="pass_inst_followers">followers</string>
+    <string name="pass_inst_favorite_unfavorite_status">favorite unfavorite status</string>
+    <string name="pass_inst_follow_unfollow_status">follow unfollow status</string>
+
+
+    //company details
+    <string name="company_detail">Company Details</string>
+    <string name="company_webinar">WEBINARS</string>
+    <string name="company_speakers">INSTRUCTOR</string>
+    <string name="str_name_company">Name of the Company</string>
+    <string name="str_website_company">Website of the Company</string>
+    <string name="str_number_speaker">Number of Speakers</string>
+    <string name="str_number_webinar">Number of Webinars</string>
+    <string name="str_company_mobile_number">Mobile Number</string>
+
+
+    //pass data from company list to company details
+
+    <string name="pass_company_id">id</string>
+    <string name="pass_company_name">name</string>
+    <string name="pass_company_website">website</string>
+    <string name="pass_company_contact_number">contact_number</string>
+    <string name="pass_company_logo">logo</string>
+    <string name="pass_company_description">description</string>
+    <string name="pass_company_number_of_speaker">number_of_speaker</string>
+    <string name="pass_company_number_of_webinar">number_of_webinar</string>
+    <string name="pass_company_favorite_status">company favorite status</string>
+
+
+    //pass data from signup to topics of interest
+
+    <string name="reg_firstname">fname</string>
+    <string name="reg_lastname">lname</string>
+    <string name="reg_email">email</string>
+    <string name="reg_password">pass</string>
+    <string name="reg_confirm_password">cpass</string>
+    <string name="reg_firmname">firmname</string>
+    <string name="reg_mobilenumber">mnumber</string>
+    <string name="reg_whoyouare">whoyouare</string>
+    <string name="reg_isaccepted">isaccepted</string>
+
+
+    //rating popup
+    <string name="review_popup_header">Give us your Feedback</string>
+    <string name="str_submit">SUBMIT</string>
+    <string name="str_your_name">Your Feedback</string>
+    <string name="str_subject">Subject</string>
+    <string name="val_subject">Please Enter Subject</string>
+    <string name="val_review">Please Enter Review</string>
+
+
+    //favorites List
+    <string name="str_speaker">SPEAKER</string>
+    <string name="str_company">COMPANY</string>
+    <string name="str_webinars">WEBINARS</string>
+
+
+    //webinar favorite list
+
+    <string name="str_basic_management">Basic Time Management Course</string>
+    <string name="str_date_fav">21 jun 2018</string>
+    <string name="str_time_fav">10:40 PM</string>
+    <string name="str_credit_value">CPE Credit :</string>
+    <string name="str_fav_count">334</string>
+    <string name="str_fav_views">45 views</string>
+    <string name="str_fav_instructor_name">JOHN SMITH</string>
+    <string name="str_fav_company_name">XERO</string>
+    <string name="str_fav_duration">Min</string>
+    <string name="str_price_value">$99.00</string>
+    <string name="str_webinar_like">Webinar like successfully.</string>
+    <string name="str_webinar_dislike">Webinar dislike successfully.</string>
+
+
+    //check business logic
+
+    <string name="str_company_like">Company like successfully.</string>
+    <string name="str_company_dislike">Company dislike successfully.</string>
+    <string name="str_speaker_like">Speaker like successfully.</string>
+    <string name="str_speaker_dislike">Speaker dislike successfully.</string>
+    <string name="str_speaker_follow">Speaker follow successfully.</string>
+    <string name="str_speaker_unfollow">Speaker unfollow successfully.</string>
+
+
+    //month logic from API
+
+
+    <string name="jan">Jan</string>
+    <string name="feb">Feb</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="aug">Aug</string>
+    <string name="sept">Sept</string>
+    <string name="oct">Oct</string>
+    <string name="nov">Nov</string>
+    <string name="dec">Dec</string>
+
+
+    //main activity
+    <string name="ok">OK</string>
+    <string name="favorite_fragment">favoritesFragment</string>
+    <string name="viewprofile_fragment">viewprofilefragment</string>
+    <string name="accountfragment">accountFragment</string>
+    <string name="mycreditfragment">mycreditfragment</string>
+    <string name="myfavoritescreenfragment">myfavoritescreen</string>
+    <string name="userdashBoard_fragment">userdashboardfragment</string>
+    <string name="contactus_fragment">contactusfragment</string>
+    <string name="instructor_fragment">instructorfragment</string>
+    <string name="company_fragment">companyfragment</string>
+    <string name="changePassword_fragment">changePasswordFragment</string>
+    <string name="home_fragment">homefragment</string>
+    <string name="my_webinar_fragment">mywebinarfragment</string>
+    <string name="add_to_back_stack">null</string>
+
+    <string name="str_no_data_found">NO Data Found</string>
+
+    <string name="time_pm">PM</string>
+    <string name="time_am">AM</string>
+
+
+    //webinar details screen
+
+    <string name="str_webinartitle">HOW THE PRIMARY AND SECONDARY MORTGAGE MARKET WORKS ?</string>
+    <string name="str_webinartime">February 28,2019 / 17:30 PM,US/Mountain</string>
+    <string name="str_add_to_calendar"><u>Add to Calender</u></string>
+    <string name="str_review_question_lable">Review Question</string>
+    <string name="str_overview">Course Description</string>
+    <string name="str_program_desc_header">Program Description</string>
+    <string name="str_program_desc">Kind Of Materials course description is a brief summary of the
+    significant learning experiences for a course Course descriptions
+    appear in individual Course Outlines and in the Program of Studies (POSs) for individual
+    programs.
+    </string>
+    <string name="str_learning_objective">LEARNING OBJECTIVES</string>
+    <string name="str_learning_objectives_value">\u2022 Introduction to Cyber Security</string>
+    <string name="str_about_presenter">ABOUT PRESENTER</string>
+    <string name="str_testimonial">TESTIMONIALS</string>
+    <string name="str_faq">FAQ</string>
+    <string name="str_refund_cancelation_policy">REFUND/CANCELLATION POLICY</string>
+    <string name="str_view_more">View More</string>
+    <string name="str_refund_cancelation_policy_content">For more information regarding refund,complain and
+    program cancellation policies,please connect our offices at 863-337-8573</string>
+    <string name="str_nasba_approved">NASBA APPROVED</string>
+    <string name="str_ea_approved">EA APPROVED</string>
+    <string name="str_nasba_address">My Cpe LLC 30N,WY80801</string>
+    <string name="str_nasba_approved_content">my-cpe.org is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State Boards of Accountancy have the final authority on the acceptance of individual course for CPE credit.</string>
+    <string name="str_hour">Hour</string>
+    <string name="str_min">Min</string>
+
+    /table form
+    <string name="str_cost">Cost</string>
+    <string name="str_cpe_credit">Cpe Credits</string>
+    <string name="str_ce_credit">Ce Credits</string>
+    <string name="str_duration">Duration</string>
+    <string name="str_subject_area">Subject Area</string>
+    <string name="str_course_level">Course Level</string>
+    <string name="str_instructionalmethod">Instructional Method</string>
+    <string name="str_prerequisite">PREREQUISITES</string>
+    <string name="str_handout">Presentation Handouts</string>
+    <string name="str_adavance_preparation">Advance Preparation</string>
+    <string name="str_who_should_attend">Who should attend?</string>
+    <string name="str_series">Series</string>
+
+
+    /table form value
+    <string name="str_cost_price">$25.00</string>
+    <string name="str_cpe_credit_value">1</string>
+    <string name="str_duration_value">1 Hour</string>
+    <string name="str_subject_area_value">Accounting and  Auditing</string>
+    <string name="str_course_level_value">Basic</string>
+    <string name="str_instructional_value">Group Internet Based</string>
+    <string name="str_prerequisite_value">None</string>
+    <string name="str_handout_value">Download</string>
+    <string name="str_adavance_preparation_value">None</string>
+    <string name="str_who_should_attend_value">None</string>
+    <string name="str_series_value">None</string>
+
+
+    //Home to Webinar details screen pass data
+    <string name="pass_webinar_id">Webinarid</string>
+    <string name="pass_webinar_type">Webinartype</string>
+    <string name="str_course_id">Course Id</string>
+    <string name="str_is_notification">isnoti</string>
+
+
+    //account screen
+
+    <string name="str_header_account">Account</string>
+    <string name="str_username">John Smith</string>
+    <string name="str_lable_view">View and edit profile</string>
+
+
+    <string name="str_noti">Notifications</string>
+    <string name="str_testimonial_header">Testimonial</string>
+    <string name="str_my_transaction">My Transactions</string>
+    <string name="str_payment_method">Payment Method</string>
+    <string name="str_my_credit">My Credits</string>
+    <string name="str_topics_of_interest">Topic Of Interest</string>
+    <string name="str_privacy_policy">Privacy Policy</string>
+    <string name="str_terms_condition">Terms &amp; Conditions</string>
+    <string name="str_contact_us">Contact Us</string>
+    <string name="str_faqs">FAQ"'"s</string>
+    <string name="str_view_web_view_handouts">Handouts</string>
+    <string name="str_view_web_view_certificate">Certificate</string>
+    <string name="str_share">Share</string>
+    <string name="str_give_us_your_feedback">Give us your feedback</string>
+    <string name="str_logout">Logout</string>
+
+
+    //my credits
+
+    <string name="str_mycredit">My Credits</string>
+    <string name="str_user_email_id">johnsmith@gmail.com</string>
+    <string name="str_my_credit_completed">Completed</string>
+    <string name="str_my_credit_pending">Pending</string>
+    <string name="str_my_credit_upcoming">Upcoming</string>
+    <string name="str_download_all"><u>Download All</u></string>
+
+    /row file
+
+    <string name="str_instructor_name">judy vordan</string>
+    <string name="str_credit">1 credit</string>
+    <string name="str_accounting">Accounting</string>
+
+
+    //check condition in webinar details
+    <string name="str_webinar_status_register">Register</string>
+    <string name="str_webinar_status_enroll">JOIN WEBINAR</string>
+    <string name="str_webinar_status_certificate">MY CERTIFICATE</string>
+    <string name="str_webinar_status_watchnow">WATCH NOW</string>
+    <string name="str_webinar_status_resume_watching">Resume Watching</string>
+    <string name="str_webinar_status_quiz_pending">Quiz Pending</string>
+    <string name="str_webinar_status_pending_evoluation">Pending Evalution</string>
+    <string name="str_webinar_status_in_progress">IN PROGRESS</string>
+
+
+    //favorites
+
+    <string name="str_favorites">Favorites</string>
+    <string name="str_profile_name">Saumil Jani</string>
+
+
+    <string name="str_webinar">Webinar</string>
+    <string name="str_webinar_count">(25)</string>
+
+
+    <string name="str_interest">Interests</string>
+    <string name="str_interest_count">(149)</string>
+
+
+    <string name="str_speaker_favorite">Speaker</string>
+    <string name="str_speaker_count">(5)</string>
+
+
+    <string name="str_company_favorite">Company</string>
+    <string name="str_company_count">(10)</string>
+
+
+    <string name="fav_yes">Y</string>
+    <string name="fav_No">N</string>
+
+    //privacy policy
+    <string name="str_privacy">Privacy Policy</string>
+    <string name="str_terms_and_condition">Terms &amp; Conditions</string>
+
+    //notification list
+    <string name="str_noti_time">23d ago</string>
+
+    //transcation list
+    <string name="str_payment_date_label">Payment Date:</string>
+    <string name="str_payment_date">13/02/2019</string>
+    <string name="transcation_str_live">Live</string>
+    <string name="transcation_cost">$25.00</string>
+    <string name="str_trx_label">Trx ID#:</string>
+    <string name="str_trx_value">127856</string>
+    <string name="str_payment_status">Success</string>
+    <string name="str_download_receipt"><u>Download Receipt</u></string>
+
+    //notification settings
+    <string name="str_notification_lable">Push notifications</string>
+    <string name="str_notification_status">Off</string>
+    <string name="str_settings_lable">To enable notification,go to</string>
+    <string name="str_notification">Settings</string>
+    <string name="str_push_notification_lable">PUSH NOTIFICATION</string>
+    <string name="str_webinar_lable">Webinar</string>
+    <string name="str_notification_register">Register</string>
+    <string name="str_notification_reminder">Reminder</string>
+    <string name="str_webinar_updates">Webinar Updates</string>
+    <string name="str_pending_action">Pending Action</string>
+    <string name="str_quiz_pending">Quiz Pending</string>
+    <string name="str_pending_evolution">Pending Evaluation</string>
+    <string name="str_text">Text</string>
+
+
+    //view profile
+    <string name="str_header_profile">Profile</string>
+
+
+    //pass data between view profile and favorite screen
+
+    <string name="str_get_key_screen">getkey</string>
+    <string name="from_favorite">favorite</string>
+    <string name="from_view_profile">viewprofile</string>
+
+
+    //pass data between home screen to topics of interest
+
+    <string name="str_get_key_screen_key">getkey</string>
+    <string name="from_home_screen">homescreen</string>
+    <string name="from_edit_profile">editscreen</string>
+    <string name="from_account_screen">accountscreen</string>
+    <string name="from_sign_up_screen">signupscreen</string>
+
+    //Review Question
+    <string name="str_review_question">Review Question</string>
+
+
+    //final quiz
+
+    <string name="str_final_quiz">Final Quiz</string>
+
+    //evolution form
+
+    <string name="str_review_evolution_form">Evolution Form</string>
+
+
+    //stripe
+
+    <string name="str_hint_card_number">Card number</string>
+    <string name="str_card_holder_name">Card Holder Name</string>
+    <string name="str_month">MM/YY</string>
+    <string name="str_year">YY</string>
+    <string name="str_cvv">CVV</string>
+    <string name="str_payment">Payment</string>
+    <string name="str_add_card_header">Add Cards</string>
+    <string name="str_pay_now">PAY NOW</string>
+    <string name="str_pay_amount_header">Pay Amount</string>
+    <string name="str_add_card_label">ADD CARD</string>
+    <string name="str_my_cards">My Cards</string>
+
+
+    //notification passing
+
+    <string name="notification_flag">notificationflag</string>
+    <string name="notification_webinar_id">webinarid</string>
+
+    //from home to pending evoluation
+    <string name="screen">screen</string>
+    <string name="mywebinar">mywebinar</string>
+    <string name="webinardetail">webinardetail</string>
+    <string name="favroitescreen">favroitescreen</string>
+
+    //from screen to detail screen
+    <string name="screen_detail">screen_details</string>
+
+    //payment
+    <string name="str_payment_screen">Payment</string>
+
+
+    //details tab
+    <string name="str_details">DETAILS</string>
+    <string name="str_description">DESCRIPTION</string>
+    <string name="str_presenter">PRESENTER</string>
+    <string name="str_detail_company">COMPANY</string>
+    <string name="str_testimonials">TESTIMONIALS</string>
+    <string name="str_others">OTHERS</string>
+
+    //pass payment link
+    <string name="str_payment_link">paymentlink</string>
+    <string name="payment_link_not_available">Payment Link is Not Available</string>
+    <string name="payment_receipt_not_available">Receipt is Not Available</string>
+
+
+    //my credit to pdfview
+    <string name="str_document_link">documentlink</string>
+
+
+    //home screen filter
+
+
+    <string name="str_topics">Topics</string>
+    <string name="str_live_webinar">Live Webinars</string>
+    <string name="str_self_on_demand">Self-Study</string>
+    <string name="str_price">Price</string>
+    <string name="str_date">Date</string>
+
+    <string name="str_premium">Premium</string>
+    <string name="str_free">Free</string>
+
+
+</resources>

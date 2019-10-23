@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.entigrity.activity.ViewProfileActivity" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_list"
+        android:scrollIndicators="none"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rvtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/webinar_status"
+                android:padding="@dimen/_10sdp">
+
+
+                <ImageView
+                    android:id="@+id/ivback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@mipmap/back" />
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/screentitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/str_header_profile"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_18sdp"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+                <ImageView
+                    android:id="@+id/ivedit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@mipmap/edit" />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rvtitle"
+                android:background="@color/White"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_firstname"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_lastname"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_email"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_emailname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/str_firm_name"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_firmname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_mobile_number"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_mobilenumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_ptin_number"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_ptin_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_country"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_contry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:text="United States"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_state"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_city"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_zipcode"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_zipcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rel_topics_of_interest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp"
+                    android:visibility="gone">
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_topics_interest"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_topics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_toLeftOf="@+id/tv_topics_more"
+                        android:background="@drawable/my_credit_status"
+                        android:ems="11"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="gone"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_topics_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/my_credit_status"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="gone"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/str_who_you_are"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_who_you_are"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="right"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:ems="10"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_job_title"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_job_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/view_profile_industry"
+                        android:textColor="@color/edit_profile_lable_colcr"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                    <com.entigrity.view.CustomTextView
+                        android:id="@+id/tv_industry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="SFUIDisplay-Medium.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+</layout>

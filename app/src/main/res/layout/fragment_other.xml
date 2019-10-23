@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.entigrity.webinarDetail.OtherFragment" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollIndicators="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:id="@+id/rel_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/background_color"
+                    android:padding="@dimen/_5sdp">
+
+                    <com.entigrity.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/str_faq"
+                        android:textColor="@color/webinar_detail_titile"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Bold.ttf" />
+
+
+                </RelativeLayout>
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_faq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rel_faq"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="@color/edit_profile_lable_colcr"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/background_color"
+                android:padding="@dimen/_5sdp">
+
+                <com.entigrity.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="@string/str_refund_cancelation_policy"
+                    android:textColor="@color/webinar_detail_titile"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_refund_cancelation_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="@color/edit_profile_lable_colcr"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_nasba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/background_color"
+                android:padding="@dimen/_5sdp">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/str_nasbaapproved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="@string/str_nasba_approved"
+                    android:textColor="@color/webinar_detail_titile"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/nasba_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/str_nasbaapproved"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <ImageView
+                    android:id="@+id/iv_nasba_profile"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel_nasba_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/nasba_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="@color/edit_profile_lable_colcr"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_irs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/background_color"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/str_irsapproved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="@string/str_ea_approved"
+                    android:textColor="@color/webinar_detail_titile"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/irs_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/str_irsapproved"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <ImageView
+                    android:id="@+id/iv_irs_profile"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel_irs_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/irs_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="@color/edit_profile_lable_colcr"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

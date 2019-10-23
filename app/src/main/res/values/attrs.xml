@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextView">
+        <attr name="font_text" format="string" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CustomEditTextView">
+        <attr name="font_edit" format="string" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CustomButtonView">
+        <attr name="font_button" format="string" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CustomSpinnerView">
+        <attr name="font_spinner" format="string" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="MaskedEditText">
+        <attr name="mask" format="string" />
+        <attr name="placeholder" format="string" />
+    </declare-styleable>
+
+
+
+
+
+</resources>

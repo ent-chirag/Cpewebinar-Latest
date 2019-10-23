@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.entigrity.activity.TopicsOfInterestActivity" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relheader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@color/webinar_status">
+
+            <ImageView
+                android:id="@+id/ivback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@mipmap/back" />
+
+
+            <com.entigrity.view.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/view_profile_topics_interest"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvtopics_of_interest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rel_submit"
+            android:layout_below="@+id/relheader"
+            android:background="@color/White" />
+
+
+        <RelativeLayout
+            android:id="@+id/rel_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bottom_submit_footer">
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_submit"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="SFUIDisplay-Bold.ttf" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

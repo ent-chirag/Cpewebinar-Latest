@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/lv_topics_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:orientation="horizontal">
+        //Put here your views
+
+        <com.entigrity.view.CustomTextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/chipsetview"
+            android:gravity="center"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@color/grid_topics"
+            android:textSize="@dimen/_7sdp"
+            app:font_text="Montserrat-Light.ttf" />
+
+    </LinearLayout>
+</FrameLayout>
+
+
+
+
+
+
+

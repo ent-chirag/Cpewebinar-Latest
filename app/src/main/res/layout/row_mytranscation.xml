@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rel_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:background="@color/White">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:orientation="vertical">
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_webinar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:inputType="textMultiLine"
+                android:text="@string/str_basic_management"
+                android:textAllCaps="true"
+                android:textColor="@color/my_credit_webinar_report"
+                android:textSize="@dimen/_10sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp">
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_payment_date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/str_payment_date_label"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_payment_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/tv_payment_date_label"
+                    android:text="@string/str_payment_date"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <com.entigrity.view.CustomButtonView
+                    android:id="@+id/btn_webinarstatus_status"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/tv_payment_date"
+                    android:background="@drawable/rounded_webinar_status"
+                    android:gravity="center"
+                    android:text="@string/transcation_str_live"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_6sdp"
+                    app:font_button="Montserrat-Regular.ttf" />
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_webinar_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:text="@string/transcation_cost"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_2sdp">
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_trx_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/str_trx_label"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_trx_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/tv_trx_label"
+                    android:text="@string/str_trx_value"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <View
+                    android:id="@id/view_webinartopic"
+                    android:layout_width="0.5dp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/tv_trx_value"
+                    android:background="@color/my_credit_header_email_id"
+                    android:visibility="gone"></View>
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_payment_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/view_webinartopic"
+                    android:text="@string/str_payment_status"
+                    android:textColor="@color/transcation_status"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_download_receipt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_trx_value"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:text="@string/str_download_receipt"
+                    android:textColor="@color/my_credit_webinar_report"
+                    android:textSize="@dimen/_9sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
