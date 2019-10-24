@@ -10,7 +10,7 @@
 
     <solid android:color="@color/home_filter_unselected_background" />
 
-    <padding
+<padding
         android:bottom="0dp"
         android:left="0dp"
         android:right="0dp"

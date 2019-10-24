@@ -60,7 +60,7 @@ public class PreLoginActivity extends AppCompatActivity /*implements GoogleApiCl
             public void onClick(View v) {
                 Intent i = new Intent(PreLoginActivity.this, LoginActivity.class);
                 startActivity(i);
-                finish();
+//                finish();
 
 
             }
@@ -70,7 +70,7 @@ public class PreLoginActivity extends AppCompatActivity /*implements GoogleApiCl
             public void onClick(View v) {
                 Intent i = new Intent(PreLoginActivity.this, SignUpActivity.class);
                 startActivity(i);
-                finish();
+//                finish();
             }
         });
 

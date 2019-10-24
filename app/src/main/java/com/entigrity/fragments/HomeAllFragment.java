@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -18,10 +20,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.entigrity.MainActivity;
@@ -92,6 +97,16 @@ public class HomeAllFragment extends Fragment {
         binding.rvhome.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.rvhome.setItemAnimator(new DefaultItemAnimator());
         binding.rvhome.setHasFixedSize(true);
+
+        //Load animation
+        final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_down);
+
+        final Animation slide_down_experiment = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_down_experiment);
+
+        final Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_up);
 
 
         arrsavebooleanstate.add(0, false);
@@ -402,31 +417,30 @@ public class HomeAllFragment extends Fragment {
 
 
         binding.rvhome.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 || dy < 0 && MainActivity.getInstance().rel_top_bottom.isShown()) {
-                    getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
-
-                  /*  Animation bottomDown = AnimationUtils.loadAnimation(getContext(),
-                            R.anim.bottom_down);
-                    MainActivity.getInstance().rel_top_bottom.startAnimation(bottomDown);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);*/
-
-
-                }
-            }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     getActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_up);
                     MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
+                        }
+                    },500);
 
-                   /* Animation bottomUp = AnimationUtils.loadAnimation(getContext(),
-                            R.anim.bottom_up);
-                    MainActivity.getInstance().rel_top_bottom.startAnimation(bottomUp);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);*/
+                } else if(newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down_experiment);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
+                        }
+                    },500);
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
@@ -760,7 +774,11 @@ public class HomeAllFragment extends Fragment {
 
                 // Write your code here to invoke YES event
                 dialog.cancel();
-                getActivity().finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    getActivity().finishAffinity();
+                } else {
+                    getActivity().finish();
+                }
 
 
             }

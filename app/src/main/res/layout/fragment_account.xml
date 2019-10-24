@@ -128,6 +128,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/rv_mytransaction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/White"
@@ -230,7 +231,8 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="2dp"
-                    android:background="@color/background_list" />
+                    android:background="@color/background_list"
+                    android:visibility="gone"/>
 
 
                 <RelativeLayout

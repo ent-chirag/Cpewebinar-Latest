@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -392,7 +393,11 @@ public class MyWebinarFragment extends Fragment {
 
                 // Write your code here to invoke YES event
                 dialog.cancel();
-                getActivity().finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    getActivity().finishAffinity();
+                } else {
+                    getActivity().finish();
+                }
 
 
             }

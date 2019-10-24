@@ -94,10 +94,7 @@
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf"
-
-
-                    />
+                    app:font_edit="SFUIDisplay-Medium.ttf"/>
 
 
             </android.support.design.widget.TextInputLayout>

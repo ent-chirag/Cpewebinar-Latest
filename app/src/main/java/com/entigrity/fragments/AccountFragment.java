@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -422,7 +423,11 @@ public class AccountFragment extends Fragment {
 
                 // Write your code here to invoke YES event
                 dialog.cancel();
-                getActivity().finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getActivity().finishAffinity();
+                } else {
+                    getActivity().finish();
+                }
 
 
             }
@@ -492,7 +497,8 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        binding.tvMytransaction.setOnClickListener(new View.OnClickListener() {
+//        binding.tvMytransaction.setOnClickListener(new View.OnClickListener() {
+        binding.rvMytransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MyTransactionActivity.class);
