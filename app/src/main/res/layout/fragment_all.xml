@@ -214,7 +214,15 @@
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70sdp"
                 android:scrollbars="vertical" />
+
         </android.support.v4.widget.SwipeRefreshLayout>
+
+        <RelativeLayout
+            android:id="@+id/relShadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_below="@+id/scrollview"
+            android:background="@drawable/shadow_down"/>
 
 
         <com.entigrity.view.CustomTextView

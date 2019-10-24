@@ -983,9 +983,11 @@ public class HomeAllFragment extends Fragment {
 
                             if (arrHomelistnew.size() > 0) {
                                 binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
+                                binding.relShadow.setVisibility(View.VISIBLE);
                                 binding.tvNodatafound.setVisibility(View.GONE);
                             } else {
                                 binding.swipeRefreshLayouthome.setVisibility(View.GONE);
+                                binding.relShadow.setVisibility(View.GONE);
                                 binding.tvNodatafound.setVisibility(View.VISIBLE);
                             }
 
