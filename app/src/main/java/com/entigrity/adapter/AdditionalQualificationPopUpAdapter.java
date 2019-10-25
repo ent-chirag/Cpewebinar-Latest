@@ -47,25 +47,76 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
             viewHolder.tv_additional_qualification.setText(model_additional_qualification.getName());
         }
 
-        viewHolder.cbselection.setEnabled(false);
+//        viewHolder.cbselection.setEnabled(false);
 
 
         Boolean isChecked = Constant.hashmap_additional_qualification.get(model_additional_qualification.name);
 
 
         if (isChecked) {
-            viewHolder.cbselection.setChecked(true);
+//            viewHolder.cbselection.setChecked(true);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
         } else {
-            viewHolder.cbselection.setChecked(false);
+//            viewHolder.cbselection.setChecked(false);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
         }
 
 
         if (model_additional_qualification.isChecked()) {
-            viewHolder.cbselection.setChecked(true);
+//            viewHolder.cbselection.setChecked(true);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
         } else {
-            viewHolder.cbselection.setChecked(false);
+//            viewHolder.cbselection.setChecked(false);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
         }
 
+        viewHolder.tv_additional_qualification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (model_additional_qualification.isChecked()) {
+                    model_additional_qualification.setChecked(false);
+
+                    for (int i = 0; i < arraylistModeladditionalcredential.size(); i++) {
+                        if (model_additional_qualification.getId() == arraylistModeladditionalcredential.get(i).getId()) {
+                            arraylistModeladditionalcredential.set(i, model_additional_qualification);
+                        }
+                    }
+
+                    for (int k = 0; k < Constant.arraylistselectedproffesionalcredentialID.size(); k++) {
+                        if (model_additional_qualification.getId() == Constant.arraylistselectedproffesionalcredentialID.get(k)) {
+                            Constant.arraylistselectedadditionalqualificationID.remove(k);
+                            Constant.arraylistselectedadditionalqualification.remove(k);
+                        }
+                    }
+
+                    Constant.hashmap_additional_qualification.put(arraylistModeladditionalcredential.get(position).name
+                            , false);
+
+//                    viewHolder.cbselection.setChecked(false);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+
+
+                } else {
+                    model_additional_qualification.setChecked(true);
+
+                    for (int i = 0; i < arraylistModeladditionalcredential.size(); i++) {
+                        if (model_additional_qualification.getId() == arraylistModeladditionalcredential.get(i).getId()) {
+                            arraylistModeladditionalcredential.set(i, model_additional_qualification);
+                            Constant.arraylistselectedadditionalqualificationID.add(model_additional_qualification.getId());
+                            Constant.arraylistselectedadditionalqualification.add(model_additional_qualification.getName());
+                        }
+                    }
+
+                    Constant.hashmap_additional_qualification.put(arraylistModeladditionalcredential.get(position).name
+                            , true);
+//                    viewHolder.cbselection.setChecked(true);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                }
+
+
+            }
+        });
 
         viewHolder.rel_topics.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +141,8 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
                     Constant.hashmap_additional_qualification.put(arraylistModeladditionalcredential.get(position).name
                             , false);
 
-                    viewHolder.cbselection.setChecked(false);
+//                    viewHolder.cbselection.setChecked(false);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
 
 
                 } else {
@@ -106,7 +158,8 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
 
                     Constant.hashmap_additional_qualification.put(arraylistModeladditionalcredential.get(position).name
                             , true);
-                    viewHolder.cbselection.setChecked(true);
+//                    viewHolder.cbselection.setChecked(true);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
                 }
 
 
@@ -123,19 +176,21 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CheckBox cbselection;
+//        private CheckBox cbselection;
         private TextView tv_additional_qualification;
-        private RelativeLayout rel_topics;
+        private RelativeLayout rel_topics, relChecked;
 
 
         private ViewHolder(View itemView) {
             super(itemView);
             this.setIsRecyclable(false);
 
-            cbselection = (CheckBox) itemView.findViewById(R.id.cbselection);
+//            cbselection = (CheckBox) itemView.findViewById(R.id.cbselection);
             tv_additional_qualification = (TextView) itemView.findViewById(R.id.tv_professional_credential);
 
             rel_topics = (RelativeLayout) itemView.findViewById(R.id.rel_topics);
+            relChecked = (RelativeLayout) itemView.findViewById(R.id.relChecked);
+
 
 
         }
