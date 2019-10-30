@@ -581,7 +581,7 @@
 
     //my credits
 
-    <string name="str_mycredit">My Credits</string>
+    <string name="str_mycredit">My Certificate</string>
     <string name="str_user_email_id">johnsmith@gmail.com</string>
     <string name="str_my_credit_completed">Completed</string>
     <string name="str_my_credit_pending">Pending</string>
