@@ -34,11 +34,18 @@ public class Constant {
     public static ArrayList<Integer> arraylistselectedvalue = new ArrayList<Integer>();
 
 
-
     //for sign up proffesional credential
     public static ArrayList<Integer> arraylistselectedproffesionalcredentialID = new ArrayList<>();
     public static ArrayList<String> arraylistselectedproffesionalcredential = new ArrayList<String>();
     public static HashMap<String, Boolean> hashmap_professional_credential = new HashMap<String, Boolean>();
+
+
+    //for home filter subject area
+    public static ArrayList<Integer> arraylistselectedsubjectareahomeID = new ArrayList<>();
+    public static HashMap<String, Boolean> hashmap_subject_home_area = new HashMap<String, Boolean>();
+
+
+
 
 
     //for sign up additional qualification
@@ -55,8 +62,6 @@ public class Constant {
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();
-
-
 
 
     public static boolean isNetworkAvailable(Context con) {

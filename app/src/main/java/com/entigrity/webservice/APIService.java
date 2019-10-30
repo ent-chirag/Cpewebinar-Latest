@@ -376,6 +376,10 @@ public interface APIService {
             @Header("Authorization") String authorization,
             @Field("start") int start,
             @Field("limit") int limit,
+            @Field("subject_area") String subject_area,
+            @Field("webinar_key_text") String webinar_key_text,
+            @Field("filter_price") String filter_price,
+            @Field("date_filter") String date_filter,
             @Field("webinar_type") String webinar_type,
             @Field("topic_of_interest") String topic_of_interest);
 

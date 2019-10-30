@@ -63,7 +63,7 @@
             android:background="#232323"></View>
 
         <com.entigrity.view.CustomTextView
-            android:id="@+id/tv_create_account_guest"
+            android:id="@+id/tv_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"

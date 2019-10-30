@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_190sdp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:background="@color/White">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/rel_date_filter_today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.entigrity.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/str_date_filter_today"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_date_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/checkbox_date_filter_selector"
+                    android:focusable="false" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/color_view_date_filter_popup" />
+
+            <RelativeLayout
+                android:id="@+id/rel_date_filter_tommorow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_date_filter_today"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.entigrity.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/str_date_filter_tommorow"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_date_tommorow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/checkbox_date_filter_selector"
+                    android:focusable="false" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/color_view_date_filter_popup" />
+
+            <RelativeLayout
+                android:id="@+id/rel_date_this_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_date_filter_tommorow"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.entigrity.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/str_date_filter_this_week"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_date_this_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/checkbox_date_filter_selector"
+                    android:focusable="false" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/color_view_date_filter_popup" />
+
+            <RelativeLayout
+                android:id="@+id/rel_date_this_month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_date_this_week"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.entigrity.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/str_date_filter_this_month"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-Regular.ttf" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_date_this_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/checkbox_date_filter_selector"
+                    android:focusable="false" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/color_view_date_filter_popup" />
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_home_filter_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:text="@string/str_date_filter_apply"
+                android:textColor="@color/color_date_filter_popup_button"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
+
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_home_filter_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_toLeftOf="@+id/tv_home_filter_apply"
+                android:text="@string/str_date_filter_cancel"
+                android:textColor="@color/color_date_filter_popup_button"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
