@@ -27,18 +27,18 @@
                 android:id="@+id/edt_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_26sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_toLeftOf="@+id/relNotifications"
                 android:background="@mipmap/search_box"
                 android:drawableLeft="@mipmap/search_home"
                 android:drawablePadding="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_7sdp"
                 android:gravity="center|left"
-                android:layout_centerVertical="true"
                 android:hint="@string/str_search"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:paddingLeft="@dimen/_10sdp"
                 android:singleLine="true"
-                android:layout_toLeftOf="@+id/relNotifications"
                 android:textColorHint="@color/home_edit_search"
                 android:textSize="@dimen/_10sdp"
                 app:font_edit="SFUIDisplay-Medium.ttf" />
@@ -53,8 +53,8 @@
                     android:id="@+id/ivnotification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/home_bell"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/home_bell" />
 
             </RelativeLayout>
 
@@ -214,15 +214,7 @@
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70sdp"
                 android:scrollbars="vertical" />
-
         </android.support.v4.widget.SwipeRefreshLayout>
-
-        <RelativeLayout
-            android:id="@+id/relShadow"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_below="@+id/scrollview"
-            android:background="@drawable/shadow_down"/>
 
 
         <com.entigrity.view.CustomTextView

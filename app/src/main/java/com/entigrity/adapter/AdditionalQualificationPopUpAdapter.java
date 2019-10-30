@@ -50,7 +50,7 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
 //        viewHolder.cbselection.setEnabled(false);
 
 
-        Boolean isChecked = Constant.hashmap_additional_qualification.get(model_additional_qualification.name);
+      /*  Boolean isChecked = Constant.hashmap_additional_qualification.get(model_additional_qualification.name);
 
 
         if (isChecked) {
@@ -60,7 +60,7 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
 //            viewHolder.cbselection.setChecked(false);
             viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
         }
-
+*/
 
         if (model_additional_qualification.isChecked()) {
 //            viewHolder.cbselection.setChecked(true);

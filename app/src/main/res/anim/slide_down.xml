@@ -2,20 +2,13 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <translate
-        android:duration="2000"
-        android:fromYDelta="80%"
-        android:toYDelta="100%" />
+        android:duration="500"
+        android:fromYDelta="0"
+        android:toYDelta="20%" />
 
     <!--<translate
         android:duration="2000"
         android:fromYDelta="20%p"
-        android:toYDelta="100%p" />-->
-
-    <!--<translate
-        android:duration="500"
-        android:fillAfter="true"
-        android:fromYDelta="0%p"
-        android:interpolator="@android:anim/linear_interpolator"
         android:toYDelta="100%p" />-->
 
 </set>

@@ -308,8 +308,9 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_toRightOf="@+id/iv_speaker"
+                            android:layout_toLeftOf="@+id/tv_rating_number"
                             android:singleLine="true"
-                            android:inputType="textNoSuggestions"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:textColor="@color/home_tab_color_unselected"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="Montserrat-Medium.ttf" />
@@ -324,7 +325,6 @@
                             android:layout_toLeftOf="@+id/iv_rating"
                             android:textColor="@color/webinar_status"
                             android:textSize="@dimen/_8sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Bold.ttf" />
 
 
@@ -347,7 +347,6 @@
                             android:layout_centerVertical="true"
                             android:textColor="@color/home_tab_color_unselected"
                             android:textSize="@dimen/_8sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Bold.ttf"
 
 
@@ -375,7 +374,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_toRightOf="@+id/iv_company"
-                            android:inputType="textMultiLine|textNoSuggestions"
+                            android:inputType="textMultiLine"
                             android:textColor="@color/home_tab_color_unselected"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="Montserrat-Medium.ttf" />
@@ -384,6 +383,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rel_date_and_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp">
@@ -405,7 +405,6 @@
                             android:layout_toRightOf="@+id/iv_clock"
                             android:textColor="@color/webinar_status"
                             android:textSize="@dimen/_10sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -430,7 +429,6 @@
                             android:layout_toRightOf="@+id/dv_divider"
                             android:textColor="@color/webinar_status"
                             android:textSize="@dimen/_10sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -443,7 +441,6 @@
                             android:layout_toRightOf="@+id/tv_webinar_time"
                             android:textColor="@color/webinar_status"
                             android:textSize="@dimen/_10sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -463,7 +460,7 @@
                             android:layout_centerVertical="true"
                             android:ellipsize="end"
                             android:ems="11"
-                            android:inputType="textMultiLine|textNoSuggestions"
+                            android:inputType="textMultiLine"
                             android:textAllCaps="true"
                             android:textColor="@android:color/holo_red_dark"
                             android:textSize="@dimen/_10sdp"
@@ -478,7 +475,6 @@
                             android:layout_centerVertical="true"
                             android:textColor="@color/home_tab_color_unselected"
                             android:textSize="@dimen/_10sdp"
-                            android:inputType="textNoSuggestions"
                             app:font_text="Montserrat-Bold.ttf" />
 
                     </RelativeLayout>

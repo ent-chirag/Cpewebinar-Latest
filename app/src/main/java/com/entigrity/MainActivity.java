@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public int setselectedtab = 0;
     public int selectmywebinardtab = 0;
     public Dialog myDialog;
-    public TextView tv_login, tv_cancel, tv_create_account_guest;
+    public TextView tv_login, tv_cancel, tv_create_account;
     Intent intent;
     public String webinar_type = "";
 
@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!AppSettings.get_login_token(context).isEmpty()) {
+                    Constant.arraylistselectedsubjectareahomeID.clear();
+                    Constant.hashmap_subject_home_area.clear();
                     setselectedtab = 0;
                     selectmywebinardtab = 0;
                     SetImageBackground(0);
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!AppSettings.get_login_token(context).isEmpty()) {
+                    Constant.arraylistselectedsubjectareahomeID.clear();
+                    Constant.hashmap_subject_home_area.clear();
                     setselectedtab = 1;
                     selectmywebinardtab = 1;
                     checkmywebinardotstatusset = false;
@@ -147,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!AppSettings.get_login_token(context).isEmpty()) {
+                    Constant.arraylistselectedsubjectareahomeID.clear();
+                    Constant.hashmap_subject_home_area.clear();
                     setselectedtab = 0;
                     selectmywebinardtab = 0;
                     SetImageBackground(4);
@@ -266,8 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_login = (TextView) myDialog.findViewById(R.id.tv_login_guest);
         tv_cancel = (TextView) myDialog.findViewById(R.id.tv_cancel_guest);
-
-        tv_create_account_guest = (TextView) myDialog.findViewById(R.id.tv_create_account_guest);
+        tv_create_account = (TextView) myDialog.findViewById(R.id.tv_create_account);
 
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,9 +289,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tv_create_account_guest.setOnClickListener(new View.OnClickListener() {
+        tv_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (myDialog.isShowing()) {
                     myDialog.dismiss();
                 }
@@ -294,8 +300,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(context, SignUpActivity.class);
                 startActivity(i);
                 finish();
+
+
             }
         });
+
 
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {

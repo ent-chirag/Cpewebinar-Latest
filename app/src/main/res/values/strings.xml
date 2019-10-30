@@ -759,5 +759,16 @@
     <string name="str_premium">Premium</string>
     <string name="str_free">Free</string>
 
+    //home date filter
+
+    <string name="str_date_filter_today">Today</string>
+    <string name="str_date_filter_tommorow">Tomorrow</string>
+    <string name="str_date_filter_this_week">This Week</string>
+    <string name="str_date_filter_this_month">This Month</string>
+    <string name="str_date_filter_apply">APPLY</string>
+    <string name="str_date_filter_cancel">CANCEL</string>
+
+    <string name="str_val_search_text">please enter text</string>
+
 
 </resources>

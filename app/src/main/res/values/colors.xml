@@ -175,4 +175,12 @@
     <color name="wrong_ans">#FF2424</color>
 
 
+    //home date filter
+
+    <color name="color_view_date_filter_popup">#CECED2</color>
+    <color name="color_view_date_filter_checkbox_selected">#ED9E37</color>
+    <color name="color_view_date_filter_checkbox_unselected">#DDDDDD</color>
+    <color name="color_date_filter_popup_button">#08264c</color>
+
+
 </resources>

@@ -1,5 +1,6 @@
 package com.entigrity.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -16,10 +18,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
@@ -74,6 +82,16 @@ public class MyWebinarFragment extends Fragment {
         mAPIService_new = ApiUtilsNew.getAPIService();
         instance = MyWebinarFragment.this;
 
+
+        //for animation
+
+        final Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_up);
+
+        final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_down);
+
+
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.rvhomewebinar.setLayoutManager(linearLayoutManager);
         binding.rvhomewebinar.addItemDecoration(new SimpleDividerItemDecoration(context));
@@ -117,17 +135,123 @@ public class MyWebinarFragment extends Fragment {
             binding.tvNodatafound.setText(getResources().getString(R.string.str_guest_user_dialog_msg));
         }
 
+
+        binding.edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (s.length() == 0) {
+                    Constant.hideKeyboard((Activity) context);
+
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                    } else {
+                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                // TODO Auto-generated method stub
+            }
+        });
+
+
+        binding.edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // Do you job here which you want to done through event
+
+                    Constant.hideKeyboard(getActivity());
+
+
+                    HomeAllFragment ldf = new HomeAllFragment();
+                    Bundle args = new Bundle();
+                    args.putString("actionsearch", Constant.Trim(binding.edtSearch.getText().toString()));
+                    ldf.setArguments(args);
+
+                    MainActivity.getInstance().SetImageBackground(2);
+
+//Inflate the fragment
+                    getFragmentManager().beginTransaction().add(R.id.content_frame, ldf).commit();
+
+
+
+
+                   /* if (!Constant.Trim(binding.edtSearch.getText().toString()).isEmpty()) {
+                        if (Constant.isNetworkAvailable(context)) {
+                            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                        } else {
+                            Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.str_val_search_text), Snackbar.LENGTH_SHORT).show();
+                    }
+*/
+
+                }
+                return false;
+            }
+        });
+
         binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    getActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_up);
+                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
+                        }
+                    }, 500);
+
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
+                        }
+                    }, 500);
+                }
+
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
+
+
+       /* binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0 || dy < 0 && MainActivity.getInstance().rel_top_bottom.isShown()) {
                     getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
                     MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
 
-                  /*  Animation bottomDown = AnimationUtils.loadAnimation(getContext(),
+                  *//*  Animation bottomDown = AnimationUtils.loadAnimation(getContext(),
                             R.anim.bottom_down);
                     MainActivity.getInstance().rel_top_bottom.startAnimation(bottomDown);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);*/
+                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);*//*
 
 
                 }
@@ -139,15 +263,15 @@ public class MyWebinarFragment extends Fragment {
                     getActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                     MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
 
-                   /* Animation bottomUp = AnimationUtils.loadAnimation(getContext(),
+                   *//* Animation bottomUp = AnimationUtils.loadAnimation(getContext(),
                             R.anim.bottom_up);
                     MainActivity.getInstance().rel_top_bottom.startAnimation(bottomUp);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);*/
+                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);*//*
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
             }
-        });
+        });*/
 
 
         binding.swipeRefreshLayouthomemywebinar.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

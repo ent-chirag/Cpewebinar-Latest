@@ -24,6 +24,7 @@ import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.activity.LoginActivity;
 import com.entigrity.activity.PaymentActivity;
+import com.entigrity.activity.SignUpActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -55,7 +56,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     private APIService mAPIService;
     ProgressDialog progressDialog;
     public Dialog myDialog;
-    private TextView tv_cancel, tv_login;
+    private TextView tv_cancel, tv_login, tv_create_account;
     public String certificate_link = "";
     String join_url = "";
 
@@ -104,6 +105,19 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
             if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
                 certificate_link = mList.get(position).getCertificatelink();
+            }
+
+
+            if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_live))) {
+
+                ((HomeViewHolder) viewHolder).rel_date_and_time.setVisibility(View.VISIBLE);
+
+            } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_self_study))) {
+                //rel_date_and_time
+
+                ((HomeViewHolder) viewHolder).rel_date_and_time.setVisibility(View.GONE);
             }
 
 
@@ -386,8 +400,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             Constant.toast(mContext, mContext.getResources().getString(R.string.str_sharing_not_avilable));
                         }
 
-                    }else
-                    {
+                    } else {
                         ShowPopUp();
                     }
 
@@ -523,6 +536,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
         tv_login = (TextView) myDialog.findViewById(R.id.tv_login_guest);
         tv_cancel = (TextView) myDialog.findViewById(R.id.tv_cancel_guest);
+        tv_create_account = (TextView) myDialog.findViewById(R.id.tv_create_account);
 
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -547,6 +561,22 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 if (myDialog.isShowing()) {
                     myDialog.dismiss();
                 }
+
+            }
+        });
+
+        tv_create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (myDialog.isShowing()) {
+                    myDialog.dismiss();
+                }
+
+                Intent i = new Intent(mContext, SignUpActivity.class);
+                mContext.startActivity(i);
+                ((Activity) mContext).finish();
+
 
             }
         });
@@ -601,7 +631,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 tv_favorite_count, tv_attend_views, tv_favorite_speaker_name, tv_company_name, tv_timezone, tv_lable, tv_enrolled,
                 tv_rating_number, tv_rating_count;
         ImageView ivwebinar_thumbhel, ivshare, iv_rating;
-
+        RelativeLayout rel_date_and_time;
         View dv_divider;
         Button credit_status, webinar_status, tv_webinar_type, tv_webinar_price_status;
         ImageView ivfavorite;
@@ -619,6 +649,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             tv_rating_number = (TextView) itemView.findViewById(R.id.tv_rating_number);
             tv_rating_count = (TextView) itemView.findViewById(R.id.tv_rating_count);
             iv_rating = (ImageView) itemView.findViewById(R.id.iv_rating);
+
+            rel_date_and_time = (RelativeLayout) itemView.findViewById(R.id.rel_date_and_time);
 
 
             ivfavorite = (ImageView) itemView.findViewById(R.id.ivfavorite);
