@@ -443,7 +443,6 @@ public class HomeAllFragment extends Fragment {
         });
 */
 
-
         binding.rvhome.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
