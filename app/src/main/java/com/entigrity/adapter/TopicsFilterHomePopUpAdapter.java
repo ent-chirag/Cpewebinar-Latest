@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.entigrity.R;
-import com.entigrity.model.Proffesional_Credential.Model_proffesional_Credential;
 import com.entigrity.model.subjects_store.Model_Subject_Area;
 import com.entigrity.utility.Constant;
 
@@ -47,13 +46,13 @@ public class TopicsFilterHomePopUpAdapter extends RecyclerView.Adapter<TopicsFil
             viewHolder.tv_professional_credential.setText(model_subject_area.getName());
         }
 
-        viewHolder.cbselection.setEnabled(false);
+//        viewHolder.cbselection.setEnabled(false);
 
 
-        /*Boolean isChecked = Constant.hashmap_professional_credential.get(model_proffesional_credential.name);
+        Boolean isChecked = Constant.hashmap_subject_home_area.get(model_subject_area.name);
 
 
-        if (isChecked) {
+        /*if (isChecked) {
             viewHolder.cbselection.setChecked(true);
         } else {
             viewHolder.cbselection.setChecked(false);
@@ -61,58 +60,107 @@ public class TopicsFilterHomePopUpAdapter extends RecyclerView.Adapter<TopicsFil
 
 
         if (model_subject_area.isChecked()) {
-            viewHolder.cbselection.setChecked(true);
+//            viewHolder.cbselection.setChecked(true);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
         } else {
-            viewHolder.cbselection.setChecked(false);
+//            viewHolder.cbselection.setChecked(false);
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
         }
 
 
-        viewHolder.rel_topics.setOnClickListener(new View.OnClickListener() {
+        viewHolder.tv_professional_credential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               /* if (model_proffesional_credential.isChecked()) {
-                    model_proffesional_credential.setChecked(false);
+                if (model_subject_area.isChecked()) {
+                    model_subject_area.setChecked(false);
 
-                    for (int i = 0; i < arraylistModelProffesioanlCredential.size(); i++) {
-                        if (model_proffesional_credential.getId() == arraylistModelProffesioanlCredential.get(i).getId()) {
-                            arraylistModelProffesioanlCredential.set(i, model_proffesional_credential);
+                    for (int i = 0; i < arraylistModelSubjectArea.size(); i++) {
+                        if (model_subject_area.getId() == arraylistModelSubjectArea.get(i).getId()) {
+                            arraylistModelSubjectArea.set(i, model_subject_area);
                         }
                     }
 
-                    for (int k = 0; k < Constant.arraylistselectedproffesionalcredentialID.size(); k++) {
-                        if (model_proffesional_credential.getId() == Constant.arraylistselectedproffesionalcredentialID.get(k)) {
-                            Constant.arraylistselectedproffesionalcredentialID.remove(k);
-                            Constant.arraylistselectedproffesionalcredential.remove(k);
+                    for (int k = 0; k < Constant.arraylistselectedsubjectareahomeID.size(); k++) {
+                        if (model_subject_area.getId() == Constant.arraylistselectedsubjectareahomeID.get(k)) {
+                            Constant.arraylistselectedsubjectareahomeID.remove(k);
                         }
                     }
 
-                    Constant.hashmap_professional_credential.put(arraylistModelProffesioanlCredential.get(position).name
+                    Constant.hashmap_subject_home_area.put(arraylistModelSubjectArea.get(position).name
                             , false);
 
-                    viewHolder.cbselection.setChecked(false);
+//                    viewHolder.cbselection.setChecked(false);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
 
 
                 } else {
-                    model_proffesional_credential.setChecked(true);
+                    model_subject_area.setChecked(true);
 
-                    for (int i = 0; i < arraylistModelProffesioanlCredential.size(); i++) {
-                        if (model_proffesional_credential.getId() == arraylistModelProffesioanlCredential.get(i).getId()) {
-                            arraylistModelProffesioanlCredential.set(i, model_proffesional_credential);
-                            Constant.arraylistselectedproffesionalcredentialID.add(model_proffesional_credential.getId());
-                            Constant.arraylistselectedproffesionalcredential.add(model_proffesional_credential.getName());
+                    for (int i = 0; i < arraylistModelSubjectArea.size(); i++) {
+                        if (model_subject_area.getId() == arraylistModelSubjectArea.get(i).getId()) {
+                            arraylistModelSubjectArea.set(i, model_subject_area);
+                            Constant.arraylistselectedsubjectareahomeID.add(model_subject_area.getId());
+
                         }
                     }
 
-                    Constant.hashmap_professional_credential.put(arraylistModelProffesioanlCredential.get(position).name
+                    Constant.hashmap_subject_home_area.put(arraylistModelSubjectArea.get(position).name
                             , true);
-                    viewHolder.cbselection.setChecked(true);
-                }*/
+//                    viewHolder.cbselection.setChecked(true);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                }
 
 
             }
         });
 
+        viewHolder.rel_topics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (model_subject_area.isChecked()) {
+                    model_subject_area.setChecked(false);
+
+                    for (int i = 0; i < arraylistModelSubjectArea.size(); i++) {
+                        if (model_subject_area.getId() == arraylistModelSubjectArea.get(i).getId()) {
+                            arraylistModelSubjectArea.set(i, model_subject_area);
+                        }
+                    }
+
+                    for (int k = 0; k < Constant.arraylistselectedsubjectareahomeID.size(); k++) {
+                        if (model_subject_area.getId() == Constant.arraylistselectedsubjectareahomeID.get(k)) {
+                            Constant.arraylistselectedsubjectareahomeID.remove(k);
+                        }
+                    }
+
+                    Constant.hashmap_subject_home_area.put(arraylistModelSubjectArea.get(position).name
+                            , false);
+
+//                    viewHolder.cbselection.setChecked(false);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+
+
+                } else {
+                    model_subject_area.setChecked(true);
+
+                    for (int i = 0; i < arraylistModelSubjectArea.size(); i++) {
+                        if (model_subject_area.getId() == arraylistModelSubjectArea.get(i).getId()) {
+                            arraylistModelSubjectArea.set(i, model_subject_area);
+                            Constant.arraylistselectedsubjectareahomeID.add(model_subject_area.getId());
+
+                        }
+                    }
+
+                    Constant.hashmap_subject_home_area.put(arraylistModelSubjectArea.get(position).name
+                            , true);
+//                    viewHolder.cbselection.setChecked(true);
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                }
+
+
+            }
+        });
 
     }
 
@@ -123,20 +171,20 @@ public class TopicsFilterHomePopUpAdapter extends RecyclerView.Adapter<TopicsFil
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CheckBox cbselection;
+//        private CheckBox cbselection;
         private TextView tv_professional_credential;
-        private RelativeLayout rel_topics;
+        private RelativeLayout rel_topics, relChecked;
 
 
         private ViewHolder(View itemView) {
             super(itemView);
             this.setIsRecyclable(false);
 
-            cbselection = (CheckBox) itemView.findViewById(R.id.cbselection);
+//            cbselection = (CheckBox) itemView.findViewById(R.id.cbselection);
             tv_professional_credential = (TextView) itemView.findViewById(R.id.tv_professional_credential);
 
             rel_topics = (RelativeLayout) itemView.findViewById(R.id.rel_topics);
-
+            relChecked = (RelativeLayout) itemView.findViewById(R.id.relChecked);
 
         }
     }

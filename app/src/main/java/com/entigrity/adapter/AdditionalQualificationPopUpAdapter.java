@@ -83,8 +83,8 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
                         }
                     }
 
-                    for (int k = 0; k < Constant.arraylistselectedproffesionalcredentialID.size(); k++) {
-                        if (model_additional_qualification.getId() == Constant.arraylistselectedproffesionalcredentialID.get(k)) {
+                    for (int k = 0; k < Constant.arraylistselectedadditionalqualificationID.size(); k++) {
+                        if (model_additional_qualification.getId() == Constant.arraylistselectedadditionalqualificationID.get(k)) {
                             Constant.arraylistselectedadditionalqualificationID.remove(k);
                             Constant.arraylistselectedadditionalqualification.remove(k);
                         }
@@ -131,8 +131,8 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
                         }
                     }
 
-                    for (int k = 0; k < Constant.arraylistselectedproffesionalcredentialID.size(); k++) {
-                        if (model_additional_qualification.getId() == Constant.arraylistselectedproffesionalcredentialID.get(k)) {
+                    for (int k = 0; k < Constant.arraylistselectedadditionalqualificationID.size(); k++) {
+                        if (model_additional_qualification.getId() == Constant.arraylistselectedadditionalqualificationID.get(k)) {
                             Constant.arraylistselectedadditionalqualificationID.remove(k);
                             Constant.arraylistselectedadditionalqualification.remove(k);
                         }

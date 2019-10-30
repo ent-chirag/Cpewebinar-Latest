@@ -56,7 +56,9 @@ public class Constant {
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();
 
-
+    //for home filter subject area
+    public static ArrayList<Integer> arraylistselectedsubjectareahomeID = new ArrayList<>();
+    public static HashMap<String, Boolean> hashmap_subject_home_area = new HashMap<String, Boolean>();
 
 
     public static boolean isNetworkAvailable(Context con) {
