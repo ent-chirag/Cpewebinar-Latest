@@ -497,15 +497,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
-//        binding.tvMytransaction.setOnClickListener(new View.OnClickListener() {
-        binding.rvMytransaction.setOnClickListener(new View.OnClickListener() {
+        binding.rvMyTranscation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MyTransactionActivity.class);
                 getActivity().startActivity(i);
             }
         });
-
 
         binding.rvChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
