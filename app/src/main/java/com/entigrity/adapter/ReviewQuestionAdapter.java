@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.entigrity.R;
@@ -68,10 +69,14 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.tv_ans_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.checkbox_select_a.setChecked(true);
-                viewHolder.checkbox_select_b.setChecked(false);
-                viewHolder.checkbox_select_c.setChecked(false);
-                viewHolder.checkbox_select_d.setChecked(false);
+//                viewHolder.checkbox_select_a.setChecked(true);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
                 if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
@@ -110,10 +115,14 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
             @Override
             public void onClick(View v) {
 
-                viewHolder.checkbox_select_a.setChecked(false);
-                viewHolder.checkbox_select_b.setChecked(true);
-                viewHolder.checkbox_select_c.setChecked(false);
-                viewHolder.checkbox_select_d.setChecked(false);
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(true);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
                 if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
@@ -147,10 +156,14 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.tv_ans_c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.checkbox_select_a.setChecked(false);
-                viewHolder.checkbox_select_b.setChecked(false);
-                viewHolder.checkbox_select_c.setChecked(true);
-                viewHolder.checkbox_select_d.setChecked(false);
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(true);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
                 if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
@@ -186,10 +199,14 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
             @Override
             public void onClick(View v) {
 
-                viewHolder.checkbox_select_a.setChecked(false);
-                viewHolder.checkbox_select_b.setChecked(false);
-                viewHolder.checkbox_select_c.setChecked(false);
-                viewHolder.checkbox_select_d.setChecked(true);
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(true);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
 
                 if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
@@ -236,7 +253,8 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_number, tv_question, tv_ans_a, tv_ans_b, tv_ans_c, tv_ans_d;
-        public CheckBox checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
+//        public CheckBox checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
+        public RelativeLayout checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
         public LinearLayout lv_A, lv_B, lv_C, lv_D;
 
         private ViewHolder(View itemView) {
@@ -244,10 +262,14 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
             tv_number = (TextView) itemView.findViewById(R.id.tv_number);
             tv_question = (TextView) itemView.findViewById(R.id.tv_question);
 
-            checkbox_select_a = (CheckBox) itemView.findViewById(R.id.checkbox_select_a);
-            checkbox_select_b = (CheckBox) itemView.findViewById(R.id.checkbox_select_b);
-            checkbox_select_c = (CheckBox) itemView.findViewById(R.id.checkbox_select_c);
-            checkbox_select_d = (CheckBox) itemView.findViewById(R.id.checkbox_select_d);
+//            checkbox_select_a = (CheckBox) itemView.findViewById(R.id.checkbox_select_a);
+            checkbox_select_a = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_a);
+//            checkbox_select_b = (CheckBox) itemView.findViewById(R.id.checkbox_select_b);
+            checkbox_select_b = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_b);
+//            checkbox_select_c = (CheckBox) itemView.findViewById(R.id.checkbox_select_c);
+            checkbox_select_c = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_c);
+//            checkbox_select_d = (CheckBox) itemView.findViewById(R.id.checkbox_select_d);
+            checkbox_select_d = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_d);
 
 
             tv_ans_a = (TextView) itemView.findViewById(R.id.tv_ans_a);

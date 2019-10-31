@@ -68,7 +68,7 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:textColor="@color/edit_profile_lable_colcr"
                 android:textSize="@dimen/_10sdp"
-                app:font_text="Montserrat-Regular.ttf" />
+                app:font_text="Montserrat-SemiBold.ttf" />
 
 
         </RelativeLayout>

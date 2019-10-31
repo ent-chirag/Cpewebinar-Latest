@@ -56,14 +56,23 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
-                <CheckBox
+                <!--<CheckBox
                     android:id="@+id/checkbox_select_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:button="@drawable/checkbox_question_selection"
-                    android:enabled="false" />
+                    android:enabled="false" />-->
+
+                <RelativeLayout
+                    android:id="@+id/checkbox_select_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rev_unchecked"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"/>
 
                 <com.entigrity.view.CustomTextView
                     android:id="@+id/tv_ans_a"
@@ -82,6 +91,20 @@
 
             </LinearLayout>
 
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_ans_state_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@android:color/holo_green_light"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
 
             <LinearLayout
                 android:id="@+id/lv_B"
@@ -91,14 +114,23 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
-                <CheckBox
+                <!--<CheckBox
                     android:id="@+id/checkbox_select_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:button="@drawable/checkbox_question_selection"
-                    android:enabled="false" />
+                    android:enabled="false" />-->
+
+                <RelativeLayout
+                    android:id="@+id/checkbox_select_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rev_unchecked"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"/>
 
                 <com.entigrity.view.CustomTextView
                     android:id="@+id/tv_ans_b"
@@ -117,6 +149,21 @@
 
             </LinearLayout>
 
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_ans_state_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@android:color/holo_green_light"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
             <LinearLayout
                 android:id="@+id/lv_C"
                 android:layout_width="match_parent"
@@ -125,14 +172,23 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
-                <CheckBox
+                <!--<CheckBox
                     android:id="@+id/checkbox_select_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:button="@drawable/checkbox_question_selection"
-                    android:enabled="false" />
+                    android:enabled="false" />-->
+
+                <RelativeLayout
+                    android:id="@+id/checkbox_select_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rev_unchecked"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"/>
 
                 <com.entigrity.view.CustomTextView
                     android:id="@+id/tv_ans_c"
@@ -151,6 +207,21 @@
 
             </LinearLayout>
 
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_ans_state_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@android:color/holo_green_light"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
             <LinearLayout
                 android:id="@+id/lv_D"
                 android:layout_width="match_parent"
@@ -159,14 +230,23 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp">
 
-                <CheckBox
+                <!--<CheckBox
                     android:id="@+id/checkbox_select_d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:button="@drawable/checkbox_question_selection"
-                    android:enabled="false" />
+                    android:enabled="false" />-->
+
+                <RelativeLayout
+                    android:id="@+id/checkbox_select_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rev_unchecked"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"/>
 
                 <com.entigrity.view.CustomTextView
                     android:id="@+id/tv_ans_d"
@@ -184,6 +264,21 @@
 
 
             </LinearLayout>
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_ans_state_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@android:color/holo_green_light"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
 
         </LinearLayout>
 
