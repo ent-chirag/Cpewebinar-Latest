@@ -90,38 +90,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rel_body"
-            android:layout_marginTop="@dimen/_5sdp"
             android:orientation="horizontal"
             android:weightSum="3">
 
 
             <LinearLayout
-                android:id="@+id/lv_completed"
+                android:id="@+id/lv_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
+                android:background="@mipmap/my_certi_gray_select"
                 android:orientation="vertical">
 
-                <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_complted_webinar_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="0"
-                    android:textColor="@color/my_credit_webinar_report"
-                    android:textSize="@dimen/_16sdp"
-                    app:font_text="Montserrat-SemiBold.ttf" />
 
                 <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_completed"
+                    android:id="@+id/tv_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/str_my_credit_completed"
-                    android:textColor="@color/my_credit_webinar_count"
-                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/str_my_credit_all"
+                    android:textColor="@color/home_tab_color_unselected"
+                    android:textSize="@dimen/_12sdp"
                     app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -131,37 +121,29 @@
             <View
                 android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.05"
-                android:background="@android:color/darker_gray" />
+                android:layout_weight="0.01"
+                android:background="@color/color_my_cretificate_menu_divider"
+                android:visibility="visible" />
 
 
             <LinearLayout
-                android:id="@+id/lv_pending"
+                android:id="@+id/lv_live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_weight="1"
+                android:background="@mipmap/my_certi_gray"
                 android:orientation="vertical">
 
-                <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_pending_webinar_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="0"
-                    android:textColor="@color/my_credit_webinar_report"
-                    android:textSize="@dimen/_16sdp"
-                    app:font_text="Montserrat-SemiBold.ttf" />
 
                 <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_pending"
+                    android:id="@+id/tv_live"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/str_my_credit_pending"
-                    android:textColor="@color/my_credit_webinar_count"
-                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/str_my_credit_live"
+                    android:textColor="@color/home_tab_color_unselected"
+                    android:textSize="@dimen/_12sdp"
                     app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -170,37 +152,29 @@
             <View
                 android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.05"
-                android:background="@android:color/darker_gray" />
+                android:layout_weight="0.01"
+                android:background="@color/color_my_cretificate_menu_divider"
+                android:visibility="visible" />
 
 
             <LinearLayout
-                android:id="@+id/lv_upcoming"
+                android:id="@+id/lv_self_study"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
+                android:layout_weight="1"
+                android:background="@mipmap/my_certi_gray"
                 android:orientation="vertical">
 
-                <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_upcoming_webinar_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="0"
-                    android:textColor="@color/my_credit_webinar_report"
-                    android:textSize="@dimen/_16sdp"
-                    app:font_text="Montserrat-SemiBold.ttf" />
 
                 <com.entigrity.view.CustomTextView
-                    android:id="@+id/tv_upcoming"
+                    android:id="@+id/tv_self_study"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/str_my_credit_upcoming"
-                    android:textColor="@color/my_credit_webinar_count"
-                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/str_my_credit_self_study"
+                    android:textColor="@color/home_tab_color_unselected"
+                    android:textSize="@dimen/_12sdp"
                     app:font_text="Montserrat-Medium.ttf" />
 
 
@@ -215,7 +189,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/lv_filter"
-            android:layout_marginTop="@dimen/_5sdp">
+            android:layout_marginTop="@dimen/_10sdp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_mycredit"

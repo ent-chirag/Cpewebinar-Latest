@@ -2,160 +2,159 @@ package com.entigrity.model.My_Credit;
 
 import com.google.gson.annotations.SerializedName;
 
-
-public class MyCreditsItem {
-
-    @SerializedName("host_date")
-    private String hostDate;
-
-    @SerializedName("webinar_id")
-    private String webinarId;
-
-    public String getJoinUrl() {
-        return joinUrl;
-    }
-
-    public void setJoinUrl(String joinUrl) {
-        this.joinUrl = joinUrl;
-    }
-
-    @SerializedName("subject")
-    private String subject;
+import java.util.List;
 
 
-    @SerializedName("joinUrl")
-    private String joinUrl;
+public class MyCreditsItem{
 
-    @SerializedName("speaker_name")
-    private String speakerName;
+	@SerializedName("host_date")
+	private String hostDate;
 
-    @SerializedName("certificate_link")
-    private String certificateLink;
+	@SerializedName("webinar_credit_type")
+	private String webinarCreditType;
 
-    @SerializedName("webinar_title")
-    private String webinarTitle;
+	@SerializedName("ce_credit")
+	private String ceCredit;
 
-    @SerializedName("webinar_type")
-    private String webinarType;
+	@SerializedName("webinar_id")
+	private int webinarId;
 
-    @SerializedName("credit")
-    private String credit;
+	@SerializedName("subject")
+	private String subject;
 
+	@SerializedName("speaker_name")
+	private String speakerName;
 
-    public String getWebinarCreditType() {
-        return WebinarCreditType;
-    }
+	@SerializedName("certificate_link")
+	private List<String> certificateLink;
 
-    public void setWebinarCreditType(String webinarCreditType) {
-        WebinarCreditType = webinarCreditType;
-    }
+	@SerializedName("webinar_title")
+	private String webinarTitle;
 
-    public String getCeCredit() {
-        return ceCredit;
-    }
+	@SerializedName("webinar_type")
+	private String webinarType;
 
-    public void setCeCredit(String ceCredit) {
-        this.ceCredit = ceCredit;
-    }
+	@SerializedName("credit")
+	private String credit;
 
-    @SerializedName("webinar_credit_type")
-    private String WebinarCreditType;
+	@SerializedName("joinUrl")
+	private String joinUrl;
 
-    @SerializedName("ce_credit")
-    private String ceCredit;
+	@SerializedName("webinar_status")
+	private String webinarStatus;
 
+	public void setHostDate(String hostDate){
+		this.hostDate = hostDate;
+	}
 
-    @SerializedName("webinar_status")
-    private String webinarStatus;
+	public String getHostDate(){
+		return hostDate;
+	}
 
-    public void setHostDate(String hostDate) {
-        this.hostDate = hostDate;
-    }
+	public void setWebinarCreditType(String webinarCreditType){
+		this.webinarCreditType = webinarCreditType;
+	}
 
-    public String getHostDate() {
-        return hostDate;
-    }
+	public String getWebinarCreditType(){
+		return webinarCreditType;
+	}
 
-    public void setWebinarId(String webinarId) {
-        this.webinarId = webinarId;
-    }
+	public void setCeCredit(String ceCredit){
+		this.ceCredit = ceCredit;
+	}
 
-    public String getWebinarId() {
-        return webinarId;
-    }
+	public String getCeCredit(){
+		return ceCredit;
+	}
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+	public void setWebinarId(int webinarId){
+		this.webinarId = webinarId;
+	}
 
-    public String getSubject() {
-        return subject;
-    }
+	public int getWebinarId(){
+		return webinarId;
+	}
 
-    public void setSpeakerName(String speakerName) {
-        this.speakerName = speakerName;
-    }
+	public void setSubject(String subject){
+		this.subject = subject;
+	}
 
-    public String getSpeakerName() {
-        return speakerName;
-    }
+	public String getSubject(){
+		return subject;
+	}
 
-    public void setCertificateLink(String certificateLink) {
-        this.certificateLink = certificateLink;
-    }
+	public void setSpeakerName(String speakerName){
+		this.speakerName = speakerName;
+	}
 
-    public String getCertificateLink() {
-        return certificateLink;
-    }
+	public String getSpeakerName(){
+		return speakerName;
+	}
 
-    public void setWebinarTitle(String webinarTitle) {
-        this.webinarTitle = webinarTitle;
-    }
+	public void setCertificateLink(List<String> certificateLink){
+		this.certificateLink = certificateLink;
+	}
 
-    public String getWebinarTitle() {
-        return webinarTitle;
-    }
+	public List<String> getCertificateLink(){
+		return certificateLink;
+	}
 
-    public void setWebinarType(String webinarType) {
-        this.webinarType = webinarType;
-    }
+	public void setWebinarTitle(String webinarTitle){
+		this.webinarTitle = webinarTitle;
+	}
 
-    public String getWebinarType() {
-        return webinarType;
-    }
+	public String getWebinarTitle(){
+		return webinarTitle;
+	}
 
-    public void setCredit(String credit) {
-        this.credit = credit;
-    }
+	public void setWebinarType(String webinarType){
+		this.webinarType = webinarType;
+	}
 
-    public String getCredit() {
-        return credit;
-    }
+	public String getWebinarType(){
+		return webinarType;
+	}
 
-    public void setWebinarStatus(String webinarStatus) {
-        this.webinarStatus = webinarStatus;
-    }
+	public void setCredit(String credit){
+		this.credit = credit;
+	}
 
-    public String getWebinarStatus() {
-        return webinarStatus;
-    }
+	public String getCredit(){
+		return credit;
+	}
 
-    @Override
-    public String toString() {
-        return
-                "MyCreditsItem{" +
-                        "host_date = '" + hostDate + '\'' +
-                        ",webinar_id = '" + webinarId + '\'' +
-                        ",subject = '" + subject + '\'' +
-                        ",joinUrl = '" + joinUrl + '\'' +
-                        ",ce_credit = '" + ceCredit + '\'' +
-                        ",webinar_credit_type = '" + WebinarCreditType + '\'' +
-                        ",speaker_name = '" + speakerName + '\'' +
-                        ",certificate_link = '" + certificateLink + '\'' +
-                        ",webinar_title = '" + webinarTitle + '\'' +
-                        ",webinar_type = '" + webinarType + '\'' +
-                        ",credit = '" + credit + '\'' +
-                        ",webinar_status = '" + webinarStatus + '\'' +
-                        "}";
-    }
+	public void setJoinUrl(String joinUrl){
+		this.joinUrl = joinUrl;
+	}
+
+	public String getJoinUrl(){
+		return joinUrl;
+	}
+
+	public void setWebinarStatus(String webinarStatus){
+		this.webinarStatus = webinarStatus;
+	}
+
+	public String getWebinarStatus(){
+		return webinarStatus;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"MyCreditsItem{" + 
+			"host_date = '" + hostDate + '\'' + 
+			",webinar_credit_type = '" + webinarCreditType + '\'' + 
+			",ce_credit = '" + ceCredit + '\'' + 
+			",webinar_id = '" + webinarId + '\'' + 
+			",subject = '" + subject + '\'' + 
+			",speaker_name = '" + speakerName + '\'' + 
+			",certificate_link = '" + certificateLink + '\'' + 
+			",webinar_title = '" + webinarTitle + '\'' + 
+			",webinar_type = '" + webinarType + '\'' + 
+			",credit = '" + credit + '\'' + 
+			",joinUrl = '" + joinUrl + '\'' + 
+			",webinar_status = '" + webinarStatus + '\'' + 
+			"}";
+		}
 }

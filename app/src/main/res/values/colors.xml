@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#003F72</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="color_my_cretificate_menu_divider">#ACACAC</color>
     <color name="colorAccent">#003F72</color>
     <color name="White">#FFFFFF</color>
     <color name="home_tab_color_unselected">#484848</color>
