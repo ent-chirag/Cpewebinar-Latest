@@ -35,7 +35,7 @@
                 android:drawablePadding="@dimen/_5sdp"
                 android:gravity="center|left"
                 android:hint="@string/str_search"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionSearch"
                 android:inputType="textCapWords"
                 android:paddingLeft="@dimen/_10sdp"
                 android:singleLine="true"

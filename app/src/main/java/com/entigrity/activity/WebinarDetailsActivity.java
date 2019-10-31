@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
-import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -107,7 +106,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -1749,9 +1747,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
 
-                           /* if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
+                            if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
                                 VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
-                            }*/
+                            }
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCost().equalsIgnoreCase("")) {

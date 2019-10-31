@@ -48,7 +48,7 @@ public class TopicsFilterHomePopUpAdapter extends RecyclerView.Adapter<TopicsFil
 //        viewHolder.cbselection.setEnabled(false);
 
 
-        Boolean isChecked = Constant.hashmap_subject_home_area.get(model_subject_area.name);
+       // Boolean isChecked = Constant.hashmap_subject_home_area.get(model_subject_area.name);
 
 
         /*if (isChecked) {
