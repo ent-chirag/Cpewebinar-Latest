@@ -11,6 +11,9 @@
     <string name="accept">application/json</string>
 
 
+    <string name="str_download">Download</string>
+
+
     //sign up to sign up next screen
 
     <string name="str_signup_first_name">fname</string>
@@ -583,9 +586,9 @@
 
     <string name="str_mycredit">My Certificate</string>
     <string name="str_user_email_id">johnsmith@gmail.com</string>
-    <string name="str_my_credit_completed">Completed</string>
-    <string name="str_my_credit_pending">Pending</string>
-    <string name="str_my_credit_upcoming">Upcoming</string>
+    <string name="str_my_credit_all">ALL</string>
+    <string name="str_my_credit_live">LIVE</string>
+    <string name="str_my_credit_self_study">SELF-STUDY</string>
     <string name="str_download_all"><u>Download All</u></string>
 
     /row file

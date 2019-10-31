@@ -80,19 +80,38 @@ public class MyCreditsFragment extends Fragment {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
-        binding.lvCompleted.setOnClickListener(new View.OnClickListener() {
+        binding.lvAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.lvCompleted.setBackgroundColor(getResources().getColor(R.color.webinar_status));
-                binding.lvPending.setBackgroundColor(0);
-                binding.lvUpcoming.setBackgroundColor(0);
 
-                binding.tvCompltedWebinarCount.setTextColor(getResources().getColor(R.color.White));
-                binding.tvCompleted.setTextColor(getResources().getColor(R.color.White));
-                binding.tvPendingWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvPending.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvUpcomingWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvUpcoming.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
+
+                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray_select);
+                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+
+
+                filter_type = 0;
+                start = 0;
+                limit = 10;
+                loading = true;
+                if (Constant.isNetworkAvailable(context)) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                    GetMyCredit(start, limit);
+                } else {
+                    Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        binding.lvLive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray_select);
+                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+
 
                 filter_type = 1;
                 start = 0;
@@ -104,54 +123,18 @@ public class MyCreditsFragment extends Fragment {
                 } else {
                     Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
-
             }
         });
-        binding.lvPending.setOnClickListener(new View.OnClickListener() {
+
+        binding.lvSelfStudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.lvPending.setBackgroundColor(getResources().getColor(R.color.webinar_status));
-                binding.lvCompleted.setBackgroundColor(0);
-                binding.lvUpcoming.setBackgroundColor(0);
-
-
-                binding.tvCompltedWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvCompleted.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvPendingWebinarCount.setTextColor(getResources().getColor(R.color.White));
-                binding.tvPending.setTextColor(getResources().getColor(R.color.White));
-                binding.tvUpcomingWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvUpcoming.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
+                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray_select);
 
 
                 filter_type = 2;
-                start = 0;
-                limit = 10;
-                loading = true;
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetMyCredit(start, limit);
-                } else {
-                    Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        binding.lvUpcoming.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.lvUpcoming.setBackgroundColor(getResources().getColor(R.color.webinar_status));
-                binding.lvCompleted.setBackgroundColor(0);
-                binding.lvPending.setBackgroundColor(0);
-
-                binding.tvCompltedWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvCompleted.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvPendingWebinarCount.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvPending.setTextColor(getResources().getColor(R.color.my_credit_webinar_report));
-                binding.tvUpcomingWebinarCount.setTextColor(getResources().getColor(R.color.White));
-                binding.tvUpcoming.setTextColor(getResources().getColor(R.color.White));
-
-
-                filter_type = 3;
                 start = 0;
                 limit = 10;
                 loading = true;
@@ -367,7 +350,7 @@ public class MyCreditsFragment extends Fragment {
                                 }
                             }
 
-                            islast = myCredit.getPayload().get(0).isIslast();
+                            islast = myCredit.getPayload().get(0).isIsLast();
 
                             if (start == 0 && limit == 10) {
                                 for (int i = 0; i < myCredit.getPayload().size(); i++) {
@@ -392,22 +375,13 @@ public class MyCreditsFragment extends Fragment {
                             }
 
 
-                            if (!myCredit.getPayload().get(0).getFullName().equalsIgnoreCase("")) {
+                            /*if (!myCredit.getPayload().get(0).getFullName().equalsIgnoreCase("")) {
                                 binding.tvUsername.setText(myCredit.getPayload().get(0).getFullName());
                             }
                             if (!myCredit.getPayload().get(0).getEmail().equalsIgnoreCase("")) {
                                 binding.tvUseremailid.setText(myCredit.getPayload().get(0).getEmail());
                             }
-                            if (!myCredit.getPayload().get(0).getCompletedCount().equalsIgnoreCase("")) {
-                                binding.tvCompltedWebinarCount.setText(myCredit.getPayload().get(0).getCompletedCount());
-                            }
-
-                            if (!myCredit.getPayload().get(0).getPendingCount().equalsIgnoreCase("")) {
-                                binding.tvPendingWebinarCount.setText(myCredit.getPayload().get(0).getPendingCount());
-                            }
-                            if (!myCredit.getPayload().get(0).getUpcomingCount().equalsIgnoreCase("")) {
-                                binding.tvUpcomingWebinarCount.setText(myCredit.getPayload().get(0).getUpcomingCount());
-                            }
+*/
 
 
                             if (mlistmycredit.size() > 0) {

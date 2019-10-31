@@ -30,7 +30,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.entigrity.R;
-import com.entigrity.activity.ActivityEvolutionForm;
 import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.model.My_Credit.MyCreditsItem;
@@ -70,8 +69,8 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
 
-       /* mContext.registerReceiver(onComplete,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));*/
+        mContext.registerReceiver(onComplete,
+                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
     }
 
@@ -122,14 +121,14 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             Constant.Log("size", "" + mList.size());
 
 
-            if (!mList.get(position).getCertificateLink().equalsIgnoreCase("")) {
-                ((ViewHolder) viewHolder).btn_certification_download.setVisibility(View.VISIBLE);
+           /* if (mList.get(position).getCertificateLink().size() != 0) {
+                // ((ViewHolder) viewHolder).btn_certification_download.setVisibility(View.VISIBLE);
                 ((ViewHolder) viewHolder).tv_webinar_status.setVisibility(View.GONE);
-                ((ViewHolder) viewHolder).btn_certification_download.setText(mList.get(position).getWebinarStatus());
+                // ((ViewHolder) viewHolder).btn_certification_download.setText(mList.get(position).getWebinarStatus());
             } else {
                 ((ViewHolder) viewHolder).tv_webinar_status.setVisibility(View.VISIBLE);
                 ((ViewHolder) viewHolder).btn_certification_download.setVisibility(View.GONE);
-            }
+            }*/
 
           /*  if (!mList.get(position).getCertificateLink().equalsIgnoreCase("")) {
                 certificate_link = mList.get(position).getCertificateLink();
@@ -143,7 +142,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
                 }
             });
 
-            ((ViewHolder) viewHolder).tv_webinar_status.setOnClickListener(new View.OnClickListener() {
+            /*((ViewHolder) viewHolder).tv_webinar_status.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -167,7 +166,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
 
 
                 }
-            });
+            });*/
 
 
             if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
@@ -195,17 +194,17 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
                 ((ViewHolder) viewHolder).btn_webinar_type.setText(mList.get(position).getWebinarType());
             }
 
-            if (!mList.get(position).getWebinarStatus().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarStatus().equalsIgnoreCase("")) {
                 ((ViewHolder) viewHolder).tv_webinar_status.setText(mList.get(position).getWebinarStatus());
-            }
+            }*/
 
 
             ((ViewHolder) viewHolder).rel_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, WebinarDetailsActivity.class);
-                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), Integer.parseInt(mList
-                            .get(position).getWebinarId()));
+                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
+                            .get(position).getWebinarId());
                     i.putExtra(mContext.getResources().getString(R.string.screen_detail), 2);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                             .get(position).getWebinarType());
@@ -217,6 +216,9 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             });
 
             if (!mList.get(position).getHostDate().equalsIgnoreCase("")) {
+
+                ((ViewHolder) viewHolder).webinar_date.setVisibility(View.VISIBLE);
+
                 StringTokenizer tokens = new StringTokenizer(mList.get(position).getHostDate(), " ");
                 String day = tokens.nextToken();// this will contain year
                 String month = tokens.nextToken();//this will contain month
@@ -225,6 +227,8 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
 
                 ((ViewHolder) viewHolder).webinar_date.setText(month + " " + day + ", " + year);
 
+            } else {
+                ((ViewHolder) viewHolder).webinar_date.setVisibility(View.GONE);
             }
 
 
@@ -462,51 +466,50 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         }
     }
 
-    private void checkAndroidVersion(String certificate_link) {
+    private void checkAndroidVersion(List<String> arrayListcertificate) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkPermission(certificate_link);
+            checkPermission(arrayListcertificate);
         } else {
             // write your logic here
-
-            Intent i = new Intent(mContext, PdfViewActivity.class);
-            i.putExtra(mContext.getResources().getString(R.string.str_document_link), certificate_link);
-            mContext.startActivity(i);
-
-
-          /*  if (!certificate_link.equalsIgnoreCase("")) {
-
-                DownloadCertificate(certificate_link);
-
-
+            if (arrayListcertificate.size() == 1) {
+                Intent i = new Intent(mContext, PdfViewActivity.class);
+                i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
+                        get(0));
+                mContext.startActivity(i);
             } else {
-                Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
-            }*/
+                if (arrayListcertificate.size() > 0) {
+                    DownloadCertificate(arrayListcertificate);
+                } else {
+                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                }
+            }
 
 
         }
 
     }
 
-    public void DownloadCertificate(String Certificate) {
+    public void DownloadCertificate(List<String> arrayListcertificate) {
 
         list.clear();
 
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(Certificate));
-        String extension = Certificate.substring(Certificate.lastIndexOf('.') + 1).trim();
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-        request.setAllowedOverRoaming(false);
-        request.setTitle("Downloading Certificate");
-        request.setVisibleInDownloadsUi(true);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Certificate" + "." + extension);
+        for (int i = 0; i < arrayListcertificate.size(); i++) {
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(arrayListcertificate.get(i)));
+            String extension = arrayListcertificate.get(i).substring(arrayListcertificate.get(i).lastIndexOf('.') + 1).trim();
+            request.setAllowedOverRoaming(false);
+            request.setTitle("Downloading Certificate");
+            request.setVisibleInDownloadsUi(true);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Certificate" + i + "." + extension);
 
-        refid = downloadManager.enqueue(request);
+            refid = downloadManager.enqueue(request);
+        }
 
 
         list.add(refid);
     }
 
 
-    private void checkPermission(String certificate_link) {
+    private void checkPermission(List<String> arrayListcertificate) {
 
         if (ContextCompat.checkSelfPermission(mContext,
                 Manifest.permission.READ_EXTERNAL_STORAGE) + ContextCompat
@@ -537,16 +540,19 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         } else {
             // write your logic code if permission already granted
 
-            if (!certificate_link.equalsIgnoreCase("")) {
-                //DownloadCertificate(certificate_link);
-
+            if (arrayListcertificate.size() == 1) {
                 Intent i = new Intent(mContext, PdfViewActivity.class);
-                i.putExtra(mContext.getResources().getString(R.string.str_document_link), certificate_link);
+                i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
+                        get(0));
                 mContext.startActivity(i);
-
             } else {
-                Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                if (arrayListcertificate.size() > 0) {
+                    DownloadCertificate(arrayListcertificate);
+                } else {
+                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                }
             }
+
         }
     }
 }

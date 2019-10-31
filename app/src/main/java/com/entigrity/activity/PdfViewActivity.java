@@ -90,12 +90,12 @@ public class PdfViewActivity extends AppCompatActivity {
     private void display() {
         String url = "http://docs.google.com/gview?embedded=true&url=" + myCertificate;
         Log.i(TAG, "Opening PDF: " + url);
-        binding.webview.setWebViewClient(new CustomWebViewClient());
         WebSettings webSetting = binding.webview.getSettings();
         webSetting.setJavaScriptEnabled(true);
         binding.webview.getSettings().setPluginState(WebSettings.PluginState.ON);
         webSetting.setDisplayZoomControls(true);
         binding.webview.loadUrl(url);
+        binding.webview.setWebViewClient(new CustomWebViewClient());
 
     }
 

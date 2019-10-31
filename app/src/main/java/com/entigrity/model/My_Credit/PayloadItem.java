@@ -5,97 +5,120 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 
-public class PayloadItem {
+public class PayloadItem{
 
-    @SerializedName("pending_count")
-    private String pendingCount;
+	@SerializedName("all_count")
+	private int allCount;
 
-    @SerializedName("full_name")
-    private String fullName;
+	@SerializedName("pending_count")
+	private String pendingCount;
 
-    @SerializedName("upcoming_count")
-    private String upcomingCount;
+	@SerializedName("full_name")
+	private String fullName;
 
-    @SerializedName("my_credits")
-    private List<MyCreditsItem> myCredits;
+	@SerializedName("is_last")
+	private boolean isLast;
 
-    @SerializedName("completed_count")
-    private String completedCount;
+	@SerializedName("upcoming_count")
+	private String upcomingCount;
 
-    @SerializedName("email")
-    private String email;
+	@SerializedName("total_count")
+	private int totalCount;
 
-    public boolean isIslast() {
-        return islast;
-    }
+	@SerializedName("my_credits")
+	private List<MyCreditsItem> myCredits;
 
-    public void setIslast(boolean islast) {
-        this.islast = islast;
-    }
+	@SerializedName("completed_count")
+	private String completedCount;
 
-    @SerializedName("is_last")
-    private boolean islast;
+	@SerializedName("email")
+	private String email;
 
+	public void setAllCount(int allCount){
+		this.allCount = allCount;
+	}
 
-    public void setPendingCount(String pendingCount) {
-        this.pendingCount = pendingCount;
-    }
+	public int getAllCount(){
+		return allCount;
+	}
 
-    public String getPendingCount() {
-        return pendingCount;
-    }
+	public void setPendingCount(String pendingCount){
+		this.pendingCount = pendingCount;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public String getPendingCount(){
+		return pendingCount;
+	}
 
-    public String getFullName() {
-        return fullName;
-    }
+	public void setFullName(String fullName){
+		this.fullName = fullName;
+	}
 
-    public void setUpcomingCount(String upcomingCount) {
-        this.upcomingCount = upcomingCount;
-    }
+	public String getFullName(){
+		return fullName;
+	}
 
-    public String getUpcomingCount() {
-        return upcomingCount;
-    }
+	public void setIsLast(boolean isLast){
+		this.isLast = isLast;
+	}
 
-    public void setMyCredits(List<MyCreditsItem> myCredits) {
-        this.myCredits = myCredits;
-    }
+	public boolean isIsLast(){
+		return isLast;
+	}
 
-    public List<MyCreditsItem> getMyCredits() {
-        return myCredits;
-    }
+	public void setUpcomingCount(String upcomingCount){
+		this.upcomingCount = upcomingCount;
+	}
 
-    public void setCompletedCount(String completedCount) {
-        this.completedCount = completedCount;
-    }
+	public String getUpcomingCount(){
+		return upcomingCount;
+	}
 
-    public String getCompletedCount() {
-        return completedCount;
-    }
+	public void setTotalCount(int totalCount){
+		this.totalCount = totalCount;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public int getTotalCount(){
+		return totalCount;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setMyCredits(List<MyCreditsItem> myCredits){
+		this.myCredits = myCredits;
+	}
 
-    @Override
-    public String toString() {
-        return
-                "PayloadItem{" +
-                        "pending_count = '" + pendingCount + '\'' +
-                        ",full_name = '" + fullName + '\'' +
-                        ",upcoming_count = '" + upcomingCount + '\'' +
-                        ",my_credits = '" + myCredits + '\'' +
-                        ",completed_count = '" + completedCount + '\'' +
-                        ",email = '" + email + '\'' +
-                        ",is_last = '" + islast + '\'' +
-                        "}";
-    }
+	public List<MyCreditsItem> getMyCredits(){
+		return myCredits;
+	}
+
+	public void setCompletedCount(String completedCount){
+		this.completedCount = completedCount;
+	}
+
+	public String getCompletedCount(){
+		return completedCount;
+	}
+
+	public void setEmail(String email){
+		this.email = email;
+	}
+
+	public String getEmail(){
+		return email;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"PayloadItem{" + 
+			"all_count = '" + allCount + '\'' + 
+			",pending_count = '" + pendingCount + '\'' + 
+			",full_name = '" + fullName + '\'' + 
+			",is_last = '" + isLast + '\'' + 
+			",upcoming_count = '" + upcomingCount + '\'' + 
+			",total_count = '" + totalCount + '\'' + 
+			",my_credits = '" + myCredits + '\'' + 
+			",completed_count = '" + completedCount + '\'' + 
+			",email = '" + email + '\'' + 
+			"}";
+		}
 }
