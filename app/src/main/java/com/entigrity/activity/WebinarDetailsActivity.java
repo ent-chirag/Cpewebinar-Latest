@@ -979,6 +979,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                         break;
                     case Player.STATE_READY:
+                        Log.e("STATE_READY", "STATE_READY");
 
                         binding.progressBar.setVisibility(View.GONE);
 
@@ -1556,6 +1557,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
 
             if (mExoPlayerView != null) {
+
+                exoPlayer.setPlayWhenReady(false);
+
                 initFullscreenDialog();
                 initFullscreenButton();
 
@@ -1582,6 +1586,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
             checkpause = false;
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
+
+            exoPlayer.setPlayWhenReady(false);
 
             if (mExoPlayerView != null) {
                 initFullscreenDialog();
@@ -1732,8 +1738,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
 
-                            if (webinar_details.getPayload().getWebinarDetail().getPlayTimeDuration() != 0) {
-                                mResumePosition = webinar_details.getPayload().getWebinarDetail().getPlayTimeDuration() * 1000;
+//                            if (webinar_details.getPayload().getWebinarDetail().getPlayTimeDuration() != 0) {
+                            if (webinar_details.getPayload().getWebinarDetail().getTimespent() != 0) {
+                                mResumePosition = webinar_details.getPayload().getWebinarDetail().getTimespent() * 1000;
+//                                mResumePosition = webinar_details.getPayload().getWebinarDetail().getPlayTimeDuration() * 1000;
                                 Log.e("mResumePosition", "+++" + mResumePosition);
                             }
 

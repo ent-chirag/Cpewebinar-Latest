@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.entigrity.MainActivity;
@@ -27,6 +28,7 @@ import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import rx.Subscriber;
@@ -101,13 +103,22 @@ public class ActivityReviewQuestion extends AppCompatActivity {
                 String reviewanswer = android.text.TextUtils.join(",", arraylistselectedreviewanswerreview);
                 System.out.println(reviewanswer);
 
+                Iterator myVeryOwnIterator = Constant.hashmap_asnwer_string_review_question.keySet().iterator();
+                while(myVeryOwnIterator.hasNext()) {
+                    String key=(String)myVeryOwnIterator.next();
+                    String value=(String)Constant.hashmap_asnwer_string_review_question.get(key);
+                    Log.e("*+*+*","Hashmap result : Key : " + key + " : Value : "+value);
+//                    Toast.makeText(ctx, "Key: "+key+" Value: "+value, Toast.LENGTH_LONG).show();
+                }
 
-                if (Constant.isNetworkAvailable(context)) {
+                Log.e("*+*+*","Selected Answer : "+arraylistselectedreviewanswerreview.toString());
+
+                /*if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                     GetSubmitAnswer(reviewquestion, reviewanswer);
                 } else {
                     Snackbar.make(binding.recyclerviewReviewQuestion, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 
@@ -177,13 +188,13 @@ public class ActivityReviewQuestion extends AppCompatActivity {
     }
 
 
-    public void SubmitButtonVisible() {
+    /*public void SubmitButtonVisible() {
         binding.relbottom.setVisibility(View.VISIBLE);
     }
 
     public void SubmitButtonInVisible() {
         binding.relbottom.setVisibility(View.GONE);
-    }
+    }*/
 
     public static ActivityReviewQuestion getInstance() {
         return instance;
@@ -234,6 +245,7 @@ public class ActivityReviewQuestion extends AppCompatActivity {
 
 
                             for (int i = 0; i < reviewquestion.size(); i++) {
+                                Constant.hashmap_asnwer_review_question.put(reviewquestion.get(i).getQuestionTitle(), false);
                                 if (reviewquestion.get(i).getA().getIsAnswer().equalsIgnoreCase("true")) {
                                     arraylistselectedreviewanswerreview.add("a");
                                     arraylistselectedquestionreview.add(reviewquestion.get(i).getId());

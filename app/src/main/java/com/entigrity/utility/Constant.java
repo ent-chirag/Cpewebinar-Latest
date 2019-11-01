@@ -59,6 +59,8 @@ public class Constant {
     public static boolean isdataupdate = false;
     public static ArrayList<String> arraylistselectedreviewanswerreview = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionreview = new ArrayList<Integer>();
+    public static HashMap<String, Boolean> hashmap_asnwer_review_question = new HashMap<String, Boolean>();
+    public static HashMap<String, String> hashmap_asnwer_string_review_question = new HashMap<String, String>();
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();

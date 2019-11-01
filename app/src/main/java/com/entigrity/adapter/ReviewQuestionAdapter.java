@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.entigrity.R;
 import com.entigrity.activity.ActivityReviewQuestion;
 import com.entigrity.model.review_question.ReviewQuestionsItem;
+import com.entigrity.utility.Constant;
 
 import java.util.List;
 
@@ -65,7 +67,6 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
             viewHolder.tv_ans_d.setText(reviewquestion.get(position).getD().getOptionTitle());
         }
 
-
         viewHolder.tv_ans_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,32 +79,82 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                 viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                 viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position).getId(), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "a");
+
                 if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
                 } else {
                     arrayboolean.set(position, false);
 
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
 
-                    if (areAllTrue(arrayboolean)) {
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
+                }
+
+
+            }
+        });
+
+        viewHolder.lv_A.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                viewHolder.checkbox_select_a.setChecked(true);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "a");
+
+                if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
+                    arrayboolean.set(position, true);
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
+                } else {
+                    arrayboolean.set(position, false);
+
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
                 }
 
 
@@ -124,30 +175,78 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                 viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                 viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "b");
+
                 if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                   /* if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
                 } else {
                     arrayboolean.set(position, false);
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
+                }
+
+            }
+        });
+
+        viewHolder.lv_B.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(true);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "b");
+
+                if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
+                    arrayboolean.set(position, true);
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
+                } else {
+                    arrayboolean.set(position, false);
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
                 }
 
             }
@@ -165,31 +264,78 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                 viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
                 viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "c");
+
                 if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
                 } else {
                     arrayboolean.set(position, false);
 
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
+                }
+            }
+        });
+
+        viewHolder.lv_C.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(true);
+//                viewHolder.checkbox_select_d.setChecked(false);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "c");
+
+                if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
+                    arrayboolean.set(position, true);
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
+                } else {
+                    arrayboolean.set(position, false);
+
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
                 }
             }
         });
@@ -208,31 +354,79 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                 viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                 viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
 
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "d");
+
                 if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
                     arrayboolean.set(position, true);
 
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
                 } else {
                     arrayboolean.set(position, false);
 
-                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    if (areAllTrue(arrayboolean)) {
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
                         ActivityReviewQuestion.getInstance().SubmitButtonVisible();
                     } else {
                         ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }
+                    }*/
+                }
+            }
+        });
+
+        viewHolder.lv_D.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                viewHolder.checkbox_select_a.setChecked(false);
+//                viewHolder.checkbox_select_b.setChecked(false);
+//                viewHolder.checkbox_select_c.setChecked(false);
+//                viewHolder.checkbox_select_d.setChecked(true);
+                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+
+                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
+                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "d");
+
+                if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
+                    arrayboolean.set(position, true);
+
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
+                } else {
+                    arrayboolean.set(position, false);
+
+//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                    /*if (areAllTrue(arrayboolean)) {
+                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    } else {
+                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
+                    }*/
                 }
             }
         });
@@ -241,6 +435,10 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
     }
 
     public static boolean areAllTrue(List<Boolean> array) {
+        Log.e("*+*+*","RQAdapter : "+array.size());
+        for (int i = 0; i <array.size() ; i++) {
+
+        }
         for (boolean b : array) if (!b) return false;
         return true;
     }
@@ -253,7 +451,7 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_number, tv_question, tv_ans_a, tv_ans_b, tv_ans_c, tv_ans_d;
-//        public CheckBox checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
+        //        public CheckBox checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
         public RelativeLayout checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
         public LinearLayout lv_A, lv_B, lv_C, lv_D;
 
