@@ -106,6 +106,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -986,7 +987,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             public void run() {
                                 handler.post(runnable);
                             }
-                        }, 20000);
+                        }, 5000);
 
                        /* if (!videostatus) {
                             if (!checkpause) {
@@ -1041,7 +1042,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-           /* if (!videostatus) {
+            if (!videostatus) {
                 if (!checkpause) {
                     if (Constant.isNetworkAvailable(context)) {
                         mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
@@ -1054,14 +1055,14 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     } else {
                         Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
-                   // handler.postDelayed(runnable, 10000);
+                    handler.postDelayed(runnable, 5000);
                 }
-            }*/
-            watched = watched + 1;
+            }
+           /* watched = watched + 1;
 
             binding.tvWatchedduration.setText("You have completed only " + watched + "% of the video.");
 
-            handler.postDelayed(runnable, 10000);
+            handler.postDelayed(runnable, 10000);*/
 
 
         }
