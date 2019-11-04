@@ -281,6 +281,37 @@
                 android:textSize="@dimen/_11sdp"
                 app:font_text="Montserrat-Medium.ttf" />
 
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_response_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@color/subcategory_topics"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
+            <com.entigrity.view.CustomTextView
+                android:id="@+id/tv_ans_response"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ems="20"
+                android:inputType="textMultiLine"
+                android:singleLine="true"
+                android:textColor="@color/feedback_field"
+                android:visibility="gone"
+                android:textSize="@dimen/_11sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
         </LinearLayout>
 
     </LinearLayout>

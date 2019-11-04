@@ -19,8 +19,22 @@ public class ReviewQuestionsItem{
 	@SerializedName("id")
 	private int id;
 
+	@SerializedName("answer")
+	private String answer;
+
 	@SerializedName("question_title")
 	private String questionTitle;
+
+	@SerializedName("is_answerable")
+	private boolean isAnswerable;
+
+	public boolean isAnswerable() {
+		return isAnswerable;
+	}
+
+	public void setAnswerable(boolean answerable) {
+		isAnswerable = answerable;
+	}
 
 	public void setA(A A){
 		this.A = A;
@@ -70,6 +84,14 @@ public class ReviewQuestionsItem{
 		return questionTitle;
 	}
 
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -79,7 +101,9 @@ public class ReviewQuestionsItem{
 			",c = '" + C + '\'' + 
 			",d = '" + D + '\'' + 
 			",id = '" + id + '\'' + 
-			",question_title = '" + questionTitle + '\'' + 
+			",question_title = '" + questionTitle + '\'' +
+			",answer = '" + answer + '\'' +
+			",is_answerable = '" + isAnswerable + '\'' +
 			"}";
 		}
 }

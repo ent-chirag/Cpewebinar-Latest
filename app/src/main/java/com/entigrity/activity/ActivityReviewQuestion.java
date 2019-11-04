@@ -71,6 +71,7 @@ public class ActivityReviewQuestion extends AppCompatActivity {
         binding.recyclerviewReviewQuestion.setLayoutManager(linearLayoutManager);
         binding.recyclerviewReviewQuestion.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.recyclerviewReviewQuestion.setItemAnimator(new DefaultItemAnimator());
+        Constant.hashmap_asnwer_string_review_question.clear();
 
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +94,8 @@ public class ActivityReviewQuestion extends AppCompatActivity {
             Snackbar.make(binding.recyclerviewReviewQuestion, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
-        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+//        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+        binding.relbottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -103,16 +105,39 @@ public class ActivityReviewQuestion extends AppCompatActivity {
                 String reviewanswer = android.text.TextUtils.join(",", arraylistselectedreviewanswerreview);
                 System.out.println(reviewanswer);
 
+                String questionsParams = "";
+                String ansParams = "";
+
                 Iterator myVeryOwnIterator = Constant.hashmap_asnwer_string_review_question.keySet().iterator();
-                while(myVeryOwnIterator.hasNext()) {
-                    String key=(String)myVeryOwnIterator.next();
-                    String value=(String)Constant.hashmap_asnwer_string_review_question.get(key);
-                    Log.e("*+*+*","Hashmap result : Key : " + key + " : Value : "+value);
-//                    Toast.makeText(ctx, "Key: "+key+" Value: "+value, Toast.LENGTH_LONG).show();
+                while (myVeryOwnIterator.hasNext()) {
+                    String key = (String) myVeryOwnIterator.next();
+                    String value = (String) Constant.hashmap_asnwer_string_review_question.get(key);
+
+                    if (questionsParams.equalsIgnoreCase("")) {
+                        questionsParams = "" + key;
+                    } else {
+                        questionsParams = questionsParams + "," + key;
+                    }
+
+                    if (ansParams.equalsIgnoreCase("")) {
+                        ansParams = "" + value;
+                    } else {
+                        ansParams = ansParams + "," + value;
+                    }
+
+                    Constant.isClickedSubmit = true;
+                    adapter.notifyDataSetChanged();
+
                 }
 
-                Log.e("*+*+*","Selected Answer : "+arraylistselectedreviewanswerreview.toString());
-
+                if (Constant.isAllAnswerTrue) {
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetSubmitAnswer(questionsParams, ansParams);
+                    } else {
+                        Snackbar.make(binding.recyclerviewReviewQuestion, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
                 /*if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                     GetSubmitAnswer(reviewquestion, reviewanswer);
@@ -121,8 +146,6 @@ public class ActivityReviewQuestion extends AppCompatActivity {
                 }*/
             }
         });
-
-
     }
 
     @Override
@@ -172,6 +195,11 @@ public class ActivityReviewQuestion extends AppCompatActivity {
                             }
                             arraylistselectedquestionreview.clear();
                             arraylistselectedreviewanswerreview.clear();
+//                            finish();
+                            Intent i = new Intent(context, WebinarDetailsActivity.class);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                            startActivity(i);
                             finish();
 
 
@@ -187,14 +215,13 @@ public class ActivityReviewQuestion extends AppCompatActivity {
 
     }
 
-
-    /*public void SubmitButtonVisible() {
-        binding.relbottom.setVisibility(View.VISIBLE);
+    public void ShowHideSubmitButton() {
+        if (reviewquestion.size() == Constant.hashmap_asnwer_string_review_question.size()) {
+            binding.relbottom.setVisibility(View.VISIBLE);
+        } else {
+            binding.relbottom.setVisibility(View.GONE);
+        }
     }
-
-    public void SubmitButtonInVisible() {
-        binding.relbottom.setVisibility(View.GONE);
-    }*/
 
     public static ActivityReviewQuestion getInstance() {
         return instance;
@@ -246,6 +273,7 @@ public class ActivityReviewQuestion extends AppCompatActivity {
 
                             for (int i = 0; i < reviewquestion.size(); i++) {
                                 Constant.hashmap_asnwer_review_question.put(reviewquestion.get(i).getQuestionTitle(), false);
+                                reviewquestion.get(i).setAnswerable(true);
                                 if (reviewquestion.get(i).getA().getIsAnswer().equalsIgnoreCase("true")) {
                                     arraylistselectedreviewanswerreview.add("a");
                                     arraylistselectedquestionreview.add(reviewquestion.get(i).getId());
@@ -287,7 +315,5 @@ public class ActivityReviewQuestion extends AppCompatActivity {
 
 
                 });
-
-
     }
 }

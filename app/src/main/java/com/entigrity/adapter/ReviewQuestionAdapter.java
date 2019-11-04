@@ -18,6 +18,7 @@ import com.entigrity.activity.ActivityReviewQuestion;
 import com.entigrity.model.review_question.ReviewQuestionsItem;
 import com.entigrity.utility.Constant;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAdapter.ViewHolder> {
@@ -70,94 +71,69 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.tv_ans_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                viewHolder.checkbox_select_a.setChecked(true);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position).getId(), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "a");
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position).getId(), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "a");
 
-                if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
+
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
-
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        arrayboolean.set(position, false);
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
-
-
             }
         });
 
         viewHolder.lv_A.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                viewHolder.checkbox_select_a.setChecked(true);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-                Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "a");
+                    Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "a");
 
-                if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    if (reviewquestion.get(position).getA().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
+
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
-
-
             }
         });
 
@@ -165,133 +141,104 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.tv_ans_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(true);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "b");
 
-                Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "b");
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-                if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                   /* if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
-
             }
         });
 
         viewHolder.lv_B.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(true);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "b");
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "b");
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-                if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    if (reviewquestion.get(position).getB().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
-
             }
         });
 
         viewHolder.tv_ans_c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(true);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "c");
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "c");
 
-                if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
+
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
             }
         });
@@ -299,43 +246,34 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.lv_C.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(true);
-//                viewHolder.checkbox_select_d.setChecked(false);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "c");
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "c");
 
-                if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                    if (reviewquestion.get(position).getC().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
+
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
             }
         });
@@ -344,44 +282,34 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.tv_ans_d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
 
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(true);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "d");
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "d");
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-                if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
 
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
             }
         });
@@ -389,56 +317,115 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
         viewHolder.lv_D.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (reviewquestion.get(position).isAnswerable()) {
+                    viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+                    viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
 
-//                viewHolder.checkbox_select_a.setChecked(false);
-//                viewHolder.checkbox_select_b.setChecked(false);
-//                viewHolder.checkbox_select_c.setChecked(false);
-//                viewHolder.checkbox_select_d.setChecked(true);
-                viewHolder.checkbox_select_a.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
-                viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+                    Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
+                    Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "d");
 
-                Constant.hashmap_asnwer_review_question.put(""+reviewquestion.get(position), true);
-                Constant.hashmap_asnwer_string_review_question.put(""+reviewquestion.get(position).getId(), "d");
+                    ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-                if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
-                    arrayboolean.set(position, true);
+                    if (reviewquestion.get(position).getD().getIsAnswer().equalsIgnoreCase("true")) {
+                        arrayboolean.set(position, true);
 
-
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
                     } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
-                } else {
-                    arrayboolean.set(position, false);
+                        arrayboolean.set(position, false);
 
-//                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
-//                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
-                    /*if (areAllTrue(arrayboolean)) {
-                        ActivityReviewQuestion.getInstance().SubmitButtonVisible();
-                    } else {
-                        ActivityReviewQuestion.getInstance().SubmitButtonInVisible();
-                    }*/
+                        if (areAllTrue(arrayboolean)) {
+                            Constant.isAllAnswerTrue = true;
+                        } else {
+                            Constant.isAllAnswerTrue = false;
+                        }
+                    }
                 }
             }
         });
 
 
+        if (Constant.isClickedSubmit) {
+            // Here if the boolean is selected true then have to display the color for answers if answered and show the result for the selected option only...
+
+            Iterator myVeryOwnIterator = Constant.hashmap_asnwer_string_review_question.keySet().iterator();
+            while (myVeryOwnIterator.hasNext()) {
+                String key = (String) myVeryOwnIterator.next();
+                String value = (String) Constant.hashmap_asnwer_string_review_question.get(key);
+
+                String qID = "" + reviewquestion.get(position).getId();
+                if (qID.equalsIgnoreCase(key)) {
+
+                    viewHolder.tv_response_tag.setVisibility(View.VISIBLE);
+                    viewHolder.tv_ans_response.setVisibility(View.VISIBLE);
+
+                    if (reviewquestion.get(position).getAnswer().equalsIgnoreCase("" + value)) {
+                        reviewquestion.get(position).setAnswerable(false);
+                        viewHolder.tv_response_tag.setText("why it's correct?".toUpperCase());
+                        if (value.equalsIgnoreCase("a")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getA().getDescription());
+                        } else if (value.equalsIgnoreCase("b")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getB().getDescription());
+                        } else if (value.equalsIgnoreCase("c")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getC().getDescription());
+                        } else {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.correct_ans));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getD().getDescription());
+                        }
+                    } else {
+                        viewHolder.tv_response_tag.setText("Why it's incorrect?".toUpperCase());
+                        if (value.equalsIgnoreCase("a")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getA().getDescription());
+                        } else if (value.equalsIgnoreCase("b")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getB().getDescription());
+                        } else if (value.equalsIgnoreCase("c")) {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getC().getDescription());
+                        } else {
+                            viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                            viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.wrong_ans));
+                            viewHolder.tv_ans_response.setText(reviewquestion.get(position).getD().getDescription());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static boolean areAllTrue(List<Boolean> array) {
-        Log.e("*+*+*","RQAdapter : "+array.size());
-        for (int i = 0; i <array.size() ; i++) {
-
-        }
         for (boolean b : array) if (!b) return false;
         return true;
     }
@@ -451,23 +438,28 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_number, tv_question, tv_ans_a, tv_ans_b, tv_ans_c, tv_ans_d;
-        //        public CheckBox checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
         public RelativeLayout checkbox_select_a, checkbox_select_b, checkbox_select_c, checkbox_select_d;
         public LinearLayout lv_A, lv_B, lv_C, lv_D;
+        private TextView tv_ans_response_a, tv_ans_response_b, tv_ans_response_c, tv_ans_response_d;
+        private TextView tv_ans_response, tv_response_tag;
 
         private ViewHolder(View itemView) {
             super(itemView);
             tv_number = (TextView) itemView.findViewById(R.id.tv_number);
             tv_question = (TextView) itemView.findViewById(R.id.tv_question);
 
-//            checkbox_select_a = (CheckBox) itemView.findViewById(R.id.checkbox_select_a);
             checkbox_select_a = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_a);
-//            checkbox_select_b = (CheckBox) itemView.findViewById(R.id.checkbox_select_b);
             checkbox_select_b = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_b);
-//            checkbox_select_c = (CheckBox) itemView.findViewById(R.id.checkbox_select_c);
             checkbox_select_c = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_c);
-//            checkbox_select_d = (CheckBox) itemView.findViewById(R.id.checkbox_select_d);
             checkbox_select_d = (RelativeLayout) itemView.findViewById(R.id.checkbox_select_d);
+
+            tv_ans_response_a = (TextView) itemView.findViewById(R.id.tv_ans_response_a);
+            tv_ans_response_b = (TextView) itemView.findViewById(R.id.tv_ans_response_b);
+            tv_ans_response_c = (TextView) itemView.findViewById(R.id.tv_ans_response_c);
+            tv_ans_response_d = (TextView) itemView.findViewById(R.id.tv_ans_response_d);
+
+            tv_ans_response = (TextView) itemView.findViewById(R.id.tv_ans_response);
+            tv_response_tag = (TextView) itemView.findViewById(R.id.tv_response_tag);
 
 
             tv_ans_a = (TextView) itemView.findViewById(R.id.tv_ans_a);
@@ -480,7 +472,6 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
             lv_B = (LinearLayout) itemView.findViewById(R.id.lv_B);
             lv_C = (LinearLayout) itemView.findViewById(R.id.lv_C);
             lv_D = (LinearLayout) itemView.findViewById(R.id.lv_D);
-
 
         }
     }

@@ -75,7 +75,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_alignParentBottom="true"
             android:background="@color/webinar_status"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <com.entigrity.view.CustomTextView
                 android:id="@+id/btnsubmit"

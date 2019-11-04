@@ -11,6 +11,9 @@ public class A{
 	@SerializedName("is_answer")
 	private String isAnswer;
 
+	@SerializedName("description")
+	private String Description;
+
 	public void setOptionTitle(String optionTitle){
 		this.optionTitle = optionTitle;
 	}
@@ -27,12 +30,21 @@ public class A{
 		return isAnswer;
 	}
 
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
 	@Override
  	public String toString(){
-		return 
-			"A{" + 
-			"option_title = '" + optionTitle + '\'' + 
-			",is_answer = '" + isAnswer + '\'' + 
+		return
+			"A{" +
+			"option_title = '" + optionTitle + '\'' +
+			",is_answer = '" + isAnswer + '\'' +
+                    ",description = '" + Description + '\'' +
 			"}";
 		}
 }
