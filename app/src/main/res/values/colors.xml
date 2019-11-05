@@ -184,4 +184,9 @@
     <color name="color_date_filter_popup_button">#08264c</color>
 
 
+    // Final Quiz Popup
+    <color name="color_title_popup">#595959</color>
+    <color name="color_btn_bg">#013872</color>
+
+
 </resources>

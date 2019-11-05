@@ -1,16 +1,21 @@
 package com.entigrity.activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
@@ -27,6 +32,7 @@ import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import rx.Subscriber;
@@ -52,6 +58,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
     private static ActivityFinalQuiz instance;
     public String webinar_type = "";
 
+    public Dialog myDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +78,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         binding.recyclerviewFinalQuiz.setLayoutManager(linearLayoutManager);
         binding.recyclerviewFinalQuiz.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.recyclerviewFinalQuiz.setItemAnimator(new DefaultItemAnimator());
+        Constant.hashmap_answer_string_final_question.clear();
 
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +99,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         }
 
 
-        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+//        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+        binding.relbottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String finalquizquestion = android.text.TextUtils.join(",", arraylistselectedquestionfinal);
@@ -99,16 +109,98 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 String finalquizwanswer = android.text.TextUtils.join(",", arraylistselectedanswerfinal);
                 System.out.println(finalquizwanswer);
 
+                String questionsParams = "";
+                String ansParams = "";
+
+                Iterator myVeryOwnIterator = Constant.hashmap_answer_string_final_question.keySet().iterator();
+                while (myVeryOwnIterator.hasNext()) {
+                    String key = (String) myVeryOwnIterator.next();
+                    String value = (String) Constant.hashmap_answer_string_final_question.get(key);
+
+                    if (questionsParams.equalsIgnoreCase("")) {
+                        questionsParams = "" + key;
+                    } else {
+                        questionsParams = questionsParams + "," + key;
+                    }
+
+                    if (ansParams.equalsIgnoreCase("")) {
+                        ansParams = "" + value;
+                    } else {
+                        ansParams = ansParams + "," + value;
+                    }
+                }
+
+                int count = 0;
+                for (int i = 0; i < finalquestion.size(); i++) {
+                    if(finalquestion.get(i).isCorrect()){
+                        count++;
+                    }
+                }
+
+                Log.e("*+*+*","Correct Answer count is : "+count);
+
+                Log.e("*+*+*", "Final Quiz Questions : " + questionsParams);
+                Log.e("*+*+*", "Final Quiz Answers : " + ansParams);
+
+                float percentage = (count*100)/finalquestion.size();
+                Log.e("*+*+*","Percentage is : " + percentage);
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetSubmitAnswer(finalquizquestion, finalquizwanswer);
+//                    GetSubmitAnswer(finalquizquestion, finalquizwanswer);
+                    GetSubmitAnswer(questionsParams, ansParams, ""+percentage);
                 } else {
                     Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
+
+    private void showPopUp(String msg, final boolean flag) {
+
+        myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.final_quiz_popup);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView popup_description, tv_ok;
+
+        popup_description = (TextView) myDialog.findViewById(R.id.popup_description);
+        tv_ok = (TextView) myDialog.findViewById(R.id.tv_ok);
+
+        popup_description.setText(""+msg);
+        if(flag) {
+            popup_description.setTextColor(context.getResources().getColor(R.color.correct_ans));
+        } else {
+            popup_description.setTextColor(context.getResources().getColor(R.color.wrong_ans));
+        }
+
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(flag) {
+                    if (myDialog.isShowing()) {
+                        myDialog.dismiss();
+                    }
+                    Intent i = new Intent(context, WebinarDetailsActivity.class);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    startActivity(i);
+                    finish();
+                } else {
+                    if (myDialog.isShowing()) {
+                        myDialog.dismiss();
+                    }
+                }
+//                Intent i = new Intent(context, LoginActivity.class);
+//                startActivity(i);
+//                finish();
+
+            }
+        });
+
+        myDialog.show();
 
     }
 
@@ -122,10 +214,10 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         finish();
     }
 
-    private void GetSubmitAnswer(String finalquizquestion, String finalanswer) {
+    private void GetSubmitAnswer(String finalquizquestion, String finalanswer, String percentage) {
 
         mAPIService.FinalQuizAnswer(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
-                , finalquizquestion, finalanswer).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                , finalquizquestion, finalanswer, percentage).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<FinalQuizAnswer>() {
                     @Override
                     public void onCompleted() {
@@ -145,8 +237,6 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                         } else {
                             Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
                         }
-
-
                     }
 
                     @Override
@@ -159,20 +249,19 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                             arraylistselectedquestionfinal.clear();
                             arraylistselectedanswerfinal.clear();
 
-                            finish();
-
+                            showPopUp(finalQuizAnswer.getMessage(), true);
 
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.ivback, finalQuizAnswer.getMessage(), Snackbar.LENGTH_SHORT).show();
+
+                            showPopUp(finalQuizAnswer.getMessage(), false);
+
+//                            Snackbar.make(binding.ivback, finalQuizAnswer.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
-
                 });
-
-
     }
 
     private void GetFinalQuiz() {
@@ -219,6 +308,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
 
 
                             for (int i = 0; i < finalquestion.size(); i++) {
+                                finalquestion.get(i).setCorrect(false);
                                 if (finalquestion.get(i).getA().getIsAnswer().equalsIgnoreCase("true")) {
                                     arraylistselectedanswerfinal.add("a");
                                     arraylistselectedquestionfinal.add(finalquestion.get(i).getId());
@@ -269,6 +359,14 @@ public class ActivityFinalQuiz extends AppCompatActivity {
 
     public void SubmitButtonInVisible() {
         binding.relbottom.setVisibility(View.GONE);
+    }
+
+    public void ShowHideSubmitButton() {
+        if (finalquestion.size() == Constant.hashmap_answer_string_final_question.size()) {
+            binding.relbottom.setVisibility(View.VISIBLE);
+        } else {
+            binding.relbottom.setVisibility(View.GONE);
+        }
     }
 
     public static ActivityFinalQuiz getInstance() {

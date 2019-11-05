@@ -22,6 +22,12 @@ public class FinalQuizQuestionsItem{
 	@SerializedName("question_title")
 	private String questionTitle;
 
+	@SerializedName("answer")
+	private String answer;
+
+	@SerializedName("is_correct")
+	private boolean isCorrect;
+
 	public void setA(A A){
 		this.A = A;
 	}
@@ -70,6 +76,22 @@ public class FinalQuizQuestionsItem{
 		return questionTitle;
 	}
 
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public boolean isCorrect() {
+		return isCorrect;
+	}
+
+	public void setCorrect(boolean correct) {
+		isCorrect = correct;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -79,7 +101,8 @@ public class FinalQuizQuestionsItem{
 			",c = '" + C + '\'' + 
 			",d = '" + D + '\'' + 
 			",id = '" + id + '\'' + 
-			",question_title = '" + questionTitle + '\'' + 
+			",question_title = '" + questionTitle + '\'' +
+			",answer = '" + answer + '\'' +
 			"}";
 		}
 }

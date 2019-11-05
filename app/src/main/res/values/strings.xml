@@ -773,5 +773,10 @@
 
     <string name="str_val_search_text">please enter text</string>
 
+    // Strings for the Final quiz popup
+    <string name="str_success_msg">Congratulations! You have successfully passed the final quiz. You will receive your CPE certificate within 24 Hours.</string>
+    <string name="str_fail_msg">Sorry, you have not answered 70% of the questions correctly. Please retake the final quiz.</string>
+    <string name="str_final_ok">ok</string>
+
 
 </resources>
