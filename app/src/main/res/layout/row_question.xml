@@ -295,7 +295,7 @@
                 android:textColor="@color/subcategory_topics"
                 android:visibility="gone"
                 android:textSize="@dimen/_11sdp"
-                app:font_text="Montserrat-Medium.ttf" />
+                app:font_text="Montserrat-SemiBold.ttf" />
 
             <com.entigrity.view.CustomTextView
                 android:id="@+id/tv_ans_response"
