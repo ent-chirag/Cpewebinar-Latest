@@ -54,9 +54,8 @@
                         android:gravity="center"
                         android:text="@string/str_learning_objective"
                         android:textColor="@color/webinar_detail_titile"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_10sdp"
                         app:font_text="Montserrat-Bold.ttf" />
-
 
                 </RelativeLayout>
 

@@ -375,7 +375,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                     } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
                             .getString(R.string.str_webinar_status_register))) {
-                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+//                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
 
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
@@ -388,6 +388,104 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+
+        binding.tvWebinarStatusNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+                    if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(getResources()
+                            .getString(R.string.str_webinar_status_register))) {
+
+                        if (!Cost.equalsIgnoreCase("")) {
+                            // Constant.ShowPopUp(getResources().getString(R.string.payment_validate_msg), context);
+
+                            Intent i = new Intent(WebinarDetailsActivity.this, PaymentActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+                            i.putExtra(getResources().getString(R.string.str_payment_link), payment_link);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                            finish();
+
+
+                        } else {
+                            if (Constant.isNetworkAvailable(context)) {
+                                progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                                RegisterWebinar(webinarid, binding.tvWebinarStatusNew);
+                            } else {
+                                Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_certificate))) {
+                        checkAndroidVersionCertificate();
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_pending_evoluation))) {
+                        Intent i = new Intent(context, ActivityEvolutionForm.class);
+                        i.putExtra(getResources().getString(R.string.screen), getResources().getString(R.string.webinardetail));
+                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                        startActivity(i);
+                        finish();
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_enroll))) {
+                        String url = join_url;
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_in_progress))) {
+                        if (!join_url.equalsIgnoreCase("")) {
+                            String url = join_url;
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        }
+                    }
+                } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+
+                    if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_watchnow))) {
+                        if (!VIDEO_URL.equalsIgnoreCase("")) {
+                            PlayVideo();
+                        } else {
+                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_resume_watching))) {
+                        if (!VIDEO_URL.equalsIgnoreCase("")) {
+                            PlayVideo();
+                        } else {
+                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_certificate))) {
+                        checkAndroidVersionCertificate();
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
+                            .getResources().getString(R.string.str_webinar_status_quiz_pending))) {
+                        Intent i = new Intent(context, ActivityFinalQuiz.class);
+                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                        startActivity(i);
+                        finish();
+
+                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(getResources()
+                            .getString(R.string.str_webinar_status_register))) {
+//                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+
+                        if (Constant.isNetworkAvailable(context)) {
+                            progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                            RegisterWebinar(webinarid, binding.tvWebinarStatusNew);
+                        } else {
+                            Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                }
             }
         });
 
@@ -406,6 +504,18 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             }
         });
 
+        binding.tvRvQuestions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(context, ActivityReviewQuestion.class);
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();
+
+            }
+        });
 
         binding.ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1206,6 +1316,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
+
                         if (modelRegisterWebinar.isSuccess() == true) {
                             Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
                             // recreate();
@@ -2015,6 +2126,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                                 binding.tvWebinarStatus.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
+                                binding.tvWebinarStatusNew.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
                             }
 
 
@@ -2114,15 +2226,21 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
                                     binding.relTimezone.setVisibility(View.INVISIBLE);
                                     binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+                                    binding.linTags.setVisibility(View.GONE);
+                                    binding.tvWebinarStatus.setVisibility(View.VISIBLE);
                                 } else {
 
                                     if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                                             webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
-                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
+//                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
+                                        binding.linTags.setVisibility(View.VISIBLE);
+                                        binding.tvWebinarStatus.setVisibility(View.GONE);
                                     } else {
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
                                         binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+                                        binding.linTags.setVisibility(View.GONE);
+                                        binding.tvWebinarStatus.setVisibility(View.VISIBLE);
                                     }
 
                                 }
@@ -2130,6 +2248,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 binding.relTimezone.setVisibility(View.INVISIBLE);
                                 binding.tvAddtocalendar.setVisibility(View.INVISIBLE);
                                 binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+                                binding.linTags.setVisibility(View.GONE);
+                                binding.tvWebinarStatus.setVisibility(View.VISIBLE);
 
                             }
 
