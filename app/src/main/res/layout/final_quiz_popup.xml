@@ -44,7 +44,7 @@
         <com.entigrity.view.CustomTextView
             android:id="@+id/tv_ok"
             android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_34sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/str_final_ok"
             android:textColor="@android:color/white"

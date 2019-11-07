@@ -40,6 +40,9 @@ public class WebinarDetail {
     @SerializedName("video_status")
     private boolean videoStatus;
 
+    @SerializedName("review_answered")
+    private boolean reviewAnswered;
+
     @SerializedName("webinar_date")
     private String webinarDate;
 
@@ -167,6 +170,14 @@ public class WebinarDetail {
 
     @SerializedName("status")
     private String status;
+
+    public boolean isReviewAnswered() {
+        return reviewAnswered;
+    }
+
+    public void setReviewAnswered(boolean reviewAnswered) {
+        this.reviewAnswered = reviewAnswered;
+    }
 
     public void setSubjectArea(String subjectArea) {
         this.subjectArea = subjectArea;

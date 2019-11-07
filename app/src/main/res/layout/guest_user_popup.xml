@@ -43,13 +43,14 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="#232323"></View>
+            android:background="#232323"/>
 
         <com.entigrity.view.CustomTextView
             android:id="@+id/tv_login_guest"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center_horizontal"
             android:text="@string/str_login_guest"
             android:textColor="#76B4FB"
             android:textSize="@dimen/_15sdp"
@@ -60,14 +61,15 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="#232323"></View>
+            android:background="#232323"/>
 
         <com.entigrity.view.CustomTextView
             android:id="@+id/tv_create_account"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/str_create_account"
+            android:gravity="center_horizontal"
             android:textColor="#76B4FB"
             android:textSize="@dimen/_15sdp"
             app:font_text="SFUIDisplay-Bold.ttf" />
@@ -76,13 +78,14 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="#232323"></View>
+            android:background="#232323"/>
 
         <com.entigrity.view.CustomTextView
             android:id="@+id/tv_cancel_guest"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center_horizontal"
             android:text="@string/str_cancel_guest"
             android:textColor="#76B4FB"
             android:textSize="@dimen/_15sdp"
@@ -124,7 +127,7 @@
                 android:layout_width="0.5dp"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/lv_bottom"
-                android:background="@color/guest_button_color"></View>
+                android:background="@color/guest_button_color"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

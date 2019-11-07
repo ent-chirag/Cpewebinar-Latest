@@ -1233,8 +1233,9 @@
                     android:background="@drawable/squrebutton_webinar_status"
                     android:textColor="@color/White"
                     android:text="@string/str_review_question_lable"
-                    android:textSize="@dimen/_10sdp"
-                    app:font_button="SFUIDisplay-Heavy.ttf" />
+                    android:textSize="@dimen/_9sdp"
+                    android:letterSpacing="0.05"
+                    app:font_button="Montserrat-Bold.ttf" />
 
                 <com.entigrity.view.CustomButtonView
                     android:id="@+id/tv_webinar_status_new"
@@ -1247,8 +1248,9 @@
                     android:layout_toLeftOf="@+id/ivshare"
                     android:background="@drawable/squrebutton_webinar_status"
                     android:textColor="@color/White"
-                    android:textSize="@dimen/_10sdp"
-                    app:font_button="SFUIDisplay-Heavy.ttf" />
+                    android:textSize="@dimen/_9sdp"
+                    android:letterSpacing="0.05"
+                    app:font_button="Montserrat-Bold.ttf" />
 
             </LinearLayout>
 
@@ -1263,7 +1265,8 @@
                 android:background="@drawable/squrebutton_webinar_status"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_12sdp"
-                app:font_button="SFUIDisplay-Heavy.ttf" />
+                android:letterSpacing="0.08"
+                app:font_button="Montserrat-Bold.ttf" />
 
             <!--<com.entigrity.view.CustomButtonView
                 android:id="@+id/tv_rv_questions"

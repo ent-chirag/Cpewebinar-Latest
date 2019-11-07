@@ -6,10 +6,14 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginBottom="@dimen/_5sdp"
+    android:paddingLeft="@dimen/_10sdp"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingTop="@dimen/_1sdp"
+    android:paddingBottom="@dimen/_1sdp"
     android:gravity="center_horizontal"
-    android:padding="@dimen/_1sdp"
     android:background="@drawable/download_button_webinar_detail"
     android:textAllCaps="true"
     android:textColor="@color/White"
     android:textSize="@dimen/_10sdp"
-    app:font_text="Montserrat-SemiBold.ttf" />
+    android:letterSpacing="0.08"
+    app:font_text="OpenSans-SemiBold.ttf" />

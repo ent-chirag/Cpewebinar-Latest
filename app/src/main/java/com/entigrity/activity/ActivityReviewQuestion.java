@@ -138,12 +138,12 @@ public class ActivityReviewQuestion extends AppCompatActivity {
                         Snackbar.make(binding.recyclerviewReviewQuestion, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                if (Constant.isNetworkAvailable(context)) {
+                /*if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                     GetSubmitAnswer(reviewquestion, reviewanswer);
                 } else {
                     Snackbar.make(binding.recyclerviewReviewQuestion, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }

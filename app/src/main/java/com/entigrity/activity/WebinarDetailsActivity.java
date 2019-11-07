@@ -242,6 +242,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private String payment_link = "";
 
     public int watched = 1;
+    private boolean isAnswered = false;
 
 
     @Override
@@ -1252,6 +1253,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                     binding.tvWatchedduration.setText("You have completed only " + watched_duration + "% of the video.");
                                 } else {
                                     binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
+                                    if(isAnswered){
+                                      binding.tvWebinarStatus.setText(getResources().getString(R.string.str_webinar_status_quiz_pending));
+                                    }
                                 }
 
 
@@ -1856,6 +1860,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 Log.e("mResumePosition", "+++" + mResumePosition);
                             }
 
+                            if(webinar_details.getPayload().getWebinarDetail().isReviewAnswered()){
+                                isAnswered = true;
+                            } else {
+                                isAnswered = false;
+                            }
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCredit().equalsIgnoreCase("")) {
                                 credit = webinar_details.getPayload().getWebinarDetail().getCredit();
@@ -2232,10 +2241,15 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                                     if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                                             webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
+                                        if(isAnswered) {
+                                            binding.linTags.setVisibility(View.GONE);
+                                            binding.tvWebinarStatus.setVisibility(View.VISIBLE);
+                                        } else {
+                                            binding.linTags.setVisibility(View.VISIBLE);
+                                            binding.tvWebinarStatus.setVisibility(View.GONE);
+                                        }
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
 //                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
-                                        binding.linTags.setVisibility(View.VISIBLE);
-                                        binding.tvWebinarStatus.setVisibility(View.GONE);
                                     } else {
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
                                         binding.tvRevieQuestion.setVisibility(View.INVISIBLE);

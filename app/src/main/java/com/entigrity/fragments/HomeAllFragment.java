@@ -460,14 +460,15 @@ public class HomeAllFragment extends Fragment {
                     }, 500);
 
                 } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down);
-                    Handler handler = new Handler();
+//                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down);
+                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
+                    /*Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
                         }
-                    }, 500);
+                    }, 500);*/
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
