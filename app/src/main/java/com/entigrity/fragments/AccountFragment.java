@@ -31,13 +31,13 @@ import com.entigrity.activity.ActivityAddCard;
 import com.entigrity.activity.ActivityChangePassword;
 import com.entigrity.activity.ActivityContactUs;
 import com.entigrity.activity.ActivityNotificationSetting;
+import com.entigrity.activity.EditProfileActivity;
 import com.entigrity.activity.FaqActivity;
 import com.entigrity.activity.MyTransactionActivity;
 import com.entigrity.activity.PreLoginActivity;
 import com.entigrity.activity.PrivacyPolicyActivity;
 import com.entigrity.activity.TermsandConditionActivity;
 import com.entigrity.activity.TopicsOfInterestActivity;
-import com.entigrity.activity.ViewProfileActivity;
 import com.entigrity.databinding.FragmentAccountBinding;
 import com.entigrity.model.logout.LogoutModel;
 import com.entigrity.model.postfeedback.PostFeedback;
@@ -53,7 +53,6 @@ import com.entigrity.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -70,13 +69,15 @@ public class AccountFragment extends Fragment {
     public ImageView ivclose;
     public EditText edt_subject, edt_review;
     public Button btn_submit;
-    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", country = "", ptin_number = "";
+    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", country = "", ptin_number = "", phone_number = "";
     public int country_id = 0, state_id = 0, city_id = 0, jobtitle_id = 0, industry_id = 0;
     public String job_titile = "", industry = "";
     public ArrayList<modelViewProfileProfesional> professionalcredential = new
             ArrayList<>();
     public int whoyouare = 0;
     public String state = "", city = "";
+    public String selected_proffesional_credential = "";
+    public String selected_additional_qualification = "";
     private ArrayList<TopicOfInterestsItem> topicsofinterestitem = new ArrayList<TopicOfInterestsItem>();
     private static final String TAG = AccountFragment.class.getName();
 
@@ -187,6 +188,14 @@ public class AccountFragment extends Fragment {
 
     public void GetProfile() {
 
+
+        Constant.arraylistselectedproffesionalcredential.clear();
+        Constant.arraylistselectedproffesionalcredentialID.clear();
+
+
+        Constant.arraylistselectedadditionalqualification.clear();
+        Constant.arraylistselectedadditionalqualificationID.clear();
+
         mAPIService_new.GetProfile(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<ViewProfileModel>() {
                     @Override
@@ -271,6 +280,58 @@ public class AccountFragment extends Fragment {
                             if (viewProfileModel.getPayload().getData().getContactNo() != null
                                     && !viewProfileModel.getPayload().getData().getContactNo().equalsIgnoreCase("")) {
                                 mobilenumber = viewProfileModel.getPayload().getData().getContactNo();
+                            }
+
+                            if (viewProfileModel.getPayload().getData().getPhone() != null
+                                    && !viewProfileModel.getPayload().getData().getPhone().equalsIgnoreCase("")) {
+                                phone_number = viewProfileModel.getPayload().getData().getPhone();
+                            }
+
+
+                            if (!viewProfileModel.getPayload().getData().getUserTypeId().equalsIgnoreCase("") &&
+                                    viewProfileModel.getPayload().getData().getUserTypeId() != null) {
+                                selected_proffesional_credential = viewProfileModel.getPayload()
+                                        .getData().getUserTypeId();
+                            }
+
+
+                            if (!viewProfileModel.getPayload().getData().getEducationIds().equalsIgnoreCase("") &&
+                                    viewProfileModel.getPayload().getData().getEducationIds() != null) {
+                                selected_additional_qualification = viewProfileModel.getPayload()
+                                        .getData().getEducationIds();
+                            }
+
+                            if (viewProfileModel.getPayload().getData().getUserType().size() > 0) {
+
+                                for (int i = 0; i < viewProfileModel.getPayload().getData().getUserType().size(); i++) {
+                                    Constant.arraylistselectedproffesionalcredential
+                                            .add(viewProfileModel.getPayload().getData().getUserType().get(i).getName());
+
+                                    Constant.arraylistselectedproffesionalcredentialID
+                                            .add(viewProfileModel.getPayload().getData().getUserType().get(i).getId());
+
+
+                                }
+
+                                Constant.Log("size", "proffesional_id" + Constant.arraylistselectedproffesionalcredentialID.size());
+
+                            }
+
+
+                            if (viewProfileModel.getPayload().getData().getEducation().size() > 0) {
+
+                                for (int i = 0; i < viewProfileModel.getPayload().getData().getEducation().size(); i++) {
+                                    Constant.arraylistselectedadditionalqualification
+                                            .add(viewProfileModel.getPayload().getData().getEducation().get(i).getName());
+
+                                    Constant.arraylistselectedadditionalqualificationID
+                                            .add(viewProfileModel.getPayload().getData().getEducation().get(i).getId());
+
+
+                                }
+
+                                Constant.Log("size", "education_id" + Constant.arraylistselectedadditionalqualificationID.size());
+
                             }
 
 
@@ -473,7 +534,7 @@ public class AccountFragment extends Fragment {
         binding.rvNameProfilepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigate_ViewProfile();
+                navigateeditprofile();
 
             }
         });
@@ -573,28 +634,25 @@ public class AccountFragment extends Fragment {
 
     }
 
-    public void Navigate_ViewProfile() {
-        Intent i = new Intent(context, ViewProfileActivity.class);
+    public void navigateeditprofile() {
+        Intent i = new Intent(context, EditProfileActivity.class);
         i.putExtra(getResources().getString(R.string.pass_fname), firstname);
         i.putExtra(getResources().getString(R.string.pass_lname), lastname);
         i.putExtra(getResources().getString(R.string.pass_email), email);
         i.putExtra(getResources().getString(R.string.pass_firm_name), firmname);
         i.putExtra(getResources().getString(R.string.pass_mobile_number), mobilenumber);
+        i.putExtra(getResources().getString(R.string.pass_phone_number), phone_number);
         i.putExtra(getResources().getString(R.string.pass_ptin_number), ptin_number);
         i.putExtra(getResources().getString(R.string.pass_country), country_id);
         i.putExtra(getResources().getString(R.string.pass_state), state_id);
         i.putExtra(getResources().getString(R.string.pass_city), city_id);
         i.putExtra(getResources().getString(R.string.pass_job_title), jobtitle_id);
         i.putExtra(getResources().getString(R.string.pass_industry), industry_id);
-        i.putExtra(getResources().getString(R.string.pass_job_title_text), job_titile);
-        i.putExtra(getResources().getString(R.string.pass_industry_text), industry);
-        i.putExtra(getResources().getString(R.string.pass_country_text), country);
         i.putExtra(getResources().getString(R.string.pass_state_text), state);
         i.putExtra(getResources().getString(R.string.pass_city_text), city);
         i.putExtra(getResources().getString(R.string.pass_zipcode), zipcode);
-        /*i.putExtra(getResources().getString(R.string.pass_who_you_are), whoyouare);*/
-        i.putParcelableArrayListExtra(getResources().getString(R.string.pass_who_you_are_text), professionalcredential);
-        i.putParcelableArrayListExtra(getResources().getString(R.string.pass_view_topics_of_interest), topicsofinterestitem);
+        i.putExtra(getResources().getString(R.string.pass_who_you_are), professionalcredential.get(0).getId());
+
         startActivity(i);
     }
 

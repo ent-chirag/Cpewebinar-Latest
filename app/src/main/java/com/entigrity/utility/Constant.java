@@ -45,9 +45,6 @@ public class Constant {
     public static HashMap<String, Boolean> hashmap_subject_home_area = new HashMap<String, Boolean>();
 
 
-
-
-
     //for sign up additional qualification
     public static ArrayList<Integer> arraylistselectedadditionalqualificationID = new ArrayList<>();
     public static ArrayList<String> arraylistselectedadditionalqualification = new ArrayList<String>();

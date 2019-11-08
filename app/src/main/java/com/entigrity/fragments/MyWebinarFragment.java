@@ -66,7 +66,7 @@ public class MyWebinarFragment extends Fragment {
     private List<String> arraysavefilterMyWebinar = new ArrayList<String>();
     private APIService mAPIService_new;
     private boolean loading = true;
-    private String webinartypemywebinar = "live";
+    private String webinartypemywebinar = "";
     public boolean islast = false;
     public boolean isprogress = false;
     public int start = 0, limit = 10;
@@ -181,6 +181,7 @@ public class MyWebinarFragment extends Fragment {
                     HomeAllFragment ldf = new HomeAllFragment();
                     Bundle args = new Bundle();
                     args.putString("actionsearch", Constant.Trim(binding.edtSearch.getText().toString()));
+                    args.putString(context.getResources().getString(R.string.str_premium_lable), "home");
                     ldf.setArguments(args);
 
                     MainActivity.getInstance().SetImageBackground(2);
@@ -188,20 +189,6 @@ public class MyWebinarFragment extends Fragment {
 //Inflate the fragment
                     getFragmentManager().beginTransaction().add(R.id.content_frame, ldf).commit();
 
-
-
-
-                   /* if (!Constant.Trim(binding.edtSearch.getText().toString()).isEmpty()) {
-                        if (Constant.isNetworkAvailable(context)) {
-                            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
-                        } else {
-                            Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.str_val_search_text), Snackbar.LENGTH_SHORT).show();
-                    }
-*/
 
                 }
                 return false;

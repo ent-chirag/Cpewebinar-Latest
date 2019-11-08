@@ -60,11 +60,16 @@ public class TestimonialAdapter extends RecyclerView.Adapter {
         if (viewHolder instanceof ViewHolder) {
 
             if (!mList.get(position).getFirstName().equalsIgnoreCase("")) {
-                ((ViewHolder) viewHolder).tv_username_name.setText(mList.get(position).getFirstName() + " " + mList.get(position).getLastName());
+                ((ViewHolder) viewHolder).tv_username_name.setText(mList.get(position).getFirstName() + " " + mList.get(position).getLastName() +
+                        " " + mList.get(position).getDesignation());
             }
 
             if (!mList.get(position).getReview().equalsIgnoreCase("")) {
                 ((ViewHolder) viewHolder).tv_review_decription.setText(mList.get(position).getReview());
+            }
+
+            if (!mList.get(position).getDate().equalsIgnoreCase("")) {
+                ((ViewHolder) viewHolder).tv_date.setText(mList.get(position).getDate());
             }
 
             if (!mList.get(position).getRate().equalsIgnoreCase("")) {
@@ -145,7 +150,7 @@ public class TestimonialAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_username_name, tv_review_decription;
+        TextView tv_username_name, tv_review_decription, tv_date;
         ImageView iv_testimonial_star;
 
         private ViewHolder(View itemView) {
@@ -153,6 +158,7 @@ public class TestimonialAdapter extends RecyclerView.Adapter {
             tv_username_name = (TextView) itemView.findViewById(R.id.tv_username_name);
             tv_review_decription = (TextView) itemView.findViewById(R.id.tv_review_decription);
             iv_testimonial_star = (ImageView) itemView.findViewById(R.id.iv_testimonial_star);
+            tv_date = (TextView) itemView.findViewById(R.id.tv_date);
 
 
         }

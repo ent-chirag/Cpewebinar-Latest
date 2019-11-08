@@ -2,60 +2,85 @@ package com.entigrity.model.testimonial;
 
 import com.google.gson.annotations.SerializedName;
 
-public class WebinarTestimonialItem{
+public class WebinarTestimonialItem {
 
-	@SerializedName("rate")
-	private String rate;
+    @SerializedName("rate")
+    private String rate;
 
-	@SerializedName("review")
-	private String review;
+    @SerializedName("review")
+    private String review;
 
-	@SerializedName("last_name")
-	private String lastName;
+    @SerializedName("last_name")
+    private String lastName;
 
-	@SerializedName("first_name")
-	private String firstName;
+    @SerializedName("first_name")
+    private String firstName;
 
-	public void setRate(String rate){
-		this.rate = rate;
-	}
+    @SerializedName("designation")
+    private String designation;
 
-	public String getRate(){
-		return rate;
-	}
+    @SerializedName("date")
+    private String date;
 
-	public void setReview(String review){
-		this.review = review;
-	}
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
 
-	public String getReview(){
-		return review;
-	}
+    public String getRate() {
+        return rate;
+    }
 
-	public void setLastName(String lastName){
-		this.lastName = lastName;
-	}
+    public void setReview(String review) {
+        this.review = review;
+    }
 
-	public String getLastName(){
-		return lastName;
-	}
+    public String getReview() {
+        return review;
+    }
 
-	public void setFirstName(String firstName){
-		this.firstName = firstName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getFirstName(){
-		return firstName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"WebinarTestimonialItem{" + 
-			"rate = '" + rate + '\'' + 
-			",review = '" + review + '\'' + 
-			",last_name = '" + lastName + '\'' + 
-			",first_name = '" + firstName + '\'' + 
-			"}";
-		}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "WebinarTestimonialItem{" +
+                        "rate = '" + rate + '\'' +
+                        ",review = '" + review + '\'' +
+                        ",last_name = '" + lastName + '\'' +
+                        ",first_name = '" + firstName + '\'' +
+                        ",designation = '" + designation + '\'' +
+                        ",date = '" + date + '\'' +
+
+                        "}";
+    }
 }

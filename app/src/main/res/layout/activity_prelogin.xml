@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/theme_background">
+        android:background="@color/White">
 
 
         <LinearLayout
@@ -32,7 +32,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_toLeftOf="@+id/iv_forward"
                 android:text="Skip"
-                android:textColor="@color/White"
+                android:textColor="@color/theme_background"
                 android:textSize="@dimen/_14sdp"
                 app:font_text="Montserrat-Regular.ttf" />
 
@@ -45,7 +45,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_9sdp"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:src="@drawable/forward" />
+                android:src="@drawable/forward"
+                android:tint="@color/theme_background" />
 
 
         </LinearLayout>
@@ -56,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/login_logo" />
+            android:visibility="gone"
+            android:src="@mipmap/splash_logo_new" />
 
         <com.entigrity.view.CustomButtonView
             android:id="@+id/strsignup"
@@ -69,8 +71,9 @@
             android:layout_marginRight="@dimen/_40sdp"
             android:background="@drawable/rounded_transperent_background"
             android:text="@string/str_create_account"
-            android:textColor="@color/White"
+            android:textColor="@color/theme_background"
             android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
             app:font_button="Montserrat-Medium.ttf" />
 
 
@@ -81,24 +84,25 @@
             android:layout_below="@+id/strsignup"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/_40sdp"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_40sdp"
             android:background="@drawable/rounded_button"
             android:text="@string/str_logi_now"
-            android:textColor="@color/White"
+            android:textColor="@color/theme_background"
             android:textSize="@dimen/_12sdp"
             app:font_button="Montserrat-Medium.ttf" />
 
-       <!-- <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+        <!-- <com.google.android.gms.common.SignInButton
+             android:id="@+id/sign_in_button"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+             android:layout_marginBottom="20dp">
 
-        </com.google.android.gms.common.SignInButton>-->
+         </com.google.android.gms.common.SignInButton>-->
 
 
     </RelativeLayout>

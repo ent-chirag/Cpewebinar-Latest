@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public Context context;
     private static MainActivity instance;
     public RelativeLayout rel_top_bottom;
-    public ImageView iv_mycredit, iv_mywebinar, iv_home, iv_myfavorite, iv_account;
+    public ImageView iv_mycredit, iv_mywebinar, iv_home, iv_premium, iv_account;
     public int setselectedtab = 0;
     public int selectmywebinardtab = 0;
     public Dialog myDialog;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         iv_mycredit = (ImageView) findViewById(R.id.iv_mycredit);
         iv_mywebinar = (ImageView) findViewById(R.id.iv_mywebinar);
         iv_home = (ImageView) findViewById(R.id.iv_home);
-        iv_myfavorite = (ImageView) findViewById(R.id.iv_myfavorite);
+        iv_premium = (ImageView) findViewById(R.id.iv_premium);
         iv_account = (ImageView) findViewById(R.id.iv_account);
 
 
@@ -120,12 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 selectmywebinardtab = 0;
                 checkmywebinardotstatusset = false;
                 SetImageBackground(2);
-                SetDefault();
+                SetDefault("home");
 
             }
         });
 
-        iv_myfavorite.setOnClickListener(new View.OnClickListener() {
+
+        iv_premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -133,11 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     setselectedtab = 2;
                     selectmywebinardtab = 0;
                     SetImageBackground(3);
-                    Constant.toast(context, "comming soon");
-                    /*myFavoriteScreenFragment = new MyFavoriteScreenFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, myFavoriteScreenFragment, getResources()
-                            .getString(R.string.myfavoritescreenfragment)).addToBackStack(getResources().getString(R.string.add_to_back_stack)).commit();
-*/
+                    SetDefault("premium");
                 } else {
                     ShowPopUp();
                 }
@@ -168,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SetDefault();
+        SetDefault("home");
 
 
     }
@@ -213,27 +210,27 @@ public class MainActivity extends AppCompatActivity {
         if (position == 0) {
             iv_mycredit.setImageResource(R.mipmap.footer_certificate_select_orange);
             iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_myfavorite.setImageResource(R.mipmap.footer_premium);
+            iv_premium.setImageResource(R.mipmap.footer_premium);
             iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 1) {
             iv_mycredit.setImageResource(R.mipmap.footer_certificate);
             iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars_select);
-            iv_myfavorite.setImageResource(R.mipmap.footer_premium);
+            iv_premium.setImageResource(R.mipmap.footer_premium);
             iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 2) {
             iv_mycredit.setImageResource(R.mipmap.footer_certificate);
             iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_myfavorite.setImageResource(R.mipmap.footer_premium);
+            iv_premium.setImageResource(R.mipmap.footer_premium);
             iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 3) {
             iv_mycredit.setImageResource(R.mipmap.footer_certificate);
             iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_myfavorite.setImageResource(R.mipmap.footer_premium_select_orange);
+            iv_premium.setImageResource(R.mipmap.footer_premium_select_orange);
             iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 4) {
             iv_mycredit.setImageResource(R.mipmap.footer_certificate);
             iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_myfavorite.setImageResource(R.mipmap.footer_premium);
+            iv_premium.setImageResource(R.mipmap.footer_premium);
             iv_account.setImageResource(R.mipmap.footer_account_select);
         }
 
@@ -247,9 +244,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void SetDefault() {
+    public void SetDefault(String value) {
 
         homeAllFragment = new HomeAllFragment();
+        Bundle args = new Bundle();
+        args.putString(context.getResources().getString(R.string.str_premium_lable), value);
+        args.putString("actionsearch", "");
+        homeAllFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, homeAllFragment, getResources()
                 .getString(R.string.home_fragment)).addToBackStack(getResources().getString(R.string.add_to_back_stack)).commit();
 
@@ -304,7 +305,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {

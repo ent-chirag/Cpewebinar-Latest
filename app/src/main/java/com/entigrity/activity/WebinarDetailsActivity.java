@@ -64,8 +64,10 @@ import com.entigrity.webinarDetail.CompanyFragment;
 import com.entigrity.webinarDetail.DescriptionFragment;
 import com.entigrity.webinarDetail.DetailsFragment;
 import com.entigrity.webinarDetail.OtherFragment;
+import com.entigrity.webinarDetail.OverviewOfTopicsFragment;
 import com.entigrity.webinarDetail.PresenterFragment;
 import com.entigrity.webinarDetail.TestimonialFragment;
+import com.entigrity.webinarDetail.WhyYouShouldAttend;
 import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 import com.google.android.exoplayer2.C;
@@ -122,6 +124,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public int webinarid = 0;
     public String webinar_type = "";
     public String Webinar_title = "";
+
+
+    public String keyterms = "";
+    public String overviewoftopic = "";
+    public String whyshouldattend = "";
+
+
     private String webinar_share_link = "";
     private String is_favorite = "";
     ProgressDialog mProgressDialog;
@@ -376,7 +385,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                     } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
                             .getString(R.string.str_webinar_status_register))) {
-//                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+
 
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
@@ -1808,6 +1817,20 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
 
+                            if (!webinar_details.getPayload().getWebinarDetail().getKeyterms().equalsIgnoreCase("")) {
+                                keyterms = webinar_details.getPayload().getWebinarDetail().getKeyterms();
+                            }
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getOverviewoftopic().equalsIgnoreCase("")) {
+                                overviewoftopic = webinar_details.getPayload().getWebinarDetail().getOverviewoftopic();
+                            }
+
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getWhyshouldattend().equalsIgnoreCase("")) {
+                                whyshouldattend = webinar_details.getPayload().getWebinarDetail().getWhyshouldattend();
+                            }
+
+
                             if (!webinar_details.getPayload().getWebinarDetail()
                                     .getPaymentlink().equalsIgnoreCase("")) {
                                 payment_link = webinar_details.getPayload().getWebinarDetail().getPaymentlink();
@@ -2555,6 +2578,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DetailsFragment(), getResources().getString(R.string.str_details));
         adapter.addFragment(new DescriptionFragment(), getResources().getString(R.string.str_description));
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+            adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+        } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+            adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+        }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new TestimonialFragment(), getResources().getString(R.string.str_testimonials));
@@ -2566,6 +2594,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DetailsFragment(), getResources().getString(R.string.str_details));
         adapter.addFragment(new DescriptionFragment(), getResources().getString(R.string.str_description));
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+            adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+        } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+            adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+        }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new OtherFragment(), getResources().getString(R.string.str_others));
