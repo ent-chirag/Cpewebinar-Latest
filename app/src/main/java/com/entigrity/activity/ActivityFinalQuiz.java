@@ -354,6 +354,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
 
     }
 
+    // This method is not used for now..
     public void SubmitButtonVisible() {
         binding.relbottom.setVisibility(View.VISIBLE);
     }
