@@ -795,7 +795,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             progressDialog.dismiss();
                         }
                         if (modelRegisterWebinar.isSuccess() == true) {
-                            Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
+                          /*  Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
 
                             button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
                             button.setBackgroundResource(R.drawable.rounded_webinar_status);
@@ -803,7 +803,17 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
 
-                            }
+                            }*/
+
+                            Intent i = new Intent(mContext, WebinarDetailsActivity.class);
+                            i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
+                                    .get(position).getId());
+                            i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                            i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
+                                    .get(position).getWebinarType());
+
+                            mContext.startActivity(i);
+                            ((Activity) mContext).finish();
 
 
                         } else {

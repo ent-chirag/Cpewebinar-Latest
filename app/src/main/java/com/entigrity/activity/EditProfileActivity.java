@@ -1,32 +1,47 @@
 package com.entigrity.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
+import com.entigrity.adapter.AdditionalQualificationPopUpAdapter;
+import com.entigrity.adapter.EditAdditionalQualificationPopUpAdapter;
+import com.entigrity.adapter.EditProffesionalCredentialPopUpAdapter;
+import com.entigrity.adapter.ProffesionalCredentialPopUpAdapter;
 import com.entigrity.databinding.ActivityEditProfileBinding;
 import com.entigrity.model.Job_title.ModelJobTitle;
+import com.entigrity.model.Proffesional_Credential.Model_proffesional_Credential;
+import com.entigrity.model.additional_qualification.Model_additional_qualification;
 import com.entigrity.model.city.CityItem;
 import com.entigrity.model.city.CityModel;
 import com.entigrity.model.country.CountryItem;
 import com.entigrity.model.country.CountryModel;
 import com.entigrity.model.editProfile.EditProfileModel;
+import com.entigrity.model.educationlist.education_list_Model;
 import com.entigrity.model.industry.Model_Industry;
 import com.entigrity.model.state.StateItem;
 import com.entigrity.model.state.StateModel;
@@ -34,12 +49,14 @@ import com.entigrity.model.usertype.UserTypeModel;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
+import com.entigrity.view.SimpleDividerItemDecoration;
 import com.entigrity.view.UsPhoneNumberFormatter;
 import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -52,6 +69,15 @@ public class EditProfileActivity extends AppCompatActivity {
     ActivityEditProfileBinding binding;
     public Context context;
     private APIService mAPIService_new;
+
+    public Dialog myDialog_proffesionl_credential;
+    public Dialog myDialog_additional_qualification;
+    private TextView tv_header, tv_submit, tv_cancel;
+    LinearLayoutManager linearLayoutManager;
+    public RecyclerView rv_professional_credential;
+    public EditProffesionalCredentialPopUpAdapter editProffesionalCredentialPopUpAdapter;
+
+    public EditAdditionalQualificationPopUpAdapter editAdditionalQualificationPopUpAdapter;
 
 
     private ArrayList<String> arrayLististusertype = new ArrayList<String>();
@@ -74,16 +100,21 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public ArrayList<String> getcityarraylist = new ArrayList<String>();
     public ArrayList<CityItem> getcityarray = new ArrayList<CityItem>();
-    private ArrayList<String> arraylistsubcategory = new ArrayList<>();
+    // private ArrayList<String> arraylistsubcategory = new ArrayList<>();
+
+    public ArrayList<Model_proffesional_Credential> arraylistModelProffesioanlCredential = new ArrayList<>();
+    public ArrayList<Model_additional_qualification> arraylistModeladditionalcredential = new ArrayList<>();
 
 
     private int country_id = 0;
     private int state_id = 0;
     private int city_id = 0;
-    private int who_you_are_id = 0;
+    // private int who_you_are_id = 0;
     private int jobtitle_id = 0;
     private int industry_id = 0;
 
+
+    public String phone_number = "";
 
     private int country_pos = 0;
     private int state_pos = 0;
@@ -114,6 +145,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private String State, City;
+    private String prefix = "P-";
+
+    public String selected_proffesional_credential = "";
+    public String selected_additional_qualification = "";
 
 
     private int country_set = 0, state_set = 0, city_set = 0, whoyouare_set = 0, job_title_set = 0, industry_set = 0;
@@ -127,7 +162,10 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         context = EditProfileActivity.this;
+        myDialog_proffesionl_credential = new Dialog(context);
+        myDialog_additional_qualification = new Dialog(context);
         mAPIService_new = ApiUtilsNew.getAPIService();
 
         Intent intent = getIntent();
@@ -137,6 +175,7 @@ public class EditProfileActivity extends AppCompatActivity {
             email = intent.getStringExtra(getResources().getString(R.string.pass_email));
             firmname = intent.getStringExtra(getResources().getString(R.string.pass_firm_name));
             mobilenumber = intent.getStringExtra(getResources().getString(R.string.pass_mobile_number));
+            phone_number = intent.getStringExtra(getResources().getString(R.string.pass_phone_number));
             ptin_number = intent.getStringExtra(getResources().getString(R.string.pass_ptin_number));
             State = intent.getStringExtra(getResources().getString(R.string.pass_state_text));
             City = intent.getStringExtra(getResources().getString(R.string.pass_city_text));
@@ -145,9 +184,8 @@ public class EditProfileActivity extends AppCompatActivity {
             state_pos = intent.getIntExtra(getResources().getString(R.string.pass_state), 0);
             city_pos = intent.getIntExtra(getResources().getString(R.string.pass_city), 0);
             who_you_are_pos = intent.getIntExtra(getResources().getString(R.string.pass_who_you_are), 0);
-            jobtitle_id_pos = intent.getIntExtra(getResources().getString(R.string.pass_job_title_id), 0);
-            industry_id_pos = intent.getIntExtra(getResources().getString(R.string.pass_industry_id), 0);
-            arraylistsubcategory = intent.getStringArrayListExtra(getResources().getString(R.string.pass_selected_list));
+            jobtitle_id_pos = intent.getIntExtra(getResources().getString(R.string.pass_job_title), 0);
+            industry_id_pos = intent.getIntExtra(getResources().getString(R.string.pass_industry), 0);
 
             if (Constant.isNetworkAvailable(context)) {
                 runOnUiThread(new Runnable() {
@@ -169,7 +207,130 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.edtMobileNumber.addTextChangedListener(addLineNumberFormatter);
 
 
+        binding.edtPhoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        UsPhoneNumberFormatter addLineNumberFormatterphonenumber = new UsPhoneNumberFormatter(
+                new WeakReference<EditText>(binding.edtPhoneNumber));
+        binding.edtPhoneNumber.addTextChangedListener(addLineNumberFormatterphonenumber);
+
+
+        binding.professionalCredential.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                ShowProffesionlCredentialPopup();
+
+                return false;
+            }
+        });
+
+        binding.lvProfessionalCredential.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowProffesionlCredentialPopup();
+            }
+        });
+
+        binding.additionalQualification.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                ShowAdditionalQualification();
+
+                return false;
+            }
+        });
+
+
+        binding.lvAdditionalQualification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowAdditionalQualification();
+            }
+        });
+
+
+        binding.edtPtinNumber.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().startsWith(prefix)) {
+                    binding.edtPtinNumber.setText(prefix);
+                    binding.edtPtinNumber.setSelection(2);
+                }
+
+            }
+        });
+
+
+        binding.ivedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                binding.edtFirstname.setEnabled(true);
+                binding.edtFirmname.setEnabled(true);
+                binding.edtPtinNumber.setEnabled(true);
+                binding.edtMobileNumber.setEnabled(true);
+                binding.edtPhoneNumber.setEnabled(true);
+                binding.edtZipcode.setEnabled(true);
+                binding.edtLastname.setEnabled(true);
+                binding.spinnerCountry.setEnabled(true);
+                binding.spinnerState.setEnabled(true);
+                binding.spinnerCity.setEnabled(true);
+                binding.spinnerJobTitile.setEnabled(true);
+                binding.spinnerIndustry.setEnabled(true);
+                binding.spinner.setEnabled(true);
+                binding.btnsubmit.setEnabled(true);
+                binding.professionalCredential.setEnabled(true);
+                binding.lvProfessionalCredential.setEnabled(true);
+                binding.additionalQualification.setEnabled(true);
+                binding.lvAdditionalQualification.setEnabled(true);
+
+
+            }
+        });
+
+
         binding.edtMobileNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (s.toString().length() == 1 && s.toString().startsWith("0")) {
+                    s.clear();
+                }
+
+                if (s.length() == 14) {
+                    Constant.hideKeyboard((Activity) context);
+                }
+
+            }
+        });
+
+        binding.edtPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -323,7 +484,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (boolean_usertype_spinner) {
@@ -344,7 +505,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         binding.spinnerJobTitile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -420,7 +581,9 @@ public class EditProfileActivity extends AppCompatActivity {
                         EditPost(getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
                                 Constant.Trim(binding.edtFirstname.getText().toString()), Constant.Trim(binding.edtLastname.getText().toString()),
                                 Constant.Trim(binding.edtEmailname.getText().toString()), Constant.Trim(binding.edtFirmname.getText().toString()), country_id, state_id, city_id, Integer.parseInt(Constant.Trim(binding.edtZipcode.getText().toString())), Constant.Trim(binding.edtMobileNumber.getText()
-                                        .toString()), Constant.Trim(binding.edtPtinNumber.getText().toString()), who_you_are_id, jobtitle_id, industry_id);
+                                        .toString()), Constant.Trim(binding.edtPhoneNumber.getText()
+                                        .toString()), Constant.Trim(binding.edtPtinNumber.getText().toString()), selected_proffesional_credential
+                                , selected_additional_qualification, jobtitle_id, industry_id);
                     } else {
                         Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -429,6 +592,211 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    private void ShowAdditionalQualification() {
+
+
+        myDialog_additional_qualification.setContentView(R.layout.popup_professional_credential);
+        myDialog_additional_qualification.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        tv_header = (TextView) myDialog_additional_qualification.findViewById(R.id.tv_header);
+        tv_submit = (TextView) myDialog_additional_qualification.findViewById(R.id.tv_submit);
+        tv_cancel = (TextView) myDialog_additional_qualification.findViewById(R.id.tv_cancel);
+        rv_professional_credential = (RecyclerView) myDialog_additional_qualification.findViewById(R.id.rv_professional_credential);
+
+        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(context));
+        tv_header.setText(context.getResources().getString(R.string.str_additional_qualification));
+
+        tv_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (myDialog_additional_qualification.isShowing()) {
+                    myDialog_additional_qualification.cancel();
+                }
+
+                ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedadditionalqualificationID));
+
+
+                if (myArrayList.size() > 0) {
+
+                    StringBuilder commaSepValueBuilder = new StringBuilder();
+
+                    //Looping through the list
+                    for (int i = 0; i < myArrayList.size(); i++) {
+                        //append the value into the builder
+                        commaSepValueBuilder.append(myArrayList.get(i));
+
+                        //if the value is not the last element of the list
+                        //then append the comma(,) as well
+                        if (i != myArrayList.size() - 1) {
+                            commaSepValueBuilder.append(",");
+                        }
+                    }
+                    //System.out.println(commaSepValueBuilder.toString());
+                    selected_additional_qualification = commaSepValueBuilder.toString();
+
+                    System.out.println(selected_additional_qualification);
+
+
+                } else {
+                    selected_additional_qualification = "";
+                    // Snackbar.make(binding.btnsubmit, context.getResources().getString(R.string.validation_additional_qualification), Snackbar.LENGTH_SHORT).show();
+                }
+
+                if (Constant.arraylistselectedadditionalqualification.size() > 0) {
+                    binding.additionalQualification.setVisibility(View.GONE);
+                    binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                    binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
+                    binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
+                    if (Constant.arraylistselectedadditionalqualification.size() > 1) {
+                        int more = Constant.arraylistselectedadditionalqualification.size() - 1;
+                        binding.tvAdditionalQualificationMore.setVisibility(View.VISIBLE);
+                        binding.tvAdditionalQualificationMore.setText(("+" + more
+                                + " more"));
+                    } else {
+                        binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
+                    }
+                } else {
+                    binding.additionalQualification.setVisibility(View.VISIBLE);
+                    binding.lvAdditionalQualification.setVisibility(View.GONE);
+                    binding.tvAdditionalQualification.setVisibility(View.GONE);
+                    binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
+                }
+
+
+            }
+        });
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (myDialog_additional_qualification.isShowing()) {
+                    myDialog_additional_qualification.dismiss();
+                }
+
+            }
+        });
+
+
+        myDialog_additional_qualification.show();
+
+
+        if (arraylistModeladditionalcredential.size() > 0) {
+            editAdditionalQualificationPopUpAdapter = new EditAdditionalQualificationPopUpAdapter(context,
+                    arraylistModeladditionalcredential);
+            rv_professional_credential.setAdapter(editAdditionalQualificationPopUpAdapter);
+        }
+
+
+    }
+
+    private void ShowProffesionlCredentialPopup() {
+
+        myDialog_proffesionl_credential.setContentView(R.layout.popup_professional_credential);
+        myDialog_proffesionl_credential.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        tv_header = (TextView) myDialog_proffesionl_credential.findViewById(R.id.tv_header);
+        tv_submit = (TextView) myDialog_proffesionl_credential.findViewById(R.id.tv_submit);
+        tv_cancel = (TextView) myDialog_proffesionl_credential.findViewById(R.id.tv_cancel);
+        rv_professional_credential = (RecyclerView) myDialog_proffesionl_credential.findViewById(R.id.rv_professional_credential);
+
+        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(context));
+        tv_header.setText(context.getResources().getString(R.string.str_profestional_credential));
+
+        tv_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (myDialog_proffesionl_credential.isShowing()) {
+                    myDialog_proffesionl_credential.cancel();
+                }
+
+                ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));
+
+
+                if (myArrayList.size() > 0) {
+
+                    StringBuilder commaSepValueBuilder = new StringBuilder();
+
+                    //Looping through the list
+                    for (int i = 0; i < myArrayList.size(); i++) {
+                        //append the value into the builder
+                        commaSepValueBuilder.append(myArrayList.get(i));
+
+                        //if the value is not the last element of the list
+                        //then append the comma(,) as well
+                        if (i != myArrayList.size() - 1) {
+                            commaSepValueBuilder.append(",");
+                        }
+                    }
+                    //System.out.println(commaSepValueBuilder.toString());
+                    selected_proffesional_credential = commaSepValueBuilder.toString();
+
+                    System.out.println(selected_proffesional_credential);
+
+
+                } else {
+                    selected_proffesional_credential = "";
+                    //  Snackbar.make(binding.btnsubmit, context.getResources().getString(R.string.validation_professional_credential), Snackbar.LENGTH_SHORT).show();
+                }
+
+                if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
+                    binding.professionalCredential.setVisibility(View.GONE);
+                    binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+                    binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
+                    binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
+                    if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
+                        int more = Constant.arraylistselectedproffesionalcredential.size() - 1;
+                        binding.tvProfessionalCredentialMore.setVisibility(View.VISIBLE);
+                        binding.tvProfessionalCredentialMore.setText(("+" + more
+                                + " more"));
+                    } else {
+                        binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
+                    }
+                } else {
+                    binding.professionalCredential.setVisibility(View.VISIBLE);
+                    binding.lvProfessionalCredential.setVisibility(View.GONE);
+                    binding.tvProfessionalCredential.setVisibility(View.GONE);
+                    binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
+                }
+
+
+            }
+        });
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (myDialog_proffesionl_credential.isShowing()) {
+                    myDialog_proffesionl_credential.dismiss();
+                }
+
+            }
+        });
+
+
+        myDialog_proffesionl_credential.show();
+
+
+        if (arraylistModelProffesioanlCredential.size() > 0) {
+            editProffesionalCredentialPopUpAdapter = new EditProffesionalCredentialPopUpAdapter(context,
+                    arraylistModelProffesioanlCredential);
+            rv_professional_credential.setAdapter(editProffesionalCredentialPopUpAdapter);
+        }
 
 
     }
@@ -442,7 +810,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         if (!ptin_number.equalsIgnoreCase("") && ptin_number != null) {
-            binding.edtPtinNumber.setText(ptin_number);
+            binding.edtPtinNumber.setText(prefix + ptin_number.substring(2));
         }
 
 
@@ -464,6 +832,11 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
 
+        if (!phone_number.equalsIgnoreCase("") && phone_number != null) {
+            binding.edtPhoneNumber.setText(phone_number);
+        }
+
+
         if (country_pos != 0) {
             country_id = country_pos;
         }
@@ -475,9 +848,9 @@ public class EditProfileActivity extends AppCompatActivity {
             city_id = city_pos;
         }
 
-        if (who_you_are_pos != 0) {
+        /*if (who_you_are_pos != 0) {
             who_you_are_id = who_you_are_pos;
-        }
+        }*/
 
         if (jobtitle_id_pos != 0) {
             jobtitle_id = jobtitle_id_pos;
@@ -487,21 +860,117 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
 
-        if (arraylistsubcategory.size() > 0) {
-            subcategory = arraylistsubcategory.get(0);
-            binding.tvTopics.setVisibility(View.VISIBLE);
-            binding.tvTopics.setText(subcategory);
-            if (arraylistsubcategory.size() > 1) {
-                subcategoryremains = arraylistsubcategory.size() - 1;
-                binding.tvTopicsMore.setVisibility(View.VISIBLE);
-                binding.tvTopicsMore.setText(("+" + subcategoryremains
+        binding.spinnerCountry.setEnabled(false);
+        binding.spinnerState.setEnabled(false);
+        binding.spinnerCity.setEnabled(false);
+        binding.spinnerJobTitile.setEnabled(false);
+        binding.spinnerIndustry.setEnabled(false);
+        binding.spinner.setEnabled(false);
+        binding.btnsubmit.setEnabled(false);
+        binding.professionalCredential.setEnabled(false);
+        binding.lvProfessionalCredential.setEnabled(false);
+        binding.additionalQualification.setEnabled(false);
+        binding.lvAdditionalQualification.setEnabled(false);
+
+
+        ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));
+
+
+        if (myArrayList.size() > 0) {
+
+            StringBuilder commaSepValueBuilder = new StringBuilder();
+
+            //Looping through the list
+            for (int i = 0; i < myArrayList.size(); i++) {
+                //append the value into the builder
+                commaSepValueBuilder.append(myArrayList.get(i));
+
+                //if the value is not the last element of the list
+                //then append the comma(,) as well
+                if (i != myArrayList.size() - 1) {
+                    commaSepValueBuilder.append(",");
+                }
+            }
+            //System.out.println(commaSepValueBuilder.toString());
+            selected_proffesional_credential = commaSepValueBuilder.toString();
+
+            System.out.println(selected_proffesional_credential);
+
+
+        } else {
+            selected_proffesional_credential = "";
+            // Snackbar.make(binding.btnsubmit, context.getResources().getString(R.string.validation_professional_credential), Snackbar.LENGTH_SHORT).show();
+        }
+
+        if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
+            binding.professionalCredential.setVisibility(View.GONE);
+            binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+            binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
+            binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
+            if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
+                int more = Constant.arraylistselectedproffesionalcredential.size() - 1;
+                binding.tvProfessionalCredentialMore.setVisibility(View.VISIBLE);
+                binding.tvProfessionalCredentialMore.setText(("+" + more
                         + " more"));
             } else {
-                binding.tvTopicsMore.setVisibility(View.GONE);
+                binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
             }
         } else {
-            binding.tvTopics.setVisibility(View.GONE);
-            binding.tvTopicsMore.setVisibility(View.GONE);
+            binding.professionalCredential.setVisibility(View.VISIBLE);
+            binding.lvProfessionalCredential.setVisibility(View.GONE);
+            binding.tvProfessionalCredential.setVisibility(View.GONE);
+            binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
+        }
+
+
+        ArrayList<Integer> myArrayListadditional = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedadditionalqualificationID));
+
+
+        if (myArrayListadditional.size() > 0) {
+
+            StringBuilder commaSepValueBuilder = new StringBuilder();
+
+            //Looping through the list
+            for (int i = 0; i < myArrayListadditional.size(); i++) {
+                //append the value into the builder
+                commaSepValueBuilder.append(myArrayListadditional.get(i));
+
+                //if the value is not the last element of the list
+                //then append the comma(,) as well
+                if (i != myArrayListadditional.size() - 1) {
+                    commaSepValueBuilder.append(",");
+                }
+            }
+            //System.out.println(commaSepValueBuilder.toString());
+            selected_additional_qualification = commaSepValueBuilder.toString();
+
+            System.out.println(selected_additional_qualification);
+
+
+        } else {
+            selected_additional_qualification = "";
+            // Snackbar.make(binding.btnsubmit, context.getResources().getString(R.string.validation_additional_qualification), Snackbar.LENGTH_SHORT).show();
+        }
+
+
+        if (Constant.arraylistselectedadditionalqualification.size() > 0) {
+            binding.additionalQualification.setVisibility(View.GONE);
+            binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+            binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
+            binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
+            if (Constant.arraylistselectedadditionalqualification.size() > 1) {
+                int more = Constant.arraylistselectedadditionalqualification.size() - 1;
+                binding.tvAdditionalQualificationMore.setVisibility(View.VISIBLE);
+                binding.tvAdditionalQualificationMore.setText(("+" + more
+                        + " more"));
+            } else {
+                binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
+            }
+        } else {
+            binding.additionalQualification.setVisibility(View.VISIBLE);
+            binding.lvAdditionalQualification.setVisibility(View.GONE);
+            binding.tvAdditionalQualification.setVisibility(View.GONE);
+            binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
         }
 
 
@@ -515,12 +984,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void EditPost(String Authorization, String first_name, String last_name, String email,
                          String firm_name, final int country_id, final int state_id, final int city_id,
-                         int zipcode, String contact_no, String ptin_number, final int user_type, final int jobtitle_id, final int industry_id) {
+                         int zipcode, String contact_no, String phone, String ptin_number, String selected_proffesional_credential, String selected_additional_qualification, final int jobtitle_id, final int industry_id) {
 
 
         // RxJava
         mAPIService_new.Ediprofile(getResources().getString(R.string.accept), Authorization, first_name, last_name, email
-                , firm_name, country_id, state_id, city_id, zipcode, contact_no, ptin_number, user_type, jobtitle_id, industry_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                , firm_name, country_id, state_id, city_id, zipcode, contact_no, phone, ptin_number, selected_proffesional_credential,
+                selected_additional_qualification, jobtitle_id, industry_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<EditProfileModel>() {
                     @Override
                     public void onCompleted() {
@@ -551,6 +1021,14 @@ public class EditProfileActivity extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
+
+                            Constant.arraylistselectedproffesionalcredentialID.clear();
+                            Constant.arraylistselectedproffesionalcredential.clear();
+                            Constant.hashmap_professional_credential.clear();
+
+                            Constant.arraylistselectedadditionalqualificationID.clear();
+                            Constant.arraylistselectedadditionalqualification.clear();
+                            Constant.hashmap_additional_qualification.clear();
 
 
                             Snackbar.make(binding.btnsubmit, editProfileModel.getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -726,13 +1204,12 @@ public class EditProfileActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted() {
 
+
                         if (Constant.isNetworkAvailable(context)) {
-                            GetJobTitle();
+                            GetAdditionalQualification();
                         } else {
                             Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
-
-
                     }
 
                     @Override
@@ -756,26 +1233,46 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onNext(UserTypeModel userTypeModel) {
 
                         if (userTypeModel.isSuccess()) {
-                            arrayLististusertype.clear();
-                            arrayLististusertype.add(getResources().getString(R.string.str_who_you_are));
+
+
+                            arraylistModelProffesioanlCredential.clear();
 
                             for (int i = 0; i < userTypeModel.getPayload().getUserType().size(); i++) {
-                                arrayLististusertype.add(userTypeModel.getPayload().getUserType().get(i).getName());
-                                arrayLististusertypeid.add(userTypeModel.getPayload().getUserType().get(i).getId());
+
+                                Model_proffesional_Credential model_proffesional_credential = new Model_proffesional_Credential();
+
+                                model_proffesional_credential.setName(userTypeModel.getPayload().getUserType().get(i).getName());
+                                model_proffesional_credential.setId(userTypeModel.getPayload().getUserType().get(i).getId());
+
+                                model_proffesional_credential.setChecked(false);
+
+                                Constant.hashmap_professional_credential.put(userTypeModel.getPayload().getUserType().get(i).getName(),
+                                        false);
+
+
+                                arraylistModelProffesioanlCredential.add(model_proffesional_credential);
+
+
                             }
-                            if (who_you_are_pos == 0) {
-                                who_you_are_pos = 0;
-                                who_you_are_id = who_you_are_pos;
-                            } else {
-                                for (int i = 0; i < arrayLististusertypeid.size(); i++) {
-                                    if (who_you_are_pos == arrayLististusertypeid.get(i)) {
-                                        whoyouare_set = arrayLististusertypeid.indexOf(arrayLististusertypeid.get(i));
+
+                            for (int i = 0; i < arraylistModelProffesioanlCredential.size(); i++) {
+                                for (int j = 0; j < Constant.arraylistselectedproffesionalcredentialID.size(); j++)
+                                    if (Constant.arraylistselectedproffesionalcredentialID
+                                            .get(j) == arraylistModelProffesioanlCredential.get(i).getId()) {
+
+                                        Constant.hashmap_professional_credential.put(userTypeModel.getPayload().getUserType().get(i).getName(),
+                                                true);
+
+                                    } else {
+                                        Constant.Log("unmatch", "unmatch");
                                     }
-                                }
+
                             }
 
 
-                            ShowAdapter();
+                            Constant.Log("size_proffesional", "++++" + arraylistModelProffesioanlCredential.size());
+
+
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
@@ -787,6 +1284,94 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void GetAdditionalQualification() {
+
+        mAPIService_new.GetAdditionalQualification(getResources().getString(R.string.accept)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<education_list_Model>() {
+                    @Override
+                    public void onCompleted() {
+
+                        if (Constant.isNetworkAvailable(context)) {
+                            GetJobTitle();
+                        } else {
+                            Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+                        String message = Constant.GetReturnResponse(context, e);
+
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onNext(education_list_Model education_list_model) {
+
+                        if (education_list_model.isSuccess()) {
+
+                            arraylistModeladditionalcredential.clear();
+
+                            for (int i = 0; i < education_list_model.getPayload().getEducationList().size(); i++) {
+                                Model_additional_qualification model_additional_qualification = new Model_additional_qualification();
+
+                                model_additional_qualification.setName(education_list_model.getPayload().getEducationList().get(i).getName());
+                                model_additional_qualification.setId(education_list_model.getPayload().getEducationList().get(i).getId());
+                                model_additional_qualification.setChecked(false);
+
+                                Constant.hashmap_additional_qualification.put(education_list_model.getPayload().getEducationList().get(i).getName(),
+                                        false);
+
+                                arraylistModeladditionalcredential.add(model_additional_qualification);
+
+
+                            }
+
+
+                            for (int i = 0; i < arraylistModeladditionalcredential.size(); i++) {
+                                for (int j = 0; j < Constant.arraylistselectedadditionalqualificationID.size(); j++)
+                                    if (Constant.arraylistselectedadditionalqualificationID
+                                            .get(j) == arraylistModeladditionalcredential.get(i).getId()) {
+
+                                        Constant.hashmap_additional_qualification.put(education_list_model.getPayload().getEducationList().get(i).getName(),
+                                                true);
+
+                                    } else {
+                                        Constant.Log("unmatch", "unmatch");
+                                    }
+
+                            }
+
+
+                            Constant.Log("size_additional", "++++" + arraylistModeladditionalcredential.size());
+
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Snackbar.make(binding.btnsubmit, education_list_model.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                });
+
+
+    }
+
 
     public void ShowAdapter() {
         if (arrayLististusertype.size() > 0) {
@@ -1304,8 +1889,11 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtFirstname.requestFocus();
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
+
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+
+            binding.edtPhoneNumber.clearFocus();
+
 
             Snackbar.make(binding.edtFirstname, getResources().getString(R.string.val_firstname), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -1314,20 +1902,47 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtFirstname.clearFocus();
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
+
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
             Snackbar.make(binding.edtLastname, getResources().getString(R.string.val_lastname), Snackbar.LENGTH_SHORT).show();
             return false;
-        } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).isEmpty()) {
-            binding.edtLastname.clearFocus();
-            binding.edtFirstname.clearFocus();
+        } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).length() < 14) {
+
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.requestFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtLastname.clearFocus();
+            binding.edtFirstname.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
+            Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_phone_validate), Snackbar.LENGTH_SHORT).show();
 
 
-            Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_mobile_number), Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else if (Constant.Trim(binding.edtPhoneNumber.getText().toString()).isEmpty()) {
+
+            binding.edtFirstname.clearFocus();
+            binding.edtLastname.clearFocus();
+            binding.edtMobileNumber.clearFocus();
+            binding.edtPhoneNumber.requestFocus();
+            binding.edtZipcode.clearFocus();
+            binding.edtFirmname.clearFocus();
+
+
+            Snackbar.make(binding.edtPhoneNumber, getResources().getString(R.string.val_phone_number), Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else if (Constant.Trim(binding.edtPhoneNumber.getText().toString()).length() < 14) {
+
+            binding.edtFirstname.clearFocus();
+            binding.edtLastname.clearFocus();
+            binding.edtMobileNumber.clearFocus();
+            binding.edtPhoneNumber.requestFocus();
+            binding.edtZipcode.clearFocus();
+            binding.edtFirmname.clearFocus();
+
+            Snackbar.make(binding.edtPhoneNumber, getResources().getString(R.string.val_phone_validate), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (country_id == 0) {
 
@@ -1336,7 +1951,8 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
 
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.str_country), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -1346,7 +1962,8 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (city_id == 0) {
@@ -1355,7 +1972,8 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.str_city), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (Constant.Trim(binding.edtZipcode.getText().toString()).isEmpty()) {
@@ -1364,7 +1982,8 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.requestFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
 
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_zipcode), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -1374,7 +1993,8 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_job_title), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (industry_id == 0) {
@@ -1383,17 +2003,9 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_industry), Snackbar.LENGTH_SHORT).show();
-            return false;
-        } else if (who_you_are_id == 0) {
-            binding.edtLastname.clearFocus();
-            binding.edtFirstname.clearFocus();
-            binding.edtZipcode.clearFocus();
-            binding.edtMobileNumber.clearFocus();
-            binding.edtFirmname.clearFocus();
-            binding.edtPtinNumber.clearFocus();
-            Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_user_type), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (Constant.Trim(binding.edtFirmname.getText().toString()).isEmpty()) {
             binding.edtLastname.clearFocus();
@@ -1401,10 +2013,21 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.requestFocus();
-            binding.edtPtinNumber.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
 
 
             Snackbar.make(binding.edtFirmname, getResources().getString(R.string.val_firm_name_register), Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else if (selected_proffesional_credential.equalsIgnoreCase("")) {
+
+            binding.edtLastname.clearFocus();
+            binding.edtFirstname.clearFocus();
+            binding.edtZipcode.clearFocus();
+            binding.edtMobileNumber.clearFocus();
+            binding.edtFirmname.clearFocus();
+            binding.edtPhoneNumber.clearFocus();
+
+            Snackbar.make(binding.professionalCredential, getResources().getString(R.string.validation_professional_credential), Snackbar.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

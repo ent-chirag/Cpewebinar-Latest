@@ -18,6 +18,7 @@ import com.entigrity.R;
 import com.entigrity.activity.TestimonialActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.databinding.FragmentTestimonialBinding;
+import com.entigrity.utility.Constant;
 
 import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
@@ -43,10 +44,12 @@ public class TestimonialFragment extends Fragment {
             }
         });
 
+        Constant.Log("size", "testimonial_size" + WebinarDetailsActivity.getInstance().webinartestimonial.size());
+
 
         if (WebinarDetailsActivity.getInstance().webinartestimonial.size() > 0) {
 
-            if (WebinarDetailsActivity.getInstance().webinartestimonial.size() > 2) {
+            if (WebinarDetailsActivity.getInstance().webinartestimonial.size() >= 2) {
                 binding.tvViewMoreTestimonial.setVisibility(View.VISIBLE);
             } else {
                 binding.tvViewMoreTestimonial.setVisibility(View.GONE);
@@ -66,6 +69,7 @@ public class TestimonialFragment extends Fragment {
                 final TextView tv_username_name = (TextView) _itemRow.findViewById(R.id.tv_username_name);
                 final ImageView iv_testimonial_star = (ImageView) _itemRow.findViewById(R.id.iv_testimonial_star);
                 final TextView tv_review_decription = (TextView) _itemRow.findViewById(R.id.tv_review_decription);
+                final TextView tv_date = (TextView) _itemRow.findViewById(R.id.tv_date);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     tv_username_name.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
@@ -79,9 +83,16 @@ public class TestimonialFragment extends Fragment {
                 if (!WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getFirstName().equalsIgnoreCase("")) {
 
                     tv_username_name.setText(WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getFirstName()
-                            + " " + WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getLastName());
+                            + " " + WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getLastName()
+                            + " " + WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getDesignation());
 
                 }
+
+
+                if (!WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getDate().equalsIgnoreCase("")) {
+                    tv_date.setText(WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getDate());
+                }
+
 
                 if (!WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getReview().equalsIgnoreCase("")) {
                     tv_review_decription.setText(WebinarDetailsActivity.getInstance().webinartestimonial.get(i).getReview());

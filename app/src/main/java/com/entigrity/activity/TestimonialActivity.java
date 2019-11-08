@@ -46,7 +46,6 @@ public class TestimonialActivity extends AppCompatActivity {
     private List<WebinarTestimonialItem> mListtestimonial = new ArrayList<WebinarTestimonialItem>();
     private boolean loading = true;
     public boolean islast = false;
-    public int start = 0, limit = 10;
     public int webinarid = 0;
 
 
@@ -78,7 +77,7 @@ public class TestimonialActivity extends AppCompatActivity {
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            GetTestimonialList(start, limit);
+            GetTestimonialList();
         } else {
             Snackbar.make(binding.rvTestimonialList, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -92,15 +91,13 @@ public class TestimonialActivity extends AppCompatActivity {
         });
 
 
-        binding.rvTestimonialList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+       /* binding.rvTestimonialList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (loading) {
                     if (!islast) {
                         if (isLastVisible()) {
                             loading = false;
-                            start = start + 10;
-                            limit = 10;
                             loadNextPage();
                         }
                     }
@@ -108,7 +105,7 @@ public class TestimonialActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
     }
@@ -121,31 +118,22 @@ public class TestimonialActivity extends AppCompatActivity {
 
     private void onItemsLoadComplete() {
 
-        start = 0;
-        limit = 10;
         loading = true;
 
         if (Constant.isNetworkAvailable(context)) {
-            GetTestimonialList(start, limit);
+            GetTestimonialList();
         } else {
             Snackbar.make(binding.rvTestimonialList, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
     }
 
 
-    private void loadNextPage() {
-        if (Constant.isNetworkAvailable(context)) {
-            binding.progressBar.setVisibility(View.VISIBLE);
-            GetTestimonialList(start, limit);
-        } else {
-            Snackbar.make(binding.rvTestimonialList, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-        }
-    }
 
-    private void GetTestimonialList(final int start, final int limit) {
+
+    private void GetTestimonialList() {
 
         mAPIService.GetTestimonial(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
-                webinarid, start, limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                webinarid).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Model_Testimonial>() {
                     @Override
                     public void onCompleted() {
@@ -157,13 +145,9 @@ public class TestimonialActivity extends AppCompatActivity {
 
 
                         loading = true;
-                        if (start == 0 && limit == 10) {
-                            if (mListtestimonial.size() > 0) {
-                                adapter = new TestimonialAdapter(context, mListtestimonial);
-                                binding.rvTestimonialList.setAdapter(adapter);
-                            }
-                        } else {
-                            adapter.addLoadingFooter();
+                        if (mListtestimonial.size() > 0) {
+                            adapter = new TestimonialAdapter(context, mListtestimonial);
+                            binding.rvTestimonialList.setAdapter(adapter);
                         }
 
 
@@ -172,14 +156,8 @@ public class TestimonialActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
 
-                        if (start == 0 && limit == 10) {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-                        } else {
-                            if (binding.progressBar.getVisibility() == View.VISIBLE) {
-                                binding.progressBar.setVisibility(View.GONE);
-                            }
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
                         }
 
                         String message = Constant.GetReturnResponse(context, e);
@@ -206,17 +184,14 @@ public class TestimonialActivity extends AppCompatActivity {
                             }
 
 
-                            if (start == 0 && limit == 10) {
-                                if (mListtestimonial.size() > 0) {
-                                    mListtestimonial.clear();
-                                }
-                            }
 
                             islast = model_testimonial.getPayload().isIsLast();
 
+                            mListtestimonial = model_testimonial.getPayload().getWebinarTestimonial();
 
-                            if (start == 0 && limit == 10) {
-                                mListtestimonial = model_testimonial.getPayload().getWebinarTestimonial();
+
+                           /* if (start == 0 && limit == 10) {
+
 
                             } else {
                                 if (mListtestimonial.size() > 20) {
@@ -227,7 +202,7 @@ public class TestimonialActivity extends AppCompatActivity {
                                 List<WebinarTestimonialItem> webinaritems = model_testimonial.getPayload().getWebinarTestimonial();
                                 adapter.addAll(webinaritems);
                             }
-
+*/
 
                             if (mListtestimonial.size() > 0) {
                                 binding.swipeRefreshLayout.setVisibility(View.VISIBLE);

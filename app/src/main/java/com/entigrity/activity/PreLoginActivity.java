@@ -3,26 +3,58 @@ package com.entigrity.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.databinding.ActivityPreloginBinding;
 
-public class PreLoginActivity extends AppCompatActivity /*implements GoogleApiClient.OnConnectionFailedListener*/{
+public class PreLoginActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     ActivityPreloginBinding binding;
-   /* SignInButton signInButton;
-    private GoogleApiClient googleApiClient;
-    private static final int RC_SIGN_IN = 1;*/
+    /* SignInButton signInButton;
+     private GoogleApiClient googleApiClient;
+     private static final int RC_SIGN_IN = 1;*/
+    // Animation
+    Animation animMoveToTop;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prelogin);
+
+        // load the animation
+        animMoveToTop = AnimationUtils.loadAnimation(PreLoginActivity.this, R.anim.move);
+
+        // set animation listener
+        animMoveToTop.setAnimationListener(this);
+
+        binding.ivMycpe.setVisibility(View.VISIBLE);
+        binding.ivMycpe.startAnimation(animMoveToTop);
+
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                binding.strsignup.setVisibility(View.VISIBLE);
+                binding.strlogin.setVisibility(View.VISIBLE);
+
+
+                binding.strsignup.startAnimation(animMoveToTop);
+                binding.strlogin.startAnimation(animMoveToTop);
+            }
+        }, 3000);
+
+
 
        /* GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -110,4 +142,21 @@ public class PreLoginActivity extends AppCompatActivity /*implements GoogleApiCl
     }
 
 
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+        /*if (animation == animMoveToTop) {
+            Toast.makeText(getApplicationContext(), "Animation Stopped", Toast.LENGTH_SHORT).show();
+        }*/
+        binding.ivMycpe.clearAnimation();
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
 }

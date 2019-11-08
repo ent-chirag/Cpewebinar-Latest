@@ -102,6 +102,9 @@ public class HomeAllFragment extends Fragment {
     public String SubjectAreaFilter = "";
 
     public String actionsearch = "";
+
+    public String status = "";
+
     Bundle bundle;
 
     View view;
@@ -120,12 +123,27 @@ public class HomeAllFragment extends Fragment {
 
         if (bundle != null) {
             actionsearch = getArguments().getString("actionsearch");
+            status = getArguments().getString(context.getResources().getString(R.string.str_premium_lable));
             Constant.Log("actionserach", "+++" + actionsearch);
             if (!actionsearch.equalsIgnoreCase("")) {
                 binding.edtSearch.setText(actionsearch);
             }
-        }
+            Constant.Log("status", "+++" + status);
 
+            if (status.equalsIgnoreCase("premium")) {
+
+                binding.btnPremium.setVisibility(View.GONE);
+                binding.btnFree.setVisibility(View.GONE);
+                price_filter = "1";
+
+            } else {
+
+                binding.btnPremium.setVisibility(View.VISIBLE);
+                binding.btnFree.setVisibility(View.VISIBLE);
+                price_filter = "";
+            }
+
+        }
 
 
         //for animation

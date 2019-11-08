@@ -98,6 +98,17 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 certificate_link = mList.get(position).getCertificatelink();
             }
 
+
+            if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_live))) {
+                ((MyWebinarHolder) viewHolder).rel_date_and_time.setVisibility(View.VISIBLE);
+            } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_self_study))) {
+                //rel_date_and_time
+                ((MyWebinarHolder) viewHolder).rel_date_and_time.setVisibility(View.GONE);
+            }
+
+
             if (!mList.get(position).getStatus().equalsIgnoreCase("")) {
 
                 if (mList.get(position).getStatus().equalsIgnoreCase(mContext
@@ -225,11 +236,11 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
                 Picasso.with(mContext).load(mList.get(position).getWebinarThumbnailImage())
                         .placeholder(R.mipmap.webinar_placeholder)
                         .into(((MyWebinarHolder) viewHolder).ivwebinar_thumbhel);
-            }
+            }*/
 
 
             if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
@@ -534,6 +545,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 tv_favorite_count, tv_attend_views, tv_favorite_speaker_name, tv_company_name, tv_timezone, tv_lable, tv_enrolled,
                 tv_rating_number, tv_rating_count;
         ImageView ivwebinar_thumbhel, ivshare, iv_rating;
+        RelativeLayout rel_date_and_time;
         Button credit_status, webinar_status, tv_webinar_type, tv_webinar_price_status;
         ImageView ivfavorite;
         View dv_divider;
@@ -545,6 +557,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
             iv_rating = (ImageView) itemView.findViewById(R.id.iv_rating);
 
+            rel_date_and_time = (RelativeLayout) itemView.findViewById(R.id.rel_date_and_time);
             tv_lable = (TextView) itemView.findViewById(R.id.tv_lable);
             tv_enrolled = (TextView) itemView.findViewById(R.id.tv_enrolled);
             tv_rating_number = (TextView) itemView.findViewById(R.id.tv_rating_number);

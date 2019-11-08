@@ -16,6 +16,18 @@
         android:textSize="@dimen/_12sdp"
         app:font_text="Montserrat-Bold.ttf" />
 
+
+    <com.entigrity.view.CustomTextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:textColor="@color/webinar_detail_form_details"
+        android:textSize="@dimen/_10sdp"
+        app:font_text="Montserrat-SemiBold.ttf" />
+
+
     <ImageView
         android:id="@+id/iv_testimonial_star"
         android:layout_width="wrap_content"

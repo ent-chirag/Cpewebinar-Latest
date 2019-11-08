@@ -242,8 +242,10 @@ public interface APIService {
             @Field("city_id") int city_id,
             @Field("zipcode") int zipcode,
             @Field("contact_no") String contact_no,
-            @Field("ptin_number") String ptin_number,
-            @Field("user_type_id") int user_type,
+            @Field("phone") String phone_no,
+            @Field("ptin") String ptin_number,
+            @Field("user_type_id") String user_type_id,
+            @Field("education_ids") String education_ids,
             @Field("jobtitle_id") int jobtitle_id,
             @Field("industry_id") int industry_id
 
@@ -663,9 +665,7 @@ public interface APIService {
     Observable<Model_Testimonial> GetTestimonial(
             @Header("Accept") String accept,
             @Header("Authorization") String authorization,
-            @Field("webinar_id") int webinar_id,
-            @Field("start") int start,
-            @Field("limit") int limit);
+            @Field("webinar_id") int webinar_id);
 
 
     //my transcation

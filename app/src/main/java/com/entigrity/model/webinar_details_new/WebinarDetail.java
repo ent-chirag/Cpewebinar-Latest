@@ -22,6 +22,40 @@ public class WebinarDetail {
     private String paymentlink;
 
 
+    public String getKeyterms() {
+        return keyterms;
+    }
+
+    public void setKeyterms(String keyterms) {
+        this.keyterms = keyterms;
+    }
+
+    @SerializedName("key_terms")
+    private String keyterms;
+
+
+    @SerializedName("overview_of_topic")
+    private String overviewoftopic;
+
+    public String getWhyshouldattend() {
+        return whyshouldattend;
+    }
+
+    public void setWhyshouldattend(String whyshouldattend) {
+        this.whyshouldattend = whyshouldattend;
+    }
+
+    @SerializedName("why_should_attend")
+    private String whyshouldattend;
+
+    public String getOverviewoftopic() {
+        return overviewoftopic;
+    }
+
+    public void setOverviewoftopic(String overviewoftopic) {
+        this.overviewoftopic = overviewoftopic;
+    }
+
     @SerializedName("course_level")
     private String courseLevel;
 
@@ -553,6 +587,9 @@ public class WebinarDetail {
                         ",nasba_approved = '" + nasbaApproved + '\'' +
                         ",webinar_status = '" + webinarStatus + '\'' +
                         ",status = '" + status + '\'' +
+                        ",key_terms = '" + keyterms + '\'' +
+                        ",overview_of_topic = '" + overviewoftopic + '\'' +
+                        ",why_should_attend = '" + whyshouldattend + '\'' +
                         "}";
     }
 }

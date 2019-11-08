@@ -78,6 +78,8 @@
     <string name="check_validation_popup_topics">Do you want to add your topic of interests?</string>
     <string name="str_skip">SKIP</string>
     <string name="str_download_link_not_found">Download link not found</string>
+    <string name="str_key_terms_link_not_found">key Terms link not found</string>
+
     <string name="str_certificate_link_not_found">Certificate not found</string>
     <string name="str_who_should_attend_lable">Who Should Attend</string>
     <string name="str_next">Next</string>
@@ -163,6 +165,7 @@
     <string name="view_profile_email">Email</string>
     <string name="view_profile_firm_name">Firm Name</string>
     <string name="view_profile_mobile_number">Mobile Number</string>
+    <string name="view_profile_phone_number">Phone Number</string>
     <string name="view_profile_ptin_number">PTIN Number</string>
     <string name="view_profile_country">Country</string>
     <string name="view_profile_state">State</string>
@@ -255,6 +258,10 @@
     <string name="str_lable_cancel">CANCEL</string>
     <string name="str_search">Search</string>
 
+    //premium
+
+    <string name="str_premium_lable">premium</string>
+
 
     //validate
     <string name="val_firstname">Please Enter First Name</string>
@@ -314,6 +321,7 @@
     <string name="pass_email">email</string>
     <string name="pass_firm_name">firmname</string>
     <string name="pass_mobile_number">mobilenumber</string>
+    <string name="pass_phone_number">phonenumber</string>
     <string name="pass_ptin_number">ptin number</string>
     <string name="pass_country">country</string>
     <string name="pass_state">state</string>
@@ -532,6 +540,7 @@
     <string name="str_instructionalmethod">Instructional Method</string>
     <string name="str_prerequisite">PREREQUISITES</string>
     <string name="str_handout">Presentation Handouts</string>
+    <string name="str_key_terms">Key Terms</string>
     <string name="str_adavance_preparation">Advance Preparation</string>
     <string name="str_who_should_attend">Who should attend?</string>
     <string name="str_series">Series</string>
@@ -734,6 +743,8 @@
 
     //details tab
     <string name="str_details">DETAILS</string>
+    <string name="str_why_you_should_attend">WHY YOU SHOULD ATTEND</string>
+    <string name="str_overview_of_topics">OVERVIEW OF TOPICS</string>
     <string name="str_description">DESCRIPTION</string>
     <string name="str_presenter">PRESENTER</string>
     <string name="str_detail_company">COMPANY</string>
