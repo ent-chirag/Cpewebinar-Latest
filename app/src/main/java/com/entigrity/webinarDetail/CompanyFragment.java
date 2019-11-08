@@ -62,6 +62,8 @@ public class CompanyFragment extends Fragment {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.tvCompanyDescription.setText(Html.fromHtml(WebinarDetailsActivity.getInstance().aboutpresenterCompanyDesc, Html.FROM_HTML_MODE_COMPACT));
+//                binding.tvCompanyDescription.setText(Html.fromHtml(WebinarDetailsActivity.getInstance().aboutpresenterCompanyDesc, Html.FROM_HTML_MODE_LEGACY));
+//                binding.tvCompanyDescription.setText(Html.fromHtml(WebinarDetailsActivity.getInstance().aboutpresenterCompanyDesc.toString()));
             } else {
                 binding.tvCompanyDescription.setText(Html.fromHtml(WebinarDetailsActivity.getInstance().aboutpresenterCompanyDesc));
             }

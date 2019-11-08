@@ -1254,19 +1254,55 @@
 
             </LinearLayout>
 
-            <com.entigrity.view.CustomButtonView
-                android:id="@+id/tv_webinar_status"
+            <!--<RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_toLeftOf="@+id/ivshare"
+                android:background="@drawable/squrebutton_webinar_status">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="@android:color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:text="@string/play_ttf"/>
+
+                <com.entigrity.view.CustomButtonView
+                    android:id="@+id/tv_webinar_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:text="PlayView"
+                    android:background="@drawable/squrebutton_webinar_status"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_12sdp"
+                    android:letterSpacing="0.08"
+                    app:font_button="Montserrat-Bold.ttf" />
+
+            </RelativeLayout>-->
+
+            <com.entigrity.view.CustomButtonView
+                android:id="@+id/tv_webinar_status"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:background="@drawable/squrebutton_webinar_status"
+                android:layout_centerInParent="true"
                 android:textColor="@color/White"
+                android:layout_toLeftOf="@+id/ivshare"
                 android:textSize="@dimen/_12sdp"
                 android:letterSpacing="0.08"
-                app:font_button="Montserrat-Bold.ttf" />
+                app:font_button="Montserrat-Bold.ttf"/>
 
             <!--<com.entigrity.view.CustomButtonView
                 android:id="@+id/tv_rv_questions"

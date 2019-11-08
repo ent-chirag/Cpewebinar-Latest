@@ -42,10 +42,19 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_2sdp"
         android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:inputType="textMultiLine"
         android:textColor="@color/edit_profile_lable_colcr"
         android:textSize="@dimen/_10sdp"
-        app:font_text="Montserrat-SemiBold.ttf" />
+        android:letterSpacing="0.08"
+        app:font_text="OpenSans-Light.ttf" />
+
+    <View
+        android:id="@+id/viewBlack"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

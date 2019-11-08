@@ -163,6 +163,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         myDialog.setContentView(R.layout.final_quiz_popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
+        myDialog.setCancelable(false);
 
         TextView popup_description, tv_ok;
 

@@ -572,7 +572,8 @@ public class EditProfileActivity extends AppCompatActivity {
             Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
-        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+//        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
+        binding.relbottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Validation()) {

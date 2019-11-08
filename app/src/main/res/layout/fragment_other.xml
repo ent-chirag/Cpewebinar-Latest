@@ -227,7 +227,8 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="@color/edit_profile_lable_colcr"
                     android:textSize="@dimen/_10sdp"
-                    app:font_text="Montserrat-SemiBold.ttf" />
+                    android:letterSpacing="0.08"
+                    app:font_text="OpenSans-Light.ttf" />
 
 
             </RelativeLayout>

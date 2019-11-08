@@ -460,13 +460,14 @@
 
                 <com.entigrity.view.CustomButtonView
                     android:id="@+id/tv_download_key_terms"
-                    android:layout_width="@dimen/_60sdp"
+                    android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/download_button_webinar_detail"
                     android:textColor="@color/White"
                     android:textAllCaps="true"
+                    android:text="@string/str_handout_value"
                     android:textSize="@dimen/_10sdp"
                     android:letterSpacing="0.08"
                     app:font_text="OpenSans-SemiBold.ttf" />

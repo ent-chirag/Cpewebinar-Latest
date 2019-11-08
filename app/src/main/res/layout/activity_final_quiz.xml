@@ -86,6 +86,7 @@
                 android:text="@string/str_submit"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_18sdp"
+                android:letterSpacing="0.08"
                 app:font_text="Montserrat-Bold.ttf" />
 
 

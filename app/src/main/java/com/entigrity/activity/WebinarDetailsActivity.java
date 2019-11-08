@@ -1339,6 +1339,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
                                 Constant.Log("joinurl", "joinurl" + join_url);
+                            }else
+                            {
+                                binding.tvWebinarStatus.setVisibility(View.GONE);
+                                binding.linTags.setVisibility(View.VISIBLE);
+                                binding.tvWebinarStatusNew.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
                             }
 
 

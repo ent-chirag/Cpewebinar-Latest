@@ -31,7 +31,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prelogin);
 
         // load the animation
-        animMoveToTop = AnimationUtils.loadAnimation(PreLoginActivity.this, R.anim.move);
+        /*animMoveToTop = AnimationUtils.loadAnimation(PreLoginActivity.this, R.anim.move);
 
         // set animation listener
         animMoveToTop.setAnimationListener(this);
@@ -52,7 +52,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
                 binding.strsignup.startAnimation(animMoveToTop);
                 binding.strlogin.startAnimation(animMoveToTop);
             }
-        }, 3000);
+        }, 3000);*/
 
 
 
@@ -152,7 +152,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
         /*if (animation == animMoveToTop) {
             Toast.makeText(getApplicationContext(), "Animation Stopped", Toast.LENGTH_SHORT).show();
         }*/
-        binding.ivMycpe.clearAnimation();
+     //   binding.ivMycpe.clearAnimation();
     }
 
     @Override

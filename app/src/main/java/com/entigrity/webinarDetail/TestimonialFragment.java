@@ -70,6 +70,17 @@ public class TestimonialFragment extends Fragment {
                 final ImageView iv_testimonial_star = (ImageView) _itemRow.findViewById(R.id.iv_testimonial_star);
                 final TextView tv_review_decription = (TextView) _itemRow.findViewById(R.id.tv_review_decription);
                 final TextView tv_date = (TextView) _itemRow.findViewById(R.id.tv_date);
+                final View viewBlack = (View) _itemRow.findViewById(R.id.viewBlack);
+
+                if(i == 0){
+                    if(WebinarDetailsActivity.getInstance().webinartestimonial.size()>1){
+                        viewBlack.setVisibility(View.VISIBLE);
+                    } else {
+                        viewBlack.setVisibility(View.GONE);
+                    }
+                } else {
+                    viewBlack.setVisibility(View.GONE);
+                }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     tv_username_name.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
