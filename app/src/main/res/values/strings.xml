@@ -81,6 +81,7 @@
     <string name="str_key_terms_link_not_found">key Terms link not found</string>
 
     <string name="str_certificate_link_not_found">Certificate not found</string>
+    <string name="str_payment_link_not_found">Paymetn receipt not found</string>
     <string name="str_who_should_attend_lable">Who Should Attend</string>
     <string name="str_next">Next</string>
     <string name="str_done">Done</string>
@@ -790,7 +791,9 @@
     <string name="str_final_ok">ok</string>
 
     // TTF icons
-    <string name="play_ttf">&#xea15;</string>
+<!--    <string name="play_ttf">&#xea15;</string>-->
+<!--    <string name="play_ttf">&#xe900;</string>-->
+    <string name="play_ttf">&#xe908;</string>
 
 
 </resources>

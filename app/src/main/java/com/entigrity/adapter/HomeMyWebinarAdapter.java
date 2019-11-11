@@ -417,7 +417,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                         if (!mList.get(position).getFee().equalsIgnoreCase("")) {
                             //  Constant.ShowPopUp(mContext.getResources().getString(R.string.payment_validate_msg), mContext);
 
-                            Intent i = new Intent(mContext, PaymentActivity.class);
+                          /*  Intent i = new Intent(mContext, PaymentActivity.class);
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                     .get(position).getId());
                             i.putExtra(mContext.getResources().getString(R.string.str_payment_link), mList
@@ -426,7 +426,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                     .get(position).getWebinarType());
 
                             mContext.startActivity(i);
-                            ((Activity) mContext).finish();
+                            ((Activity) mContext).finish();*/
 
 
                         } else {

@@ -205,6 +205,28 @@ public class WebinarDetail {
     @SerializedName("status")
     private String status;
 
+    @SerializedName("is_card_save")
+    private boolean isCardSave;
+
+    @SerializedName("redirection_url")
+    private String redirectionUrl;
+
+    public boolean isCardSave() {
+        return isCardSave;
+    }
+
+    public void setCardSave(boolean cardSave) {
+        isCardSave = cardSave;
+    }
+
+    public String getRedirectionUrl() {
+        return redirectionUrl;
+    }
+
+    public void setRedirectionUrl(String redirectionUrl) {
+        this.redirectionUrl = redirectionUrl;
+    }
+
     public boolean isReviewAnswered() {
         return reviewAnswered;
     }

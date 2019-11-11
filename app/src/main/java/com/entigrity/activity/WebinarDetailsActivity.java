@@ -7,7 +7,9 @@ import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -198,6 +200,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String watched_duration = "0.00";
     private boolean isNotification = false;
     public String Cost = "";
+    private boolean isCardSaved = false;
+    private String strPaymentRedirectionURL = "";
+
 
     private DownloadManager downloadManager;
     public long refid;
@@ -300,207 +305,50 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             }
         }
 
+        binding.relWebinarStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webinarStatusClickEvent();
+            }
+        });
 
         binding.tvWebinarStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
-                    if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
-                            .getString(R.string.str_webinar_status_register))) {
-
-                        if (!Cost.equalsIgnoreCase("")) {
-                            // Constant.ShowPopUp(getResources().getString(R.string.payment_validate_msg), context);
-
-                            Intent i = new Intent(WebinarDetailsActivity.this, PaymentActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
-                            i.putExtra(getResources().getString(R.string.str_payment_link), payment_link);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                            finish();
-
-
-                        } else {
-                            if (Constant.isNetworkAvailable(context)) {
-                                progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
-                                RegisterWebinar(webinarid, binding.tvWebinarStatus);
-                            } else {
-                                Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_certificate))) {
-                        checkAndroidVersionCertificate();
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_pending_evoluation))) {
-                        Intent i = new Intent(context, ActivityEvolutionForm.class);
-                        i.putExtra(getResources().getString(R.string.screen), getResources().getString(R.string.webinardetail));
-                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
-                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                        startActivity(i);
-                        finish();
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_enroll))) {
-                        String url = join_url;
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        startActivity(i);
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_in_progress))) {
-                        if (!join_url.equalsIgnoreCase("")) {
-                            String url = join_url;
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                        }
-                    }
-                } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
-
-                    if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_watchnow))) {
-                        if (!VIDEO_URL.equalsIgnoreCase("")) {
-                            PlayVideo();
-                        } else {
-                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
-                        }
-
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_resume_watching))) {
-                        if (!VIDEO_URL.equalsIgnoreCase("")) {
-                            PlayVideo();
-                        } else {
-                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
-                        }
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_certificate))) {
-                        checkAndroidVersionCertificate();
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_quiz_pending))) {
-                        Intent i = new Intent(context, ActivityFinalQuiz.class);
-                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
-                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                        startActivity(i);
-                        finish();
-
-                    } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
-                            .getString(R.string.str_webinar_status_register))) {
-
-
-                        if (Constant.isNetworkAvailable(context)) {
-                            progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
-                            RegisterWebinar(webinarid, binding.tvWebinarStatus);
-                        } else {
-                            Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-                }
-
+                webinarStatusClickEvent();
             }
         });
 
         binding.tvWebinarStatusNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
-                    if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(getResources()
-                            .getString(R.string.str_webinar_status_register))) {
+                webinarStatusClickEvent();
+            }
+        });
 
-                        if (!Cost.equalsIgnoreCase("")) {
-                            // Constant.ShowPopUp(getResources().getString(R.string.payment_validate_msg), context);
+        binding.relWebinarStatusNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webinarStatusClickEvent();
+            }
+        });
 
-                            Intent i = new Intent(WebinarDetailsActivity.this, PaymentActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
-                            i.putExtra(getResources().getString(R.string.str_payment_link), payment_link);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(i);
-                            finish();
+        binding.tvPlayIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webinarStatusClickEvent();
+            }
+        });
 
-
-                        } else {
-                            if (Constant.isNetworkAvailable(context)) {
-                                progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
-                                RegisterWebinar(webinarid, binding.tvWebinarStatusNew);
-                            } else {
-                                Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_certificate))) {
-                        checkAndroidVersionCertificate();
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_pending_evoluation))) {
-                        Intent i = new Intent(context, ActivityEvolutionForm.class);
-                        i.putExtra(getResources().getString(R.string.screen), getResources().getString(R.string.webinardetail));
-                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
-                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                        startActivity(i);
-                        finish();
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_enroll))) {
-                        String url = join_url;
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        startActivity(i);
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_in_progress))) {
-                        if (!join_url.equalsIgnoreCase("")) {
-                            String url = join_url;
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                        }
-                    }
-                } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
-
-                    if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_watchnow))) {
-                        if (!VIDEO_URL.equalsIgnoreCase("")) {
-                            PlayVideo();
-                        } else {
-                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
-                        }
-
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_resume_watching))) {
-                        if (!VIDEO_URL.equalsIgnoreCase("")) {
-                            PlayVideo();
-                        } else {
-                            Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
-                        }
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_certificate))) {
-                        checkAndroidVersionCertificate();
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(context
-                            .getResources().getString(R.string.str_webinar_status_quiz_pending))) {
-                        Intent i = new Intent(context, ActivityFinalQuiz.class);
-                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
-                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                        startActivity(i);
-                        finish();
-
-                    } else if (binding.tvWebinarStatusNew.getText().toString().equalsIgnoreCase(getResources()
-                            .getString(R.string.str_webinar_status_register))) {
-//                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-
-                        if (Constant.isNetworkAvailable(context)) {
-                            progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
-                            RegisterWebinar(webinarid, binding.tvWebinarStatusNew);
-                        } else {
-                            Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-                }
+        binding.tvPlayIconNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webinarStatusClickEvent();
             }
         });
 
 
-        binding.tvRevieQuestion.setOnClickListener(new View.OnClickListener() {
+        /*binding.tvRevieQuestion.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -512,7 +360,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
         binding.tvRvQuestions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -798,6 +646,127 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else {
             setupViewPagerWithoutTestimonial(binding.viewpager);
             binding.tabs.setupWithViewPager(binding.viewpager);
+
+        }
+
+    }
+
+    private void webinarStatusClickEvent() {
+
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+            if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
+                    .getString(R.string.str_webinar_status_register))) {
+
+                if (!Cost.equalsIgnoreCase("")) {
+                    // Constant.ShowPopUp(getResources().getString(R.string.payment_validate_msg), context);
+
+                    if(isCardSaved){
+                        if (Constant.isNetworkAvailable(context)) {
+                            progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                            RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                        } else {
+                            Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else {
+
+//                        String url = "https://my-cpe.com/";
+                        String url = ""+strPaymentRedirectionURL;
+                        try {
+                            Intent i = new Intent("android.intent.action.MAIN");
+                            i.setComponent(ComponentName.unflattenFromString(""+strPaymentRedirectionURL));
+                            i.addCategory("android.intent.category.LAUNCHER");
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        }
+                        catch(ActivityNotFoundException e) {
+                            // Chrome is not installed
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            startActivity(i);
+                        }
+                    }
+                  /*  Intent i = new Intent(WebinarDetailsActivity.this, PaymentActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+                    i.putExtra(getResources().getString(R.string.str_payment_link), payment_link);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    finish();*/
+
+
+                } else {
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                        RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                    } else {
+                        Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_certificate))) {
+                checkAndroidVersionCertificate();
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_pending_evoluation))) {
+                Intent i = new Intent(context, ActivityEvolutionForm.class);
+                i.putExtra(getResources().getString(R.string.screen), getResources().getString(R.string.webinardetail));
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_enroll))) {
+                String url = join_url;
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_in_progress))) {
+                if (!join_url.equalsIgnoreCase("")) {
+                    String url = join_url;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+            }
+        } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+
+            if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_watchnow))) {
+                if (!VIDEO_URL.equalsIgnoreCase("")) {
+                    PlayVideo();
+                } else {
+                    Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
+                }
+
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_resume_watching))) {
+                if (!VIDEO_URL.equalsIgnoreCase("")) {
+                    PlayVideo();
+                } else {
+                    Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
+                }
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_certificate))) {
+                checkAndroidVersionCertificate();
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_quiz_pending))) {
+                Intent i = new Intent(context, ActivityFinalQuiz.class);
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();
+
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
+                    .getString(R.string.str_webinar_status_register))) {
+
+
+                if (Constant.isNetworkAvailable(context)) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                    RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                } else {
+                    Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                }
+            }
+
 
         }
 
@@ -1193,10 +1162,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public void PlayVideo() {
         binding.relTimezone.setVisibility(View.GONE);
         binding.relWatchedDuration.setVisibility(View.VISIBLE);
+        binding.tvErrorMsgDrag.setVisibility(View.VISIBLE);
         if (!videostatus) {
             binding.tvWatchedduration.setText("You have completed only " + watched_duration + "% of the video.");
         } else {
-            binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
+//            binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
+            binding.tvWatchedduration.setText("You have completed watching video.");
+            binding.tvErrorMsgDrag.setVisibility(View.GONE);
         }
         binding.ivPlay.setVisibility(View.GONE);
         binding.ivthumbhel.setVisibility(View.GONE);
@@ -1220,7 +1192,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     }
 
 
-    public void SaveDuration(int webinar_id, long play_time_duration, long presentation_length, final Button button) {
+    public void SaveDuration(int webinar_id, long play_time_duration, long presentation_length, final TextView button) {
         mAPIService.SaveVideoDuration(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
                 , play_time_duration, presentation_length).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Video_duration_model>() {
@@ -1262,8 +1234,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                     binding.tvWatchedduration.setText("You have completed only " + watched_duration + "% of the video.");
                                 } else {
                                     binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
-                                    if(isAnswered){
-                                      binding.tvWebinarStatus.setText(getResources().getString(R.string.str_webinar_status_quiz_pending));
+                                    if (isAnswered) {
+                                        binding.tvWebinarStatus.setText(getResources().getString(R.string.str_webinar_status_quiz_pending));
                                     }
                                 }
 
@@ -1283,7 +1255,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     }
 
 
-    public void RegisterWebinar(int webinar_id, final Button button) {
+    public void RegisterWebinar(int webinar_id, final TextView button) {
         mAPIService.RegisterWebinar(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
                 , schedule_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<ModelRegisterWebinar>() {
@@ -1339,11 +1311,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
                                 Constant.Log("joinurl", "joinurl" + join_url);
-                            }else
-                            {
+                            } else {
+                                binding.relWebinarStatus.setVisibility(View.GONE);
                                 binding.tvWebinarStatus.setVisibility(View.GONE);
                                 binding.linTags.setVisibility(View.VISIBLE);
                                 binding.tvWebinarStatusNew.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
+                                showHidePlayButton();
                             }
 
 
@@ -1356,13 +1329,26 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
 
                         }
-
-
                     }
 
                 });
 
     }
+
+    private void showHidePlayButton() {
+
+//        if(webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
+//                webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))){
+        String videoStatus = ""+binding.tvWebinarStatusNew.getText();
+        if(videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
+                videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
+            binding.tvPlayIconNew.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvPlayIconNew.setVisibility(View.GONE);
+        }
+
+
+}
 
     private void WebinarFavoriteLikeDislike(final int webinar_id, final ImageView ImageView) {
 
@@ -1853,6 +1839,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 company_logo = webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getCompanyLogo();
                             }
 
+                            isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
+
+                            if(!webinar_details.getPayload().getWebinarDetail().getRedirectionUrl().equalsIgnoreCase("")){
+                                strPaymentRedirectionURL = webinar_details.getPayload().getWebinarDetail().getRedirectionUrl();
+                            }
+
 
                            /* if (!webinar_details.getPayload().getWebinarDetail().getWebinarTitle().equalsIgnoreCase("")) {
                                 binding.tvWebinartitle.setText("" + webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
@@ -1888,7 +1880,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 Log.e("mResumePosition", "+++" + mResumePosition);
                             }
 
-                            if(webinar_details.getPayload().getWebinarDetail().isReviewAnswered()){
+                            if (webinar_details.getPayload().getWebinarDetail().isReviewAnswered()) {
                                 isAnswered = true;
                             } else {
                                 isAnswered = false;
@@ -2164,6 +2156,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                                 binding.tvWebinarStatus.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
                                 binding.tvWebinarStatusNew.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
+                                showHidePlayButton();
                             }
 
 
@@ -2262,26 +2255,32 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
                                 if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
                                     binding.relTimezone.setVisibility(View.INVISIBLE);
-                                    binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+//                                    binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
                                     binding.linTags.setVisibility(View.GONE);
+                                    binding.relWebinarStatus.setVisibility(View.VISIBLE);
                                     binding.tvWebinarStatus.setVisibility(View.VISIBLE);
                                 } else {
 
                                     if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                                             webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
-                                        if(isAnswered) {
+                                        binding.tvPlayIcon.setVisibility(View.VISIBLE);
+                                        if (isAnswered) {
                                             binding.linTags.setVisibility(View.GONE);
+                                            binding.relWebinarStatus.setVisibility(View.VISIBLE);
                                             binding.tvWebinarStatus.setVisibility(View.VISIBLE);
                                         } else {
                                             binding.linTags.setVisibility(View.VISIBLE);
+                                            binding.relWebinarStatus.setVisibility(View.GONE);
                                             binding.tvWebinarStatus.setVisibility(View.GONE);
                                         }
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
 //                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
                                     } else {
+                                        binding.tvPlayIcon.setVisibility(View.GONE);
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
-                                        binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+//                                        binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
                                         binding.linTags.setVisibility(View.GONE);
+                                        binding.relWebinarStatus.setVisibility(View.VISIBLE);
                                         binding.tvWebinarStatus.setVisibility(View.VISIBLE);
                                     }
 
@@ -2289,8 +2288,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             } else {
                                 binding.relTimezone.setVisibility(View.INVISIBLE);
                                 binding.tvAddtocalendar.setVisibility(View.INVISIBLE);
-                                binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
+//                                binding.tvRevieQuestion.setVisibility(View.INVISIBLE);
                                 binding.linTags.setVisibility(View.GONE);
+                                binding.relWebinarStatus.setVisibility(View.VISIBLE);
                                 binding.tvWebinarStatus.setVisibility(View.VISIBLE);
 
                             }
@@ -2378,205 +2378,205 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
     }
 
-    private class DownloadTask extends AsyncTask<String, Integer, String> {
+private class DownloadTask extends AsyncTask<String, Integer, String> {
 
-        private Context context;
-        //private PowerManager.WakeLock mWakeLock;
+    private Context context;
+    //private PowerManager.WakeLock mWakeLock;
 
-        public DownloadTask(Context context) {
-            this.context = context;
-        }
+    public DownloadTask(Context context) {
+        this.context = context;
+    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // take CPU lock to prevent CPU from going off if the user
-            // presses the power button during download
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // take CPU lock to prevent CPU from going off if the user
+        // presses the power button during download
             /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     getClass().getName());
             mWakeLock.acquire();*/
 
-            mProgressDialog.show();
-            mProgressDialog.setMessage("downloading");
-            mProgressDialog.setMax(100);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mProgressDialog.setCancelable(true);
-        }
-
-
-        @Override
-        protected String doInBackground(String... sUrl) {
-            int count;
-            try {
-
-                for (int i = 0; i < sUrl.length; i++) {
-                    URL url = new URL(sUrl[i]);
-                    URLConnection conection = url.openConnection();
-                    conection.connect();
-                    // getting file length
-                    int lenghtOfFile = conection.getContentLength();
-
-
-                    String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
-
-
-                    // input stream to read file - with 8k buffer
-                    InputStream input = new BufferedInputStream(
-                            url.openStream(), 8192);
-                    // System.out.println("Data::" + sUrl[i]);
-                    // Output stream to write file
-                    OutputStream output = new FileOutputStream(
-                            "/sdcard/handout" + new Date().getTime() + "." + extension);
-
-                    byte data[] = new byte[1024];
-
-                    long total = 0;
-
-                    while ((count = input.read(data)) != -1) {
-                        total += count;
-                        // publishing the progress....
-                        // After this onProgressUpdate will be called
-                        publishProgress((int) ((total * 100) / lenghtOfFile));
-
-                        // writing data to file
-                        output.write(data, 0, count);
-                    }
-
-                    // flushing output
-                    output.flush();
-
-                    // closing streams
-                    output.close();
-                    input.close();
-                }
-            } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... progress) {
-            super.onProgressUpdate(progress);
-            // if we get here, length is known, now set indeterminate to false
-           /* mProgressDialog.setIndeterminate(false);
-            mProgressDialog.setMax(100);*/
-            mProgressDialog.setProgress(progress[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // mWakeLock.release();
-            mProgressDialog.dismiss();
-            if (result != null)
-                Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
-        }
+        mProgressDialog.show();
+        mProgressDialog.setMessage("downloading");
+        mProgressDialog.setMax(100);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setCancelable(true);
     }
 
-    private class DownloadTaskCerificate extends AsyncTask<String, Integer, String> {
 
-        private Context context;
-        //private PowerManager.WakeLock mWakeLock;
+    @Override
+    protected String doInBackground(String... sUrl) {
+        int count;
+        try {
 
-        public DownloadTaskCerificate(Context context) {
-            this.context = context;
+            for (int i = 0; i < sUrl.length; i++) {
+                URL url = new URL(sUrl[i]);
+                URLConnection conection = url.openConnection();
+                conection.connect();
+                // getting file length
+                int lenghtOfFile = conection.getContentLength();
+
+
+                String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
+
+
+                // input stream to read file - with 8k buffer
+                InputStream input = new BufferedInputStream(
+                        url.openStream(), 8192);
+                // System.out.println("Data::" + sUrl[i]);
+                // Output stream to write file
+                OutputStream output = new FileOutputStream(
+                        "/sdcard/handout" + new Date().getTime() + "." + extension);
+
+                byte data[] = new byte[1024];
+
+                long total = 0;
+
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+                    // publishing the progress....
+                    // After this onProgressUpdate will be called
+                    publishProgress((int) ((total * 100) / lenghtOfFile));
+
+                    // writing data to file
+                    output.write(data, 0, count);
+                }
+
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                input.close();
+            }
+        } catch (Exception e) {
+            Log.e("Error: ", e.getMessage());
         }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // take CPU lock to prevent CPU from going off if the user
-            // presses the power button during download
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        super.onProgressUpdate(progress);
+        // if we get here, length is known, now set indeterminate to false
+           /* mProgressDialog.setIndeterminate(false);
+            mProgressDialog.setMax(100);*/
+        mProgressDialog.setProgress(progress[0]);
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        // mWakeLock.release();
+        mProgressDialog.dismiss();
+        if (result != null)
+            Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
+    }
+}
+
+private class DownloadTaskCerificate extends AsyncTask<String, Integer, String> {
+
+    private Context context;
+    //private PowerManager.WakeLock mWakeLock;
+
+    public DownloadTaskCerificate(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // take CPU lock to prevent CPU from going off if the user
+        // presses the power button during download
             /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     getClass().getName());
             mWakeLock.acquire();*/
 
-            mProgressDialog.show();
-            mProgressDialog.setMessage("downloading");
-            mProgressDialog.setMax(100);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mProgressDialog.setCancelable(true);
-        }
+        mProgressDialog.show();
+        mProgressDialog.setMessage("downloading");
+        mProgressDialog.setMax(100);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setCancelable(true);
+    }
 
 
-        @Override
-        protected String doInBackground(String... sUrl) {
-            int count;
-            try {
+    @Override
+    protected String doInBackground(String... sUrl) {
+        int count;
+        try {
 
-                for (int i = 0; i < sUrl.length; i++) {
-                    URL url = new URL(sUrl[i]);
-                    URLConnection conection = url.openConnection();
-                    conection.connect();
-                    // getting file length
-                    int lenghtOfFile = conection.getContentLength();
-
-
-                    String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
+            for (int i = 0; i < sUrl.length; i++) {
+                URL url = new URL(sUrl[i]);
+                URLConnection conection = url.openConnection();
+                conection.connect();
+                // getting file length
+                int lenghtOfFile = conection.getContentLength();
 
 
-                    // input stream to read file - with 8k buffer
-                    InputStream input = new BufferedInputStream(
-                            url.openStream(), 8192);
-                    // System.out.println("Data::" + sUrl[i]);
-                    // Output stream to write file
-                    OutputStream output = new FileOutputStream(
-                            "/sdcard/certificate" + new Date().getTime() + "." + extension);
+                String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
 
-                    byte data[] = new byte[1024];
 
-                    long total = 0;
+                // input stream to read file - with 8k buffer
+                InputStream input = new BufferedInputStream(
+                        url.openStream(), 8192);
+                // System.out.println("Data::" + sUrl[i]);
+                // Output stream to write file
+                OutputStream output = new FileOutputStream(
+                        "/sdcard/certificate" + new Date().getTime() + "." + extension);
 
-                    while ((count = input.read(data)) != -1) {
-                        total += count;
-                        // publishing the progress....
-                        // After this onProgressUpdate will be called
-                        publishProgress((int) ((total * 100) / lenghtOfFile));
+                byte data[] = new byte[1024];
 
-                        // writing data to file
-                        output.write(data, 0, count);
-                    }
+                long total = 0;
 
-                    // flushing output
-                    output.flush();
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+                    // publishing the progress....
+                    // After this onProgressUpdate will be called
+                    publishProgress((int) ((total * 100) / lenghtOfFile));
 
-                    // closing streams
-                    output.close();
-                    input.close();
+                    // writing data to file
+                    output.write(data, 0, count);
                 }
-            } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
-            }
 
-            return null;
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                input.close();
+            }
+        } catch (Exception e) {
+            Log.e("Error: ", e.getMessage());
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... progress) {
-            super.onProgressUpdate(progress);
-            // if we get here, length is known, now set indeterminate to false
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        super.onProgressUpdate(progress);
+        // if we get here, length is known, now set indeterminate to false
            /* mProgressDialog.setIndeterminate(false);
             mProgressDialog.setMax(100);*/
-            mProgressDialog.setProgress(progress[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // mWakeLock.release();
-            mProgressDialog.dismiss();
-            if (result != null)
-                Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
-        }
+        mProgressDialog.setProgress(progress[0]);
     }
+
+    @Override
+    protected void onPostExecute(String result) {
+        // mWakeLock.release();
+        mProgressDialog.dismiss();
+        if (result != null)
+            Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
+    }
+}
 
 
     private void setupViewPager(ViewPager viewPager) {
@@ -2610,34 +2610,34 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+class ViewPagerAdapter extends FragmentPagerAdapter {
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+    public ViewPagerAdapter(FragmentManager manager) {
+        super(manager);
     }
+
+    @Override
+    public Fragment getItem(int position) {
+        return mFragmentList.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return mFragmentList.size();
+    }
+
+    public void addFragment(Fragment fragment, String title) {
+        mFragmentList.add(fragment);
+        mFragmentTitleList.add(title);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentTitleList.get(position);
+    }
+}
 
 
 }

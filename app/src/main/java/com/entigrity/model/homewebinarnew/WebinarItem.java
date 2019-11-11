@@ -143,6 +143,12 @@ public class WebinarItem {
     @SerializedName("webinar_like")
     private String webinarLike;
 
+    @SerializedName("is_card_save")
+    private boolean isCardSave;
+
+    @SerializedName("redirection_url")
+    private String redirectionUrl;
+
     public String getJoinurl() {
         return joinurl;
     }
@@ -156,6 +162,22 @@ public class WebinarItem {
 
     @SerializedName("status")
     private String status;
+
+    public boolean isCardSave() {
+        return isCardSave;
+    }
+
+    public void setCardSave(boolean cardSave) {
+        isCardSave = cardSave;
+    }
+
+    public String getRedirectionUrl() {
+        return redirectionUrl;
+    }
+
+    public void setRedirectionUrl(String redirectionUrl) {
+        this.redirectionUrl = redirectionUrl;
+    }
 
     public void setFavWebinarCount(int favWebinarCount) {
         this.favWebinarCount = favWebinarCount;

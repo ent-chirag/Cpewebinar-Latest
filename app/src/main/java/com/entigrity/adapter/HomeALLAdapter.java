@@ -3,6 +3,8 @@ package com.entigrity.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -439,7 +441,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                 .getResources().getString(R.string.str_webinar_status_register))) {
 
                             if (!mList.get(position).getFee().equalsIgnoreCase("")) {
-                                if (!mList.get(position).getPaymentlink().equalsIgnoreCase("")) {
+                               /* if (!mList.get(position).getPaymentlink().equalsIgnoreCase("")) {
                                     Intent i = new Intent(mContext, PaymentActivity.class);
                                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                             .get(position).getId());
@@ -454,7 +456,35 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                                 } else {
                                     Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.payment_link_not_available), Snackbar.LENGTH_SHORT).show();
-                                }
+                                }*/
+
+                               if(mList.get(position).isCardSave())
+                               {
+                                   if (Constant.isNetworkAvailable(mContext)) {
+                                       progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
+                                       RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                   } else {
+                                       Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                   }
+                               }else
+                               {
+                                   String url = ""+mList.get(position).getRedirectionUrl();
+                                   try {
+                                       Intent i = new Intent("android.intent.action.MAIN");
+                                       i.setComponent(ComponentName.unflattenFromString(""+url));
+                                       i.addCategory("android.intent.category.LAUNCHER");
+                                       i.setData(Uri.parse(url));
+                                       mContext.startActivity(i);
+                                   }
+                                   catch(ActivityNotFoundException e) {
+                                       // Chrome is not installed
+                                       Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                       mContext.startActivity(i);
+                                   }
+                               }
+
+
+
 
 
                             } else {

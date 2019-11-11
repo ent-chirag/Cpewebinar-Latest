@@ -1333,6 +1333,7 @@ public class HomeAllFragment extends Fragment {
                             islast = webinar_home_new.getPayload().isIsLast();
 
 
+
                             if (start == 0 && limit == 10) {
                                 if (arrHomelistnew.size() > 0) {
                                     arrHomelistnew.clear();

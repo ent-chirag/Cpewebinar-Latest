@@ -276,7 +276,7 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
             if (!payment_receipt.equalsIgnoreCase("")) {
                 DownloadCertificate(payment_receipt);
             } else {
-                Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                Constant.toast(mContext, mContext.getResources().getString(R.string.str_payment_link_not_found));
             }
         }
     }
