@@ -140,9 +140,9 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 ((MyWebinarHolder) viewHolder).tv_webinar_title.setText(mList.get(position).getWebinarTitle());
             }*/
 
-            if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
                 certificate_link = mList.get(position).getCertificatelink();
-            }
+            }*/
 
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
@@ -520,10 +520,17 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                             mContext.startActivity(i);
                             ((Activity) mContext).finish();
                         } else if (mList.get(position).getStatus().equalsIgnoreCase(mContext
-                                .getResources().getString(R.string.str_webinar_status_certificate))){
+                                .getResources().getString(R.string.str_webinar_status_certificate))) {
 //                            checkAndroidVersionCertificate();
                             // Left from here..
-//                            checkAndroidVersion(mList.get(position).getCertificatelink());
+                            checkAndroidVersion(mList.get(position).getCertificateLink());
+                        }
+                    } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_self_study_on_demand))) {
+                        if (mList.get(position).getStatus().equalsIgnoreCase(mContext
+                                .getResources().getString(R.string.str_webinar_status_certificate))) {
+//                            checkAndroidVersionCertificate();
+                            // Left from here..
+                            checkAndroidVersion(mList.get(position).getCertificateLink());
                         }
                     }
                 }

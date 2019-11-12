@@ -52,6 +52,7 @@ public class ActivityReviewQuestion extends AppCompatActivity {
     public ReviewQuestionAdapter adapter;
     private static ActivityReviewQuestion instance;
     public String webinar_type = "";
+    private String watchedDuration = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class ActivityReviewQuestion extends AppCompatActivity {
         binding.recyclerviewReviewQuestion.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.recyclerviewReviewQuestion.setItemAnimator(new DefaultItemAnimator());
         Constant.hashmap_asnwer_string_review_question.clear();
+
+        watchedDuration = Constant.watchedDuration;
 
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +165,7 @@ public class ActivityReviewQuestion extends AppCompatActivity {
     private void GetSubmitAnswer(String reviewquestion, String reviewanswer) {
 
         mAPIService.SubmitReviewAnswer(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
-                , reviewquestion, reviewanswer).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                , reviewquestion, reviewanswer, watchedDuration).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<SubmitAnswerModel>() {
                     @Override
                     public void onCompleted() {

@@ -59,7 +59,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     ProgressDialog progressDialog;
     public Dialog myDialog;
     private TextView tv_cancel, tv_login, tv_create_account;
-    public String certificate_link = "";
+//    public String certificate_link = "";
     String join_url = "";
 
 
@@ -105,9 +105,9 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).tv_webinar_title.setText(mList.get(position).getWebinarTitle());
             }*/
 
-            if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
                 certificate_link = mList.get(position).getCertificatelink();
-            }
+            }*/
 
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()

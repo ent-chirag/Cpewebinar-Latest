@@ -33,6 +33,8 @@ public class Constant {
     public static int status_code = 0;
     public static ArrayList<Integer> arraylistselectedvalue = new ArrayList<Integer>();
 
+    public static String watchedDuration = "";
+
 
     //for sign up proffesional credential
     public static ArrayList<Integer> arraylistselectedproffesionalcredentialID = new ArrayList<>();

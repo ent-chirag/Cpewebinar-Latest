@@ -54,6 +54,7 @@ public class MyTransactionActivity extends AppCompatActivity {
         context = MyTransactionActivity.this;
         mAPIService = ApiUtilsNew.getAPIService();
 
+        Constant.setLightStatusBar(MyTransactionActivity.this);
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.myTranscationlist.setLayoutManager(linearLayoutManager);

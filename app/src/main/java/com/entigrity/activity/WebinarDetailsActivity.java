@@ -273,6 +273,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
 
+        Log.e("*+*+*","CallBack ON CREATE");
 
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -994,7 +995,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = false;
-                    exoPlayer.setPlayWhenReady(true);
+//                    exoPlayer.setPlayWhenReady(true);
 
 
                     Log.e("exo_play", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1065,6 +1066,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         break;
                     case Player.STATE_IDLE:
                         Log.e("STATE_IDLE", "STATE_IDLE");
+                        handler.removeCallbacks(runnable);
                         /*handler.removeCallbacks(runnable);
                         checkpause = true;*/
 
@@ -1095,7 +1097,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         }*/
 
 
-                        Log.e("STATE_READY", "STATE_READY");
+                       // Log.e("STATE_READY", "STATE_READY");
                         break;
                     default:
                         break;
@@ -1143,6 +1145,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         presentation_length = TimeUnit.MILLISECONDS.toMinutes(presentation_length);
 
                         Log.e("exo_save", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
+                        Log.e("*+*+*","CallBack API");
                         SaveDuration(webinarid, mResumePosition, presentation_length, binding.tvWebinarStatus);
                     } else {
                         Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -1232,10 +1235,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 watched_duration = video_duration_model.getPayload().getWatched();
                                 videostatus = video_duration_model.getPayload().getVideostatus();
 
+                                Constant.watchedDuration = watched_duration;
+
                                 if (!videostatus) {
                                     binding.tvWatchedduration.setText("You have completed only " + watched_duration + "% of the video.");
                                 } else {
-                                    binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
+//                                    binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
+                                    binding.tvWatchedduration.setText("You have completed watching video.");
                                     if (isAnswered) {
                                         binding.tvWebinarStatus.setText(getResources().getString(R.string.str_webinar_status_quiz_pending));
                                     }
@@ -1317,6 +1323,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 binding.relWebinarStatus.setVisibility(View.GONE);
                                 binding.tvWebinarStatus.setVisibility(View.GONE);
                                 binding.linTags.setVisibility(View.VISIBLE);
+                                webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
                                 binding.tvWebinarStatusNew.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
                                 showHidePlayButton();
                             }
@@ -1652,6 +1659,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         super.onPause();
         checkpause = true;
         handler.removeCallbacks(runnable);
+        Log.e("*+*+*","CallBack PAUSE");
 
         if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
             exoPlayer.setPlayWhenReady(false);
@@ -1672,8 +1680,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (ispause) {
+
             checkpause = false;
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
+            Log.e("*+*+*","CallBack RESUME");
 
             if (mExoPlayerView != null) {
 
@@ -1700,8 +1710,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-
-        if (ispause) {
+        Log.e("*+*+*","CallBack RESTART");
+        /*if (ispause) {
 
             checkpause = false;
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
@@ -1724,7 +1734,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             }
 
 
-        }
+        }*/
     }
 
 
@@ -1874,6 +1884,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (!webinar_details.getPayload().getWebinarDetail().getWatched().equalsIgnoreCase("")) {
                                 watched_duration = webinar_details.getPayload().getWebinarDetail().getWatched();
+                                Constant.watchedDuration = watched_duration;
                             }
 
 
@@ -1901,7 +1912,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
-                                // VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
+                                 VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
                             }
 
 

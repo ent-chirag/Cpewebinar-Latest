@@ -2,6 +2,8 @@ package com.entigrity.model.homewebinarnew;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class WebinarItem {
 
@@ -64,8 +66,11 @@ public class WebinarItem {
         this.paymentlink = paymentlink;
     }
 
+    /*@SerializedName("certificate_link")
+    private String certificatelink;*/
+
     @SerializedName("certificate_link")
-    private String certificatelink;
+    private List<String> certificateLink;
 
 
     @SerializedName("payment_link")
@@ -75,12 +80,20 @@ public class WebinarItem {
     @SerializedName("join_url")
     private String joinurl;
 
-    public String getCertificatelink() {
+   /* public String getCertificatelink() {
         return certificatelink;
+    }*//*
+
+    public void setCertificaetlink(String certificatelink) {
+        this.certificatelink = certificatelink;
+    }*/
+
+    public List<String> getCertificateLink() {
+        return certificateLink;
     }
 
-    public void setCertificatelink(String certificatelink) {
-        this.certificatelink = certificatelink;
+    public void setCertificateLink(List<String> certificateLink) {
+        this.certificateLink = certificateLink;
     }
 
     public int getScheduleid() {
@@ -342,7 +355,6 @@ public class WebinarItem {
                         "rating_count = '" + ratingcount + '\'' +
                         "join_url = '" + joinurl + '\'' +
                         ",speaker_name = '" + speakerName + '\'' +
-                        ",certificate_link = '" + certificatelink + '\'' +
                         ",payment_link = '" + paymentlink + '\'' +
                         ",fee = '" + fee + '\'' +
                         ",webinar_image = '" + webinarImage + '\'' +

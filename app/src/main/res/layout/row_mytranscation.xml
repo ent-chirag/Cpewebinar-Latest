@@ -79,6 +79,7 @@
                     android:text="@string/transcation_str_live"
                     android:textColor="@color/White"
                     android:textSize="@dimen/_6sdp"
+                    android:visibility="gone"
                     app:font_button="Montserrat-Regular.ttf" />
 
 

@@ -587,7 +587,9 @@ public interface APIService {
             @Header("Authorization") String authorization,
             @Field("webinar_id") int webinar_id,
             @Field("question_id") String question_id,
-            @Field("answers") String answers
+            @Field("answers") String answers,
+            @Field("video_percentage") String video_percentage
+
     );
 
     //final quiz
