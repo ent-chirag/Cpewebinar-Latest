@@ -273,7 +273,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
 
-        Log.e("*+*+*","CallBack ON CREATE");
+        Log.e("*+*+*", "CallBack ON CREATE");
 
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -312,6 +312,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 webinarStatusClickEvent();
+//                PlayVideo_resumewatching();
             }
         });
 
@@ -663,7 +664,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 if (!Cost.equalsIgnoreCase("")) {
                     // Constant.ShowPopUp(getResources().getString(R.string.payment_validate_msg), context);
 
-                    if(isCardSaved){
+                    if (isCardSaved) {
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
                             RegisterWebinar(webinarid, binding.tvWebinarStatus);
@@ -673,15 +674,14 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     } else {
 
 //                        String url = "https://my-cpe.com/";
-                        String url = ""+strPaymentRedirectionURL;
+                        String url = "" + strPaymentRedirectionURL;
                         try {
                             Intent i = new Intent("android.intent.action.MAIN");
-                            i.setComponent(ComponentName.unflattenFromString(""+strPaymentRedirectionURL));
+                            i.setComponent(ComponentName.unflattenFromString("" + strPaymentRedirectionURL));
                             i.addCategory("android.intent.category.LAUNCHER");
                             i.setData(Uri.parse(url));
                             startActivity(i);
-                        }
-                        catch(ActivityNotFoundException e) {
+                        } catch (ActivityNotFoundException e) {
                             // Chrome is not installed
                             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                             startActivity(i);
@@ -733,21 +733,23 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
 
             if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                    .getResources().getString(R.string.str_webinar_status_watchnow))) {
+                    .getResources().getString(R.string.str_webinar_status_watchnow)) || binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_resume_watching))) {
                 if (!VIDEO_URL.equalsIgnoreCase("")) {
+                    checkpause = false;
                     PlayVideo();
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
 
-            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+            } /*else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_resume_watching))) {
                 if (!VIDEO_URL.equalsIgnoreCase("")) {
                     PlayVideo();
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
-            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+            } */ else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
                 checkAndroidVersionCertificate();
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
@@ -995,7 +997,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = false;
-//                    exoPlayer.setPlayWhenReady(true);
+                    // exoPlayer.setPlayWhenReady(true);
+                    PlayVideo();
 
 
                     Log.e("exo_play", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1097,7 +1100,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         }*/
 
 
-                       // Log.e("STATE_READY", "STATE_READY");
+                        // Log.e("STATE_READY", "STATE_READY");
                         break;
                     default:
                         break;
@@ -1145,7 +1148,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         presentation_length = TimeUnit.MILLISECONDS.toMinutes(presentation_length);
 
                         Log.e("exo_save", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
-                        Log.e("*+*+*","CallBack API");
+                        Log.e("*+*+*", "CallBack API");
                         SaveDuration(webinarid, mResumePosition, presentation_length, binding.tvWebinarStatus);
                     } else {
                         Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -1162,7 +1165,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
         }
     };
-
 
     public void PlayVideo() {
         binding.relTimezone.setVisibility(View.GONE);
@@ -1348,8 +1350,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 //        if(webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
 //                webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))){
-        String videoStatus = ""+binding.tvWebinarStatusNew.getText();
-        if(videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
+        String videoStatus = "" + binding.tvWebinarStatusNew.getText();
+        if (videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                 videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
             binding.tvPlayIconNew.setVisibility(View.VISIBLE);
         } else {
@@ -1357,7 +1359,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         }
 
 
-}
+    }
 
     private void WebinarFavoriteLikeDislike(final int webinar_id, final ImageView ImageView) {
 
@@ -1604,7 +1606,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else {
             // write your logic code if permission already granted
 
-            if(arrayListCertificate.size() == 1) {
+            if (arrayListCertificate.size() == 1) {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
@@ -1659,7 +1661,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         super.onPause();
         checkpause = true;
         handler.removeCallbacks(runnable);
-        Log.e("*+*+*","CallBack PAUSE");
+        Log.e("*+*+*", "CallBack PAUSE");
 
         if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
             exoPlayer.setPlayWhenReady(false);
@@ -1683,7 +1685,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
             checkpause = false;
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
-            Log.e("*+*+*","CallBack RESUME");
+            Log.e("*+*+*", "CallBack RESUME");
 
             if (mExoPlayerView != null) {
 
@@ -1710,7 +1712,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Log.e("*+*+*","CallBack RESTART");
+        Log.e("*+*+*", "CallBack RESTART");
         /*if (ispause) {
 
             checkpause = false;
@@ -1912,7 +1914,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
-                                 VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
+                                VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
                             }
 
 
@@ -2354,7 +2356,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             checkPermission_Certificate();
         } else {
             // write your logic here
-            if(arrayListCertificate.size() == 1) {
+            if (arrayListCertificate.size() == 1) {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
@@ -2394,205 +2396,205 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
     }
 
-private class DownloadTask extends AsyncTask<String, Integer, String> {
+    private class DownloadTask extends AsyncTask<String, Integer, String> {
 
-    private Context context;
-    //private PowerManager.WakeLock mWakeLock;
+        private Context context;
+        //private PowerManager.WakeLock mWakeLock;
 
-    public DownloadTask(Context context) {
-        this.context = context;
-    }
+        public DownloadTask(Context context) {
+            this.context = context;
+        }
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        // take CPU lock to prevent CPU from going off if the user
-        // presses the power button during download
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // take CPU lock to prevent CPU from going off if the user
+            // presses the power button during download
             /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     getClass().getName());
             mWakeLock.acquire();*/
 
-        mProgressDialog.show();
-        mProgressDialog.setMessage("downloading");
-        mProgressDialog.setMax(100);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setCancelable(true);
-    }
-
-
-    @Override
-    protected String doInBackground(String... sUrl) {
-        int count;
-        try {
-
-            for (int i = 0; i < sUrl.length; i++) {
-                URL url = new URL(sUrl[i]);
-                URLConnection conection = url.openConnection();
-                conection.connect();
-                // getting file length
-                int lenghtOfFile = conection.getContentLength();
-
-
-                String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
-
-
-                // input stream to read file - with 8k buffer
-                InputStream input = new BufferedInputStream(
-                        url.openStream(), 8192);
-                // System.out.println("Data::" + sUrl[i]);
-                // Output stream to write file
-                OutputStream output = new FileOutputStream(
-                        "/sdcard/handout" + new Date().getTime() + "." + extension);
-
-                byte data[] = new byte[1024];
-
-                long total = 0;
-
-                while ((count = input.read(data)) != -1) {
-                    total += count;
-                    // publishing the progress....
-                    // After this onProgressUpdate will be called
-                    publishProgress((int) ((total * 100) / lenghtOfFile));
-
-                    // writing data to file
-                    output.write(data, 0, count);
-                }
-
-                // flushing output
-                output.flush();
-
-                // closing streams
-                output.close();
-                input.close();
-            }
-        } catch (Exception e) {
-            Log.e("Error: ", e.getMessage());
+            mProgressDialog.show();
+            mProgressDialog.setMessage("downloading");
+            mProgressDialog.setMax(100);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialog.setCancelable(true);
         }
 
-        return null;
-    }
 
-    @Override
-    protected void onProgressUpdate(Integer... progress) {
-        super.onProgressUpdate(progress);
-        // if we get here, length is known, now set indeterminate to false
+        @Override
+        protected String doInBackground(String... sUrl) {
+            int count;
+            try {
+
+                for (int i = 0; i < sUrl.length; i++) {
+                    URL url = new URL(sUrl[i]);
+                    URLConnection conection = url.openConnection();
+                    conection.connect();
+                    // getting file length
+                    int lenghtOfFile = conection.getContentLength();
+
+
+                    String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
+
+
+                    // input stream to read file - with 8k buffer
+                    InputStream input = new BufferedInputStream(
+                            url.openStream(), 8192);
+                    // System.out.println("Data::" + sUrl[i]);
+                    // Output stream to write file
+                    OutputStream output = new FileOutputStream(
+                            "/sdcard/handout" + new Date().getTime() + "." + extension);
+
+                    byte data[] = new byte[1024];
+
+                    long total = 0;
+
+                    while ((count = input.read(data)) != -1) {
+                        total += count;
+                        // publishing the progress....
+                        // After this onProgressUpdate will be called
+                        publishProgress((int) ((total * 100) / lenghtOfFile));
+
+                        // writing data to file
+                        output.write(data, 0, count);
+                    }
+
+                    // flushing output
+                    output.flush();
+
+                    // closing streams
+                    output.close();
+                    input.close();
+                }
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            // if we get here, length is known, now set indeterminate to false
            /* mProgressDialog.setIndeterminate(false);
             mProgressDialog.setMax(100);*/
-        mProgressDialog.setProgress(progress[0]);
+            mProgressDialog.setProgress(progress[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // mWakeLock.release();
+            mProgressDialog.dismiss();
+            if (result != null)
+                Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @Override
-    protected void onPostExecute(String result) {
-        // mWakeLock.release();
-        mProgressDialog.dismiss();
-        if (result != null)
-            Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
-    }
-}
+    private class DownloadTaskCerificate extends AsyncTask<String, Integer, String> {
 
-private class DownloadTaskCerificate extends AsyncTask<String, Integer, String> {
+        private Context context;
+        //private PowerManager.WakeLock mWakeLock;
 
-    private Context context;
-    //private PowerManager.WakeLock mWakeLock;
+        public DownloadTaskCerificate(Context context) {
+            this.context = context;
+        }
 
-    public DownloadTaskCerificate(Context context) {
-        this.context = context;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        // take CPU lock to prevent CPU from going off if the user
-        // presses the power button during download
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // take CPU lock to prevent CPU from going off if the user
+            // presses the power button during download
             /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     getClass().getName());
             mWakeLock.acquire();*/
 
-        mProgressDialog.show();
-        mProgressDialog.setMessage("downloading");
-        mProgressDialog.setMax(100);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mProgressDialog.setCancelable(true);
-    }
-
-
-    @Override
-    protected String doInBackground(String... sUrl) {
-        int count;
-        try {
-
-            for (int i = 0; i < sUrl.length; i++) {
-                URL url = new URL(sUrl[i]);
-                URLConnection conection = url.openConnection();
-                conection.connect();
-                // getting file length
-                int lenghtOfFile = conection.getContentLength();
-
-
-                String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
-
-
-                // input stream to read file - with 8k buffer
-                InputStream input = new BufferedInputStream(
-                        url.openStream(), 8192);
-                // System.out.println("Data::" + sUrl[i]);
-                // Output stream to write file
-                OutputStream output = new FileOutputStream(
-                        "/sdcard/certificate" + new Date().getTime() + "." + extension);
-
-                byte data[] = new byte[1024];
-
-                long total = 0;
-
-                while ((count = input.read(data)) != -1) {
-                    total += count;
-                    // publishing the progress....
-                    // After this onProgressUpdate will be called
-                    publishProgress((int) ((total * 100) / lenghtOfFile));
-
-                    // writing data to file
-                    output.write(data, 0, count);
-                }
-
-                // flushing output
-                output.flush();
-
-                // closing streams
-                output.close();
-                input.close();
-            }
-        } catch (Exception e) {
-            Log.e("Error: ", e.getMessage());
+            mProgressDialog.show();
+            mProgressDialog.setMessage("downloading");
+            mProgressDialog.setMax(100);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialog.setCancelable(true);
         }
 
-        return null;
-    }
 
-    @Override
-    protected void onProgressUpdate(Integer... progress) {
-        super.onProgressUpdate(progress);
-        // if we get here, length is known, now set indeterminate to false
+        @Override
+        protected String doInBackground(String... sUrl) {
+            int count;
+            try {
+
+                for (int i = 0; i < sUrl.length; i++) {
+                    URL url = new URL(sUrl[i]);
+                    URLConnection conection = url.openConnection();
+                    conection.connect();
+                    // getting file length
+                    int lenghtOfFile = conection.getContentLength();
+
+
+                    String extension = sUrl[i].substring(sUrl[i].lastIndexOf('.') + 1).trim();
+
+
+                    // input stream to read file - with 8k buffer
+                    InputStream input = new BufferedInputStream(
+                            url.openStream(), 8192);
+                    // System.out.println("Data::" + sUrl[i]);
+                    // Output stream to write file
+                    OutputStream output = new FileOutputStream(
+                            "/sdcard/certificate" + new Date().getTime() + "." + extension);
+
+                    byte data[] = new byte[1024];
+
+                    long total = 0;
+
+                    while ((count = input.read(data)) != -1) {
+                        total += count;
+                        // publishing the progress....
+                        // After this onProgressUpdate will be called
+                        publishProgress((int) ((total * 100) / lenghtOfFile));
+
+                        // writing data to file
+                        output.write(data, 0, count);
+                    }
+
+                    // flushing output
+                    output.flush();
+
+                    // closing streams
+                    output.close();
+                    input.close();
+                }
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            // if we get here, length is known, now set indeterminate to false
            /* mProgressDialog.setIndeterminate(false);
             mProgressDialog.setMax(100);*/
-        mProgressDialog.setProgress(progress[0]);
-    }
+            mProgressDialog.setProgress(progress[0]);
+        }
 
-    @Override
-    protected void onPostExecute(String result) {
-        // mWakeLock.release();
-        mProgressDialog.dismiss();
-        if (result != null)
-            Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
+        @Override
+        protected void onPostExecute(String result) {
+            // mWakeLock.release();
+            mProgressDialog.dismiss();
+            if (result != null)
+                Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(context, "Download complete", Toast.LENGTH_SHORT).show();
+        }
     }
-}
 
 
     private void setupViewPager(ViewPager viewPager) {
@@ -2626,34 +2628,34 @@ private class DownloadTaskCerificate extends AsyncTask<String, Integer, String> 
         viewPager.setAdapter(adapter);
     }
 
-class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager manager) {
-        super(manager);
-    }
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
 
-    @Override
-    public Fragment getItem(int position) {
-        return mFragmentList.get(position);
-    }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
 
-    @Override
-    public int getCount() {
-        return mFragmentList.size();
-    }
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
 
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
-}
 
 
 }
