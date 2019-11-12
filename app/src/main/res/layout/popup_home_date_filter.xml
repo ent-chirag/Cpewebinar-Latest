@@ -7,16 +7,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_190sdp"
-        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_5sdp"
+        android:gravity="center_horizontal"
         android:background="@color/White">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:orientation="vertical">
 
 
@@ -184,43 +185,61 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/color_view_date_filter_popup" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:gravity="right"
+                android:layout_height="wrap_content">
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_home_filter_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:text="@string/str_date_filter_cancel"
+                    android:textColor="@color/color_date_filter_popup_button"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+                <com.entigrity.view.CustomTextView
+                    android:id="@+id/tv_home_filter_apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/str_date_filter_apply"
+                    android:textColor="@color/color_date_filter_popup_button"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_text="Montserrat-SemiBold.ttf" />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
 
         </LinearLayout>
 
 
-        <RelativeLayout
+      <!--  <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/_5sdp">
 
-            <com.entigrity.view.CustomTextView
-                android:id="@+id/tv_home_filter_apply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:text="@string/str_date_filter_apply"
-                android:textColor="@color/color_date_filter_popup_button"
-                android:textSize="@dimen/_12sdp"
-                app:font_text="Montserrat-SemiBold.ttf" />
 
 
-            <com.entigrity.view.CustomTextView
-                android:id="@+id/tv_home_filter_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:layout_toLeftOf="@+id/tv_home_filter_apply"
-                android:text="@string/str_date_filter_cancel"
-                android:textColor="@color/color_date_filter_popup_button"
-                android:textSize="@dimen/_12sdp"
-                app:font_text="Montserrat-SemiBold.ttf" />
 
-
-        </RelativeLayout>
+        </RelativeLayout>-->
 
 
     </RelativeLayout>

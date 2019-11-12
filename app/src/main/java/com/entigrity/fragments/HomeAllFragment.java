@@ -72,7 +72,7 @@ public class HomeAllFragment extends Fragment {
 
     public ArrayList<Model_Subject_Area> arraylistModelSubjectArea = new ArrayList<>();
 
-    private String webinartype = "";
+    private String webinartype = "live";
     private String price_filter = "";
     private String date_filter = "";
     private String topicsofinterest = "";
@@ -104,6 +104,8 @@ public class HomeAllFragment extends Fragment {
     public String actionsearch = "";
 
     public String status = "";
+
+    public boolean iswebinartype = false;
 
     Bundle bundle;
 
@@ -146,6 +148,13 @@ public class HomeAllFragment extends Fragment {
         }
 
 
+        binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+        binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+        binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+        binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
+
+
         //for animation
 
         final Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
@@ -164,18 +173,18 @@ public class HomeAllFragment extends Fragment {
 
         arrsavebooleanstate.add(0, false);
         arrsavebooleanstate.add(1, false);
-        arrsavebooleanstate.add(2, false);
+        /*arrsavebooleanstate.add(2, false);
         arrsavebooleanstate.add(3, false);
         arrsavebooleanstate.add(4, false);
-        arrsavebooleanstate.add(5, false);
+        arrsavebooleanstate.add(5, false);*/
 
 
         arraysavefilter.add(0, "");
         arraysavefilter.add(1, "");
-        arraysavefilter.add(2, "");
+       /* arraysavefilter.add(2, "");
         arraysavefilter.add(3, "");
         arraysavefilter.add(4, "");
-        arraysavefilter.add(5, "");
+        arraysavefilter.add(5, "");*/
 
 
         arraypricefilter.add(0, "");
@@ -272,23 +281,100 @@ public class HomeAllFragment extends Fragment {
             }
         });
 
-        binding.btnPremium.setOnClickListener(new View.OnClickListener() {
+        binding.btnFree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 start = 0;
                 limit = 10;
                 loading = true;
 
 
-                if (arrsavebooleanstate.get(3) == false) {
-                    arrsavebooleanstate.set(3, true);
-                    arraysavefilter.set(3, getResources().getString(R.string.str_filter_home_price_premium));
+                if (arrsavebooleanstate.get(1) == false) {
+                    arrsavebooleanstate.set(1, true);
+                    arraysavefilter.set(1, getResources().getString(R.string.str_filter_home_price_free));
+
+
+                    arraypricefilter.set(1, "0");
+
+
+                    price_filter = android.text.TextUtils.join(",", arraypricefilter);
+
+
+                    if (arraypricefilter.get(0).equalsIgnoreCase("")) {
+                        price_filter = price_filter.replaceAll(",", "");
+                    }
+
+
+                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnFree.setTextColor(getResources().getColor(R.color.White));
+                } else {
+                    arrsavebooleanstate.set(1, false);
+                    arraysavefilter.set(1, "");
+
+
+                    arraypricefilter.set(1, "");
+
+
+                    if (arraysavefilter.get(0).equalsIgnoreCase("") &&
+                            arraysavefilter.get(1).equalsIgnoreCase("")
+                    ) {
+
+                        webinartype = "live";
+
+                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
+
+
+                        if (arraypricefilter.get(1).equalsIgnoreCase("")) {
+                            price_filter = price_filter.replaceAll(",", "");
+                        }
+                    } else {
+
+                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
+
+
+                        if (arraypricefilter.get(1).equalsIgnoreCase("")) {
+                            price_filter = price_filter.replaceAll(",", "");
+                        }
+
+                    }
+
+
+                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnFree.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                }
+
+                Constant.Log("price_filter", "price_filter" + price_filter);
+
+                if (Constant.isNetworkAvailable(context)) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                } else {
+                    Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        binding.btnPremium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                start = 0;
+                limit = 10;
+                loading = true;
+
+
+                if (arrsavebooleanstate.get(0) == false) {
+                    arrsavebooleanstate.set(0, true);
+                    arraysavefilter.set(0, getResources().getString(R.string.str_filter_home_price_premium));
 
                     arraypricefilter.set(0, "1");
 
 
                     price_filter = android.text.TextUtils.join(",", arraypricefilter);
-                    System.out.println(price_filter);
+
 
 
                     if (arraypricefilter.get(1).equalsIgnoreCase("")) {
@@ -298,23 +384,29 @@ public class HomeAllFragment extends Fragment {
                     binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
                     binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
                 } else {
-                    arrsavebooleanstate.set(3, false);
-                    arraysavefilter.set(3, "");
+                    arrsavebooleanstate.set(0, false);
+                    arraysavefilter.set(0, "");
 
                     arraypricefilter.set(0, "");
 
 
                     if (arraysavefilter.get(0).equalsIgnoreCase("") &&
-                            arraysavefilter.get(1).equalsIgnoreCase("") &&
-                            arraysavefilter.get(2).equalsIgnoreCase("") &&
-                            arraysavefilter.get(3).equalsIgnoreCase("") &&
-                            arraysavefilter.get(4).equalsIgnoreCase("") &&
-                            arraysavefilter.get(5).equalsIgnoreCase("")) {
-                        webinartype = "";
+                            arraysavefilter.get(1).equalsIgnoreCase("")
+                    ) {
+                        webinartype = "live";
+
+                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
+
+
+
+                        if (arraypricefilter.get(0).equalsIgnoreCase("")) {
+                            price_filter = price_filter.replaceAll(",", "");
+                        }
+
                     } else {
 
                         price_filter = android.text.TextUtils.join(",", arraypricefilter);
-                        System.out.println(price_filter);
+
 
 
                         if (arraypricefilter.get(0).equalsIgnoreCase("")) {
@@ -327,6 +419,8 @@ public class HomeAllFragment extends Fragment {
                     binding.btnPremium.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
+                Constant.Log("price_filter", "price_filter" + price_filter);
+
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                     GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
@@ -337,75 +431,6 @@ public class HomeAllFragment extends Fragment {
             }
         });
 
-        binding.btnFree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                start = 0;
-                limit = 10;
-                loading = true;
-
-
-                if (arrsavebooleanstate.get(4) == false) {
-                    arrsavebooleanstate.set(4, true);
-                    arraysavefilter.set(4, getResources().getString(R.string.str_filter_home_price_free));
-
-
-                    arraypricefilter.set(1, "0");
-
-
-                    price_filter = android.text.TextUtils.join(",", arraypricefilter);
-                    System.out.println(price_filter);
-
-                    if (arraypricefilter.get(0).equalsIgnoreCase("")) {
-                        price_filter = price_filter.replaceAll(",", "");
-                    }
-
-
-                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
-                    binding.btnFree.setTextColor(getResources().getColor(R.color.White));
-                } else {
-                    arrsavebooleanstate.set(4, false);
-                    arraysavefilter.set(4, "");
-
-
-                    arraypricefilter.set(1, "");
-
-
-                    if (arraysavefilter.get(0).equalsIgnoreCase("") &&
-                            arraysavefilter.get(1).equalsIgnoreCase("") &&
-                            arraysavefilter.get(2).equalsIgnoreCase("") &&
-                            arraysavefilter.get(3).equalsIgnoreCase("") &&
-                            arraysavefilter.get(4).equalsIgnoreCase("") &&
-                            arraysavefilter.get(5).equalsIgnoreCase("")) {
-                        webinartype = "";
-                    } else {
-
-                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
-                        System.out.println(price_filter);
-
-                        if (arraypricefilter.get(1).equalsIgnoreCase("")) {
-                            price_filter = price_filter.replaceAll(",", "");
-                        }
-
-
-                    }
-
-
-                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
-                    binding.btnFree.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                }
-
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
-                } else {
-                    Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                }
-
-
-            }
-        });
 
         binding.btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -560,151 +585,6 @@ public class HomeAllFragment extends Fragment {
         });
 
 
-
-
-
-
-       /* binding.btnLive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                start = 0;
-                limit = 10;
-                loading = true;
-
-
-                if (arrsavebooleanstate.get(0) == false) {
-                    arrsavebooleanstate.set(0, true);
-                    arraysavefilter.set(0, getResources().getString(R.string.str_filter_live));
-                    webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                            .replace(" ", "");
-                    binding.btnLive.setBackgroundResource(R.drawable.col_three_bg_new_hover);
-                    binding.btnLive.setTextColor(getResources().getColor(R.color.White));
-                } else {
-                    arrsavebooleanstate.set(0, false);
-                    arraysavefilter.set(0, "");
-
-
-                    if (arraysavefilter.get(0).equalsIgnoreCase("") &&
-                            arraysavefilter.get(1).equalsIgnoreCase("") &&
-                            arraysavefilter.get(2).equalsIgnoreCase("")) {
-                        webinartype = "";
-                    } else {
-                        webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                                .replace(" ", "");
-                    }
-
-
-                    binding.btnLive.setBackgroundResource(R.drawable.col_three_bg_new);
-                    binding.btnLive.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                }
-
-
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, topicsofinterest, "", "", "", "", start, limit);
-                } else {
-                    Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-
-                }
-
-
-            }
-        });
-
-
-        binding.btnSelfstudy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                start = 0;
-                limit = 10;
-                loading = true;
-
-
-                if (arrsavebooleanstate.get(1) == false) {
-                    arrsavebooleanstate.set(1, true);
-                    arraysavefilter.set(1, getResources().getString(R.string.str_filter_selfstudy));
-                    webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                            .replace(" ", "");
-
-
-                    binding.btnSelfstudy.setBackgroundResource(R.drawable.col_three_bg_new_hover);
-                    binding.btnSelfstudy.setTextColor(getResources().getColor(R.color.White));
-                } else {
-                    arrsavebooleanstate.set(1, false);
-                    arraysavefilter.set(1, "");
-                    if (arraysavefilter.get(0).equalsIgnoreCase("") &&
-                            arraysavefilter.get(1).equalsIgnoreCase("") &&
-                            arraysavefilter.get(2).equalsIgnoreCase("")) {
-                        webinartype = "";
-
-
-                    } else {
-                        webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                                .replace(" ", "");
-
-                    }
-
-
-                    binding.btnSelfstudy.setBackgroundResource(R.drawable.col_three_bg_new);
-                    binding.btnSelfstudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                }
-
-
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, topicsofinterest, "", "", "", "", start, limit);
-                } else {
-                    Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });
-
-
-        binding.btnArchive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                start = 0;
-                limit = 10;
-                loading = true;
-
-
-                if (arrsavebooleanstate.get(2) == false) {
-                    arrsavebooleanstate.set(2, true);
-                    arraysavefilter.set(2, getResources().getString(R.string.str_filter_archieve));
-                    webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                            .replace(" ", "");
-                    binding.btnArchive.setBackgroundResource(R.drawable.col_three_bg_new_hover);
-                    binding.btnArchive.setTextColor(getResources().getColor(R.color.White));
-                } else {
-                    arrsavebooleanstate.set(2, false);
-                    arraysavefilter.set(2, "");
-                    if (arraysavefilter.get(0).equalsIgnoreCase("") &&
-                            arraysavefilter.get(1).equalsIgnoreCase("") &&
-                            arraysavefilter.get(2).equalsIgnoreCase("")) {
-                        webinartype = "";
-                    } else {
-                        webinartype = arraysavefilter.toString().replace("[", "").replace("]", "")
-                                .replace(" ", "");
-                    }
-
-                    binding.btnArchive.setBackgroundResource(R.drawable.col_three_bg_new);
-                    binding.btnArchive.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                }
-
-
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, topicsofinterest, "", "", "", "", start, limit);
-                } else {
-                    Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-
-                }
-
-            }
-        });*/
-
         binding.getRoot().setFocusableInTouchMode(true);
         binding.getRoot().requestFocus();
         binding.getRoot().setOnKeyListener(new View.OnKeyListener() {
@@ -838,7 +718,7 @@ public class HomeAllFragment extends Fragment {
 
 
                         date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-                        System.out.println(date_filter);
+
 
 
                         if (arraylistHomeDateFilter.get(1).equalsIgnoreCase("")) {
@@ -876,11 +756,11 @@ public class HomeAllFragment extends Fragment {
                         cb_date_this_month.setChecked(false);
 
 
-                        arraylistHomeDateFilter.set(1, "0");
+                        arraylistHomeDateFilter.set(1, "2");
 
 
                         date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-                        System.out.println(date_filter);
+
 
 
                         if (arraylistHomeDateFilter.get(0).equalsIgnoreCase("")) {
@@ -892,7 +772,7 @@ public class HomeAllFragment extends Fragment {
                         arraylistHomeDateFilter.set(1, "");
 
                         date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-                        System.out.println(date_filter);
+
 
 
                         if (arraylistHomeDateFilter.get(1).equalsIgnoreCase("")) {
@@ -1000,7 +880,21 @@ public class HomeAllFragment extends Fragment {
                 limit = 10;
                 loading = true;
 
-                System.out.println(date_filter);
+                if (cb_date_today.isChecked() == false &&
+                        cb_date_tommorow.isChecked() == false && cb_date_this_week.isChecked() == false
+                        && cb_date_this_month.isChecked() == false) {
+
+                    date_filter = "";
+                    binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                    arraylistHomeDateFilter.set(0, "");
+                    arraylistHomeDateFilter.set(1, "");
+
+                }
+
+
+                Constant.Log("date_filter", "date_filter" + date_filter);
 
 
                 if (Constant.isNetworkAvailable(context)) {
@@ -1067,10 +961,10 @@ public class HomeAllFragment extends Fragment {
                             commaSepValueBuilder.append(",");
                         }
                     }
-                    //System.out.println(commaSepValueBuilder.toString());
+
                     SubjectAreaFilter = commaSepValueBuilder.toString();
 
-                    System.out.println(SubjectAreaFilter);
+
 
 
                 } else {
@@ -1188,7 +1082,7 @@ public class HomeAllFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if (arraylistselectedvalue.size() > 0) {
+      /*  if (arraylistselectedvalue.size() > 0) {
             topicsofinterest = "";
 
             StringBuilder commaSepValueBuilder = new StringBuilder();
@@ -1221,7 +1115,7 @@ public class HomeAllFragment extends Fragment {
 
             }
 
-        }
+        }*/
 
     }
 
@@ -1245,6 +1139,8 @@ public class HomeAllFragment extends Fragment {
         limit = 10;
         loading = true;
         checkmywebinardotstatusset = true;
+
+        Constant.Log("date_filter", "date_filter" + date_filter);
 
         if (Constant.isNetworkAvailable(context)) {
             GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);

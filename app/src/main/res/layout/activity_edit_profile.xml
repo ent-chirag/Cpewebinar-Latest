@@ -22,7 +22,7 @@
             android:padding="@dimen/_10sdp">
 
             <com.entigrity.view.CustomTextView
-                android:id="@+id/tv_header"
+                android:id="@+id/tv_edit_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -94,6 +94,7 @@
                             android:imeOptions="actionNext"
                             android:inputType="textCapWords"
                             android:singleLine="true"
+                            android:textColor="@color/grid_topics"
                             android:textSize="@dimen/_10sdp"
                             app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -117,6 +118,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="textCapWords"
                             android:singleLine="true"
+                            android:textColor="@color/grid_topics"
                             android:textSize="@dimen/_10sdp"
                             app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -144,6 +146,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -169,6 +172,7 @@
                         android:inputType="phone"
                         android:maxLength="14"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -193,6 +197,7 @@
                         android:inputType="phone"
                         android:maxLength="14"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -215,8 +220,9 @@
                         android:hint="@string/view_profile_ptin_number"
                         android:imeOptions="actionDone"
                         android:inputType="text"
-                        android:maxLength="10"
+                        android:maxLength="9"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -378,6 +384,7 @@
                         android:inputType="number"
                         android:maxLength="5"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -605,6 +612,7 @@
                         android:imeOptions="actionDone"
                         android:inputType="textCapWords"
                         android:singleLine="true"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_edit="SFUIDisplay-Medium.ttf" />
 
@@ -625,7 +633,6 @@
                     android:id="@+id/professional_credential"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:hint="@string/str_profestional_credential"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_10sdp"
@@ -649,7 +656,7 @@
                         android:gravity="center_horizontal"
                         android:padding="@dimen/_2sdp"
                         android:singleLine="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
@@ -662,7 +669,7 @@
                         android:background="@drawable/signup_multiple_chipset"
                         android:gravity="center_horizontal"
                         android:padding="@dimen/_2sdp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
@@ -684,7 +691,6 @@
                     android:id="@+id/additional_qualification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:hint="@string/str_additional_qualification"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_10sdp"
@@ -709,7 +715,7 @@
                         android:gravity="center_horizontal"
                         android:padding="@dimen/_2sdp"
                         android:singleLine="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
@@ -722,7 +728,7 @@
                         android:background="@drawable/signup_multiple_chipset"
                         android:gravity="center_horizontal"
                         android:padding="@dimen/_2sdp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
                         app:font_text="SFUIDisplay-Medium.ttf" />
 

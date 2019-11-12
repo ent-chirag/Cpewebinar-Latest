@@ -227,7 +227,8 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                style="@style/AppTheme"
+                android:indeterminateTint="@color/theme_background"
+                android:indeterminateTintMode="src_atop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
