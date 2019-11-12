@@ -534,7 +534,7 @@ public class MyWebinarFragment extends Fragment {
         super.onResume();
 
 
-        if (arraylistselectedvalue.size() > 0) {
+     /*   if (arraylistselectedvalue.size() > 0) {
 
             topicsofinterest = "";
 
@@ -569,7 +569,7 @@ public class MyWebinarFragment extends Fragment {
             }
 
 
-        }
+        }*/
     }
 
     public void refreshItems() {

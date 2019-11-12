@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -73,6 +75,8 @@ public class EditProfileActivity extends AppCompatActivity {
     public Dialog myDialog_proffesionl_credential;
     public Dialog myDialog_additional_qualification;
     private TextView tv_header, tv_submit, tv_cancel;
+
+
     LinearLayoutManager linearLayoutManager;
     public RecyclerView rv_professional_credential;
     public EditProffesionalCredentialPopUpAdapter editProffesionalCredentialPopUpAdapter;
@@ -145,7 +149,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private String State, City;
-    private String prefix = "P-";
+    private String prefix = "P";
 
     public String selected_proffesional_credential = "";
     public String selected_additional_qualification = "";
@@ -213,6 +217,92 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.edtPhoneNumber.addTextChangedListener(addLineNumberFormatterphonenumber);
 
 
+        binding.tvEditHeader.setText(context.getResources().getString(R.string.str_header_profile));
+        binding.relbottom.setVisibility(View.GONE);
+
+        binding.edtFirstname.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                }
+                return false;
+            }
+        });
+
+
+        binding.edtLastname.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+
+        binding.edtMobileNumber.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+
+        binding.edtPhoneNumber.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+
+        binding.edtPtinNumber.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+
+        binding.edtZipcode.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+        binding.edtFirmname.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+                }
+                return false;
+            }
+        });
+
+
         binding.professionalCredential.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -268,7 +358,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().startsWith(prefix)) {
                     binding.edtPtinNumber.setText(prefix);
-                    binding.edtPtinNumber.setSelection(2);
+                    binding.edtPtinNumber.setSelection(1);
                 }
 
             }
@@ -279,6 +369,19 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                binding.tvEditHeader.setText(context.getResources().getString(R.string.edit_profile_header));
+                binding.relbottom.setVisibility(View.VISIBLE);
+
+                if (ptin_number.equalsIgnoreCase("")) {
+                    binding.edtPtinNumber.setText(prefix);
+                    binding.edtPtinNumber.setSelection(1);
+                }
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                }
 
                 binding.edtFirstname.setEnabled(true);
                 binding.edtFirmname.setEnabled(true);
@@ -810,7 +913,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         if (!ptin_number.equalsIgnoreCase("") && ptin_number != null) {
-            binding.edtPtinNumber.setText(prefix + ptin_number.substring(2));
+            binding.edtPtinNumber.setText(prefix + ptin_number.substring(1));
         }
 
 
@@ -867,10 +970,15 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.spinnerIndustry.setEnabled(false);
         binding.spinner.setEnabled(false);
         binding.btnsubmit.setEnabled(false);
-        binding.professionalCredential.setEnabled(false);
-        binding.lvProfessionalCredential.setEnabled(false);
-        binding.additionalQualification.setEnabled(false);
-        binding.lvAdditionalQualification.setEnabled(false);
+        binding.professionalCredential.setEnabled(true);
+        binding.lvProfessionalCredential.setEnabled(true);
+        binding.additionalQualification.setEnabled(true);
+        binding.lvAdditionalQualification.setEnabled(true);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.view_edit_profile)));
+        }
 
 
         ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));

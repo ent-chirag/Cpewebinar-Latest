@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="@dimen/_10sdp"
+    android:textColor="@color/grid_topics"
     app:font_edit="SFUIDisplay-Medium.ttf" />

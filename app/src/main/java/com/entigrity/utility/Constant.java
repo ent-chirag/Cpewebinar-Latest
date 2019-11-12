@@ -107,6 +107,7 @@ public class Constant {
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
 
+
     public static void setLightStatusBar(Activity activity) {
 
 
@@ -118,6 +119,7 @@ public class Constant {
         }
 
     }
+
 
 
     public static boolean isValidPassword(String password) {

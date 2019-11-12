@@ -63,13 +63,13 @@
                 <com.entigrity.view.CustomButtonView
                     android:id="@+id/btn_certification_download"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_15sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/rounded_webinar_home"
-                    android:text="@string/str_download"
                     android:gravity="center"
+                    android:text="@string/str_download"
                     android:textColor="@color/White"
                     android:textSize="@dimen/_7sdp"
                     app:font_button="Montserrat-Bold.ttf" />
@@ -80,9 +80,9 @@
 
             <RelativeLayout
                 android:id="@+id/rel_main"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_minus3sdp"
                 android:gravity="center_vertical"
                 android:visibility="visible">
 

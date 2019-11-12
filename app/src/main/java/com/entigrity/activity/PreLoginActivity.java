@@ -30,17 +30,17 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prelogin);
 
-        // load the animation
+      /*  // load the animation
         animMoveToTop = AnimationUtils.loadAnimation(PreLoginActivity.this, R.anim.move);
 
         // set animation listener
         animMoveToTop.setAnimationListener(this);
 
         binding.ivMycpe.setVisibility(View.VISIBLE);
-        binding.ivMycpe.startAnimation(animMoveToTop);
+        binding.ivMycpe.startAnimation(animMoveToTop);*/
 
 
-        final Handler handler = new Handler();
+       /* final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -53,7 +53,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
                 binding.strlogin.startAnimation(animMoveToTop);
             }
         }, 3000);
-
+*/
 
 
        /* GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -152,7 +152,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
         /*if (animation == animMoveToTop) {
             Toast.makeText(getApplicationContext(), "Animation Stopped", Toast.LENGTH_SHORT).show();
         }*/
-        binding.ivMycpe.clearAnimation();
+       //binding.ivMycpe.clearAnimation();
     }
 
     @Override

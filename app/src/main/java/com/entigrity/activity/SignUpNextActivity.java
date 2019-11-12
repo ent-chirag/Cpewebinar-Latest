@@ -88,7 +88,7 @@ public class SignUpNextActivity extends AppCompatActivity {
 
     public Context context;
 
-    private String prefix = "P-";
+    private String prefix = "P";
 
     public ProffesionalCredentialPopUpAdapter proffesionalCredentialPopUpAdapter;
 
@@ -222,7 +222,7 @@ public class SignUpNextActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().startsWith(prefix)) {
                     binding.edtPtinNumber.setText(prefix);
-                    binding.edtPtinNumber.setSelection(2);
+                    binding.edtPtinNumber.setSelection(1);
                 }
 
             }

@@ -270,6 +270,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
+        Constant.setLightStatusBar(WebinarDetailsActivity.this);
+
 
         if (savedInstanceState != null) {
             play_time_duration = savedInstanceState.getLong(STATE_RESUME_WINDOW);
@@ -1773,7 +1775,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
-                                VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
+                                // VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
                             }
 
 
