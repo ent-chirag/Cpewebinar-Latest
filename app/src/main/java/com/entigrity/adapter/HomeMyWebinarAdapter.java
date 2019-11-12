@@ -1,12 +1,24 @@
 package com.entigrity.adapter;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +28,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.activity.ActivityEvolutionForm;
 import com.entigrity.activity.PaymentActivity;
+import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -41,6 +55,8 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.entigrity.activity.WebinarDetailsActivity.PERMISSIONS_MULTIPLE_REQUEST_CERTIFICATE;
+
 public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -54,16 +70,46 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     String join_url = "";
     ArrayList<Long> list = new ArrayList<>();
 
+    public static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
+    private long refid;
+    private DownloadManager downloadManager;
 
     public HomeMyWebinarAdapter(Context mContext, List<com.entigrity.model.homewebinarnew.WebinarItem> mList) {
         this.mContext = mContext;
         this.mList = mList;
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+
+        mContext.registerReceiver(onComplete,
+                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 
     }
 
+    BroadcastReceiver onComplete = new BroadcastReceiver() {
+
+        public void onReceive(Context ctxt, Intent intent) {
+
+            long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+
+            list.remove(referenceId);
+
+            if (list.isEmpty()) {
+
+                Toast.makeText(mContext, "Download complete", Toast.LENGTH_LONG).show();
+                NotificationCompat.Builder mBuilder =
+                        new NotificationCompat.Builder(mContext)
+                                .setSmallIcon(R.mipmap.app_icon)
+                                .setContentTitle("Document")
+                                .setContentText("MYCpe");
+
+                NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(455, mBuilder.build());
+
+            }
+        }
+    };
 
     @NonNull
     @Override
@@ -473,6 +519,11 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList.get(position).getWebinarType());
                             mContext.startActivity(i);
                             ((Activity) mContext).finish();
+                        } else if (mList.get(position).getStatus().equalsIgnoreCase(mContext
+                                .getResources().getString(R.string.str_webinar_status_certificate))){
+//                            checkAndroidVersionCertificate();
+                            // Left from here..
+//                            checkAndroidVersion(mList.get(position).getCertificatelink());
                         }
                     }
                 }
@@ -503,6 +554,25 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
     }
 
+    private void checkAndroidVersion(List<String> arrayListcertificate) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkPermission(arrayListcertificate);
+        } else {
+            // write your logic here
+            if (arrayListcertificate.size() == 1) {
+                Intent i = new Intent(mContext, PdfViewActivity.class);
+                i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
+                        get(0));
+                mContext.startActivity(i);
+            } else {
+                if (arrayListcertificate.size() > 0) {
+                    DownloadCertificate(arrayListcertificate);
+                } else {
+                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                }
+            }
+        }
+    }
 
     public void add(com.entigrity.model.homewebinarnew.WebinarItem webinarItem) {
         mList.add(webinarItem);
@@ -729,6 +799,91 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
                 });
 
+    }
+
+   /* private void checkAndroidVersionCertificate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkPermission_Certificate();
+        } else {
+            // write your logic here
+            if(arrayListCertificate.size() == 1) {
+                Intent i = new Intent(mContext, PdfViewActivity.class);
+                i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListCertificate.
+                        get(0));
+                mContext.startActivity(i);
+            } else {
+                if (arrayListCertificate.size() > 0) {
+                    DownloadCertificate(arrayListCertificate);
+                } else {
+                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                }
+            }
+        }
+    }*/
+
+    private void checkPermission(List<String> arrayListcertificate) {
+
+        if (ContextCompat.checkSelfPermission(mContext,
+                Manifest.permission.READ_EXTERNAL_STORAGE) + ContextCompat
+                .checkSelfPermission(mContext,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale
+                    ((Activity) mContext, Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale
+                            ((Activity) mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    ((Activity) mContext).requestPermissions(new String[]{Manifest.permission
+                                    .READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            PERMISSIONS_MULTIPLE_REQUEST);
+                }
+
+
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    ((Activity) mContext).requestPermissions(
+                            new String[]{Manifest.permission
+                                    .READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            PERMISSIONS_MULTIPLE_REQUEST);
+                }
+            }
+        } else {
+            // write your logic code if permission already granted
+
+            if (arrayListcertificate.size() == 1) {
+                Intent i = new Intent(mContext, PdfViewActivity.class);
+                i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
+                        get(0));
+                mContext.startActivity(i);
+            } else {
+                if (arrayListcertificate.size() > 0) {
+                    DownloadCertificate(arrayListcertificate);
+                } else {
+                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                }
+            }
+        }
+    }
+
+    public void DownloadCertificate(List<String> arrayListcertificate) {
+
+        list.clear();
+
+        for (int i = 0; i < arrayListcertificate.size(); i++) {
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(arrayListcertificate.get(i)));
+            String extension = arrayListcertificate.get(i).substring(arrayListcertificate.get(i).lastIndexOf('.') + 1).trim();
+            request.setAllowedOverRoaming(false);
+            request.setTitle("Downloading Certificate");
+            request.setVisibleInDownloadsUi(true);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Certificate" + i + "." + extension);
+
+            refid = downloadManager.enqueue(request);
+        }
+
+
+        list.add(refid);
     }
 
 

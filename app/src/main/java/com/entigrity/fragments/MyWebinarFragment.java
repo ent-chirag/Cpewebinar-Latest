@@ -622,6 +622,7 @@ public class MyWebinarFragment extends Fragment {
                         if (binding.progressBar.getVisibility() == View.VISIBLE) {
                             binding.progressBar.setVisibility(View.GONE);
                         } else if (progressDialog.isShowing()) {
+                        } else if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
 

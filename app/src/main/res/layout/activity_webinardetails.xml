@@ -271,7 +271,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:orientation="horizontal"
                 android:layout_toLeftOf="@+id/ivshare"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:weightSum="2">
 
                 <com.entigrity.view.CustomButtonView
@@ -337,7 +337,7 @@
                 android:background="@drawable/squrebutton_webinar_status"
                 android:layout_centerInParent="true"
                 android:textColor="@color/White"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 android:layout_toLeftOf="@+id/ivshare">

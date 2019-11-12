@@ -1595,16 +1595,18 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else {
             // write your logic code if permission already granted
 
-            if (arrayListCertificate.size() > 0) {
-
-
-                DownloadCertificate(arrayListCertificate);
-
+            if(arrayListCertificate.size() == 1) {
+                Intent i = new Intent(context, PdfViewActivity.class);
+                i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
+                        get(0));
+                context.startActivity(i);
             } else {
-                Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                if (arrayListCertificate.size() > 0) {
+                    DownloadCertificate(arrayListCertificate);
+                } else {
+                    Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                }
             }
-
-
         }
 
 
@@ -1839,11 +1841,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 company_logo = webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getCompanyLogo();
                             }
 
-                            isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
+                            /*isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
 
                             if(!webinar_details.getPayload().getWebinarDetail().getRedirectionUrl().equalsIgnoreCase("")){
                                 strPaymentRedirectionURL = webinar_details.getPayload().getWebinarDetail().getRedirectionUrl();
-                            }
+                            }*/
 
 
                            /* if (!webinar_details.getPayload().getWebinarDetail().getWebinarTitle().equalsIgnoreCase("")) {
@@ -2339,18 +2341,19 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             checkPermission_Certificate();
         } else {
             // write your logic here
-            if (arrayListCertificate.size() > 0) {
-
-
-                DownloadCertificate(arrayListCertificate);
-
+            if(arrayListCertificate.size() == 1) {
+                Intent i = new Intent(context, PdfViewActivity.class);
+                i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
+                        get(0));
+                context.startActivity(i);
             } else {
-                Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                if (arrayListCertificate.size() > 0) {
+                    DownloadCertificate(arrayListCertificate);
+                } else {
+                    Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                }
             }
-
-
         }
-
     }
 
 
