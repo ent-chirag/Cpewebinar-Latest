@@ -177,17 +177,19 @@ public class MyWebinarFragment extends Fragment {
 
                     Constant.hideKeyboard(getActivity());
 
+                    if (!Constant.Trim(binding.edtSearch.getText().toString()).isEmpty()) {
 
-                    HomeAllFragment ldf = new HomeAllFragment();
-                    Bundle args = new Bundle();
-                    args.putString("actionsearch", Constant.Trim(binding.edtSearch.getText().toString()));
-                    args.putString(context.getResources().getString(R.string.str_premium_lable), "home");
-                    ldf.setArguments(args);
+                        HomeAllFragment ldf = new HomeAllFragment();
+                        Bundle args = new Bundle();
+                        args.putString("actionsearch", Constant.Trim(binding.edtSearch.getText().toString()));
+                        args.putString(context.getResources().getString(R.string.str_premium_lable), "home");
+                        ldf.setArguments(args);
+                        MainActivity.getInstance().SetImageBackground(2);
+                        getFragmentManager().beginTransaction().add(R.id.content_frame, ldf).commit();
 
-                    MainActivity.getInstance().SetImageBackground(2);
-
-//Inflate the fragment
-                    getFragmentManager().beginTransaction().add(R.id.content_frame, ldf).commit();
+                    } else {
+                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.str_val_search_text), Snackbar.LENGTH_SHORT).show();
+                    }
 
 
                 }
