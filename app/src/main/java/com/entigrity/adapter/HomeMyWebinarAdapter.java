@@ -444,7 +444,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(mContext, WebinarDetailsActivity.class);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                             .get(position).getId());
-                    i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                    i.putExtra(mContext.getResources().getString(R.string.screen_detail), 0);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                             .get(position).getWebinarType());
                     mContext.startActivity(i);

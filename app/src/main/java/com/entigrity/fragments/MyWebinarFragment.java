@@ -190,6 +190,8 @@ public class MyWebinarFragment extends Fragment {
                     } else {
                         Snackbar.make(binding.edtSearch, getResources().getString(R.string.str_val_search_text), Snackbar.LENGTH_SHORT).show();
                     }
+
+
                 }
                 return false;
             }

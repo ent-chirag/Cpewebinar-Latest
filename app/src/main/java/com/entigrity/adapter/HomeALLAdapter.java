@@ -420,9 +420,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
-
                         mContext.startActivity(i);
-                        ((Activity) mContext).finish();
+                      // ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }
@@ -843,7 +842,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                     .get(position).getWebinarType());
 
                             mContext.startActivity(i);
-                            ((Activity) mContext).finish();
+                           // ((Activity) mContext).finish();
 
 
                         } else {

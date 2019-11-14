@@ -444,8 +444,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     } else if (screen_details == 1) {
-                        Intent i = new Intent(context, MainActivity.class);
-                        startActivity(i);
+                     /*   Intent i = new Intent(context, MainActivity.class);
+                        startActivity(i);*/
                         finish();
                     } else if (screen_details == 2) {
                         Constant.isdataupdate = true;
@@ -1768,8 +1768,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             } else if (screen_details == 1) {
-                Intent i = new Intent(context, MainActivity.class);
-                startActivity(i);
+               /* Intent i = new Intent(context, MainActivity.class);
+                startActivity(i);*/
                 finish();
             } else if (screen_details == 2) {
                 Constant.isdataupdate = true;
@@ -1877,6 +1877,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             videostatus = webinar_details.getPayload().getWebinarDetail().isVideoStatus();
+                            if(videostatus){
+                                binding.relWatchedDuration.setVisibility(View.VISIBLE);
+                                binding.tvWatchedduration.setText("You have completed watching video.");
+                            }
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCourseId().equalsIgnoreCase("")) {
