@@ -32,7 +32,9 @@ import android.widget.Toast;
 import com.entigrity.R;
 import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
-import com.entigrity.model.My_Credit.MyCreditsItem;
+//import com.entigrity.model.My_Credit.MyCreditsItem;
+import com.entigrity.fragments.MyCreditsFragment;
+import com.entigrity.model.MyCreditNew.MyCreditsItem;
 import com.entigrity.utility.Constant;
 
 import java.io.BufferedInputStream;
@@ -478,7 +480,13 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
                 mContext.startActivity(i);
             } else {
                 if (arrayListcertificate.size() > 0) {
-                    DownloadCertificate(arrayListcertificate);
+//                    DownloadCertificate(arrayListcertificate);
+
+                    // Previously if we have multiple certificates there then we are just download the all certificates..
+                    // Now we have to show the popup here with the multiple options for the certificates..
+
+                    MyCreditsFragment.getInstance().displayCertificateDialog();
+
                 } else {
                     Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
                 }
