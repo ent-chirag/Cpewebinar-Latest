@@ -2,6 +2,7 @@ package com.entigrity.adapter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -10,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -18,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,8 +36,10 @@ import android.widget.Toast;
 import com.entigrity.R;
 import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
-import com.entigrity.model.My_Credit.MyCreditsItem;
+import com.entigrity.model.My_Credit_New.MyCertificateLinksItem;
+import com.entigrity.model.My_Credit_New.MyCreditsItem;
 import com.entigrity.utility.Constant;
+import com.entigrity.view.SimpleDividerItemDecoration;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -59,6 +65,11 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     DownloadTask downloadTask;
     //  public String certificate_link = "";
     private DownloadManager downloadManager;
+    public Dialog dialogCertificate;
+    public CertificatesListPopUpAdapter certificatesListPopUpAdapter;
+    LinearLayoutManager linearLayoutManager;
+
+
     private long refid;
     ArrayList<Long> list = new ArrayList<>();
 
@@ -68,6 +79,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         this.mList = mList;
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+        dialogCertificate = new Dialog(mContext);
 
         mContext.registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -118,55 +130,13 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
 
         if (viewHolder instanceof ViewHolder) {
 
-            Constant.Log("size", "" + mList.size());
-
-
-           /* if (mList.get(position).getCertificateLink().size() != 0) {
-                // ((ViewHolder) viewHolder).btn_certification_download.setVisibility(View.VISIBLE);
-                ((ViewHolder) viewHolder).tv_webinar_status.setVisibility(View.GONE);
-                // ((ViewHolder) viewHolder).btn_certification_download.setText(mList.get(position).getWebinarStatus());
-            } else {
-                ((ViewHolder) viewHolder).tv_webinar_status.setVisibility(View.VISIBLE);
-                ((ViewHolder) viewHolder).btn_certification_download.setVisibility(View.GONE);
-            }*/
-
-          /*  if (!mList.get(position).getCertificateLink().equalsIgnoreCase("")) {
-                certificate_link = mList.get(position).getCertificateLink();
-            }*/
-
 
             ((ViewHolder) viewHolder).btn_certification_download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    checkAndroidVersion(mList.get(position).getCertificateLink());
+                    displayCertificateDialog(mList.get(position).getMyCertificateLinks());
                 }
             });
-
-            /*((ViewHolder) viewHolder).tv_webinar_status.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (mList.get(position).getWebinarStatus().equalsIgnoreCase(mContext.getResources().getString(R.string.str_webinar_status_enroll))) {
-                        String url = mList.get(position).getJoinUrl();
-                        if (!url.equalsIgnoreCase("")) {
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            mContext.startActivity(i);
-                        } else {
-                            Constant.toast(mContext, mContext.getResources().getString(R.string.str_joinlink_not_avilable));
-                        }
-                    } else if (mList.get(position).getWebinarStatus().equalsIgnoreCase(mContext.getResources().getString(R.string.str_webinar_status_in_progress))) {
-                        String url = mList.get(position).getJoinUrl();
-                        if (!url.equalsIgnoreCase("")) {
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            mContext.startActivity(i);
-                        }
-                    }
-
-
-                }
-            });*/
 
 
             if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
@@ -242,6 +212,41 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     @Override
     public int getItemViewType(int position) {
         return (position == mList.size() - 1 && isLoadingAdded) ? VIEW_ITEM : VIEW_PROG;
+    }
+
+
+    public void displayCertificateDialog(List<MyCertificateLinksItem> mycertificate) {
+
+        dialogCertificate.setContentView(R.layout.popup_certificates);
+        dialogCertificate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        TextView tv_submit = (TextView) dialogCertificate.findViewById(R.id.tv_submit);
+        TextView tv_cancel = (TextView) dialogCertificate.findViewById(R.id.tv_cancel);
+        RecyclerView rv_professional_credential = (RecyclerView) dialogCertificate.findViewById(R.id.rv_certificate);
+
+        linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+
+
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCertificate.isShowing()) {
+                    dialogCertificate.dismiss();
+                }
+            }
+        });
+
+        dialogCertificate.show();
+
+        if (mycertificate.size() > 0) {
+            certificatesListPopUpAdapter = new CertificatesListPopUpAdapter(mContext, mycertificate);
+            rv_professional_credential.setAdapter(certificatesListPopUpAdapter);
+        }
     }
 
 

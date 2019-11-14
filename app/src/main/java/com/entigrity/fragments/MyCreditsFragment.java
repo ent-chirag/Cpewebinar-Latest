@@ -25,8 +25,8 @@ import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.adapter.MyCreditAdapter;
 import com.entigrity.databinding.FragmentMycreditBinding;
-import com.entigrity.model.My_Credit.MyCreditsItem;
-import com.entigrity.model.My_Credit.My_Credit;
+import com.entigrity.model.My_Credit_New.Model_My_Credit_New;
+import com.entigrity.model.My_Credit_New.MyCreditsItem;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
@@ -52,7 +52,7 @@ public class MyCreditsFragment extends Fragment {
     public int filter_type = 0;
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
-    private List<MyCreditsItem> mlistmycredit = new ArrayList<MyCreditsItem>();
+    private List<MyCreditsItem> mlistmycredit = new ArrayList<>();
     public int start = 0, limit = 10;
     private boolean loading = true;
     public boolean islast = false;
@@ -284,7 +284,7 @@ public class MyCreditsFragment extends Fragment {
     }
 
 
-    private void GetMyCredit(final int start, final int limit) {
+    /*private void GetMyCredit(final int start, final int limit) {
 
 
         mAPIService.GetMyCredit(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), filter_type
@@ -380,6 +380,138 @@ public class MyCreditsFragment extends Fragment {
                             }
 
 
+                            *//*if (!myCredit.getPayload().get(0).getFullName().equalsIgnoreCase("")) {
+                                binding.tvUsername.setText(myCredit.getPayload().get(0).getFullName());
+                            }
+                            if (!myCredit.getPayload().get(0).getEmail().equalsIgnoreCase("")) {
+                                binding.tvUseremailid.setText(myCredit.getPayload().get(0).getEmail());
+                            }
+*//*
+
+
+                            if (mlistmycredit.size() > 0) {
+                                binding.swipeRefreshLayout.setVisibility(View.VISIBLE);
+                                binding.tvNodatafound.setVisibility(View.GONE);
+                            } else {
+                                binding.tvNodatafound.setVisibility(View.VISIBLE);
+                                binding.swipeRefreshLayout.setVisibility(View.GONE);
+                            }
+
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayout.isRefreshing()) {
+                                    binding.swipeRefreshLayout.setRefreshing(false);
+                                }
+                            }
+                            Snackbar.make(binding.ivnotification, myCredit.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                });
+
+    }*/
+
+
+    private void GetMyCredit(final int start, final int limit) {
+
+
+        mAPIService.GetMyCredit(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
+                 start, limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Model_My_Credit_New>() {
+                    @Override
+                    public void onCompleted() {
+
+                        if (binding.progressBar.getVisibility() == View.VISIBLE) {
+                            binding.progressBar.setVisibility(View.GONE);
+                        }
+
+
+                        loading = true;
+                        if (start == 0 && limit == 10) {
+                            if (mlistmycredit.size() > 0) {
+                                adapter = new MyCreditAdapter(context, mlistmycredit);
+                                binding.recyclerviewMycredit.setAdapter(adapter);
+                            }
+                        } else {
+                            adapter.addLoadingFooter();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+
+                        if (start == 0 && limit == 10) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        } else {
+                            if (binding.progressBar.getVisibility() == View.VISIBLE) {
+                                binding.progressBar.setVisibility(View.GONE);
+                            }
+                        }
+
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivnotification, message, Snackbar.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onNext(Model_My_Credit_New model_my_credit_new) {
+
+                        if (model_my_credit_new.isSuccess() == true) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayout.isRefreshing()) {
+                                    binding.swipeRefreshLayout.setRefreshing(false);
+                                }
+                            }
+
+
+                            if (start == 0 && limit == 10) {
+                                if (mlistmycredit.size() > 0) {
+                                    mlistmycredit.clear();
+                                }
+                            }
+
+                            islast = model_my_credit_new.getPayload().get(0).isIsLast();
+
+                            if (start == 0 && limit == 10) {
+                                for (int i = 0; i < model_my_credit_new.getPayload().size(); i++) {
+                                    mlistmycredit = model_my_credit_new.getPayload().get(i).getMyCredits();
+                                }
+                            } else {
+
+                                if (mlistmycredit.size() > 20) {
+                                    mlistmycredit.remove(mlistmycredit.size() - 1);
+                                }
+
+
+                                List<MyCreditsItem> webinaritems = new ArrayList<>();
+                                for (int i = 0; i < model_my_credit_new.getPayload().size(); i++) {
+                                    webinaritems = model_my_credit_new.getPayload().get(i).getMyCredits();
+                                }
+
+
+                                adapter.addAll(webinaritems);
+
+
+                            }
+
+
                             /*if (!myCredit.getPayload().get(0).getFullName().equalsIgnoreCase("")) {
                                 binding.tvUsername.setText(myCredit.getPayload().get(0).getFullName());
                             }
@@ -406,7 +538,7 @@ public class MyCreditsFragment extends Fragment {
                                     binding.swipeRefreshLayout.setRefreshing(false);
                                 }
                             }
-                            Snackbar.make(binding.ivnotification, myCredit.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.ivnotification, model_my_credit_new.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 

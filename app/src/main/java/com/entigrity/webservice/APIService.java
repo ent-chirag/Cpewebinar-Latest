@@ -4,6 +4,7 @@ import com.entigrity.model.EmailValidation.emailvalidationmodel;
 import com.entigrity.model.Instructorlist_details.Instructor_Details_Model;
 import com.entigrity.model.Job_title.ModelJobTitle;
 import com.entigrity.model.My_Credit.My_Credit;
+import com.entigrity.model.My_Credit_New.Model_My_Credit_New;
 import com.entigrity.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.entigrity.model.changepassword.ChangePasswordModel;
 import com.entigrity.model.city.CityModel;
@@ -635,12 +636,22 @@ public interface APIService {
 
 
     //my credit API
-    @POST("my-credits")
+  /*  @POST("my-credits")
     @FormUrlEncoded
     Observable<My_Credit> GetMyCredit(
             @Header("Accept") String accept,
             @Header("Authorization") String authorization,
             @Field("filter_type") int filter_type,
+            @Field("start") int start,
+            @Field("limit") int limit
+    );*/
+
+    @POST("test")
+    @FormUrlEncoded
+    Observable<Model_My_Credit_New> GetMyCredit(
+            @Header("Accept") String accept,
+            @Header("Authorization") String authorization,
+            /*@Field("filter_type") int filter_type,*/
             @Field("start") int start,
             @Field("limit") int limit
     );
