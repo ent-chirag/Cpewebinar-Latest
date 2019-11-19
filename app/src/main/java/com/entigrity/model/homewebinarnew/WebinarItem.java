@@ -167,6 +167,9 @@ public class WebinarItem {
     @SerializedName("is_card_save")
     private boolean isCardSave;
 
+    @SerializedName("is_reviewed")
+    private boolean isReviewed;
+
     @SerializedName("redirection_url")
     private String redirectionUrl;
 
@@ -350,6 +353,14 @@ public class WebinarItem {
 
     public String getStatus() {
         return status;
+    }
+
+    public boolean isReviewed() {
+        return isReviewed;
+    }
+
+    public void setReviewed(boolean reviewed) {
+        isReviewed = reviewed;
     }
 
     @Override
