@@ -13,6 +13,17 @@ public class Data {
     @SerializedName("industry_id")
     private int industryId;
 
+    @SerializedName("ctec_id")
+    private String ctecid;
+
+    public String getCtecid() {
+        return ctecid;
+    }
+
+    public void setCtecid(String ctecid) {
+        this.ctecid = ctecid;
+    }
+
     @SerializedName("education")
     private List<EducationItem> education;
 
@@ -347,6 +358,7 @@ public class Data {
                         ",designation = '" + designation + '\'' +
                         ",country_id = '" + countryId + '\'' +
                         ",city_id = '" + cityId + '\'' +
+                        ",ctecid = '" + ctecid + '\'' +
                         "}";
     }
 }

@@ -69,7 +69,8 @@ public class AccountFragment extends Fragment {
     public ImageView ivclose;
     public EditText edt_subject, edt_review;
     public Button btn_submit;
-    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", country = "", ptin_number = "", phone_number = "";
+    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", country = "", ptin_number = "", phone_number = "",
+            ctec_id = "";
     public int country_id = 0, state_id = 0, city_id = 0, jobtitle_id = 0, industry_id = 0;
     public String job_titile = "", industry = "";
     public ArrayList<modelViewProfileProfesional> professionalcredential = new
@@ -240,7 +241,11 @@ public class AccountFragment extends Fragment {
                             if (viewProfileModel.getPayload().getData().getFirstName() != null
                                     && !viewProfileModel.getPayload().getData().getFirstName().equalsIgnoreCase("")) {
                                 firstname = viewProfileModel.getPayload().getData().getFirstName();
+                            }
 
+                            if (viewProfileModel.getPayload().getData().getCtecid() != null
+                                    && !viewProfileModel.getPayload().getData().getCtecid().equalsIgnoreCase("")) {
+                                ctec_id = viewProfileModel.getPayload().getData().getCtecid();
                             }
 
                             if (!viewProfileModel.getPayload().getData().getProfilePicture().equalsIgnoreCase("")
@@ -637,6 +642,7 @@ public class AccountFragment extends Fragment {
     public void navigateeditprofile() {
         Intent i = new Intent(context, EditProfileActivity.class);
         i.putExtra(getResources().getString(R.string.pass_fname), firstname);
+        i.putExtra(getResources().getString(R.string.pass_ctek_number), ctec_id);
         i.putExtra(getResources().getString(R.string.pass_lname), lastname);
         i.putExtra(getResources().getString(R.string.pass_email), email);
         i.putExtra(getResources().getString(R.string.pass_firm_name), firmname);
@@ -652,7 +658,6 @@ public class AccountFragment extends Fragment {
         i.putExtra(getResources().getString(R.string.pass_city_text), city);
         i.putExtra(getResources().getString(R.string.pass_zipcode), zipcode);
         i.putExtra(getResources().getString(R.string.pass_who_you_are), professionalcredential.get(0).getId());
-
         startActivity(i);
     }
 

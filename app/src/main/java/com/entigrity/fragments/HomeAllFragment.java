@@ -29,8 +29,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.entigrity.MainActivity;
@@ -110,6 +112,7 @@ public class HomeAllFragment extends Fragment {
     Bundle bundle;
 
     View view;
+    public Dialog myDialogaddreview;
 
     @Nullable
     @Override
@@ -136,23 +139,68 @@ public class HomeAllFragment extends Fragment {
 
                 binding.btnPremium.setVisibility(View.GONE);
                 binding.btnFree.setVisibility(View.GONE);
-                price_filter = "1";
+                Constant.price_filter = "1";
+                Constant.date_filter = "";
+                Constant.search = "";
+                Constant.webinartype = "live";
 
             } else {
-
                 binding.btnPremium.setVisibility(View.VISIBLE);
                 binding.btnFree.setVisibility(View.VISIBLE);
-                price_filter = "";
             }
 
         }
 
 
-        binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
-        binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+        if (!Constant.search.equalsIgnoreCase("")) {
+            binding.edtSearch.setText(Constant.search);
+        }
 
-        binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
-        binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
+        Constant.search = Constant.Trim(binding.edtSearch.getText().toString());
+
+
+        if (Constant.webinartype.equalsIgnoreCase("live")) {
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
+
+        } else if (Constant.webinartype.equalsIgnoreCase("self_study")) {
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.White));
+        }
+
+
+        if (Constant.price_filter.equalsIgnoreCase("0")) {
+            binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnFree.setTextColor(getResources().getColor(R.color.White));
+
+        } else if (Constant.price_filter.equalsIgnoreCase("1")) {
+            binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
+
+
+        } else if (Constant.price_filter.equalsIgnoreCase("0,1") ||
+                Constant.price_filter.equalsIgnoreCase("1,0")) {
+            binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnFree.setTextColor(getResources().getColor(R.color.White));
+
+            binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
+        }
+
+        if (!Constant.date_filter.equalsIgnoreCase("")) {
+            binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnDate.setTextColor(getResources().getColor(R.color.White));
+
+        } else {
+            binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+        }
 
 
         //for animation
@@ -197,7 +245,7 @@ public class HomeAllFragment extends Fragment {
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            GetHomeListNewIntial(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+            GetHomeListNewIntial(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -209,7 +257,6 @@ public class HomeAllFragment extends Fragment {
                 if (!AppSettings.get_login_token(context).isEmpty()) {
                     Intent i = new Intent(getActivity(), NotificationActivity.class);
                     startActivity(i);
-
                 } else {
                     MainActivity.getInstance().ShowPopUp();
                 }
@@ -222,6 +269,7 @@ public class HomeAllFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ShowTopicsPopup();
+
             }
         });
 
@@ -232,7 +280,7 @@ public class HomeAllFragment extends Fragment {
                 limit = 10;
                 loading = true;
 
-                webinartype = "live";
+                Constant.webinartype = "live";
 
                 binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
                 binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
@@ -243,7 +291,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -260,7 +308,7 @@ public class HomeAllFragment extends Fragment {
                 loading = true;
 
 
-                webinartype = "self_study";
+                Constant.webinartype = "self_study";
 
                 binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
                 binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
@@ -271,7 +319,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -298,11 +346,11 @@ public class HomeAllFragment extends Fragment {
                     arraypricefilter.set(1, "0");
 
 
-                    price_filter = android.text.TextUtils.join(",", arraypricefilter);
+                    Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                     if (arraypricefilter.get(0).equalsIgnoreCase("")) {
-                        price_filter = price_filter.replaceAll(",", "");
+                        Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                     }
 
 
@@ -320,21 +368,21 @@ public class HomeAllFragment extends Fragment {
                             arraysavefilter.get(1).equalsIgnoreCase("")
                     ) {
 
-                        webinartype = "live";
+                        Constant.webinartype = "live";
 
-                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
+                        Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                         if (arraypricefilter.get(1).equalsIgnoreCase("")) {
-                            price_filter = price_filter.replaceAll(",", "");
+                            Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                         }
                     } else {
 
-                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
+                        Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                         if (arraypricefilter.get(1).equalsIgnoreCase("")) {
-                            price_filter = price_filter.replaceAll(",", "");
+                            Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                         }
 
                     }
@@ -344,11 +392,11 @@ public class HomeAllFragment extends Fragment {
                     binding.btnFree.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
-                Constant.Log("price_filter", "price_filter" + price_filter);
+                Constant.Log("price_filter", "price_filter" + Constant.price_filter);
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -373,12 +421,11 @@ public class HomeAllFragment extends Fragment {
                     arraypricefilter.set(0, "1");
 
 
-                    price_filter = android.text.TextUtils.join(",", arraypricefilter);
-
+                    Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                     if (arraypricefilter.get(1).equalsIgnoreCase("")) {
-                        price_filter = price_filter.replaceAll(",", "");
+                        Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                     }
 
                     binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
@@ -393,24 +440,22 @@ public class HomeAllFragment extends Fragment {
                     if (arraysavefilter.get(0).equalsIgnoreCase("") &&
                             arraysavefilter.get(1).equalsIgnoreCase("")
                     ) {
-                        webinartype = "live";
+                        Constant.webinartype = "live";
 
-                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
-
+                        Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                         if (arraypricefilter.get(0).equalsIgnoreCase("")) {
-                            price_filter = price_filter.replaceAll(",", "");
+                            Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                         }
 
                     } else {
 
-                        price_filter = android.text.TextUtils.join(",", arraypricefilter);
-
+                        Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
 
                         if (arraypricefilter.get(0).equalsIgnoreCase("")) {
-                            price_filter = price_filter.replaceAll(",", "");
+                            Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                         }
                     }
 
@@ -419,11 +464,11 @@ public class HomeAllFragment extends Fragment {
                     binding.btnPremium.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
-                Constant.Log("price_filter", "price_filter" + price_filter);
+                Constant.Log("price_filter", "price_filter" + Constant.price_filter);
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -456,8 +501,6 @@ public class HomeAllFragment extends Fragment {
                         }
                     }
                 }
-
-
             }
         });
 
@@ -545,9 +588,11 @@ public class HomeAllFragment extends Fragment {
                 if (s.length() == 0) {
                     Constant.hideKeyboard((Activity) context);
 
+                    Constant.search = "";
+
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                        GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                     } else {
                         Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -568,9 +613,10 @@ public class HomeAllFragment extends Fragment {
                     Constant.hideKeyboard((Activity) context);
 
                     if (!Constant.Trim(binding.edtSearch.getText().toString()).isEmpty()) {
+                        Constant.search = binding.edtSearch.getText().toString();
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                            GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                         } else {
                             Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
@@ -678,7 +724,7 @@ public class HomeAllFragment extends Fragment {
         cb_date_this_month = (CheckBox) myDialog_datefilter.findViewById(R.id.cb_date_this_month);
 
 
-        if (!arraylistHomeDateFilter.get(0).equalsIgnoreCase("")) {
+       /* if (!arraylistHomeDateFilter.get(0).equalsIgnoreCase("")) {
             cb_date_today.setChecked(true);
         } else {
             cb_date_today.setChecked(false);
@@ -689,14 +735,36 @@ public class HomeAllFragment extends Fragment {
         } else {
             cb_date_tommorow.setChecked(false);
         }
+*/
 
-        if (date_filter.equalsIgnoreCase("3")) {
+
+        if (Constant.date_filter.equalsIgnoreCase("1")) {
+            cb_date_today.setChecked(true);
+        } else {
+            cb_date_today.setChecked(false);
+        }
+
+        if (Constant.date_filter.equalsIgnoreCase("2")) {
+            cb_date_tommorow.setChecked(true);
+        } else {
+            cb_date_tommorow.setChecked(false);
+        }
+
+
+        if (Constant.date_filter.equalsIgnoreCase("1,2")
+                || Constant.date_filter.equalsIgnoreCase("2,1")) {
+            cb_date_today.setChecked(true);
+            cb_date_tommorow.setChecked(true);
+        }
+
+
+        if (Constant.date_filter.equalsIgnoreCase("3")) {
             cb_date_this_week.setChecked(true);
         } else {
             cb_date_this_week.setChecked(false);
         }
 
-        if (date_filter.equalsIgnoreCase("4")) {
+        if (Constant.date_filter.equalsIgnoreCase("4")) {
             cb_date_this_month.setChecked(true);
         } else {
             cb_date_this_month.setChecked(false);
@@ -717,24 +785,23 @@ public class HomeAllFragment extends Fragment {
                         arraylistHomeDateFilter.set(0, "1");
 
 
-                        date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-
+                        Constant.date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
 
 
                         if (arraylistHomeDateFilter.get(1).equalsIgnoreCase("")) {
-                            date_filter = date_filter.replaceAll(",", "");
+                            Constant.date_filter = Constant.date_filter.replaceAll(",", "");
                         }
 
 
                     } else {
                         arraylistHomeDateFilter.set(0, "");
 
-                        date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-                        System.out.println(date_filter);
+                        Constant.date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
+                        System.out.println(Constant.date_filter);
 
 
                         if (arraylistHomeDateFilter.get(0).equalsIgnoreCase("")) {
-                            date_filter = date_filter.replaceAll(",", "");
+                            Constant.date_filter = Constant.date_filter.replaceAll(",", "");
                         }
 
                     }
@@ -759,24 +826,22 @@ public class HomeAllFragment extends Fragment {
                         arraylistHomeDateFilter.set(1, "2");
 
 
-                        date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-
+                        Constant.date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
 
 
                         if (arraylistHomeDateFilter.get(0).equalsIgnoreCase("")) {
-                            date_filter = date_filter.replaceAll(",", "");
+                            Constant.date_filter = Constant.date_filter.replaceAll(",", "");
                         }
 
 
                     } else {
                         arraylistHomeDateFilter.set(1, "");
 
-                        date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
-
+                        Constant.date_filter = android.text.TextUtils.join(",", arraylistHomeDateFilter);
 
 
                         if (arraylistHomeDateFilter.get(1).equalsIgnoreCase("")) {
-                            date_filter = date_filter.replaceAll(",", "");
+                            Constant.date_filter = Constant.date_filter.replaceAll(",", "");
                         }
                     }
 
@@ -796,12 +861,12 @@ public class HomeAllFragment extends Fragment {
                         cb_date_tommorow.setChecked(false);
                         cb_date_this_month.setChecked(false);
 
-                        date_filter = "3";
+                        Constant.date_filter = "3";
 
 
                     } else {
 
-                        date_filter = "";
+                        Constant.date_filter = "";
                     }
 
                 }
@@ -819,12 +884,12 @@ public class HomeAllFragment extends Fragment {
                         cb_date_tommorow.setChecked(false);
                         cb_date_this_week.setChecked(false);
 
-                        date_filter = "4";
+                        Constant.date_filter = "4";
 
 
                     } else {
 
-                        date_filter = "";
+                        Constant.date_filter = "";
                     }
 
                 }
@@ -848,7 +913,7 @@ public class HomeAllFragment extends Fragment {
                 arraylistHomeDateFilter.set(1, "");
 
 
-                date_filter = "";
+                Constant.date_filter = "";
 
                 start = 0;
                 limit = 10;
@@ -856,7 +921,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -884,7 +949,7 @@ public class HomeAllFragment extends Fragment {
                         cb_date_tommorow.isChecked() == false && cb_date_this_week.isChecked() == false
                         && cb_date_this_month.isChecked() == false) {
 
-                    date_filter = "";
+                    Constant.date_filter = "";
                     binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
                     binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
@@ -894,12 +959,12 @@ public class HomeAllFragment extends Fragment {
                 }
 
 
-                Constant.Log("date_filter", "date_filter" + date_filter);
+                Constant.Log("date_filter", "date_filter" + Constant.date_filter);
 
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -915,8 +980,6 @@ public class HomeAllFragment extends Fragment {
 
 
     public void ShowTopicsPopup() {
-
-
         myDialog_topics.setContentView(R.layout.popup_professional_credential);
         myDialog_topics.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -965,8 +1028,6 @@ public class HomeAllFragment extends Fragment {
                     SubjectAreaFilter = commaSepValueBuilder.toString();
 
 
-
-
                 } else {
                     SubjectAreaFilter = "";
                 }
@@ -982,7 +1043,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -1015,7 +1076,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -1109,7 +1170,7 @@ public class HomeAllFragment extends Fragment {
 
             if (Constant.isNetworkAvailable(context)) {
                 progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+                GetHomeListNew(webinartype, SubjectAreaFilter, Constant.search, price_filter, date_filter, "", start, limit);
             } else {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -1123,7 +1184,7 @@ public class HomeAllFragment extends Fragment {
     private void loadNextPage() {
         if (Constant.isNetworkAvailable(context)) {
             binding.progressBar.setVisibility(View.VISIBLE);
-            GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
         } else {
             Snackbar.make(binding.rvhome, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -1140,10 +1201,9 @@ public class HomeAllFragment extends Fragment {
         loading = true;
         checkmywebinardotstatusset = true;
 
-        Constant.Log("date_filter", "date_filter" + date_filter);
 
         if (Constant.isNetworkAvailable(context)) {
-            GetHomeListNew(webinartype, SubjectAreaFilter, Constant.Trim(binding.edtSearch.getText().toString().trim()), price_filter, date_filter, "", start, limit);
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -1227,7 +1287,6 @@ public class HomeAllFragment extends Fragment {
 
 
                             islast = webinar_home_new.getPayload().isIsLast();
-
 
 
                             if (start == 0 && limit == 10) {

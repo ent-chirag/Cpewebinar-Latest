@@ -14,8 +14,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -35,6 +38,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +48,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,16 +56,19 @@ import android.widget.Toast;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
+import com.entigrity.adapter.CertificatesListWebinarDetailsPopUpAdapter;
 import com.entigrity.databinding.ActivityWebinardetailsBinding;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.timezones;
 import com.entigrity.model.video_duration.Video_duration_model;
+import com.entigrity.model.webinar_details_new.MyCertificateLinksItem;
 import com.entigrity.model.webinar_details_new.WebinarTestimonialItem;
 import com.entigrity.model.webinar_details_new.Webinar_details;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
+import com.entigrity.view.SimpleDividerItemDecoration;
 import com.entigrity.webinarDetail.CompanyFragment;
 import com.entigrity.webinarDetail.DescriptionFragment;
 import com.entigrity.webinarDetail.DetailsFragment;
@@ -133,7 +140,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String whyshouldattend = "";
 
 
-    private String webinar_share_link = "";
+    public String webinar_share_link = "", ctec_course_id = "";
     private String is_favorite = "";
     ProgressDialog mProgressDialog;
     LayoutInflater inflater_new;
@@ -141,6 +148,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private static final String SEEK_POSITION_KEY = "SEEK_POSITION_KEY";
     public ArrayList<String> arrayListhandout = new ArrayList<>();
     public ArrayList<String> arrayListCertificate = new ArrayList<>();
+
+    public List<MyCertificateLinksItem> arraylistmycertificate = new ArrayList<>();
+
+    public Dialog dialogCertificate;
+    public CertificatesListWebinarDetailsPopUpAdapter certificatesListPopUpAdapter;
+    LinearLayoutManager linearLayoutManager;
+
     private String VIDEO_URL = "";
 
     // private String VIDEO_URL = "https://my-cpe.com/uploads/webinar_video/united-states-taxation-of-foreign-real-estate-Investors.mp4";
@@ -244,6 +258,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String ea_address = "";
     public String ea_description = "";
     public String ea_profile_pic = "";
+
+
+    public String ctec_address = "";
+    public String ctec_description = "";
+    public String ctec_profile_pic = "";
+
     public List<WebinarTestimonialItem> webinartestimonial = new ArrayList<WebinarTestimonialItem>();
 
 
@@ -259,6 +279,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private boolean isAnswered = false;
 
 
+    public String published_date = "";
+    public String recorded_date = "";
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,6 +290,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webinardetails);
         context = WebinarDetailsActivity.this;
         instance = WebinarDetailsActivity.this;
+        dialogCertificate = new Dialog(context);
         mAPIService = ApiUtilsNew.getAPIService();
         inflater_new = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -443,8 +468,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     } else if (screen_details == 1) {
-                     /*   Intent i = new Intent(context, MainActivity.class);
-                        startActivity(i);*/
+                        Intent i = new Intent(context, MainActivity.class);
+                        startActivity(i);
                         finish();
                     } else if (screen_details == 2) {
                         Constant.isdataupdate = true;
@@ -456,6 +481,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     } else if (screen_details == 4) {
                         Intent i = new Intent(context, ActivityFavorite.class);
                         startActivity(i);
+                        finish();
+                    } else if (screen_details == 5) {
                         finish();
                     }
 
@@ -705,7 +732,23 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 }
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
-                checkAndroidVersionCertificate();
+                //checkAndroidVersionCertificate();
+
+                if (arraylistmycertificate.size() == 0) {
+                    Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                } else {
+                    if (arraylistmycertificate.size() == 1) {
+                        Intent i = new Intent(context, PdfViewActivity.class);
+                        i.putExtra(context.getResources().getString(R.string.str_document_link),
+                                arraylistmycertificate.get(0).getCertificateLink());
+                        context.startActivity(i);
+                    } else {
+                        displayCertificateDialog(arraylistmycertificate);
+                    }
+
+                }
+
+
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_pending_evoluation))) {
                 Intent i = new Intent(context, ActivityEvolutionForm.class);
@@ -748,7 +791,18 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 }
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
-                checkAndroidVersionCertificate();
+                // checkAndroidVersionCertificate();
+
+                if (arraylistmycertificate.size() == 1) {
+                    Intent i = new Intent(context, PdfViewActivity.class);
+                    i.putExtra(context.getResources().getString(R.string.str_document_link),
+                            arraylistmycertificate.get(0).getCertificateLink());
+                    context.startActivity(i);
+                } else {
+                    displayCertificateDialog(arraylistmycertificate);
+                }
+
+
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_quiz_pending))) {
                 Intent i = new Intent(context, ActivityFinalQuiz.class);
@@ -771,6 +825,41 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
         }
+
+    }
+
+    private void displayCertificateDialog(List<MyCertificateLinksItem> arraylistmycertificate) {
+
+
+        dialogCertificate.setContentView(R.layout.popup_certificates);
+        dialogCertificate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        TextView tv_submit = (TextView) dialogCertificate.findViewById(R.id.tv_submit);
+        TextView tv_cancel = (TextView) dialogCertificate.findViewById(R.id.tv_cancel);
+        RecyclerView rv_professional_credential = (RecyclerView) dialogCertificate.findViewById(R.id.rv_certificate);
+
+        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(context));
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCertificate.isShowing()) {
+                    dialogCertificate.dismiss();
+                }
+            }
+        });
+
+        dialogCertificate.show();
+
+        if (arraylistmycertificate.size() > 0) {
+            certificatesListPopUpAdapter = new CertificatesListWebinarDetailsPopUpAdapter(context, arraylistmycertificate);
+            rv_professional_credential.setAdapter(certificatesListPopUpAdapter);
+        }
+
 
     }
 
@@ -923,7 +1012,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     }
 
     private void closeFullscreenDialog() {
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
         ((FrameLayout) findViewById(R.id.video_layout)).addView(mExoPlayerView);
         mExoPlayerFullscreen = false;
@@ -933,6 +1022,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
     private void openFullscreenDialog() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
         mFullScreenDialog.addContentView(mExoPlayerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mFullScreenIcon.setImageDrawable(ContextCompat.getDrawable(WebinarDetailsActivity.this, R.drawable.ic_fullscreen_skrink));
@@ -994,7 +1084,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = false;
-//                    exoPlayer.setPlayWhenReady(true);
+                    exoPlayer.setPlayWhenReady(true);
 
 
                     Log.e("exo_play", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1765,8 +1855,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             } else if (screen_details == 1) {
-               /* Intent i = new Intent(context, MainActivity.class);
-                startActivity(i);*/
+                Intent i = new Intent(context, MainActivity.class);
+                startActivity(i);
                 finish();
             } else if (screen_details == 2) {
                 Constant.isdataupdate = true;
@@ -1778,6 +1868,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             } else if (screen_details == 4) {
                 Intent i = new Intent(context, ActivityFavorite.class);
                 startActivity(i);
+                finish();
+            } else if (screen_details == 5) {
                 finish();
             }
         }
@@ -1827,6 +1919,15 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (!webinar_details.getPayload().getWebinarDetail().getOverviewoftopic().equalsIgnoreCase("")) {
                                 overviewoftopic = webinar_details.getPayload().getWebinarDetail().getOverviewoftopic();
+                            }
+
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getPublisheddate().equalsIgnoreCase("")) {
+                                published_date = webinar_details.getPayload().getWebinarDetail().getPublisheddate();
+                            }
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getRecordeddate().equalsIgnoreCase("")) {
+                                recorded_date = webinar_details.getPayload().getWebinarDetail().getRecordeddate();
                             }
 
 
@@ -1947,8 +2048,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                         timezoneselection = k;
                                         Constant.Log("selection", "selection" + timezoneselection);
                                     }
-
-
                                 }
 
 
@@ -2159,9 +2258,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (!webinar_details.getPayload().getWebinarDetail().getStatus().equalsIgnoreCase("")) {
                                 if (webinar_details.getPayload().getWebinarDetail().getStatus().equalsIgnoreCase(getResources()
                                         .getString(R.string.str_webinar_status_register))) {
-                                    binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
+                                    // binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
+                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_home);
                                 } else {
-                                    binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
+                                    //binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
+                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
                                 }
 
 
@@ -2220,8 +2321,27 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
 
+                            if (!webinar_details.getPayload().getWebinarDetail().getCtecApproved().getAddress().equalsIgnoreCase("")) {
+                                ctec_address = webinar_details.getPayload().getWebinarDetail().getCtecApproved().getAddress();
+                            }
+
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getCtecApproved().getCtecdesc().equalsIgnoreCase("")) {
+                                ctec_description = webinar_details.getPayload().getWebinarDetail().getCtecApproved().getCtecdesc();
+
+                            }
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getCtecApproved().getCtecprofileicon().equalsIgnoreCase("")) {
+                                ctec_profile_pic = webinar_details.getPayload().getWebinarDetail().getCtecApproved().getCtecprofileicon();
+
+                            }
+
                             if (!webinar_details.getPayload().getWebinarDetail().getShareableLink().equalsIgnoreCase("")) {
                                 webinar_share_link = webinar_details.getPayload().getWebinarDetail().getShareableLink();
+                            }
+
+                            if (!webinar_details.getPayload().getWebinarDetail().getCteccourseid().equalsIgnoreCase("")) {
+                                ctec_course_id = webinar_details.getPayload().getWebinarDetail().getCteccourseid();
                             }
 
                             if (!webinar_details.getPayload().getWebinarDetail().getLikeDislikeStatus().equalsIgnoreCase("")) {
@@ -2251,6 +2371,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 }
 
                             }
+
+                            if (webinar_details.getPayload().getWebinarDetail().getMyCertificateLinks().size() > 0) {
+                                arraylistmycertificate.addAll(webinar_details.getPayload().getWebinarDetail().getMyCertificateLinks());
+                            }
+
+                            //Constant.Log("certificate_array","certificate_array"+arraylistmycertificate.size());
 
 
                             if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
@@ -2599,9 +2725,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         adapter.addFragment(new DetailsFragment(), getResources().getString(R.string.str_details));
         adapter.addFragment(new DescriptionFragment(), getResources().getString(R.string.str_description));
         if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
-            adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+            if (!whyshouldattend.equalsIgnoreCase("")) {
+                adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+            }
         } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
-            adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+            if (!overviewoftopic.equalsIgnoreCase("")) {
+                adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+            }
         }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
@@ -2615,9 +2745,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         adapter.addFragment(new DetailsFragment(), getResources().getString(R.string.str_details));
         adapter.addFragment(new DescriptionFragment(), getResources().getString(R.string.str_description));
         if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
-            adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+            if (!whyshouldattend.equalsIgnoreCase("")) {
+                adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+            }
         } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
-            adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+            if (!overviewoftopic.equalsIgnoreCase("")) {
+                adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+            }
         }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));

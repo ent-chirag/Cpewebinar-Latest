@@ -189,4 +189,8 @@
     <color name="color_btn_bg">#013872</color>
 
 
+    //add review popup
+    <color name="color_header_review">#F0EFF5</color>
+
+
 </resources>

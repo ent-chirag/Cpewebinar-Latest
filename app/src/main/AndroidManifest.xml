@@ -68,7 +68,7 @@
 
         <activity
             android:name=".activity.WebinarDetailsActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
         <activity
@@ -169,7 +169,7 @@
         <activity
             android:name=".activity.PdfViewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
         <activity
             android:name=".activity.ActivityChangePassword"

@@ -218,9 +218,33 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:hint="@string/view_profile_ptin_number"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
                         android:maxLength="9"
+                        android:singleLine="true"
+                        android:textColor="@color/grid_topics"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true">
+
+
+                    <com.entigrity.view.CustomEditTextView
+                        android:id="@+id/edt_CTEC_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/view_profile_ctec_id"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLength="7"
                         android:singleLine="true"
                         android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"

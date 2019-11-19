@@ -120,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
                 selectmywebinardtab = 0;
                 checkmywebinardotstatusset = false;
                 SetImageBackground(2);
+                Constant.price_filter = "";
+                Constant.date_filter = "";
+                Constant.search = "";
                 SetDefault("home");
 
             }

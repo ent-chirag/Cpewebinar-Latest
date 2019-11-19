@@ -14,16 +14,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +38,7 @@ import com.entigrity.model.My_Credit_New.MyCreditsItem;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.SimpleDividerItemDecoration;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -62,7 +52,6 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     private List<MyCreditsItem> mList = new ArrayList<MyCreditsItem>();
     public static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
     ProgressDialog mProgressDialog;
-    DownloadTask downloadTask;
     //  public String certificate_link = "";
     private DownloadManager downloadManager;
     public Dialog dialogCertificate;
@@ -134,7 +123,22 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             ((ViewHolder) viewHolder).btn_certification_download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+
+                    if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                        Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                    } else {
+                        if (mList.get(position).getMyCertificateLinks().size() == 1) {
+                            Intent i = new Intent(mContext, PdfViewActivity.class);
+                            i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                    mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                            mContext.startActivity(i);
+
+                        } else {
+                            displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+                        }
+                    }
+
+
                 }
             });
 
@@ -163,10 +167,6 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             if (!mList.get(position).getWebinarType().equalsIgnoreCase("")) {
                 ((ViewHolder) viewHolder).btn_webinar_type.setText(mList.get(position).getWebinarType());
             }
-
-            /*if (!mList.get(position).getWebinarStatus().equalsIgnoreCase("")) {
-                ((ViewHolder) viewHolder).tv_webinar_status.setText(mList.get(position).getWebinarStatus());
-            }*/
 
 
             ((ViewHolder) viewHolder).rel_item.setOnClickListener(new View.OnClickListener() {
@@ -228,8 +228,6 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rv_professional_credential.setLayoutManager(linearLayoutManager);
         rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(mContext));
-
-
 
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -371,7 +369,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         }
     }
 
-    private class DownloadTask extends AsyncTask<String, Integer, String> {
+    /*private class DownloadTask extends AsyncTask<String, Integer, String> {
 
         private Context context;
         //private PowerManager.WakeLock mWakeLock;
@@ -385,10 +383,10 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             super.onPreExecute();
             // take CPU lock to prevent CPU from going off if the user
             // presses the power button during download
-            /*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            *//*PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                     getClass().getName());
-            mWakeLock.acquire();*/
+            mWakeLock.acquire();*//*
             mProgressDialog = new ProgressDialog(mContext);
             mProgressDialog.show();
             mProgressDialog.setMessage("downloading");
@@ -455,8 +453,8 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
             // if we get here, length is known, now set indeterminate to false
-           /* mProgressDialog.setIndeterminate(false);
-            mProgressDialog.setMax(100);*/
+           *//* mProgressDialog.setIndeterminate(false);
+            mProgressDialog.setMax(100);*//*
             mProgressDialog.setProgress(progress[0]);
         }
 
@@ -493,7 +491,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
         }
 
     }
-
+*/
     public void DownloadCertificate(List<String> arrayListcertificate) {
 
         list.clear();
@@ -514,7 +512,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     }
 
 
-    private void checkPermission(List<String> arrayListcertificate) {
+    /*private void checkPermission(List<String> arrayListcertificate) {
 
         if (ContextCompat.checkSelfPermission(mContext,
                 Manifest.permission.READ_EXTERNAL_STORAGE) + ContextCompat
@@ -559,5 +557,5 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             }
 
         }
-    }
+    }*/
 }

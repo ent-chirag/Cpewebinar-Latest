@@ -102,6 +102,35 @@ public class DetailsFragment extends Fragment {
             binding.lvCourseId.setVisibility(View.GONE);
         }
 
+        if (!WebinarDetailsActivity.getInstance().ctec_course_id.equalsIgnoreCase("")) {
+            binding.lvCtecCourseId.setVisibility(View.VISIBLE);
+            binding.tvCtecCourseId.setText(WebinarDetailsActivity.getInstance().ctec_course_id);
+        } else {
+            binding.lvCtecCourseId.setVisibility(View.GONE);
+        }
+
+
+        if (!WebinarDetailsActivity.getInstance().recorded_date.equalsIgnoreCase("")) {
+
+            binding.lvRecordedDate.setVisibility(View.VISIBLE);
+            binding.viewRecordedDate.setVisibility(View.VISIBLE);
+            binding.tvRecordedDate.setText(WebinarDetailsActivity.getInstance().recorded_date);
+
+        } else {
+            binding.lvRecordedDate.setVisibility(View.GONE);
+            binding.viewRecordedDate.setVisibility(View.GONE);
+        }
+
+
+        if (!WebinarDetailsActivity.getInstance().published_date.equalsIgnoreCase("")) {
+            binding.lvPublishedDate.setVisibility(View.VISIBLE);
+            binding.viewPublishedDate.setVisibility(View.VISIBLE);
+            binding.tvPublishedDate.setText(WebinarDetailsActivity.getInstance().published_date);
+        } else {
+            binding.lvPublishedDate.setVisibility(View.GONE);
+            binding.viewPublishedDate.setVisibility(View.GONE);
+        }
+
 
         if (WebinarDetailsActivity.getInstance().duration != 0) {
 

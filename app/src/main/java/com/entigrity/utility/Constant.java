@@ -36,6 +36,16 @@ public class Constant {
     public static String watchedDuration = "";
 
 
+    //Global Search
+
+
+    public static String webinartype = "live";
+    public static String SubjectAreaFilter = "";
+    public static String search = "";
+    public static String price_filter = "";
+    public static String date_filter = "";
+
+
     //for sign up proffesional credential
     public static ArrayList<Integer> arraylistselectedproffesionalcredentialID = new ArrayList<>();
     public static ArrayList<String> arraylistselectedproffesionalcredential = new ArrayList<String>();
@@ -128,7 +138,6 @@ public class Constant {
         }
 
     }
-
 
 
     public static boolean isValidPassword(String password) {

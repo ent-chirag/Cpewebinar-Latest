@@ -748,5 +748,15 @@ public class MyWebinarFragment extends Fragment {
         return (pos >= numItems);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        if (adapter != null) {
+            adapter.unregister(getActivity());
+        }
+
+    }
+
 
 }

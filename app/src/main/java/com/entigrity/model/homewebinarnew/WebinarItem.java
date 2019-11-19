@@ -24,8 +24,6 @@ public class WebinarItem {
         this.ratingaverage = ratingaverage;
     }
 
-
-
     @SerializedName("fav_webinar_count")
     private int favWebinarCount;
 
@@ -42,6 +40,9 @@ public class WebinarItem {
 
     @SerializedName("rating_average")
     private String ratingaverage;
+
+    @SerializedName("my_certificate_links")
+    private List<MyCertificateLinksItem> myCertificateLinks;
 
     @SerializedName("rating_count")
     private int ratingcount;
@@ -80,6 +81,14 @@ public class WebinarItem {
     @SerializedName("join_url")
     private String joinurl;
 
+    public void setMyCertificateLinks(List<MyCertificateLinksItem> myCertificateLinks) {
+        this.myCertificateLinks = myCertificateLinks;
+    }
+
+    public List<MyCertificateLinksItem> getMyCertificateLinks() {
+        return myCertificateLinks;
+    }
+
    /* public String getCertificatelink() {
         return certificatelink;
     }*//*
@@ -112,7 +121,6 @@ public class WebinarItem {
 
     @SerializedName("schedule_id")
     private int scheduleid;
-
 
     @SerializedName("webinar_image")
     private String webinarImage;
@@ -374,6 +382,7 @@ public class WebinarItem {
                         ",start_date = '" + startDate + '\'' +
                         ",status = '" + status + '\'' +
                         ",schedule_id = '" + scheduleid + '\'' +
+                        ",my_certificate_links = '" + myCertificateLinks + '\'' +
                         "}";
     }
 }
