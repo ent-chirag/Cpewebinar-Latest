@@ -310,7 +310,7 @@
                         android:layout_marginRight="@dimen/_4sdp"
                         android:visibility="visible"/>
 
-<!--                    <com.entigrity.view.CustomButtonView-->
+                    <!--                    <com.entigrity.view.CustomButtonView-->
                     <com.entigrity.view.CustomTextView
                         android:id="@+id/tv_webinar_status_new"
                         android:layout_width="wrap_content"

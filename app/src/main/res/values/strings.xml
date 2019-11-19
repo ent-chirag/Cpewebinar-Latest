@@ -792,8 +792,8 @@
     <string name="str_final_ok">ok</string>
 
     // TTF icons
-<!--    <string name="play_ttf">&#xea15;</string>-->
-<!--    <string name="play_ttf">&#xe900;</string>-->
+    <!--    <string name="play_ttf">&#xea15;</string>-->
+    <!--    <string name="play_ttf">&#xe900;</string>-->
     <string name="play_ttf">&#xe908;</string>
 
 

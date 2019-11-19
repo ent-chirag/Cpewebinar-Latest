@@ -1,13 +1,10 @@
 package com.entigrity.fragments;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,25 +16,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
-import com.entigrity.adapter.CertificatesListPopUpAdapter;
 import com.entigrity.adapter.MyCreditAdapter;
 import com.entigrity.databinding.FragmentMycreditBinding;
-import com.entigrity.model.MyCreditNew.ModelMyCertificateLinksItem;
-import com.entigrity.model.MyCreditNew.MyCertificateLinksItem;
-import com.entigrity.model.MyCreditNew.MyCreditsItem;
-import com.entigrity.model.MyCreditNew.Response;
-//import com.entigrity.model.My_Credit.MyCreditsItem;
-import com.entigrity.model.My_Credit.My_Credit;
-import com.entigrity.model.Proffesional_Credential.Model_proffesional_Credential;
+import com.entigrity.model.My_Credit_New.Model_My_Credit_New;
+import com.entigrity.model.My_Credit_New.MyCreditsItem;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
@@ -63,19 +52,11 @@ public class MyCreditsFragment extends Fragment {
     public int filter_type = 0;
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
-    private List<MyCreditsItem> mlistmycredit = new ArrayList<MyCreditsItem>();
+    private List<MyCreditsItem> mlistmycredit = new ArrayList<>();
     public int start = 0, limit = 10;
     private boolean loading = true;
     public boolean islast = false;
     private static final String TAG = MyCreditsFragment.class.getName();
-    private static MyCreditsFragment instance;
-
-    public Dialog dialogCertificate;
-
-//    public ArrayList<MyCreditsItem> arrayCertificateList = new ArrayList<>();
-//    public ArrayList<MyCertificateLinksItem> arrayCertificateList = new ArrayList<>();
-    public ArrayList<ModelMyCertificateLinksItem> arrayCertificateList = new ArrayList<>();
-    public CertificatesListPopUpAdapter certificatesListPopUpAdapter;
 
     @Nullable
     @Override
@@ -83,9 +64,9 @@ public class MyCreditsFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mycredit, null, false);
         context = getActivity();
         mAPIService = ApiUtilsNew.getAPIService();
-        instance = MyCreditsFragment.this;
 
         font = Typeface.createFromAsset(getActivity().getAssets(), "Montserrat-Light.ttf");
+
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.recyclerviewMycredit.setLayoutManager(linearLayoutManager);
@@ -93,12 +74,9 @@ public class MyCreditsFragment extends Fragment {
         binding.recyclerviewMycredit.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerviewMycredit.setHasFixedSize(true);
 
-        dialogCertificate = new Dialog(context);
-
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-//            GetMyCredit(start, limit);
-            GetTestAPI(start, limit);
+            GetMyCredit(start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -119,8 +97,7 @@ public class MyCreditsFragment extends Fragment {
                 loading = true;
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-//                    GetMyCredit(start, limit);
-                    GetTestAPI(start, limit);
+                    GetMyCredit(start, limit);
                 } else {
                     Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -143,8 +120,7 @@ public class MyCreditsFragment extends Fragment {
                 loading = true;
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-//                    GetMyCredit(start, limit);
-                    GetTestAPI(start, limit);
+                    GetMyCredit(start, limit);
                 } else {
                     Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -165,8 +141,7 @@ public class MyCreditsFragment extends Fragment {
                 loading = true;
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-//                    GetMyCredit(start, limit);
-                    GetTestAPI(start, limit);
+                    GetMyCredit(start, limit);
                 } else {
                     Snackbar.make(binding.recyclerviewMycredit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -216,11 +191,6 @@ public class MyCreditsFragment extends Fragment {
         return view = binding.getRoot();
     }
 
-    public static MyCreditsFragment getInstance() {
-        return instance;
-
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -228,8 +198,7 @@ public class MyCreditsFragment extends Fragment {
             Constant.isdataupdate = false;
             if (Constant.isNetworkAvailable(context)) {
                 progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-//                GetMyCredit(start, limit);
-                GetTestAPI(start, limit);
+                GetMyCredit(start, limit);
             } else {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -251,7 +220,7 @@ public class MyCreditsFragment extends Fragment {
     private void loadNextPage() {
         if (Constant.isNetworkAvailable(context)) {
             binding.progressBar.setVisibility(View.VISIBLE);
-//            GetMyCredit(start, limit);
+            GetMyCredit(start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -267,7 +236,7 @@ public class MyCreditsFragment extends Fragment {
         loading = true;
 
         if (Constant.isNetworkAvailable(context)) {
-//            GetMyCredit(start, limit);
+            GetMyCredit(start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -314,182 +283,6 @@ public class MyCreditsFragment extends Fragment {
 
     }
 
-    private void GetTestAPI(final int start,final int limit) {
-
-        mAPIService.Test(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), start, limit)
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response>() {
-                    @Override
-                    public void onCompleted() {
-                        if (binding.progressBar.getVisibility() == View.VISIBLE) {
-                            binding.progressBar.setVisibility(View.GONE);
-                        }
-
-                        loading = true;
-                        if (start == 0 && limit == 10) {
-                            if (mlistmycredit.size() > 0) {
-                                adapter = new MyCreditAdapter(context, mlistmycredit);
-                                binding.recyclerviewMycredit.setAdapter(adapter);
-                            }
-                        } else {
-                            adapter.addLoadingFooter();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (start == 0 && limit == 10) {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-                        } else {
-                            if (binding.progressBar.getVisibility() == View.VISIBLE) {
-                                binding.progressBar.setVisibility(View.GONE);
-                            }
-                        }
-
-                        String message = Constant.GetReturnResponse(context, e);
-                        if (Constant.status_code == 401) {
-                            MainActivity.getInstance().AutoLogout();
-                        } else {
-                            Snackbar.make(binding.ivnotification, message, Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onNext(Response response) {
-                        if (response.isSuccess() == true) {
-
-                            /*arrayCertificateList.clear();
-                            Log.e("*+*+*","Size for PayLoad is : "+response.getPayload().size());
-                            Log.e("*+*+*","Size for mlistmycredit is : "+mlistmycredit.size());
-                            for (int i = 0; i < response.getPayload().size(); i++) {
-                                Log.e("*+*+*","Size for getMyCredits is : i : "+i+" size :"+response.getPayload().get(i).getMyCredits().size());
-                                for (int j = 0; j < response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().size(); j++) {
-                                    Log.e("*+*+*","Size for getMyCertificateLink is : i : "+i+" size :"+response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().size());
-                                    for (int k = 0; k < response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().size(); k++) {
-                                        ModelMyCertificateLinksItem myCertificateLinksItem = new ModelMyCertificateLinksItem();
-                                        myCertificateLinksItem.setCertificateLink(response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().get(j).getCertificateLink());
-                                        myCertificateLinksItem.setCertificateType(response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().get(j).getCertificateType());
-                                    }
-                                }
-                            }*/
-
-                            /*for (int i = 0; i < response.getPayload().get(i).getMyCredits().size() ; i++) {
-                                for (int j = 0; j < response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().size(); j++) {
-//                                    arrayCertificateList.add(response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks());
-
-                                    ModelMyCertificateLinksItem myCertificateLinksItem = new ModelMyCertificateLinksItem();
-                                    myCertificateLinksItem.setCertificateLink(response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().get(j).getCertificateLink());
-                                    myCertificateLinksItem.setCertificateType(response.getPayload().get(i).getMyCredits().get(j).getMyCertificateLinks().get(j).getCertificateType());
-
-                                    arrayCertificateList.add(myCertificateLinksItem);
-                                }
-                                Log.e("*+*+*","arrayCertificateList size : "+arrayCertificateList.size());
-                            }*/
-
-
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            } else {
-                                if (binding.swipeRefreshLayout.isRefreshing()) {
-                                    binding.swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-
-
-                            if (start == 0 && limit == 10) {
-                                if (mlistmycredit.size() > 0) {
-                                    mlistmycredit.clear();
-                                }
-                            }
-
-                            islast = response.getPayload().get(0).isIsLast();
-
-                            if (start == 0 && limit == 10) {
-                                for (int i = 0; i < response.getPayload().size(); i++) {
-                                    mlistmycredit = response.getPayload().get(i).getMyCredits();
-                                }
-                            } else {
-
-                                if (mlistmycredit.size() > 20) {
-                                    mlistmycredit.remove(mlistmycredit.size() - 1);
-                                }
-
-
-                                List<MyCreditsItem> webinaritems = new ArrayList<>();
-                                for (int i = 0; i < response.getPayload().size(); i++) {
-                                    webinaritems = response.getPayload().get(i).getMyCredits();
-                                }
-
-
-                                adapter.addAll(webinaritems);
-
-                            }
-
-                            if (mlistmycredit.size() > 0) {
-                                binding.swipeRefreshLayout.setVisibility(View.VISIBLE);
-                                binding.tvNodatafound.setVisibility(View.GONE);
-                            } else {
-                                binding.tvNodatafound.setVisibility(View.VISIBLE);
-                                binding.swipeRefreshLayout.setVisibility(View.GONE);
-                            }
-
-
-                        } else {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            } else {
-                                if (binding.swipeRefreshLayout.isRefreshing()) {
-                                    binding.swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-                            Snackbar.make(binding.ivnotification, response.getMessage(), Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    public void displayCertificateDialog(){
-
-        dialogCertificate.setContentView(R.layout.popup_certificates);
-        dialogCertificate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        TextView tv_header = (TextView) dialogCertificate.findViewById(R.id.tv_header);
-        TextView tv_submit = (TextView) dialogCertificate.findViewById(R.id.tv_submit);
-        TextView tv_cancel = (TextView) dialogCertificate.findViewById(R.id.tv_cancel);
-        RecyclerView rv_professional_credential = (RecyclerView) dialogCertificate.findViewById(R.id.rv_professional_credential);
-
-        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        rv_professional_credential.setLayoutManager(linearLayoutManager);
-        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(context));
-        tv_header.setText(context.getResources().getString(R.string.str_certificate_list));
-
-        tv_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dialogCertificate.isShowing()) {
-                    dialogCertificate.dismiss();
-                }
-            }
-        });
-
-        tv_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dialogCertificate.isShowing()) {
-                    dialogCertificate.dismiss();
-                }
-            }
-        });
-
-        dialogCertificate.show();
-
-        if(arrayCertificateList.size() > 0) {
-            certificatesListPopUpAdapter = new CertificatesListPopUpAdapter(context, arrayCertificateList);
-            rv_professional_credential.setAdapter(certificatesListPopUpAdapter);
-        }
-    }
 
     /*private void GetMyCredit(final int start, final int limit) {
 
@@ -621,6 +414,138 @@ public class MyCreditsFragment extends Fragment {
                 });
 
     }*/
+
+
+    private void GetMyCredit(final int start, final int limit) {
+
+
+        mAPIService.GetMyCredit(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
+                 start, limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Model_My_Credit_New>() {
+                    @Override
+                    public void onCompleted() {
+
+                        if (binding.progressBar.getVisibility() == View.VISIBLE) {
+                            binding.progressBar.setVisibility(View.GONE);
+                        }
+
+
+                        loading = true;
+                        if (start == 0 && limit == 10) {
+                            if (mlistmycredit.size() > 0) {
+                                adapter = new MyCreditAdapter(context, mlistmycredit);
+                                binding.recyclerviewMycredit.setAdapter(adapter);
+                            }
+                        } else {
+                            adapter.addLoadingFooter();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+
+                        if (start == 0 && limit == 10) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        } else {
+                            if (binding.progressBar.getVisibility() == View.VISIBLE) {
+                                binding.progressBar.setVisibility(View.GONE);
+                            }
+                        }
+
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivnotification, message, Snackbar.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onNext(Model_My_Credit_New model_my_credit_new) {
+
+                        if (model_my_credit_new.isSuccess() == true) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayout.isRefreshing()) {
+                                    binding.swipeRefreshLayout.setRefreshing(false);
+                                }
+                            }
+
+
+                            if (start == 0 && limit == 10) {
+                                if (mlistmycredit.size() > 0) {
+                                    mlistmycredit.clear();
+                                }
+                            }
+
+                            islast = model_my_credit_new.getPayload().get(0).isIsLast();
+
+                            if (start == 0 && limit == 10) {
+                                for (int i = 0; i < model_my_credit_new.getPayload().size(); i++) {
+                                    mlistmycredit = model_my_credit_new.getPayload().get(i).getMyCredits();
+                                }
+                            } else {
+
+                                if (mlistmycredit.size() > 20) {
+                                    mlistmycredit.remove(mlistmycredit.size() - 1);
+                                }
+
+
+                                List<MyCreditsItem> webinaritems = new ArrayList<>();
+                                for (int i = 0; i < model_my_credit_new.getPayload().size(); i++) {
+                                    webinaritems = model_my_credit_new.getPayload().get(i).getMyCredits();
+                                }
+
+
+                                adapter.addAll(webinaritems);
+
+
+                            }
+
+
+                            /*if (!myCredit.getPayload().get(0).getFullName().equalsIgnoreCase("")) {
+                                binding.tvUsername.setText(myCredit.getPayload().get(0).getFullName());
+                            }
+                            if (!myCredit.getPayload().get(0).getEmail().equalsIgnoreCase("")) {
+                                binding.tvUseremailid.setText(myCredit.getPayload().get(0).getEmail());
+                            }
+*/
+
+
+                            if (mlistmycredit.size() > 0) {
+                                binding.swipeRefreshLayout.setVisibility(View.VISIBLE);
+                                binding.tvNodatafound.setVisibility(View.GONE);
+                            } else {
+                                binding.tvNodatafound.setVisibility(View.VISIBLE);
+                                binding.swipeRefreshLayout.setVisibility(View.GONE);
+                            }
+
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayout.isRefreshing()) {
+                                    binding.swipeRefreshLayout.setRefreshing(false);
+                                }
+                            }
+                            Snackbar.make(binding.ivnotification, model_my_credit_new.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                });
+
+    }
 
 
     boolean isLastVisible() {

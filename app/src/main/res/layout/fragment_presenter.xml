@@ -65,6 +65,7 @@
                 android:inputType="textMultiLine"
                 android:textColor="@color/edit_profile_lable_colcr"
                 android:textSize="@dimen/_10sdp"
+                android:visibility="invisible"
                 app:font_text="Montserrat-SemiBold.ttf" />
 
 

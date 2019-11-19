@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -353,16 +354,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
         /*binding.tvRevieQuestion.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(context, ActivityReviewQuestion.class);
                 i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
                 finish();
-
             }
         });*/
 
@@ -926,6 +924,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     }
 
     private void closeFullscreenDialog() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
         ((FrameLayout) findViewById(R.id.video_layout)).addView(mExoPlayerView);
@@ -936,6 +935,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
     private void openFullscreenDialog() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
         mFullScreenDialog.addContentView(mExoPlayerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mFullScreenIcon.setImageDrawable(ContextCompat.getDrawable(WebinarDetailsActivity.this, R.drawable.ic_fullscreen_skrink));
@@ -945,6 +946,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
     private void initFullscreenButton() {
+
         PlaybackControlView controlView = mExoPlayerView.findViewById(R.id.exo_controller);
         mFullScreenIcon = controlView.findViewById(R.id.exo_fullscreen_icon);
         mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
@@ -997,8 +999,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = false;
-                    // exoPlayer.setPlayWhenReady(true);
-                    PlayVideo();
+                     exoPlayer.setPlayWhenReady(true);
+//                    PlayVideo();
 
 
                     Log.e("exo_play", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1022,7 +1024,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         MediaSource mediaSource = new ExtractorMediaSource(videoURI, dataSourceFactory, extractorsFactory, null, null);
         mExoPlayerView.setPlayer(exoPlayer);
         /*if (!videostatus) {
-
         } else {
             exoPlayer.seekTo(0);
         }*/
@@ -1157,9 +1158,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 }
             }
            /* watched = watched + 1;
-
             binding.tvWatchedduration.setText("You have completed only " + watched + "% of the video.");
-
             handler.postDelayed(runnable, 10000);*/
 
 
@@ -1451,8 +1450,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             /*if (mhandoutArray.length > 0) {
                              *//*   downloadTask = new DownloadTask(context);
                                 downloadTask.execute(mhandoutArray);*//*
-
-
                             }*/
                         } else {
                             Constant.toast(context, getResources().getString(R.string.str_download_link_not_found));
@@ -1714,19 +1711,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
         Log.e("*+*+*", "CallBack RESTART");
         /*if (ispause) {
-
             checkpause = false;
             mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
-
             exoPlayer.setPlayWhenReady(false);
-
             if (mExoPlayerView != null) {
                 initFullscreenDialog();
                 initFullscreenButton();
-
                 initExoPlayer();
-
-
                 if (mExoPlayerFullscreen) {
                     ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
                     mFullScreenDialog.addContentView(mExoPlayerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -1734,8 +1725,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     mFullScreenDialog.show();
                 }
             }
-
-
         }*/
     }
 
@@ -1856,7 +1845,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
                             /*isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
-
                             if(!webinar_details.getPayload().getWebinarDetail().getRedirectionUrl().equalsIgnoreCase("")){
                                 strPaymentRedirectionURL = webinar_details.getPayload().getWebinarDetail().getRedirectionUrl();
                             }*/
@@ -2296,6 +2284,18 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                         }
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
 //                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
+
+                                        if(webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))){
+                                            binding.relWatchedDuration.setVisibility(View.VISIBLE);
+                                            binding.tvErrorMsgDrag.setVisibility(View.VISIBLE);
+                                            if (!videostatus) {
+                                                binding.tvWatchedduration.setText("You have completed only " + watched_duration + "% of the video.");
+                                            } else {
+                                                binding.tvWatchedduration.setText("You have completed watching video.");
+                                                binding.tvErrorMsgDrag.setVisibility(View.GONE);
+                                            }
+                                        }
+
                                     } else {
                                         binding.tvPlayIcon.setVisibility(View.GONE);
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
@@ -2663,5 +2663,3 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
 }
-
-

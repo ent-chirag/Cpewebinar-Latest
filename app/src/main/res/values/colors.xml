@@ -188,5 +188,9 @@
     <color name="color_title_popup">#595959</color>
     <color name="color_btn_bg">#013872</color>
 
+    <color name="uvv_green">#ff50b100</color>
+    <color name="uvv_black">#ff000000</color>
+    <color name="uvv_light_gray">#ffF0F0F0</color>
+
 
 </resources>

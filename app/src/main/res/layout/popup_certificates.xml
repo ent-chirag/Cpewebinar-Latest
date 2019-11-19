@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginRight="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
         android:background="@color/White">
 
         <RelativeLayout
@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:text="My Certificate"
                 android:textAllCaps="true"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_12sdp"
@@ -36,7 +37,7 @@
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_professional_credential"
+            android:id="@+id/rv_certificate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/rvbottom"
@@ -64,6 +65,7 @@
                 android:background="@color/webinar_status"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
+                android:visibility="gone"
                 android:text="@string/str_submit"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_14sdp"
@@ -72,10 +74,9 @@
 
             <com.entigrity.view.CustomTextView
                 android:id="@+id/tv_cancel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:layout_weight="1"
                 android:background="@color/webinar_status"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
