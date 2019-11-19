@@ -742,6 +742,11 @@ public class AccountFragment extends Fragment {
                             AppSettings.set_device_id(context, "");
                             AppSettings.set_email_id(context, "");
 
+                            Constant.webinartype = "";
+                            Constant.search = "";
+                            Constant.price_filter = "";
+                            Constant.date_filter = "";
+
 
                             Intent i = new Intent(getActivity(), PreLoginActivity.class);
                             startActivity(i);
