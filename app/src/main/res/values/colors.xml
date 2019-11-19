@@ -193,4 +193,8 @@
     <color name="uvv_light_gray">#ffF0F0F0</color>
 
 
+    //add review popup
+    <color name="color_header_review">#F0EFF5</color>
+
+
 </resources>

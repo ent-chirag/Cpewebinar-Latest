@@ -168,6 +168,7 @@
     <string name="view_profile_mobile_number">Mobile Number</string>
     <string name="view_profile_phone_number">Phone Number</string>
     <string name="view_profile_ptin_number">PTIN Number</string>
+    <string name="view_profile_ctec_id">CTEC ID</string>
     <string name="view_profile_country">Country</string>
     <string name="view_profile_state">State</string>
     <string name="view_profile_city">City</string>
@@ -319,6 +320,7 @@
 
     //pass data from view profile to edit profile
     <string name="pass_fname">firstname</string>
+    <string name="pass_ctek_number">ctek</string>
     <string name="pass_lname">lastname</string>
     <string name="pass_email">email</string>
     <string name="pass_firm_name">firmname</string>
@@ -527,6 +529,7 @@
     program cancellation policies,please connect our offices at 863-337-8573</string>
     <string name="str_nasba_approved">NASBA APPROVED</string>
     <string name="str_ea_approved">EA APPROVED</string>
+    <string name="str_ctec_approved">CTEC APPROVED</string>
     <string name="str_nasba_address">My Cpe LLC 30N,WY80801</string>
     <string name="str_nasba_approved_content">my-cpe.org is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State Boards of Accountancy have the final authority on the acceptance of individual course for CPE credit.</string>
     <string name="str_hour">Hour</string>
@@ -537,6 +540,7 @@
     <string name="str_cpe_credit">Cpe Credits</string>
     <string name="str_ce_credit">Ce Credits</string>
     <string name="str_duration">Duration</string>
+    <string name="str_ctec">CTEC COURSE ID</string>
     <string name="str_subject_area">Subject Area</string>
     <string name="str_course_level">Course Level</string>
     <string name="str_instructionalmethod">Instructional Method</string>
@@ -545,6 +549,12 @@
     <string name="str_key_terms">Key Terms</string>
     <string name="str_adavance_preparation">Advance Preparation</string>
     <string name="str_who_should_attend">Who should attend?</string>
+
+
+    <string name="str_recorded_date">RECORDED DATE</string>
+    <string name="str_published_date">PUBLISHED DATE</string>
+
+
     <string name="str_series">Series</string>
 
 
@@ -567,6 +577,7 @@
     <string name="pass_webinar_type">Webinartype</string>
     <string name="str_course_id">Course Id</string>
     <string name="str_is_notification">isnoti</string>
+    <string name="str_ctec_course_id">CTEC COURSE ID</string>
 
 
     //account screen
@@ -795,6 +806,13 @@
     <!--    <string name="play_ttf">&#xea15;</string>-->
     <!--    <string name="play_ttf">&#xe900;</string>-->
     <string name="play_ttf">&#xe908;</string>
+
+    //add review popup
+    <string name="str_review_title">Review</string>
+    <string name="str_write_your_review">Write Your Review</string>
+
+    <string name="str_title_question_rating_popup">Would you like to know more about</string>
+    <string name="str_rating_text">How Would you rate your experience with the webinar?</string>
 
 
 </resources>

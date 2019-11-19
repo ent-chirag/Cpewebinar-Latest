@@ -146,7 +146,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_two);
                     ((HomeViewHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 2.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 2.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 2.5) {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_two);
@@ -156,7 +156,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_three);
                     ((HomeViewHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 3.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 3.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 3.5) {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_three);
@@ -166,7 +166,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_four);
                     ((HomeViewHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 4.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 4.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 4.5) {
 
                     ((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_four);
@@ -421,7 +421,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
                         mContext.startActivity(i);
-                      // ((Activity) mContext).finish();
+                       ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }

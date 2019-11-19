@@ -357,7 +357,6 @@
                     android:id="@+id/tv_webinar_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/squrebutton_webinar_status"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/White"
                     android:textSize="@dimen/_12sdp"

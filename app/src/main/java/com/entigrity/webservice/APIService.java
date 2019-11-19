@@ -134,6 +134,7 @@ public interface APIService {
             @Field("phone") String phone,
             @Field("zipcode") String zipcode,
             @Field("ptin") String ptin,
+            @Field("ctec_id") String ctec_id,
             @Field("jobtitle_id") int jobtitle_id,
             @Field("industry_id") int industry_id,
             @Field("user_type_id") String user_type_id,
@@ -246,6 +247,7 @@ public interface APIService {
             @Field("contact_no") String contact_no,
             @Field("phone") String phone_no,
             @Field("ptin") String ptin_number,
+            @Field("ctec_id") String ctec_id,
             @Field("user_type_id") String user_type_id,
             @Field("education_ids") String education_ids,
             @Field("jobtitle_id") int jobtitle_id,
@@ -647,12 +649,12 @@ public interface APIService {
             @Field("limit") int limit
     );*/
 
-    @POST("test")
+    @POST("my-credits")
     @FormUrlEncoded
     Observable<Model_My_Credit_New> GetMyCredit(
             @Header("Accept") String accept,
             @Header("Authorization") String authorization,
-            /*@Field("filter_type") int filter_type,*/
+            @Field("filter_type") int filter_type,
             @Field("start") int start,
             @Field("limit") int limit
     );

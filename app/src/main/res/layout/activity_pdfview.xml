@@ -44,6 +44,14 @@
                 android:textSize="@dimen/_12sdp"
                 app:font_text="Montserrat-Bold.ttf" />
 
+            <ImageView
+                android:id="@+id/iv_Download"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_toLeftOf="@+id/tv_share"
+                android:src="@drawable/download_icon" />
+
 
             <com.entigrity.view.CustomTextView
                 android:id="@+id/tv_share"

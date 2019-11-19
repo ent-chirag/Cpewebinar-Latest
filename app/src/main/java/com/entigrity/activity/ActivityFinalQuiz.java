@@ -15,6 +15,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.entigrity.MainActivity;
@@ -59,6 +61,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
     public String webinar_type = "";
 
     public Dialog myDialog;
+    public Dialog myDialogaddreview;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,23 +135,23 @@ public class ActivityFinalQuiz extends AppCompatActivity {
 
                 int count = 0;
                 for (int i = 0; i < finalquestion.size(); i++) {
-                    if(finalquestion.get(i).isCorrect()){
+                    if (finalquestion.get(i).isCorrect()) {
                         count++;
                     }
                 }
 
-                Log.e("*+*+*","Correct Answer count is : "+count);
+                Log.e("*+*+*", "Correct Answer count is : " + count);
 
                 Log.e("*+*+*", "Final Quiz Questions : " + questionsParams);
                 Log.e("*+*+*", "Final Quiz Answers : " + ansParams);
 
-                float percentage = (count*100)/finalquestion.size();
-                Log.e("*+*+*","Percentage is : " + percentage);
+                float percentage = (count * 100) / finalquestion.size();
+                Log.e("*+*+*", "Percentage is : " + percentage);
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
 //                    GetSubmitAnswer(finalquizquestion, finalquizwanswer);
-                    GetSubmitAnswer(questionsParams, ansParams, ""+percentage);
+                    GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
                 } else {
                     Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -170,8 +173,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         popup_description = (TextView) myDialog.findViewById(R.id.popup_description);
         tv_ok = (TextView) myDialog.findViewById(R.id.tv_ok);
 
-        popup_description.setText(""+msg);
-        if(flag) {
+        popup_description.setText("" + msg);
+        if (flag) {
             popup_description.setTextColor(context.getResources().getColor(R.color.correct_ans));
         } else {
             popup_description.setTextColor(context.getResources().getColor(R.color.wrong_ans));
@@ -181,7 +184,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(flag) {
+                if (flag) {
                     if (myDialog.isShowing()) {
                         myDialog.dismiss();
                     }
@@ -205,6 +208,107 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         myDialog.show();
 
     }
+
+
+    private void showAddReviewPopUp() {
+        myDialogaddreview = new Dialog(context);
+        myDialogaddreview.setContentView(R.layout.rating_popup);
+        myDialogaddreview.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialogaddreview.setCanceledOnTouchOutside(false);
+        myDialogaddreview.setCancelable(false);
+
+        ImageView iv_close = (ImageView) myDialogaddreview.findViewById(R.id.ivclose);
+        Button btn_submit = (Button) myDialogaddreview.findViewById(R.id.btn_submit);
+        final ImageView iv_one = (ImageView) myDialogaddreview.findViewById(R.id.iv_one);
+        final ImageView iv_two = (ImageView) myDialogaddreview.findViewById(R.id.iv_two);
+        final ImageView iv_three = (ImageView) myDialogaddreview.findViewById(R.id.iv_three);
+        final ImageView iv_four = (ImageView) myDialogaddreview.findViewById(R.id.iv_four);
+        final ImageView iv_five = (ImageView) myDialogaddreview.findViewById(R.id.iv_five);
+
+
+        iv_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+            }
+        });
+
+
+        iv_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+
+            }
+        });
+
+
+        iv_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+            }
+        });
+
+        iv_four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+            }
+        });
+
+        iv_five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star_hover);
+
+            }
+        });
+
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialogaddreview.dismiss();
+            }
+        });
+
+
+        myDialogaddreview.show();
+    }
+
 
     @Override
     public void onBackPressed() {

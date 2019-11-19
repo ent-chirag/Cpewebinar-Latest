@@ -1,5 +1,6 @@
 package com.entigrity.model.webinar_details_new;
 
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,6 +10,12 @@ public class WebinarDetail {
 
     @SerializedName("subject_area")
     private String subjectArea;
+
+    @SerializedName("recorded_date")
+    private String recordeddate;
+
+    @SerializedName("published_date")
+    private String publisheddate;
 
     public String getPaymentlink() {
         return paymentlink;
@@ -61,6 +68,17 @@ public class WebinarDetail {
 
     @SerializedName("program_description")
     private String programDescription;
+
+    public String getCteccourseid() {
+        return cteccourseid;
+    }
+
+    public void setCteccourseid(String cteccourseid) {
+        this.cteccourseid = cteccourseid;
+    }
+
+    @SerializedName("ctec_course_id")
+    private String cteccourseid;
 
     @SerializedName("advance_preparation")
     private String advancePreparation;
@@ -184,8 +202,20 @@ public class WebinarDetail {
     @SerializedName("series")
     private String series;
 
+    public List<MyCertificateLinksItem> getMyCertificateLinks() {
+        return myCertificateLinks;
+    }
+
+    public void setMyCertificateLinks(List<MyCertificateLinksItem> myCertificateLinks) {
+        this.myCertificateLinks = myCertificateLinks;
+    }
+
     @SerializedName("certificate_link")
     private List<String> certificateLink;
+
+    @SerializedName("my_certificate_links")
+    private List<MyCertificateLinksItem> myCertificateLinks;
+
 
     @SerializedName("play_time_duration")
     private int playTimeDuration;
@@ -198,6 +228,18 @@ public class WebinarDetail {
 
     @SerializedName("nasba_approved")
     private NasbaApproved nasbaApproved;
+
+    public CtecApproved getCtecApproved() {
+        return ctecApproved;
+    }
+
+    public void setCtecApproved(CtecApproved ctecApproved) {
+        this.ctecApproved = ctecApproved;
+    }
+
+    @SerializedName("ctec_approved")
+    private CtecApproved ctecApproved;
+
 
     @SerializedName("webinar_status")
     private String webinarStatus;
@@ -571,6 +613,22 @@ public class WebinarDetail {
         this.statictimezones = statictimezones;
     }
 
+    public String getRecordeddate() {
+        return recordeddate;
+    }
+
+    public void setRecordeddate(String recordeddate) {
+        this.recordeddate = recordeddate;
+    }
+
+    public String getPublisheddate() {
+        return publisheddate;
+    }
+
+    public void setPublisheddate(String publisheddate) {
+        this.publisheddate = publisheddate;
+    }
+
     @Override
     public String toString() {
         return
@@ -618,11 +676,16 @@ public class WebinarDetail {
                         ",schedule_id = '" + scheduleId + '\'' +
                         ",refund_and_cancelation_policy = '" + refundAndCancelationPolicy + '\'' +
                         ",nasba_approved = '" + nasbaApproved + '\'' +
+                        ",ctec_approved = '" + ctecApproved + '\'' +
                         ",webinar_status = '" + webinarStatus + '\'' +
                         ",status = '" + status + '\'' +
                         ",key_terms = '" + keyterms + '\'' +
                         ",overview_of_topic = '" + overviewoftopic + '\'' +
                         ",why_should_attend = '" + whyshouldattend + '\'' +
+                        ",my_certificate_links = '" + myCertificateLinks + '\'' +
+                        ",published_date = '" + publisheddate + '\'' +
+                        ",recorded_date = '" + recordeddate + '\'' +
+                        ",ctec_course_id = '" + cteccourseid + '\'' +
                         "}";
     }
 }

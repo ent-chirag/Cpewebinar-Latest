@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.entigrity.R;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.databinding.FragmentOtherBinding;
+import com.entigrity.model.webinar_details_new.WebinarDetail;
 import com.squareup.picasso.Picasso;
 
 import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
@@ -53,6 +54,9 @@ public class OtherFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             binding.nasbaDescription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding.ctecDescription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        }
 
 
         if (!WebinarDetailsActivity.getInstance().refund_and_cancelation.equalsIgnoreCase("")) {
@@ -66,7 +70,6 @@ public class OtherFragment extends Fragment {
 
 
         if (WebinarDetailsActivity.getInstance().getwebinar_type.equalsIgnoreCase("CPE/CE")) {
-
 
             binding.relNasba.setVisibility(View.VISIBLE);
             binding.relNasbaDesc.setVisibility(View.VISIBLE);
@@ -111,6 +114,9 @@ public class OtherFragment extends Fragment {
                         .placeholder(R.mipmap.webinar_placeholder)
                         .into((binding.ivIrsProfile));
             }
+
+
+            ShowCtecApproved();
 
 
         } else if (WebinarDetailsActivity.getInstance().getwebinar_type.equalsIgnoreCase("CPE")) {
@@ -138,6 +144,8 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivNasbaProfile));
             }
 
+            ShowCtecApproved();
+
 
         } else if (WebinarDetailsActivity.getInstance().getwebinar_type.equalsIgnoreCase("CE")) {
 
@@ -162,10 +170,42 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivIrsProfile));
             }
 
+            ShowCtecApproved();
+
 
         }
 
 
         return view = binding.getRoot();
+    }
+
+
+    public void ShowCtecApproved() {
+
+        if (!WebinarDetailsActivity.getInstance().ctec_course_id.equalsIgnoreCase("")) {
+            binding.relCtec.setVisibility(View.VISIBLE);
+            binding.relCtecDesc.setVisibility(View.VISIBLE);
+        } else {
+            binding.relCtec.setVisibility(View.GONE);
+            binding.relCtecDesc.setVisibility(View.GONE);
+        }
+
+
+        if (!WebinarDetailsActivity.getInstance().ctec_address.equalsIgnoreCase("")) {
+
+            binding.ctecAddress.setText(WebinarDetailsActivity.getInstance().ctec_address);
+        }
+
+        if (!WebinarDetailsActivity.getInstance().ctec_description.equalsIgnoreCase("")) {
+
+            binding.ctecDescription.setText(WebinarDetailsActivity.getInstance().ctec_description);
+        }
+        if (!WebinarDetailsActivity.getInstance().ctec_profile_pic.equalsIgnoreCase("")) {
+            Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().ctec_profile_pic)
+                    .placeholder(R.mipmap.webinar_placeholder)
+                    .into((binding.ivCtecProfile));
+        }
+
+
     }
 }

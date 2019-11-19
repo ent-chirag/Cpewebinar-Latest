@@ -29,7 +29,7 @@
                 android:text="My Certificate"
                 android:textAllCaps="true"
                 android:textColor="@color/White"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:font_text="Montserrat-ExtraBold.ttf" />
 
 

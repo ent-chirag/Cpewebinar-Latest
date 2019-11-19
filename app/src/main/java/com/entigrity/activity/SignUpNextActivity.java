@@ -105,6 +105,7 @@ public class SignUpNextActivity extends AppCompatActivity {
 
     public String selected_proffesional_credential = "";
     public String selected_additional_qualification = "";
+    private String CTEC_prefix = "A";
 
 
     @Override
@@ -173,6 +174,28 @@ public class SignUpNextActivity extends AppCompatActivity {
             }
         });
 
+        binding.edtCTECNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().startsWith(CTEC_prefix)) {
+                    binding.edtCTECNumber.setText(CTEC_prefix);
+                    binding.edtCTECNumber.setSelection(1);
+                }
+
+            }
+        });
+
 
         binding.edtMobileNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -203,6 +226,9 @@ public class SignUpNextActivity extends AppCompatActivity {
 
 
         binding.edtPtinNumber.setText(prefix);
+
+        binding.edtCTECNumber.setText(CTEC_prefix);
+
         binding.edtPtinNumber.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -417,7 +443,8 @@ public class SignUpNextActivity extends AppCompatActivity {
                 cityid, Constant.Trim(binding.edtCompanyName.getText().toString())
                 , Constant.Trim(binding.edtMobileNumber.getText().toString()),
                 phonenumber, Constant.Trim(binding.edtZipcode.getText().toString()),
-                Constant.Trim(binding.edtPtinNumber.getText().toString()), jobtitle_id,
+                Constant.Trim(binding.edtPtinNumber.getText().toString()), Constant.Trim(binding.edtCTECNumber
+                        .getText().toString()), jobtitle_id,
                 industry_id, selected_proffesional_credential, selected_additional_qualification,
                 AppSettings.get_device_id(context), AppSettings.get_device_token(context), Constant.device_type).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<RegistrationModel>() {

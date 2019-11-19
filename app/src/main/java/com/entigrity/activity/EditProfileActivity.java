@@ -30,10 +30,8 @@ import android.widget.TextView;
 
 import com.entigrity.MainActivity;
 import com.entigrity.R;
-import com.entigrity.adapter.AdditionalQualificationPopUpAdapter;
 import com.entigrity.adapter.EditAdditionalQualificationPopUpAdapter;
 import com.entigrity.adapter.EditProffesionalCredentialPopUpAdapter;
-import com.entigrity.adapter.ProffesionalCredentialPopUpAdapter;
 import com.entigrity.databinding.ActivityEditProfileBinding;
 import com.entigrity.model.Job_title.ModelJobTitle;
 import com.entigrity.model.Proffesional_Credential.Model_proffesional_Credential;
@@ -123,7 +121,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private int country_pos = 0;
     private int state_pos = 0;
     private int city_pos = 0;
-    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", ptin_number = "";
+    public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", ptin_number = "",
+            ctek = "";
     private int who_you_are_pos = 0;
     private int jobtitle_id_pos = 0;
     private int industry_id_pos = 0;
@@ -151,6 +150,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private String State, City;
     private String prefix = "P";
 
+    private String CTEC_prefix = "A";
+
     public String selected_proffesional_credential = "";
     public String selected_additional_qualification = "";
 
@@ -175,6 +176,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             firstname = intent.getStringExtra(getResources().getString(R.string.pass_fname));
+            ctek = intent.getStringExtra(getResources().getString(R.string.pass_ctek_number));
             lastname = intent.getStringExtra(getResources().getString(R.string.pass_lname));
             email = intent.getStringExtra(getResources().getString(R.string.pass_email));
             firmname = intent.getStringExtra(getResources().getString(R.string.pass_firm_name));
@@ -364,6 +366,28 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        binding.edtCTECNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().startsWith(CTEC_prefix)) {
+                    binding.edtCTECNumber.setText(CTEC_prefix);
+                    binding.edtCTECNumber.setSelection(1);
+                }
+
+            }
+        });
+
 
         binding.ivedit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -376,6 +400,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (ptin_number.equalsIgnoreCase("")) {
                     binding.edtPtinNumber.setText(prefix);
                     binding.edtPtinNumber.setSelection(1);
+                }
+
+                if (ctek.equalsIgnoreCase("")) {
+                    binding.edtCTECNumber.setText(CTEC_prefix);
+                    binding.edtCTECNumber.setSelection(1);
                 }
 
 
@@ -401,6 +430,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 binding.lvProfessionalCredential.setEnabled(true);
                 binding.additionalQualification.setEnabled(true);
                 binding.lvAdditionalQualification.setEnabled(true);
+                binding.edtCTECNumber.setEnabled(true);
 
 
             }
@@ -686,7 +716,8 @@ public class EditProfileActivity extends AppCompatActivity {
                                 Constant.Trim(binding.edtFirstname.getText().toString()), Constant.Trim(binding.edtLastname.getText().toString()),
                                 Constant.Trim(binding.edtEmailname.getText().toString()), Constant.Trim(binding.edtFirmname.getText().toString()), country_id, state_id, city_id, Integer.parseInt(Constant.Trim(binding.edtZipcode.getText().toString())), Constant.Trim(binding.edtMobileNumber.getText()
                                         .toString()), Constant.Trim(binding.edtPhoneNumber.getText()
-                                        .toString()), Constant.Trim(binding.edtPtinNumber.getText().toString()), selected_proffesional_credential
+                                        .toString()), Constant.Trim(binding.edtPtinNumber.getText().toString()),
+                                Constant.Trim(binding.edtCTECNumber.getText().toString()), selected_proffesional_credential
                                 , selected_additional_qualification, jobtitle_id, industry_id);
                     } else {
                         Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -917,6 +948,10 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtPtinNumber.setText(prefix + ptin_number.substring(1));
         }
 
+        if (!ctek.equalsIgnoreCase("") && ctek != null) {
+            binding.edtCTECNumber.setText(CTEC_prefix + ctek.substring(1));
+        }
+
 
         if (!lastname.equalsIgnoreCase("") && lastname != null) {
             binding.edtLastname.setText(lastname);
@@ -975,6 +1010,7 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.lvProfessionalCredential.setEnabled(true);
         binding.additionalQualification.setEnabled(true);
         binding.lvAdditionalQualification.setEnabled(true);
+        binding.edtCTECNumber.setEnabled(false);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -1093,12 +1129,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void EditPost(String Authorization, String first_name, String last_name, String email,
                          String firm_name, final int country_id, final int state_id, final int city_id,
-                         int zipcode, String contact_no, String phone, String ptin_number, String selected_proffesional_credential, String selected_additional_qualification, final int jobtitle_id, final int industry_id) {
+                         int zipcode, String contact_no, String phone, String ptin_number, String ctec_id, String selected_proffesional_credential, String selected_additional_qualification, final int jobtitle_id, final int industry_id) {
 
 
         // RxJava
         mAPIService_new.Ediprofile(getResources().getString(R.string.accept), Authorization, first_name, last_name, email
-                , firm_name, country_id, state_id, city_id, zipcode, contact_no, phone, ptin_number, selected_proffesional_credential,
+                , firm_name, country_id, state_id, city_id, zipcode, contact_no, phone, ptin_number, ctec_id, selected_proffesional_credential,
                 selected_additional_qualification, jobtitle_id, industry_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<EditProfileModel>() {
                     @Override

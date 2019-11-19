@@ -2,6 +2,7 @@ package com.entigrity.adapter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -10,15 +11,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,14 +36,15 @@ import android.widget.Toast;
 import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.activity.ActivityEvolutionForm;
-import com.entigrity.activity.PaymentActivity;
 import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
+import com.entigrity.model.homewebinarnew.MyCertificateLinksItem;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
+import com.entigrity.view.SimpleDividerItemDecoration;
 import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
@@ -55,8 +59,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.entigrity.activity.WebinarDetailsActivity.PERMISSIONS_MULTIPLE_REQUEST_CERTIFICATE;
-
 public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -67,6 +69,9 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     private APIService mAPIService;
     ProgressDialog progressDialog;
     public String certificate_link = "";
+    public Dialog dialogCertificate;
+    public CertificatesListHomeMyWebinarPopUpAdapter certificatesListPopUpAdapter;
+    LinearLayoutManager linearLayoutManager;
     String join_url = "";
     ArrayList<Long> list = new ArrayList<>();
 
@@ -80,6 +85,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+        dialogCertificate = new Dialog(mContext);
 
         mContext.registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -132,17 +138,22 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         return vh;
     }
 
+    public void unregister(final Context context) {
+        if (onComplete != null) {
+            try {
+                context.unregisterReceiver(onComplete);
+            } catch (Exception e) {
+                // ignore
+            }
+            onComplete = null;
+        }
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
 
         if (viewHolder instanceof MyWebinarHolder) {
-           /* if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
-                ((MyWebinarHolder) viewHolder).tv_webinar_title.setText(mList.get(position).getWebinarTitle());
-            }*/
-
-            /*if (!mList.get(position).getCertificatelink().equalsIgnoreCase("")) {
-                certificate_link = mList.get(position).getCertificatelink();
-            }*/
 
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
@@ -232,7 +243,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_two);
                     ((MyWebinarHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 2.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 2.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 2.5) {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_two);
@@ -242,7 +253,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_three);
                     ((MyWebinarHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 3.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 3.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 3.5) {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_three);
@@ -252,7 +263,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.half_four);
                     ((MyWebinarHolder) viewHolder).iv_rating.setVisibility(View.VISIBLE);
-                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 4.1
+                } else if (Float.parseFloat(mList.get(position).getRatingaverage()) >= 4.0
                         && Float.parseFloat(mList.get(position).getRatingaverage()) < 4.5) {
 
                     ((MyWebinarHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_four);
@@ -280,13 +291,6 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             } else {
                 ((MyWebinarHolder) viewHolder).tv_webinar_price_status.setText("Free");
             }
-
-
-            /*if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
-                Picasso.with(mContext).load(mList.get(position).getWebinarThumbnailImage())
-                        .placeholder(R.mipmap.webinar_placeholder)
-                        .into(((MyWebinarHolder) viewHolder).ivwebinar_thumbhel);
-            }*/
 
 
             if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
@@ -444,11 +448,10 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                     Intent i = new Intent(mContext, WebinarDetailsActivity.class);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                             .get(position).getId());
-                    i.putExtra(mContext.getResources().getString(R.string.screen_detail), 0);
+                    i.putExtra(mContext.getResources().getString(R.string.screen_detail), 5);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                             .get(position).getWebinarType());
                     mContext.startActivity(i);
-                    ((Activity) mContext).finish();
 
                 }
             });
@@ -523,14 +526,45 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                 .getResources().getString(R.string.str_webinar_status_certificate))) {
 //                            checkAndroidVersionCertificate();
                             // Left from here..
-                            checkAndroidVersion(mList.get(position).getCertificateLink());
+                            // checkAndroidVersion(mList.get(position).getCertificateLink());
+
+                            if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                                Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+
+                            } else {
+                                if (mList.get(position).getMyCertificateLinks().size() == 1) {
+                                    Intent i = new Intent(mContext, PdfViewActivity.class);
+                                    i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                            mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                    mContext.startActivity(i);
+                                } else {
+                                    displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+                                }
+
+                            }
+
+
                         }
                     } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_self_study_on_demand))) {
                         if (mList.get(position).getStatus().equalsIgnoreCase(mContext
                                 .getResources().getString(R.string.str_webinar_status_certificate))) {
 //                            checkAndroidVersionCertificate();
                             // Left from here..
-                            checkAndroidVersion(mList.get(position).getCertificateLink());
+
+                            if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                                Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+
+                            } else {
+                                if (mList.get(position).getMyCertificateLinks().size() == 1) {
+                                    Intent i = new Intent(mContext, PdfViewActivity.class);
+                                    i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                            mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                    mContext.startActivity(i);
+                                } else {
+                                    displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+                                }
+                            }
+
                         }
                     }
                 }
@@ -558,6 +592,41 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
 
         }*/
+
+    }
+
+    private void displayCertificateDialog(List<MyCertificateLinksItem> myCertificateLinks) {
+
+
+        dialogCertificate.setContentView(R.layout.popup_certificates);
+        dialogCertificate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        TextView tv_submit = (TextView) dialogCertificate.findViewById(R.id.tv_submit);
+        TextView tv_cancel = (TextView) dialogCertificate.findViewById(R.id.tv_cancel);
+        RecyclerView rv_professional_credential = (RecyclerView) dialogCertificate.findViewById(R.id.rv_certificate);
+
+        linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCertificate.isShowing()) {
+                    dialogCertificate.dismiss();
+                }
+            }
+        });
+
+        dialogCertificate.show();
+
+        if (myCertificateLinks.size() > 0) {
+            certificatesListPopUpAdapter = new CertificatesListHomeMyWebinarPopUpAdapter(mContext, myCertificateLinks);
+            rv_professional_credential.setAdapter(certificatesListPopUpAdapter);
+        }
+
 
     }
 

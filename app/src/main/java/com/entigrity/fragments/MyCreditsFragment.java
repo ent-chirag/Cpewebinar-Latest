@@ -420,7 +420,7 @@ public class MyCreditsFragment extends Fragment {
 
 
         mAPIService.GetMyCredit(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
-                 start, limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                 filter_type, start, limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Model_My_Credit_New>() {
                     @Override
                     public void onCompleted() {
