@@ -193,7 +193,6 @@
                             android:id="@+id/edt_CTEC_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:enabled="false"
                             android:hint="@string/view_profile_ctec_id"
                             android:imeOptions="actionDone"
                             android:inputType="number"
