@@ -69,8 +69,8 @@ public class ActivityContactUs extends AppCompatActivity {
                 if (Validation()) {
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                        PostContactUsQuery(getResources().getString(R.string.accept),
-                                binding.edtSubject.getText().toString(), binding.edtReview.getText().toString());
+                        PostContactUsQuery(getResources().getString(R.string.accept), binding.edtReview.getText().toString(),
+                                binding.edtSubject.getText().toString());
                     } else {
                         Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
