@@ -49,9 +49,11 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,9 +62,11 @@ import com.entigrity.R;
 import com.entigrity.adapter.CertificatesListWebinarDetailsPopUpAdapter;
 import com.entigrity.databinding.ActivityWebinardetailsBinding;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
+import com.entigrity.model.review_answer.AddReview;
 import com.entigrity.model.timezones;
 import com.entigrity.model.video_duration.Video_duration_model;
 import com.entigrity.model.webinar_details_new.MyCertificateLinksItem;
+import com.entigrity.model.webinar_details_new.WebinarDetail;
 import com.entigrity.model.webinar_details_new.WebinarTestimonialItem;
 import com.entigrity.model.webinar_details_new.Webinar_details;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -283,6 +287,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String published_date = "";
     public String recorded_date = "";
 
+    private boolean isReview = false;
+    public Dialog myDialogaddreview;
+
+    private int rating = 0;
+    private boolean isLikeToKnowMore = false;
+    private int is_like = 0;
+    private String strReview = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -792,7 +803,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
-            } */ else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+            } */
+            else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview){
+                // Load review Popup here..
+                showAddReviewPopUp();
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
                 // checkAndroidVersionCertificate();
 
@@ -829,6 +845,246 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    private void showAddReviewPopUp() {
+
+        myDialogaddreview = new Dialog(context);
+        myDialogaddreview.setContentView(R.layout.rating_popup);
+        myDialogaddreview.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialogaddreview.setCanceledOnTouchOutside(false);
+        myDialogaddreview.setCancelable(false);
+
+        ImageView iv_close = (ImageView) myDialogaddreview.findViewById(R.id.ivclose);
+        Button btn_submit = (Button) myDialogaddreview.findViewById(R.id.btn_submit);
+        final ImageView iv_one = (ImageView) myDialogaddreview.findViewById(R.id.iv_one);
+        final ImageView iv_two = (ImageView) myDialogaddreview.findViewById(R.id.iv_two);
+        final ImageView iv_three = (ImageView) myDialogaddreview.findViewById(R.id.iv_three);
+        final ImageView iv_four = (ImageView) myDialogaddreview.findViewById(R.id.iv_four);
+        final ImageView iv_five = (ImageView) myDialogaddreview.findViewById(R.id.iv_five);
+
+        final EditText edt_review = (EditText) myDialogaddreview.findViewById(R.id.edt_review);
+
+        final TextView tv_title = (TextView) myDialogaddreview.findViewById(R.id.tv_title);
+
+        final RelativeLayout relChecked_yes = (RelativeLayout) myDialogaddreview.findViewById(R.id.relChecked_yes);
+        final RelativeLayout relChecked_no = (RelativeLayout) myDialogaddreview.findViewById(R.id.relChecked_no);
+        final TextView tv_yes = (TextView) myDialogaddreview.findViewById(R.id.tv_yes);
+        final TextView tv_no = (TextView) myDialogaddreview.findViewById(R.id.tv_no);
+
+        rating = 0;
+        isLikeToKnowMore = false;
+        is_like = 0;
+        strReview = "";
+
+        tv_title.setText(getResources().getString(R.string.str_title_question_rating_popup)+" "+WebinarDetailsActivity.getInstance().aboutpresenterCompanyName+"?");
+
+        relChecked_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 1;
+            }
+        });
+
+        tv_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 1;
+            }
+        });
+
+        relChecked_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 0;
+            }
+        });
+
+        tv_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 0;
+            }
+        });
+
+        iv_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating = 1;
+
+            }
+        });
+
+
+        iv_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating = 2;
+
+            }
+        });
+
+
+        iv_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating = 3;
+
+            }
+        });
+
+        iv_four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating =4;
+
+            }
+        });
+
+        iv_five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star_hover);
+
+                rating = 5;
+            }
+        });
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Take API CALL here then on the success call add the following code there..
+                /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();*/
+
+                // Check for validation..
+                strReview = edt_review.getText().toString();
+
+                if(!isLikeToKnowMore){
+                    Snackbar.make(binding.relView, getResources().getString(R.string.str_validation_like_know_more), Snackbar.LENGTH_SHORT).show();
+                } else if(rating == 0){
+                    Snackbar.make(binding.relView, getResources().getString(R.string.str_validation_rating), Snackbar.LENGTH_SHORT).show();
+                } else {
+
+                    // Take the API calls here..
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+//                        GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
+                        GetSubmitReviewAnswer(is_like, rating, strReview, webinarid);
+                    } else {
+                        Snackbar.make(binding.relView, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialogaddreview.dismiss();
+            }
+        });
+
+
+        myDialogaddreview.show();
+
+    }
+
+    private void GetSubmitReviewAnswer(int is_like, int rating, String strReview, int webinarid) {
+
+        mAPIService.AddReview(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinarid
+                , rating, is_like, strReview).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<AddReview>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(AddReview addReview) {
+
+                        if (addReview.isSuccess() == true) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            if(myDialogaddreview.isShowing()){
+                                myDialogaddreview.dismiss();
+                            }
+
+                            recreate();
+
+                            /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                            startActivity(i);
+                            finish();*/
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }
+                });
     }
 
     private void displayCertificateDialog(List<MyCertificateLinksItem> arraylistmycertificate) {
@@ -1950,6 +2206,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                     equalsIgnoreCase("")) {
                                 company_logo = webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getCompanyLogo();
                             }
+
+                            isReview = webinar_details.getPayload().getWebinarDetail().isReviewed();
 
                             /*isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
 

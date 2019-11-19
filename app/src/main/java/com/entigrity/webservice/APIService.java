@@ -44,6 +44,7 @@ import com.entigrity.model.postcontactus.PostContactQuery;
 import com.entigrity.model.postfeedback.PostFeedback;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.registration.RegistrationModel;
+import com.entigrity.model.review_answer.AddReview;
 import com.entigrity.model.review_question.Review_Question;
 import com.entigrity.model.savenotificationsetting.SubmitNotification;
 import com.entigrity.model.savetopicsofinterest.SaveTopicsInterest;
@@ -614,6 +615,19 @@ public interface APIService {
             @Field("question_id") String question_id,
             @Field("answers") String answers,
             @Field("percentage") String percentage
+    );
+
+    //final review answer
+//    @POST("webinar/add_review")
+    @POST("add_review")
+    @FormUrlEncoded
+    Observable<AddReview> AddReview(
+            @Header("Accept") String accept,
+            @Header("Authorization") String authorization,
+            @Field("webinar_id") int webinar_id,
+            @Field("star") int rating,
+            @Field("is_like") int is_like,
+            @Field("review") String review
     );
 
     //video duration

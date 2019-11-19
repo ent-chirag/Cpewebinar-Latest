@@ -16,7 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.entigrity.MainActivity;
@@ -26,6 +28,7 @@ import com.entigrity.databinding.ActivityFinalQuizBinding;
 import com.entigrity.model.final_Quiz.FinalQuizQuestionsItem;
 import com.entigrity.model.final_Quiz.Final_Quiz;
 import com.entigrity.model.final_quiz_answer.FinalQuizAnswer;
+import com.entigrity.model.review_answer.AddReview;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
@@ -62,6 +65,11 @@ public class ActivityFinalQuiz extends AppCompatActivity {
 
     public Dialog myDialog;
     public Dialog myDialogaddreview;
+
+    private int rating = 0;
+    private boolean isLikeToKnowMore = false;
+    private int is_like = 0;
+    private String strReview = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -188,11 +196,13 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                     if (myDialog.isShowing()) {
                         myDialog.dismiss();
                     }
-                    Intent i = new Intent(context, WebinarDetailsActivity.class);
+
+                    showAddReviewPopUp();
+                    /*Intent i = new Intent(context, WebinarDetailsActivity.class);
                     i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
                     i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                     startActivity(i);
-                    finish();
+                    finish();*/
                 } else {
                     if (myDialog.isShowing()) {
                         myDialog.dismiss();
@@ -225,6 +235,62 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         final ImageView iv_four = (ImageView) myDialogaddreview.findViewById(R.id.iv_four);
         final ImageView iv_five = (ImageView) myDialogaddreview.findViewById(R.id.iv_five);
 
+        final EditText edt_review = (EditText) myDialogaddreview.findViewById(R.id.edt_review);
+
+        final TextView tv_title = (TextView) myDialogaddreview.findViewById(R.id.tv_title);
+
+        final RelativeLayout relChecked_yes = (RelativeLayout) myDialogaddreview.findViewById(R.id.relChecked_yes);
+        final RelativeLayout relChecked_no = (RelativeLayout) myDialogaddreview.findViewById(R.id.relChecked_no);
+        final TextView tv_yes = (TextView) myDialogaddreview.findViewById(R.id.tv_yes);
+        final TextView tv_no = (TextView) myDialogaddreview.findViewById(R.id.tv_no);
+
+        iv_close.setVisibility(View.GONE);
+        tv_title.setText(getResources().getString(R.string.str_title_question_rating_popup)+" "+WebinarDetailsActivity.getInstance().aboutpresenterCompanyName+"?");
+
+        rating = 0;
+        isLikeToKnowMore = false;
+        is_like = 0;
+        strReview = "";
+
+        relChecked_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 1;
+            }
+        });
+
+        tv_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 1;
+            }
+        });
+
+        relChecked_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 0;
+            }
+        });
+
+        tv_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_select));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_not_select));
+                isLikeToKnowMore = true;
+                is_like = 0;
+            }
+        });
 
         iv_one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,6 +301,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 iv_three.setImageResource(R.mipmap.add_review_star);
                 iv_four.setImageResource(R.mipmap.add_review_star);
                 iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating = 1;
 
             }
         });
@@ -249,6 +317,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 iv_four.setImageResource(R.mipmap.add_review_star);
                 iv_five.setImageResource(R.mipmap.add_review_star);
 
+                rating = 2;
 
             }
         });
@@ -263,6 +332,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 iv_four.setImageResource(R.mipmap.add_review_star);
                 iv_five.setImageResource(R.mipmap.add_review_star);
 
+                rating = 3;
+
             }
         });
 
@@ -274,6 +345,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 iv_three.setImageResource(R.mipmap.add_review_star_hover);
                 iv_four.setImageResource(R.mipmap.add_review_star_hover);
                 iv_five.setImageResource(R.mipmap.add_review_star);
+
+                rating =4;
 
             }
         });
@@ -287,6 +360,8 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                 iv_four.setImageResource(R.mipmap.add_review_star_hover);
                 iv_five.setImageResource(R.mipmap.add_review_star_hover);
 
+                rating = 5;
+
             }
         });
 
@@ -294,7 +369,30 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Take API CALL here then on the success call add the following code there..
+                /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();*/
 
+                // Check for validation..
+                strReview = edt_review.getText().toString();
+
+                if(!isLikeToKnowMore){
+                    Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.str_validation_like_know_more), Snackbar.LENGTH_SHORT).show();
+                } else if(rating == 0){
+                    Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.str_validation_rating), Snackbar.LENGTH_SHORT).show();
+                } else {
+                    // Take the API calls here..
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+//                        GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
+                        GetSubmitReviewAnswer(is_like, rating, strReview);
+                    } else {
+                        Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -309,7 +407,6 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         myDialogaddreview.show();
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -318,6 +415,57 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
         startActivity(i);
         finish();
+    }
+
+    private void GetSubmitReviewAnswer(int is_like, int rating, String strReview) {
+
+        mAPIService.AddReview(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
+                , rating, is_like, strReview).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<AddReview>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(AddReview addReview) {
+
+                        if (addReview.isSuccess() == true) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            if(myDialogaddreview.isShowing()){
+                                myDialogaddreview.dismiss();
+                            }
+
+                            Intent i = new Intent(context, WebinarDetailsActivity.class);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                            startActivity(i);
+                            finish();
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }
+                });
     }
 
     private void GetSubmitAnswer(String finalquizquestion, String finalanswer, String percentage) {

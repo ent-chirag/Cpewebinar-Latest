@@ -624,6 +624,7 @@
     <string name="str_webinar_status_register">Register</string>
     <string name="str_webinar_status_enroll">JOIN WEBINAR</string>
     <string name="str_webinar_status_certificate">MY CERTIFICATE</string>
+    <string name="str_webinar_status_completed">COMPLETED</string>
     <string name="str_webinar_status_watchnow">WATCH NOW</string>
     <string name="str_webinar_status_resume_watching">Resume Watching</string>
     <string name="str_webinar_status_quiz_pending">Quiz Pending</string>
@@ -814,5 +815,7 @@
     <string name="str_title_question_rating_popup">Would you like to know more about</string>
     <string name="str_rating_text">How Would you rate your experience with the webinar?</string>
 
+    <string name="str_validation_like_know_more">Please answer would you like to know more about presenter company</string>
+    <string name="str_validation_rating">Please give rating</string>
 
 </resources>

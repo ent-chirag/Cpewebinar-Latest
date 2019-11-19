@@ -250,6 +250,9 @@ public class WebinarDetail {
     @SerializedName("is_card_save")
     private boolean isCardSave;
 
+    @SerializedName("is_reviewed")
+    private boolean isReviewed;
+
     @SerializedName("redirection_url")
     private String redirectionUrl;
 
@@ -627,6 +630,14 @@ public class WebinarDetail {
 
     public void setPublisheddate(String publisheddate) {
         this.publisheddate = publisheddate;
+    }
+
+    public boolean isReviewed() {
+        return isReviewed;
+    }
+
+    public void setReviewed(boolean reviewed) {
+        isReviewed = reviewed;
     }
 
     @Override
