@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,19 +27,23 @@ import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.activity.LoginActivity;
 import com.entigrity.activity.PaymentActivity;
+import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.SignUpActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
+import com.entigrity.model.homewebinarnew.MyCertificateLinksItem;
 import com.entigrity.model.registerwebinar.ModelRegisterWebinar;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
+import com.entigrity.view.SimpleDividerItemDecoration;
 import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
 
 import java.lang.invoke.VolatileCallSite;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -56,10 +61,13 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     LayoutInflater mInflater;
     public List<com.entigrity.model.homewebinarnew.WebinarItem> mList;
     private APIService mAPIService;
+    public Dialog dialogCertificate;
+    public CertificatesListHomeMyWebinarPopUpAdapter certificatesListPopUpAdapter;
     ProgressDialog progressDialog;
     public Dialog myDialog;
     private TextView tv_cancel, tv_login, tv_create_account;
-//    public String certificate_link = "";
+    //    public String certificate_link = "";
+    LinearLayoutManager linearLayoutManager;
     String join_url = "";
 
 
@@ -68,6 +76,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         this.mList = mList;
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        dialogCertificate = new Dialog(mContext);
 
 
     }
@@ -421,7 +430,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
                         mContext.startActivity(i);
-                       ((Activity) mContext).finish();
+                        ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }
@@ -440,50 +449,28 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                 .getResources().getString(R.string.str_webinar_status_register))) {
 
                             if (!mList.get(position).getFee().equalsIgnoreCase("")) {
-                               /* if (!mList.get(position).getPaymentlink().equalsIgnoreCase("")) {
-                                    Intent i = new Intent(mContext, PaymentActivity.class);
-                                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
-                                            .get(position).getId());
-                                    i.putExtra(mContext.getResources().getString(R.string.str_payment_link), mList
-                                            .get(position).getPaymentlink());
-                                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
-                                            .get(position).getWebinarType());
 
-                                    mContext.startActivity(i);
-                                    ((Activity) mContext).finish();
-
-
+                                if (mList.get(position).isCardSave()) {
+                                    if (Constant.isNetworkAvailable(mContext)) {
+                                        progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
+                                        RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                    } else {
+                                        Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                    }
                                 } else {
-                                    Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.payment_link_not_available), Snackbar.LENGTH_SHORT).show();
-                                }*/
-
-                               if(mList.get(position).isCardSave())
-                               {
-                                   if (Constant.isNetworkAvailable(mContext)) {
-                                       progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
-                                       RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((HomeViewHolder) viewHolder).webinar_status, position);
-                                   } else {
-                                       Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                                   }
-                               }else
-                               {
-                                   String url = ""+mList.get(position).getRedirectionUrl();
-                                   try {
-                                       Intent i = new Intent("android.intent.action.MAIN");
-                                       i.setComponent(ComponentName.unflattenFromString(""+url));
-                                       i.addCategory("android.intent.category.LAUNCHER");
-                                       i.setData(Uri.parse(url));
-                                       mContext.startActivity(i);
-                                   }
-                                   catch(ActivityNotFoundException e) {
-                                       // Chrome is not installed
-                                       Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                                       mContext.startActivity(i);
-                                   }
-                               }
-
-
-
+                                    String url = "" + mList.get(position).getRedirectionUrl();
+                                    try {
+                                        Intent i = new Intent("android.intent.action.MAIN");
+                                        i.setComponent(ComponentName.unflattenFromString("" + url));
+                                        i.addCategory("android.intent.category.LAUNCHER");
+                                        i.setData(Uri.parse(url));
+                                        mContext.startActivity(i);
+                                    } catch (ActivityNotFoundException e) {
+                                        // Chrome is not installed
+                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                        mContext.startActivity(i);
+                                    }
+                                }
 
 
                             } else {
@@ -523,7 +510,41 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                     i.setData(Uri.parse(join_url));
                                     mContext.startActivity(i);
                                 }
+                            } else if (mList.get(position).getStatus().equalsIgnoreCase(mContext
+                                    .getResources().getString(R.string.str_webinar_status_certificate))) {
+
+                                if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+
+                                } else {
+                                    if (mList.get(position).getMyCertificateLinks().size() == 1) {
+                                        Intent i = new Intent(mContext, PdfViewActivity.class);
+                                        i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                                mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                        mContext.startActivity(i);
+                                    } else {
+                                        displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+                                    }
+                                }
                             }
+                        } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_self_study_on_demand))) {
+                            if (mList.get(position).getStatus().equalsIgnoreCase(mContext
+                                    .getResources().getString(R.string.str_webinar_status_certificate))) {
+
+                                if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                                    Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
+                                } else {
+                                    if (mList.get(position).getMyCertificateLinks().size() == 1) {
+                                        Intent i = new Intent(mContext, PdfViewActivity.class);
+                                        i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                                mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                        mContext.startActivity(i);
+                                    } else {
+                                        displayCertificateDialog(mList.get(position).getMyCertificateLinks());
+                                    }
+                                }
+                            }
+
                         }
                     } else {
                         ShowPopUp();
@@ -553,6 +574,40 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         } /*else {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
         }*/
+
+    }
+
+    private void displayCertificateDialog(List<MyCertificateLinksItem> myCertificateLinks) {
+
+
+        dialogCertificate.setContentView(R.layout.popup_certificates);
+        dialogCertificate.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        TextView tv_cancel = (TextView) dialogCertificate.findViewById(R.id.tv_cancel);
+        RecyclerView rv_professional_credential = (RecyclerView) dialogCertificate.findViewById(R.id.rv_certificate);
+
+        linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        rv_professional_credential.setLayoutManager(linearLayoutManager);
+        rv_professional_credential.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+
+
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCertificate.isShowing()) {
+                    dialogCertificate.dismiss();
+                }
+            }
+        });
+
+        dialogCertificate.show();
+
+        if (myCertificateLinks.size() > 0) {
+            certificatesListPopUpAdapter = new CertificatesListHomeMyWebinarPopUpAdapter(mContext, myCertificateLinks);
+            rv_professional_credential.setAdapter(certificatesListPopUpAdapter);
+        }
+
 
     }
 
@@ -842,7 +897,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                     .get(position).getWebinarType());
 
                             mContext.startActivity(i);
-                           // ((Activity) mContext).finish();
+                            // ((Activity) mContext).finish();
 
 
                         } else {

@@ -74,9 +74,10 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     LinearLayoutManager linearLayoutManager;
     String join_url = "";
     ArrayList<Long> list = new ArrayList<>();
+    private long refid;
 
     public static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
-    private long refid;
+
     private DownloadManager downloadManager;
 
     public HomeMyWebinarAdapter(Context mContext, List<com.entigrity.model.homewebinarnew.WebinarItem> mList) {
