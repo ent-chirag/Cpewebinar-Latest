@@ -1683,10 +1683,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
                             // recreate();
                             button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
-                            button.setBackgroundResource(R.drawable.rounded_webinar_status);
+//                            button.setBackgroundResource(R.drawable.rounded_webinar_status);
 
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
+                                binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_status);
                                 Constant.Log("joinurl", "joinurl" + join_url);
                             } else {
                                 binding.relWebinarStatus.setVisibility(View.GONE);
