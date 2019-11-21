@@ -43,7 +43,7 @@
         android:layout_marginTop="@dimen/_2sdp"
         android:layout_marginRight="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textNoSuggestions"
         android:textColor="@color/edit_profile_lable_colcr"
         android:textSize="@dimen/_10sdp"
         android:letterSpacing="0.08"
