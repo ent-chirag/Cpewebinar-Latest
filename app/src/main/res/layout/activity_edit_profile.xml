@@ -405,7 +405,7 @@
                         android:enabled="false"
                         android:hint="@string/view_profile_zipcode"
                         android:imeOptions="actionDone"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:maxLength="5"
                         android:singleLine="true"
                         android:textColor="@color/grid_topics"

@@ -66,7 +66,6 @@ import com.entigrity.model.review_answer.AddReview;
 import com.entigrity.model.timezones;
 import com.entigrity.model.video_duration.Video_duration_model;
 import com.entigrity.model.webinar_details_new.MyCertificateLinksItem;
-import com.entigrity.model.webinar_details_new.WebinarDetail;
 import com.entigrity.model.webinar_details_new.WebinarTestimonialItem;
 import com.entigrity.model.webinar_details_new.Webinar_details;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -105,7 +104,10 @@ import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -138,8 +140,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public int webinarid = 0;
     public String webinar_type = "";
     public String Webinar_title = "";
-
-
     public String keyterms = "";
     public String overviewoftopic = "";
     public String whyshouldattend = "";
@@ -803,9 +803,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
-            } */
-            else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview){
+            } */ else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
                 // Load review Popup here..
                 showAddReviewPopUp();
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
@@ -877,7 +876,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         is_like = 0;
         strReview = "";
 
-        tv_title.setText(getResources().getString(R.string.str_title_question_rating_popup)+" "+WebinarDetailsActivity.getInstance().aboutpresenterCompanyName+"?");
+        tv_title.setText(getResources().getString(R.string.str_title_question_rating_popup) + " " + WebinarDetailsActivity.getInstance().aboutpresenterCompanyName + "?");
 
         relChecked_yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -973,7 +972,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 iv_four.setImageResource(R.mipmap.add_review_star_hover);
                 iv_five.setImageResource(R.mipmap.add_review_star);
 
-                rating =4;
+                rating = 4;
 
             }
         });
@@ -1004,9 +1003,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 // Check for validation..
                 strReview = edt_review.getText().toString();
 
-                if(!isLikeToKnowMore){
+                if (!isLikeToKnowMore) {
                     Snackbar.make(binding.relView, getResources().getString(R.string.str_validation_like_know_more), Snackbar.LENGTH_SHORT).show();
-                } else if(rating == 0){
+                } else if (rating == 0) {
                     Snackbar.make(binding.relView, getResources().getString(R.string.str_validation_rating), Snackbar.LENGTH_SHORT).show();
                 } else {
 
@@ -1066,7 +1065,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            if(myDialogaddreview.isShowing()){
+                            if (myDialogaddreview.isShowing()) {
                                 myDialogaddreview.dismiss();
                             }
 
@@ -1345,7 +1344,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = false;
-                     exoPlayer.setPlayWhenReady(true);
+                    exoPlayer.setPlayWhenReady(true);
 //                    PlayVideo();
 
 
@@ -1362,10 +1361,26 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private void initExoPlayer() {
 
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        String userAgent = Util.getUserAgent(context, "com.entigrity");
+
+// Default parameters, except allowCrossProtocolRedirects is true
+        DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory(
+                userAgent,
+                null /* listener */,
+                DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
+                DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
+                true /* allowCrossProtocolRedirects */
+        );
+
+        DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(
+                context,
+                null /* listener */,
+                httpDataSourceFactory
+        );
         TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
         exoPlayer = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
         Uri videoURI = Uri.parse(VIDEO_URL);
-        DefaultHttpDataSourceFactory dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_video");
+        // DefaultHttpDataSourceFactory dataSourceFactory = new DefaultHttpDataSourceFactory("exoplayer_video");
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         MediaSource mediaSource = new ExtractorMediaSource(videoURI, dataSourceFactory, extractorsFactory, null, null);
         mExoPlayerView.setPlayer(exoPlayer);
@@ -2209,11 +2224,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             isReview = webinar_details.getPayload().getWebinarDetail().isReviewed();
 
-                            /*isCardSaved=webinar_details.getPayload().getWebinarDetail().isCardSave();
+                            isCardSaved = webinar_details.getPayload().getWebinarDetail().isCardSave();
 
-                            if(!webinar_details.getPayload().getWebinarDetail().getRedirectionUrl().equalsIgnoreCase("")){
+                            if (!webinar_details.getPayload().getWebinarDetail().getRedirectionUrl().equalsIgnoreCase("")) {
                                 strPaymentRedirectionURL = webinar_details.getPayload().getWebinarDetail().getRedirectionUrl();
-                            }*/
+                            }
 
 
                            /* if (!webinar_details.getPayload().getWebinarDetail().getWebinarTitle().equalsIgnoreCase("")) {
@@ -2231,7 +2246,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             videostatus = webinar_details.getPayload().getWebinarDetail().isVideoStatus();
-                            if(videostatus){
+                            if (videostatus) {
                                 binding.relWatchedDuration.setVisibility(View.VISIBLE);
                                 binding.tvWatchedduration.setText("You have completed watching video.");
                             }
@@ -2274,7 +2289,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (!webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl().equalsIgnoreCase("")) {
                                 VIDEO_URL = webinar_details.getPayload().getWebinarDetail().getWebinarVideoUrl();
                             }
-
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCost().equalsIgnoreCase("")) {
                                 Cost = webinar_details.getPayload().getWebinarDetail().getCost();
@@ -2678,7 +2692,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                         binding.relTimezone.setVisibility(View.INVISIBLE);
 //                                        binding.tvRevieQuestion.setVisibility(View.VISIBLE);
 
-                                        if(webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))){
+                                        if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                                             binding.relWatchedDuration.setVisibility(View.VISIBLE);
                                             binding.tvErrorMsgDrag.setVisibility(View.VISIBLE);
                                             if (!videostatus) {

@@ -4,7 +4,6 @@ import com.entigrity.model.EmailValidation.emailvalidationmodel;
 import com.entigrity.model.Instructorlist_details.Instructor_Details_Model;
 import com.entigrity.model.Job_title.ModelJobTitle;
 import com.entigrity.model.MyCreditNew.Response;
-import com.entigrity.model.My_Credit.My_Credit;
 import com.entigrity.model.My_Credit_New.Model_My_Credit_New;
 import com.entigrity.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.entigrity.model.changepassword.ChangePasswordModel;

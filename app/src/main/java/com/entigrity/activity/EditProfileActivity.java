@@ -161,6 +161,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     private static final String TAG = EditProfileActivity.class.getName();
+    //int count = 0;
 
 
     @Override
@@ -230,6 +231,38 @@ public class EditProfileActivity extends AppCompatActivity {
                     binding.inputFirstName.setDefaultHintTextColor(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
                 }
                 return false;
+            }
+        });
+
+
+        binding.edtZipcode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                /*if (count <= binding.edtZipcode.getText().toString().length()
+                        &&(binding.edtZipcode.getText().toString().length()==3)){
+                    binding.edtZipcode.setText(binding.edtZipcode.getText().toString()+" ");
+                    int pos = binding.edtZipcode.getText().length();
+                    binding.edtZipcode.setSelection(pos);
+                }else if (count >= binding.edtZipcode.getText().toString().length()
+                        &&(binding.edtZipcode.getText().toString().length()==3
+                        )){
+                    binding.edtZipcode.setText(binding.edtZipcode.getText().toString().substring(0,binding.edtZipcode.getText().toString().length()-1));
+                    int pos = binding.edtZipcode.getText().length();
+                    binding.edtZipcode.setSelection(pos);
+                }*/
+
             }
         });
 
