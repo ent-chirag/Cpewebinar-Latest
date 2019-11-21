@@ -235,7 +235,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
-        binding.edtZipcode.addTextChangedListener(new TextWatcher() {
+        /*binding.edtZipcode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -250,7 +250,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                /*if (count <= binding.edtZipcode.getText().toString().length()
+                *//*if (count <= binding.edtZipcode.getText().toString().length()
                         &&(binding.edtZipcode.getText().toString().length()==3)){
                     binding.edtZipcode.setText(binding.edtZipcode.getText().toString()+" ");
                     int pos = binding.edtZipcode.getText().length();
@@ -261,10 +261,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     binding.edtZipcode.setText(binding.edtZipcode.getText().toString().substring(0,binding.edtZipcode.getText().toString().length()-1));
                     int pos = binding.edtZipcode.getText().length();
                     binding.edtZipcode.setSelection(pos);
-                }*/
+                }*//*
 
             }
-        });
+        });*/
 
 
         binding.edtLastname.setOnTouchListener(new View.OnTouchListener() {
