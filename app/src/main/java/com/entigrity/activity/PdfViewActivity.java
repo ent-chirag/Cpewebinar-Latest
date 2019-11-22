@@ -24,6 +24,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -39,11 +40,24 @@ import com.entigrity.databinding.ActivityPdfviewBinding;
 import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class PdfViewActivity extends AppCompatActivity {
     ActivityPdfviewBinding binding;
@@ -83,8 +97,10 @@ public class PdfViewActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     display();
+//                    openPdfFromURL();
                 }
-            },5000);
+            }, 1000);
+//            openPdfFromURL();
 //            display();
         } else {
             Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -282,9 +298,77 @@ public class PdfViewActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }*/
 
+    private void openPdfFromURL() {
+
+        Observable.fromCallable(new Callable<File>() {
+            //        Observable.fromCallable(new Callable<File>() {
+            @Override
+            public File call() throws Exception {
+                try {
+//                    URL url = new URL(pdfUrl);
+                    URL url = new URL(myCertificate);
+                    URLConnection connection = url.openConnection();
+                    connection.connect();
+
+                    // download the file
+                    InputStream input = new BufferedInputStream(connection.getInputStream());
+                    File dir = new File(PdfViewActivity.this.getFilesDir(), "/shared_pdf");
+                    dir.mkdir();
+                    File file = new File(dir, "temp.pdf");
+                    OutputStream output = new FileOutputStream(file);
+                    Log.e("*+*+*", "File name : " + file.toString());
+
+                    byte data[] = new byte[1024];
+                    long total = 0;
+                    int count;
+                    while ((count = input.read(data)) != -1) {
+                        total += count;
+                        output.write(data, 0, count);
+                    }
+
+                    output.flush();
+                    output.close();
+                    input.close();
+                    return file;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<File>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(File file) {
+                        String authority = PdfViewActivity.this.getApplicationContext().getPackageName() + ".fileprovider";
+                        Uri uriToFile = FileProvider.getUriForFile(PdfViewActivity.this, authority, file);
+
+                        Intent shareIntent = new Intent(Intent.ACTION_VIEW);
+                        shareIntent.setDataAndType(uriToFile, "application/pdf");
+                        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        if (shareIntent.resolveActivity(PdfViewActivity.this.getPackageManager()) != null) {
+                            PdfViewActivity.this.startActivity(shareIntent);
+                        }
+                    }
+                });
+
+    }
+
     private void display() {
 //        String url = "https://docs.google.com/gview?embedded=true&url=" + myCertificate;
         String url = "https://drive.google.com/viewerng/viewer?embedded=true&url=" + myCertificate;
+//        String url = "https://drive.google.com/viewerng/viewer?embedded=true&url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
         Log.i(TAG, "Opening PDF: " + url);
 
 //        uri = Uri.parse( url.toURI().toString() );
@@ -303,18 +387,16 @@ public class PdfViewActivity extends AppCompatActivity {
 //        binding.webview.loadUrl(myCertificate);
         binding.webview.setWebViewClient(new CustomWebViewClient());
 
-        binding.webview.setWebChromeClient(new WebChromeClient()
-        {
+        binding.webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                Log.e("*+*+*","onProgressChanged : "+newProgress);
+                Log.e("*+*+*", "onProgressChanged : " + newProgress);
                 /*if(newProgress<100) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                 }*/
-                if(newProgress == 100)
-                {
-                    if(progressDialog.isShowing()){
+                if (newProgress == 100) {
+                    if (progressDialog.isShowing()) {
                         progressDialog.dismiss();
                     }
                 }
@@ -332,6 +414,7 @@ public class PdfViewActivity extends AppCompatActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Log.e("*+*+*","shouldOverrideUrlLoading : view : "+view.getTitle().toString()+"  ::  url : "+url);
             view.loadUrl(url);
             return true;
         }
@@ -340,6 +423,28 @@ public class PdfViewActivity extends AppCompatActivity {
         public void onPageFinished(WebView view, String url) {
             // TODO Auto-generated method stub
             super.onPageFinished(view, url);
+            /*Log.e("*+*+*","onPageFinished : view : "+view.getTitle().toString()+"  ::  url : "+url);
+            Log.e("*+*+*","onPageFinished : view.getUrl() : "+view.getUrl().toString());
+            Log.e("*+*+*","onPageFinished : view.getContentHeight() : "+view.getContentHeight());
+//            Log.e("*+*+*","onPageFinished : view.getWebViewRenderProcess() : "+view.getWebViewRenderProcess());
+            Log.e("*+*+*","onPageFinished : view.getProgress() : "+view.getProgress());
+            Log.e("*+*+*","onPageFinished : view.getContentDescription() : "+view.getContentDescription());
+            Log.e("*+*+*","onPageFinished : view.getHeight() : "+view.getHeight());
+            Log.e("*+*+*","onPageFinished : view.getX() : "+view.getX());
+            Log.e("*+*+*","onPageFinished : view.getY() : "+view.getY());*/
+//            Log.e("*+*+*","onPageFinished : view.getZ() : "+view.getZ());
+            if (view.getContentHeight() == 0) {
+                Log.e("*+*+*","view.getContentHeight() == 0");
+                view.reload();
+                /*Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        display();
+//                    openPdfFromURL();
+                    }
+                }, 1000);*/
+            }
 
             /*if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
