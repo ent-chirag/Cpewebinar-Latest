@@ -72,15 +72,16 @@
         <WebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
 
         </WebView>
 
-        <!--<es.voghdev.pdfviewpager.library.PDFViewPager
-            android:id="@+id/pdfViewPager"
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>-->
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

@@ -2,66 +2,55 @@ package com.entigrity.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.DownloadManager;
-import android.app.NotificationManager;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.entigrity.R;
 import com.entigrity.databinding.ActivityPdfviewBinding;
 import com.entigrity.utility.Constant;
-import com.entigrity.view.DialogsUtils;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
-
-import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
-import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 
 public class PdfViewActivity extends AppCompatActivity {
     ActivityPdfviewBinding binding;
-    ProgressDialog progressDialog;
+    ProgressDialog mProgressDialog;
     public Context context;
-    private static final String TAG = PdfViewActivity.class.getName();
     public String myCertificate = "";
     public static final int PERMISSIONS_MULTIPLE_REQUEST_CERTIFICATE = 12345;
-    public long refid;
-    private DownloadManager downloadManager;
     public ArrayList<Long> list = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pdfview);
-        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         context = PdfViewActivity.this;
+
+        mProgressDialog = new ProgressDialog(context);
 
         binding.screentitle.setText(context.getResources().getString(R.string.str_view_web_view_certificate));
 
@@ -72,20 +61,8 @@ public class PdfViewActivity extends AppCompatActivity {
             myCertificate = intent.getStringExtra(getResources().getString(R.string.str_document_link));
         }
 
-        registerReceiver(onComplete,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-
-
         if (Constant.isNetworkAvailable(context)) {
-            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    display();
-                }
-            },5000);
-//            display();
+            checkAndroidVersionCertificate();
         } else {
             Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -124,10 +101,112 @@ public class PdfViewActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(onComplete);
+    private void downloadFile() {
+        mProgressDialog.show();
+        mProgressDialog.setMessage("downloading");
+        mProgressDialog.setMax(100);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setCancelable(true);
+        DownloadFileTask task = new DownloadFileTask(
+                PdfViewActivity.this,
+                myCertificate,
+                "/download/pdf_file.pdf");
+        task.startTask();
+    }
+
+
+    public class DownloadFileTask {
+        public static final String TAG = "DownloadFileTask";
+
+        private PdfViewActivity context;
+        private GetTask contentTask;
+        private String url;
+        private String fileName;
+
+        public DownloadFileTask(PdfViewActivity context, String url, String fileName) {
+            this.context = context;
+            this.url = url;
+            this.fileName = fileName;
+        }
+
+        public void startTask() {
+            doRequest();
+        }
+
+        private void doRequest() {
+            contentTask = new GetTask();
+            contentTask.execute();
+        }
+
+        private class GetTask extends AsyncTask<String, Integer, String> {
+
+            @Override
+            protected String doInBackground(String... arg0) {
+                int count;
+                try {
+                    Log.d(TAG, "url = " + url);
+                    URL _url = new URL(url);
+                    URLConnection conection = _url.openConnection();
+                    conection.connect();
+                    String extension = url.substring(url.lastIndexOf('.') + 1).trim();
+                    InputStream input = new BufferedInputStream(_url.openStream(),
+                            8192);
+                    OutputStream output = new FileOutputStream(
+                            Environment.getExternalStorageDirectory() + fileName);
+                    byte data[] = new byte[1024];
+                    while ((count = input.read(data)) != -1) {
+                        output.write(data, 0, count);
+                    }
+                    output.flush();
+                    output.close();
+                    input.close();
+                } catch (Exception e) {
+                    Log.e("Error: ", e.getMessage());
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String data) {
+                context.onFileDownloaded();
+            }
+        }
+    }
+
+
+    public void onFileDownloaded() {
+
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+
+        File file = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath()
+                + "/download/pdf_file.pdf");
+        if (file.exists()) {
+            binding.pdfView.fromFile(file)
+                    //.pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
+                    .enableSwipe(true)
+                    .swipeHorizontal(true)
+                    .enableDoubletap(true)
+                    .defaultPage(0)
+                    .enableAnnotationRendering(true)
+                    .password(null)
+                    .scrollHandle(null)
+                    .onLoad(new OnLoadCompleteListener() {
+                        @Override
+                        public void loadComplete(int nbPages) {
+                            binding.pdfView.setMinZoom(1f);
+                            binding.pdfView.setMidZoom(5f);
+                            binding.pdfView.setMaxZoom(10f);
+                            binding.pdfView.zoomTo(2f);
+                            binding.pdfView.scrollTo(100, 0);
+                            binding.pdfView.moveTo(0f, 0f);
+                        }
+                    })
+                    .load();
+
+        }
     }
 
 
@@ -158,9 +237,7 @@ public class PdfViewActivity extends AppCompatActivity {
             // write your logic code if permission already granted
 
             if (!myCertificate.equalsIgnoreCase("")) {
-                DownloadCertificate(myCertificate);
-            } else {
-                Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                downloadFile();
             }
         }
 
@@ -172,62 +249,11 @@ public class PdfViewActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermission_Certificate();
         } else {
-            // write your logic here
+
             if (!myCertificate.equalsIgnoreCase("")) {
-                DownloadCertificate(myCertificate);
-            } else {
-                Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                downloadFile();
             }
         }
-    }
-
-
-    BroadcastReceiver onComplete = new BroadcastReceiver() {
-
-        public void onReceive(Context ctxt, Intent intent) {
-
-
-            long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-
-
-            list.remove(referenceId);
-
-
-            if (list.isEmpty()) {
-
-
-                Toast.makeText(context, "Download complete", Toast.LENGTH_LONG).show();
-                NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(context)
-                                .setSmallIcon(R.mipmap.app_icon)
-                                .setContentTitle("Document")
-                                .setContentText("MYCpe");
-
-
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, mBuilder.build());
-
-
-            }
-
-        }
-    };
-
-
-    private void DownloadCertificate(String myCertificate) {
-
-        list.clear();
-
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myCertificate));
-        String extension = myCertificate.substring(myCertificate.lastIndexOf('.') + 1).trim();
-        request.setAllowedOverRoaming(false);
-        request.setTitle("Downloading Certificate");
-        request.setVisibleInDownloadsUi(true);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Certificate" + "." + extension);
-        refid = downloadManager.enqueue(request);
-
-        list.add(refid);
-
     }
 
 
@@ -246,9 +272,8 @@ public class PdfViewActivity extends AppCompatActivity {
                     if (writePermission && readExternalFile) {
 
                         if (!myCertificate.equalsIgnoreCase("")) {
-                            DownloadCertificate(myCertificate);
-                        } else {
-                            Constant.toast(context, context.getResources().getString(R.string.str_certificate_link_not_found));
+                            downloadFile();
+
                         }
 
                     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -268,82 +293,6 @@ public class PdfViewActivity extends AppCompatActivity {
                 }
                 break;
 
-        }
-
-
-    }
-
-    /*@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && binding.webview.canGoBack()) {
-            binding.webview.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }*/
-
-    private void display() {
-//        String url = "https://docs.google.com/gview?embedded=true&url=" + myCertificate;
-        String url = "https://drive.google.com/viewerng/viewer?embedded=true&url=" + myCertificate;
-        Log.i(TAG, "Opening PDF: " + url);
-
-//        uri = Uri.parse( url.toURI().toString() );
-//        uri = Uri.parse( myCertificate.toString() );
-
-//        binding.pdfView.fromUri(uri);
-
-        WebSettings webSetting = binding.webview.getSettings();
-        webSetting.setJavaScriptEnabled(true);
-        binding.webview.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webSetting.setDisplayZoomControls(true);
-        binding.webview.clearCache(true);
-        binding.webview.clearFormData();
-        binding.webview.clearHistory();
-        binding.webview.loadUrl(url);
-//        binding.webview.loadUrl(myCertificate);
-        binding.webview.setWebViewClient(new CustomWebViewClient());
-
-        binding.webview.setWebChromeClient(new WebChromeClient()
-        {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                Log.e("*+*+*","onProgressChanged : "+newProgress);
-                /*if(newProgress<100) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                }*/
-                if(newProgress == 100)
-                {
-                    if(progressDialog.isShowing()){
-                        progressDialog.dismiss();
-                    }
-                }
-            }
-        });
-
-    }
-
-    private class CustomWebViewClient extends WebViewClient {
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            // TODO Auto-generated method stub
-            super.onPageStarted(view, url, favicon);
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            // TODO Auto-generated method stub
-            super.onPageFinished(view, url);
-
-            /*if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }*/
         }
 
 
