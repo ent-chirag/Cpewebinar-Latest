@@ -436,6 +436,40 @@
                             android:textColor="@color/White"
                             app:font_button="SFUIDisplay-Bold.ttf" />
 
+                        <RelativeLayout
+                            android:id="@+id/relbottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <com.entigrity.view.CustomTextView
+                                android:id="@+id/str_alredy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/str_alredy_account"
+                                android:textColor="@color/login_do_not_have_account"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"
+                                app:font_text="SFUIDisplay-Medium.ttf" />
+
+                            <com.entigrity.view.CustomTextView
+                                android:id="@+id/tv_login"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_toRightOf="@+id/str_alredy"
+                                android:text="@string/str_logi_now"
+                                android:textColor="@color/sign_up_heading"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"
+                                app:font_text="SFUIDisplay-Medium.ttf" />
+
+
+                        </RelativeLayout>
+
 
                     </LinearLayout>
 
@@ -446,42 +480,6 @@
 
 
         </FrameLayout>
-
-        <RelativeLayout
-            android:id="@+id/relbottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/frame_body"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <com.entigrity.view.CustomTextView
-                android:id="@+id/str_alredy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/str_alredy_account"
-                android:textColor="@color/login_do_not_have_account"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                app:font_text="SFUIDisplay-Medium.ttf" />
-
-            <com.entigrity.view.CustomTextView
-                android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_toRightOf="@+id/str_alredy"
-                android:text="@string/str_logi_now"
-                android:textColor="@color/sign_up_heading"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                app:font_text="SFUIDisplay-Medium.ttf" />
-
-
-        </RelativeLayout>
 
 
     </RelativeLayout>
