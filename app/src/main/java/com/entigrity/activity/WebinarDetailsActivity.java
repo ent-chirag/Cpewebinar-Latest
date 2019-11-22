@@ -811,7 +811,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
                 // checkAndroidVersionCertificate();
 
-                if (arraylistmycertificate.size() == 1) {
+                if (arraylistmycertificate.size() == 0) {
+                    Constant.toast(context, getResources().getString(R.string.str_certificate_link_not_found));
+                } else if (arraylistmycertificate.size() == 1) {
                     Intent i = new Intent(context, PdfViewActivity.class);
                     i.putExtra(context.getResources().getString(R.string.str_document_link),
                             arraylistmycertificate.get(0).getCertificateLink());
@@ -1609,6 +1611,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 //                                    binding.tvWatchedduration.setText("You have completed " + watched_duration + "% of the video.");
                                     binding.tvWatchedduration.setText("You have completed watching video.");
                                     if (isAnswered) {
+                                        binding.tvPlayIcon.setVisibility(View.GONE);
                                         binding.tvWebinarStatus.setText(getResources().getString(R.string.str_webinar_status_quiz_pending));
                                     }
                                 }
@@ -1679,15 +1682,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         if (modelRegisterWebinar.isSuccess() == true) {
                             Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
                             // recreate();
-
+                            button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
+//                            button.setBackgroundResource(R.drawable.rounded_webinar_status);
 
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
-                                Constant.Log("joinurl", "joinurl" + join_url);
-
                                 binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_status);
-                                button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
-                                //button.setBackgroundResource(R.drawable.rounded_webinar_status);
+                                Constant.Log("joinurl", "joinurl" + join_url);
                             } else {
                                 binding.relWebinarStatus.setVisibility(View.GONE);
                                 binding.tvWebinarStatus.setVisibility(View.GONE);
@@ -1973,7 +1974,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else {
             // write your logic code if permission already granted
 
-            if (arrayListCertificate.size() == 1) {
+            if (arraylistmycertificate.size() == 0) {
+                Constant.toast(context, getResources().getString(R.string.str_certificate_link_not_found));
+            } else if (arrayListCertificate.size() == 1) {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));

@@ -38,21 +38,22 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_15sdp"
                 android:text="1/2"
-                android:visibility="gone"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_15sdp"
+                android:visibility="gone"
                 app:font_text="SFUIDisplay-Bold.ttf" />
 
 
         </RelativeLayout>
+
 
         <FrameLayout
             android:id="@+id/frame_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rel_login_top"
-            android:layout_marginTop="@dimen/_minus80sdp"
-            android:layout_marginBottom="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_minus90sdp"
+            android:layout_marginBottom="@dimen/_20sdp">
 
             <RelativeLayout
                 android:id="@+id/relmiddle"
@@ -339,14 +340,15 @@
 
         </FrameLayout>
 
+
         <RelativeLayout
             android:id="@+id/relbottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/frame_body"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:layout_marginBottom="@dimen/_5sdp">
 
             <com.entigrity.view.CustomTextView
                 android:id="@+id/str_alredy"

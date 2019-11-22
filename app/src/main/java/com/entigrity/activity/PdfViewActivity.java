@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -27,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -38,6 +40,10 @@ import com.entigrity.utility.Constant;
 import com.entigrity.view.DialogsUtils;
 
 import java.util.ArrayList;
+
+import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 
 public class PdfViewActivity extends AppCompatActivity {
     ActivityPdfviewBinding binding;
@@ -72,7 +78,14 @@ public class PdfViewActivity extends AppCompatActivity {
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            display();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    display();
+                }
+            },5000);
+//            display();
         } else {
             Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -260,24 +273,53 @@ public class PdfViewActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && binding.webview.canGoBack()) {
             binding.webview.goBack();
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 
     private void display() {
-        String url = "http://docs.google.com/gview?embedded=true&url=" + myCertificate;
+//        String url = "https://docs.google.com/gview?embedded=true&url=" + myCertificate;
+        String url = "https://drive.google.com/viewerng/viewer?embedded=true&url=" + myCertificate;
         Log.i(TAG, "Opening PDF: " + url);
+
+//        uri = Uri.parse( url.toURI().toString() );
+//        uri = Uri.parse( myCertificate.toString() );
+
+//        binding.pdfView.fromUri(uri);
+
         WebSettings webSetting = binding.webview.getSettings();
         webSetting.setJavaScriptEnabled(true);
         binding.webview.getSettings().setPluginState(WebSettings.PluginState.ON);
         webSetting.setDisplayZoomControls(true);
+        binding.webview.clearCache(true);
+        binding.webview.clearFormData();
+        binding.webview.clearHistory();
         binding.webview.loadUrl(url);
+//        binding.webview.loadUrl(myCertificate);
         binding.webview.setWebViewClient(new CustomWebViewClient());
+
+        binding.webview.setWebChromeClient(new WebChromeClient()
+        {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                Log.e("*+*+*","onProgressChanged : "+newProgress);
+                /*if(newProgress<100) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                }*/
+                if(newProgress == 100)
+                {
+                    if(progressDialog.isShowing()){
+                        progressDialog.dismiss();
+                    }
+                }
+            }
+        });
 
     }
 
@@ -299,9 +341,9 @@ public class PdfViewActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
             super.onPageFinished(view, url);
 
-            if (progressDialog.isShowing()) {
+            /*if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
-            }
+            }*/
         }
 
 
