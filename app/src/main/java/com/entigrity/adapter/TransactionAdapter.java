@@ -219,6 +219,8 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
                         mContext.startActivity(i);
                     }
 
+
+
                 }
             });
 
