@@ -165,6 +165,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
     private String VIDEO_URL = "";
 
+
+    // Testing lines for the commit changes issue..
     // private String VIDEO_URL = "https://my-cpe.com/uploads/webinar_video/united-states-taxation-of-foreign-real-estate-Investors.mp4";
     TextView tv_who_attend, tv_lerning_objectives;
     LinearLayout lv_row_testimonial;
