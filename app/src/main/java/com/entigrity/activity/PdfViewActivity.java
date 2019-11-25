@@ -103,7 +103,7 @@ public class PdfViewActivity extends AppCompatActivity {
 
     private void downloadFile() {
         mProgressDialog.show();
-        mProgressDialog.setMessage("downloading");
+        mProgressDialog.setMessage("Loading...");
         mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -111,7 +111,7 @@ public class PdfViewActivity extends AppCompatActivity {
         DownloadFileTask task = new DownloadFileTask(
                 PdfViewActivity.this,
                 myCertificate,
-                "/download/pdf_file.pdf");
+                "/download/Certificate.pdf");
         task.startTask();
     }
 
@@ -149,7 +149,6 @@ public class PdfViewActivity extends AppCompatActivity {
                     URL _url = new URL(url);
                     URLConnection conection = _url.openConnection();
                     conection.connect();
-                    String extension = url.substring(url.lastIndexOf('.') + 1).trim();
                     InputStream input = new BufferedInputStream(_url.openStream(),
                             8192);
                     OutputStream output = new FileOutputStream(
@@ -182,7 +181,7 @@ public class PdfViewActivity extends AppCompatActivity {
 
         File file = new File(Environment.getExternalStorageDirectory()
                 .getAbsolutePath()
-                + "/download/pdf_file.pdf");
+                + "/download/Certificate.pdf");
         if (file.exists()) {
             binding.pdfView.fromFile(file)
                     //.pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
@@ -196,11 +195,11 @@ public class PdfViewActivity extends AppCompatActivity {
                     .onLoad(new OnLoadCompleteListener() {
                         @Override
                         public void loadComplete(int nbPages) {
-                            binding.pdfView.setMinZoom(1f);
-                            binding.pdfView.setMidZoom(5f);
+                            binding.pdfView.setMinZoom(2f);
+                            binding.pdfView.setMidZoom(1f);
                             binding.pdfView.setMaxZoom(10f);
-                            binding.pdfView.zoomTo(2f);
-                            binding.pdfView.scrollTo(100, 0);
+                            binding.pdfView.zoomTo(1.5f);
+                            binding.pdfView.scrollTo(0, 100);
                             binding.pdfView.moveTo(0f, 0f);
                         }
                     })

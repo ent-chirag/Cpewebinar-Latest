@@ -41,11 +41,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -143,6 +145,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String keyterms = "";
     public String overviewoftopic = "";
     public String whyshouldattend = "";
+    public Dialog myDialog;
 
 
     public String webinar_share_link = "", ctec_course_id = "";
@@ -858,6 +861,11 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
         ImageView iv_close = (ImageView) myDialogaddreview.findViewById(R.id.ivclose);
         Button btn_submit = (Button) myDialogaddreview.findViewById(R.id.btn_submit);
+
+
+        btn_submit.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        btn_submit.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
         final ImageView iv_one = (ImageView) myDialogaddreview.findViewById(R.id.iv_one);
         final ImageView iv_two = (ImageView) myDialogaddreview.findViewById(R.id.iv_two);
         final ImageView iv_three = (ImageView) myDialogaddreview.findViewById(R.id.iv_three);
@@ -1071,7 +1079,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 myDialogaddreview.dismiss();
                             }
 
-                            recreate();
+
+
+                            showPopUp(addReview.getMessage(),true);
 
                             /*Intent i = new Intent(context, WebinarDetailsActivity.class);
                             i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
@@ -1086,6 +1096,48 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void showPopUp(String msg, final boolean flag) {
+
+        myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.final_quiz_popup);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.setCanceledOnTouchOutside(false);
+        myDialog.setCancelable(false);
+
+        TextView popup_description, tv_ok;
+
+        popup_description = (TextView) myDialog.findViewById(R.id.popup_description);
+        tv_ok = (TextView) myDialog.findViewById(R.id.tv_ok);
+
+        popup_description.setText("" + msg);
+        if (flag) {
+            popup_description.setTextColor(context.getResources().getColor(R.color.correct_ans));
+        } else {
+            popup_description.setTextColor(context.getResources().getColor(R.color.wrong_ans));
+        }
+
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (flag) {
+                    if (myDialog.isShowing()) {
+                        myDialog.dismiss();
+                    }
+                    recreate();
+                } else {
+                    if (myDialog.isShowing()) {
+                        myDialog.dismiss();
+                    }
+                }
+
+            }
+        });
+
+        myDialog.show();
+
     }
 
     private void displayCertificateDialog(List<MyCertificateLinksItem> arraylistmycertificate) {
@@ -2729,6 +2781,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             }
 
+                            if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+                                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
+
+                                showAddReviewPopUp();
+
+                            }
 
                             if (webinartestimonial.size() > 0) {
                                 setupViewPager(binding.viewpager);
@@ -3026,6 +3084,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             if (!overviewoftopic.equalsIgnoreCase("")) {
                 adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
             }
+            if (!whyshouldattend.equalsIgnoreCase("")) {
+                adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+            }
         }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
@@ -3045,6 +3106,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
             if (!overviewoftopic.equalsIgnoreCase("")) {
                 adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+            }
+            if (!whyshouldattend.equalsIgnoreCase("")) {
+                adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
             }
         }
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));

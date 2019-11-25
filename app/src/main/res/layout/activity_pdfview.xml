@@ -46,11 +46,14 @@
 
             <ImageView
                 android:id="@+id/iv_Download"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_toLeftOf="@+id/tv_share"
-                android:src="@drawable/download_icon" />
+                android:tint="@android:color/white"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:src="@drawable/download_svg" />
 
 
             <com.entigrity.view.CustomTextView

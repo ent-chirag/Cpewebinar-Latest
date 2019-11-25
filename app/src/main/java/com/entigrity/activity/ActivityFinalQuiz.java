@@ -196,21 +196,18 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                     if (myDialog.isShowing()) {
                         myDialog.dismiss();
                     }
-
-                    showAddReviewPopUp();
-                    /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                    Intent i = new Intent(context, WebinarDetailsActivity.class);
                     i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
                     i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                     startActivity(i);
-                    finish();*/
+                    finish();
+
+
                 } else {
                     if (myDialog.isShowing()) {
                         myDialog.dismiss();
                     }
                 }
-//                Intent i = new Intent(context, LoginActivity.class);
-//                startActivity(i);
-//                finish();
 
             }
         });
@@ -220,7 +217,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
     }
 
 
-    private void showAddReviewPopUp() {
+    private void showAddReviewPopUp(final String sucessmessage) {
         myDialogaddreview = new Dialog(context);
         myDialogaddreview.setContentView(R.layout.rating_popup);
         myDialogaddreview.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -388,7 +385,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
 //                        GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
-                        GetSubmitReviewAnswer(is_like, rating, strReview);
+                        GetSubmitReviewAnswer(is_like, rating, strReview,sucessmessage);
                     } else {
                         Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -417,7 +414,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
         finish();
     }
 
-    private void GetSubmitReviewAnswer(int is_like, int rating, String strReview) {
+    private void GetSubmitReviewAnswer(int is_like, int rating, String strReview,final String sucessmessage) {
 
         mAPIService.AddReview(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
                 , rating, is_like, strReview).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -453,11 +450,9 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                                 myDialogaddreview.dismiss();
                             }
 
-                            Intent i = new Intent(context, WebinarDetailsActivity.class);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
-                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                            startActivity(i);
-                            finish();
+                            showPopUp(sucessmessage, true);
+
+
 
                         } else {
                             if (progressDialog.isShowing()) {
@@ -503,7 +498,7 @@ public class ActivityFinalQuiz extends AppCompatActivity {
                             arraylistselectedquestionfinal.clear();
                             arraylistselectedanswerfinal.clear();
 
-                            showPopUp(finalQuizAnswer.getMessage(), true);
+                            showAddReviewPopUp(finalQuizAnswer.getMessage());
 
                         } else {
                             if (progressDialog.isShowing()) {

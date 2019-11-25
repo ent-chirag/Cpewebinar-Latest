@@ -77,6 +77,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
+
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position).getId(), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "a");
 
@@ -110,6 +117,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
 
                     Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "a");
@@ -147,6 +161,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
+
                     Constant.hashmap_asnwer_review_question.put(reviewquestion.get(position).getQuestionTitle(), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "b");
 
@@ -181,6 +202,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
 
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "b");
@@ -217,6 +245,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
 
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
+
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "c");
 
@@ -251,6 +286,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
+
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
 
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "c");
@@ -288,6 +330,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
 
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
+
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "d");
 
@@ -322,6 +371,13 @@ public class ReviewQuestionAdapter extends RecyclerView.Adapter<ReviewQuestionAd
                     viewHolder.checkbox_select_b.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_c.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_unchecked));
                     viewHolder.checkbox_select_d.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rev_checked));
+
+                    viewHolder.tv_ans_a.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_b.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_c.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_ans_d.setTextColor(mContext.getResources().getColor(R.color.subcategory_topics));
+                    viewHolder.tv_response_tag.setVisibility(View.GONE);
+                    viewHolder.tv_ans_response.setVisibility(View.GONE);
 
                     Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(position), true);
                     Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(position).getId(), "d");
