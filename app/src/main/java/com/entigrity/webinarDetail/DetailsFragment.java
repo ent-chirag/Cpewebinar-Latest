@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.entigrity.R;
 import com.entigrity.activity.ActivityWhoYouAre;
+import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.databinding.FragmentDetailsBinding;
 import com.entigrity.utility.Constant;
