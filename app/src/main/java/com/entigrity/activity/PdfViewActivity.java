@@ -198,7 +198,7 @@ public class PdfViewActivity extends AppCompatActivity {
                             binding.pdfView.setMinZoom(2f);
                             binding.pdfView.setMidZoom(1f);
                             binding.pdfView.setMaxZoom(10f);
-                            binding.pdfView.zoomTo(1.5f);
+                            binding.pdfView.zoomTo(1.0f);
                             binding.pdfView.scrollTo(0, 100);
                             binding.pdfView.moveTo(0f, 0f);
                         }

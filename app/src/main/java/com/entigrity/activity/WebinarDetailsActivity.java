@@ -232,6 +232,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public boolean videostatus = false;
 
     public String course_id = "";
+    public String instructional_document = "";
     public String credit = "";
     public String cecredit = "";
     public String refund_and_cancelation = "";
@@ -2312,6 +2313,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCourseId().equalsIgnoreCase("")) {
                                 course_id = webinar_details.getPayload().getWebinarDetail().getCourseId();
+                            }
+
+                            if(!webinar_details.getPayload().getWebinarDetail().getInstructionalDocuement().equalsIgnoreCase("")){
+                                instructional_document = webinar_details.getPayload().getWebinarDetail().getInstructionalDocuement();
                             }
 
 

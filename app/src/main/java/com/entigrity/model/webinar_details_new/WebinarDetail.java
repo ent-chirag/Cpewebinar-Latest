@@ -256,6 +256,17 @@ public class WebinarDetail {
     @SerializedName("redirection_url")
     private String redirectionUrl;
 
+    @SerializedName("instructional_docuement")
+    private String instructionalDocuement;
+
+    public String getInstructionalDocuement() {
+        return instructionalDocuement;
+    }
+
+    public void setInstructionalDocuement(String instructionalDocuement) {
+        this.instructionalDocuement = instructionalDocuement;
+    }
+
     public boolean isCardSave() {
         return isCardSave;
     }
