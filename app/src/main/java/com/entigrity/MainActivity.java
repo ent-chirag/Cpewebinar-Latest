@@ -187,6 +187,11 @@ public class MainActivity extends AppCompatActivity {
             AppSettings.set_device_id(context, "");
             AppSettings.set_email_id(context, "");
 
+            Constant.webinartype = "";
+            Constant.search = "";
+            Constant.price_filter = "";
+            Constant.date_filter = "";
+
             Intent i = new Intent(context, PreLoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
