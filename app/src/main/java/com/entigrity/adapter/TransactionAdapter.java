@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.entigrity.R;
+import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.model.payment_transcation.TransactionItem;
 import com.entigrity.utility.Constant;
 
@@ -210,7 +211,13 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
                 @Override
                 public void onClick(View v) {
 
-                    checkAndroidVersion(mList.get(position).getReceipt());
+//                    checkAndroidVersion(mList.get(position).getReceipt());
+                    if (!mList.get(position).getReceipt().equalsIgnoreCase("")) {
+                        Intent i = new Intent(mContext, PdfViewActivity.class);
+                        i.putExtra(mContext.getResources().getString(R.string.str_document_link),
+                                mList.get(position).getReceipt());
+                        mContext.startActivity(i);
+                    }
 
                 }
             });
