@@ -51,7 +51,6 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_toLeftOf="@+id/tv_share"
                 android:tint="@android:color/white"
-                android:visibility="gone"
                 android:layout_centerVertical="true"
                 android:src="@drawable/download_svg" />
 

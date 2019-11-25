@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.entigrity.MainActivity;
 import com.entigrity.R;
 import com.entigrity.activity.LoginActivity;
-import com.entigrity.activity.PaymentActivity;
 import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.SignUpActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
@@ -41,9 +40,7 @@ import com.entigrity.webservice.APIService;
 import com.entigrity.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
 
-import java.lang.invoke.VolatileCallSite;
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
