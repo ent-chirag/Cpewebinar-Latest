@@ -148,6 +148,5 @@ dependencies {
     implementation 'es.voghdev.pdfviewpager:library:1.0.6'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-
 }
 apply plugin: 'com.google.gms.google-services'

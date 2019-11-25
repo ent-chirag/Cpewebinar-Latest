@@ -79,6 +79,7 @@
     <string name="str_skip">SKIP</string>
     <string name="str_download_link_not_found">Download link not found</string>
     <string name="str_key_terms_link_not_found">key Terms link not found</string>
+    <string name="str_instruction_doc_not_found">Instruction document not found</string>
 
     <string name="str_certificate_link_not_found">Certificate not found</string>
     <string name="str_payment_link_not_found">Paymetn receipt not found</string>
@@ -547,6 +548,7 @@
     <string name="str_prerequisite">PREREQUISITES</string>
     <string name="str_handout">Presentation Handouts</string>
     <string name="str_key_terms">Key Terms</string>
+    <string name="str_instructions">Instructional Document</string>
     <string name="str_adavance_preparation">Advance Preparation</string>
     <string name="str_who_should_attend">Who should attend?</string>
 

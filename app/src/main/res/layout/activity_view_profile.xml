@@ -544,11 +544,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerHorizontal="true"
+                        android:ems="10"
                         android:gravity="right"
                         android:inputType="textMultiLine"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
-                        android:ems="10"
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
                 </RelativeLayout>

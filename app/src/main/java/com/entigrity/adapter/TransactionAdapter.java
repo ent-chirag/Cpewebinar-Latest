@@ -212,6 +212,8 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
 
                     checkAndroidVersion(mList.get(position).getReceipt());
 
+
+
                 }
             });
 

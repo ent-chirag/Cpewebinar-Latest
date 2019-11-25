@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.entigrity.R;
 import com.entigrity.activity.ActivityWhoYouAre;
+import com.entigrity.activity.PdfViewActivity;
 import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.databinding.FragmentDetailsBinding;
 import com.entigrity.utility.Constant;
@@ -130,6 +131,13 @@ public class DetailsFragment extends Fragment {
             binding.viewPublishedDate.setVisibility(View.GONE);
         }
 
+        if (!WebinarDetailsActivity.getInstance().instructional_document.equalsIgnoreCase("")) {
+            binding.viewInstructions.setVisibility(View.VISIBLE);
+            binding.lvInstructions.setVisibility(View.VISIBLE);
+        } else {
+            binding.viewInstructions.setVisibility(View.GONE);
+            binding.lvInstructions.setVisibility(View.GONE);
+        }
 
         if (WebinarDetailsActivity.getInstance().duration != 0) {
 
@@ -301,8 +309,32 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                checkAndroidVersion_keyterms();
+//                checkAndroidVersion_keyterms();
+                if (!WebinarDetailsActivity.getInstance().keyterms.equalsIgnoreCase("")) {
+                    Intent i = new Intent(getActivity(), PdfViewActivity.class);
+                    i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
+                            WebinarDetailsActivity.getInstance().keyterms);
+                    getActivity().startActivity(i);
+                } else {
+                    Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
+                }
 
+
+            }
+        });
+
+        binding.tvDownloadInstructions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!WebinarDetailsActivity.getInstance().instructional_document.equalsIgnoreCase("")) {
+                    Intent i = new Intent(getActivity(), PdfViewActivity.class);
+                    i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
+                            WebinarDetailsActivity.getInstance().instructional_document);
+                    getActivity().startActivity(i);
+                }else
+                {
+                    Constant.toast(getActivity(), getResources().getString(R.string.str_instruction_doc_not_found));
+                }
             }
         });
 
@@ -493,7 +525,6 @@ public class DetailsFragment extends Fragment {
 
         }
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
