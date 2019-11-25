@@ -91,6 +91,14 @@
     <string name="str_video_link_not_avilable">video link is not avilable.</string>
 
 
+    //pass titile to pdf activity
+
+    <string name="str_certificate">Certificate</string>
+    <string name="str_receipt">Receipt</string>
+    <string name="str_keyterms">Key Terms</string>
+    <string name="str_instructional_document">Instructional Doc</string>
+    <string name="str_pdf_view_titile">pdf_title</string>
+
     //hashmap key
 
     <string name="topics_selected">topics</string>

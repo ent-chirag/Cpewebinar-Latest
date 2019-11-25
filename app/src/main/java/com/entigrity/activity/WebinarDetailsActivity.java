@@ -221,6 +221,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private long presentation_length = 0;
     SimpleExoPlayer exoPlayer;
     public boolean checkpause = false;
+    public int checkPlay = 0;
     public String watched_duration = "0.00";
     private boolean isNotification = false;
     public String Cost = "";
@@ -264,6 +265,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String nasba_address = "";
     public String nasba_description = "";
     public String nasba_profile_pic = "";
+    public String nasba_profile_pic_qas = "";
 
 
     public String ea_address = "";
@@ -759,6 +761,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         Intent i = new Intent(context, PdfViewActivity.class);
                         i.putExtra(context.getResources().getString(R.string.str_document_link),
                                 arraylistmycertificate.get(0).getCertificateLink());
+                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                        i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                         context.startActivity(i);
                     } else {
                         displayCertificateDialog(arraylistmycertificate);
@@ -797,7 +802,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     .getResources().getString(R.string.str_webinar_status_resume_watching))) {
                 if (!VIDEO_URL.equalsIgnoreCase("")) {
                     checkpause = false;
-                    PlayVideo();
+                    if(checkPlay == 0 || checkPlay ==2){
+                        handler.removeCallbacks(runnable);
+                        PlayVideo();
+                    }
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
@@ -823,6 +831,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     Intent i = new Intent(context, PdfViewActivity.class);
                     i.putExtra(context.getResources().getString(R.string.str_document_link),
                             arraylistmycertificate.get(0).getCertificateLink());
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                     context.startActivity(i);
                 } else {
                     displayCertificateDialog(arraylistmycertificate);
@@ -1376,11 +1387,15 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
                     presentation_length = exoPlayer.getDuration();
 
+                    handler.removeCallbacks(runnable);
+
                     exo_play.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
                     checkpause = true;
                     exoPlayer.setPlayWhenReady(false);
                     handler.removeCallbacks(runnable);
+
+                    checkPlay = 2;
 
 
                     Log.e("exo_pause", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1403,6 +1418,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     checkpause = false;
                     exoPlayer.setPlayWhenReady(true);
 //                    PlayVideo();
+
+                    checkPlay = 1;
 
 
                     Log.e("exo_play", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
@@ -1477,7 +1494,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     case Player.STATE_BUFFERING:
                         Log.e("STATE_BUFFERING", "STATE_BUFFERING");
                         //checkpause = true;
-                        //handler.removeCallbacks(runnable);
+                        handler.removeCallbacks(runnable);
+                        checkPlay = 1;
                         binding.progressBar.setVisibility(View.VISIBLE);
                         break;
                     case Player.STATE_ENDED:
@@ -1485,6 +1503,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         Log.e("STATE_ENDED", "STATE_ENDED");
                         handler.removeCallbacks(runnable);
                         checkpause = true;
+                        checkPlay = 0;
                         exoPlayer.setPlayWhenReady(false);
                         break;
                     case Player.STATE_IDLE:
@@ -1497,6 +1516,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     case Player.STATE_READY:
                         Log.e("STATE_READY", "STATE_READY");
 
+                        handler.removeCallbacks(runnable);
                         binding.progressBar.setVisibility(View.GONE);
 
                         new Handler().postDelayed(new Runnable() {
@@ -1742,6 +1762,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
+                                webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
                                 binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_status);
                                 Constant.Log("joinurl", "joinurl" + join_url);
                             } else {
@@ -2035,6 +2056,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                 context.startActivity(i);
             } else {
                 if (arrayListCertificate.size() > 0) {
@@ -2645,6 +2669,12 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             }
 
+                            if (!webinar_details.getPayload().getWebinarDetail().getNasbaApproved().getNasbaProfileIconQas().equalsIgnoreCase("")) {
+
+                                nasba_profile_pic_qas = webinar_details.getPayload().getWebinarDetail().getNasbaApproved().getNasbaProfileIconQas();
+
+                            }
+
 
                             if (!webinar_details.getPayload().getWebinarDetail().getEaApproved().getAddress().equalsIgnoreCase("")) {
                                 ea_address = webinar_details.getPayload().getWebinarDetail().getEaApproved().getAddress();
@@ -2842,6 +2872,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                 context.startActivity(i);
             } else {
                 if (arrayListCertificate.size() > 0) {

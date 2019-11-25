@@ -11,8 +11,19 @@ public class NasbaApproved{
 	@SerializedName("nasba_profile_icon")
 	private String nasbaProfileIcon;
 
+	@SerializedName("nasba_profile_icon_qas")
+	private String nasbaProfileIconQas;
+
 	@SerializedName("nasba_desc")
 	private String nasbaDesc;
+
+	public String getNasbaProfileIconQas() {
+		return nasbaProfileIconQas;
+	}
+
+	public void setNasbaProfileIconQas(String nasbaProfileIconQas) {
+		this.nasbaProfileIconQas = nasbaProfileIconQas;
+	}
 
 	public void setAddress(String address){
 		this.address = address;

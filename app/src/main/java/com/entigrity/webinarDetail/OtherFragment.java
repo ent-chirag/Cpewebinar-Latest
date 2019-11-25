@@ -109,6 +109,15 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivNasbaProfile));
             }
 
+            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+                binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
+                Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((binding.ivNasbaProfileQas));
+            } else {
+                binding.ivNasbaProfileQas.setVisibility(View.GONE);
+            }
+
             if (!WebinarDetailsActivity.getInstance().ea_profile_pic.equalsIgnoreCase("")) {
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().ea_profile_pic)
                         .placeholder(R.mipmap.webinar_placeholder)
@@ -144,6 +153,16 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivNasbaProfile));
             }
 
+            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+                binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
+                Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((binding.ivNasbaProfileQas));
+            } else {
+                binding.ivNasbaProfileQas.setVisibility(View.GONE);
+            }
+
+
             ShowCtecApproved();
 
 
@@ -169,6 +188,16 @@ public class OtherFragment extends Fragment {
                         .placeholder(R.mipmap.webinar_placeholder)
                         .into((binding.ivIrsProfile));
             }
+
+            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+                binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
+                Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((binding.ivNasbaProfileQas));
+            } else {
+                binding.ivNasbaProfileQas.setVisibility(View.GONE);
+            }
+
 
             ShowCtecApproved();
 
