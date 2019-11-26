@@ -201,9 +201,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String join_url = "";
     public int schedule_id = 0;
     public int start_utc_time = 0;
+    public int end_utc_time = 0;
     public int screen_details = 0;
-    private String calenderdate = "";
+    private String calenderstartdate = "";
     private String calender_hour = "", calender_min = "";
+
+    private String calenderenddate = "";
+    private String calander_end_hour = "", calander_end_min = "";
 
 
     //exo player
@@ -535,15 +539,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             start_utc_time = arrayliattimezones.get(position).getStart_utc_time();
 
-                            calenderdate = getDateCurrentTimeZone(start_utc_time);
+                            end_utc_time = arrayliattimezones.get(position).getEnd_utc_time();
+
+                            calenderstartdate = getDateCurrentTimeZone(start_utc_time);
+
+                            calenderenddate = getDateCurrentTimeZone(end_utc_time);
 
 
-                            StringTokenizer token = new StringTokenizer(calenderdate, " ");
+                            StringTokenizer token = new StringTokenizer(calenderstartdate, " ");
 
                             String date = token.nextToken();
                             String time = token.nextToken();
-
-                            Constant.Log("time", time + " " + time);
 
 
                             StringTokenizer tok = new StringTokenizer(time, ":");
@@ -554,6 +560,23 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (calender_min.equalsIgnoreCase("00")) {
                                 calender_min = "0";
+                            }
+
+
+                            StringTokenizer tokenenddate = new StringTokenizer(calenderenddate, " ");
+
+                            String dateend = tokenenddate.nextToken();
+                            String timeend = tokenenddate.nextToken();
+
+
+                            StringTokenizer tokend = new StringTokenizer(timeend, ":");
+
+                            calander_end_hour = tokend.nextToken();
+                            calander_end_min = tokend.nextToken();
+                            String secondend = tokend.nextToken();
+
+                            if (calander_end_min.equalsIgnoreCase("00")) {
+                                calander_end_min = "0";
                             }
 
 
@@ -611,8 +634,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (min_calendar.equalsIgnoreCase("00")) {
                                 min_calendar = "0";
                             }
-
-                            Constant.Log(TAG, "event" + hour + "  " + min_calendar);
 
 
                             binding.tvWebinardate.setText(day + " " + month + " " + year +
@@ -1100,8 +1121,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             }
 
 
-
-                            showPopUp(addReview.getMessage(),true);
+                            showPopUp(addReview.getMessage(), true);
 
                             /*Intent i = new Intent(context, WebinarDetailsActivity.class);
                             i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
@@ -2347,7 +2367,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 course_id = webinar_details.getPayload().getWebinarDetail().getCourseId();
                             }
 
-                            if(!webinar_details.getPayload().getWebinarDetail().getInstructionalDocuement().equalsIgnoreCase("")){
+                            if (!webinar_details.getPayload().getWebinarDetail().getInstructionalDocuement().equalsIgnoreCase("")) {
                                 instructional_document = webinar_details.getPayload().getWebinarDetail().getInstructionalDocuement();
                             }
 
@@ -2398,6 +2418,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                             .getStatictimezones().get(i).getStartDate());
                                     timezones.setStart_time(webinar_details.getPayload().getWebinarDetail()
                                             .getStatictimezones().get(i).getStartTime());
+                                    timezones.setEnd_utc_time(webinar_details.getPayload().getWebinarDetail()
+                                            .getStatictimezones().get(i).getStartutctime());
                                     timezones.setTimezone(webinar_details.getPayload().getWebinarDetail()
                                             .getStatictimezones().get(i).getTimezone());
                                     timezones.setTimezone_short(webinar_details.getPayload().getWebinarDetail()
@@ -2432,10 +2454,15 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             if (webinar_details.getPayload().getWebinarDetail().getStartutctime() != 0) {
                                 start_utc_time = webinar_details.getPayload().getWebinarDetail().getStartutctime();
 
-                                calenderdate = getDateCurrentTimeZone(start_utc_time);
+                                end_utc_time = webinar_details.getPayload().getWebinarDetail().getEndutctime();
+
+                                calenderstartdate = getDateCurrentTimeZone(start_utc_time);
 
 
-                                StringTokenizer tokens_tim = new StringTokenizer(calenderdate, " ");
+                                calenderenddate = getDateCurrentTimeZone(end_utc_time);
+
+
+                                StringTokenizer tokens_tim = new StringTokenizer(calenderstartdate, " ");
 
                                 String date = tokens_tim.nextToken();
                                 String time = tokens_tim.nextToken();
@@ -2449,12 +2476,24 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 calender_min = tokens_time_mi.nextToken();
 
 
-
-
-
-
                                 if (calender_min.equalsIgnoreCase("00")) {
                                     calender_min = "0";
+                                }
+
+                                StringTokenizer tokenenddate = new StringTokenizer(calenderenddate, " ");
+
+                                String dateend = tokenenddate.nextToken();
+                                String timeend = tokenenddate.nextToken();
+
+
+                                StringTokenizer tokend = new StringTokenizer(timeend, ":");
+
+                                calander_end_hour = tokend.nextToken();
+                                calander_end_min = tokend.nextToken();
+                                String secondend = tokend.nextToken();
+
+                                if (calander_end_min.equalsIgnoreCase("00")) {
+                                    calander_end_min = "0";
                                 }
 
 
@@ -2907,24 +2946,32 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         }
     }
 
+    public String formatHoursAndMinutes(int totalMinutes) {
+        String minutes = Integer.toString(totalMinutes % 60);
+        minutes = minutes.length() == 1 ? "0" + minutes : minutes;
+        return (totalMinutes / 60) + ":" + minutes;
+    }
 
     public void AddToCalender() {
-
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(Integer.parseInt(year), Integer.parseInt(month_calendar) - 1, Integer.parseInt(day),
                 Integer.parseInt(calender_hour), Integer.parseInt(calender_min));
 
 
-        Constant.Log("calender_hour_min", calender_hour + " " + calender_min);
+        Constant.Log("beginTime", calender_hour + " " + calender_min);
+
+        Calendar endtime = Calendar.getInstance();
+        endtime.set(Integer.parseInt(year), Integer.parseInt(month_calendar) - 1, Integer.parseInt(day),
+                Integer.parseInt(calander_end_hour), Integer.parseInt(calander_end_min));
 
 
+        Constant.Log("endTime", calander_end_hour + " " + calander_end_min);
 
-       /* Calendar endTime = Calendar.getInstance();
-        endTime.set(2019, 5, 8, 15, 40);*/
+
         Intent intent = new Intent(Intent.ACTION_INSERT)
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
-                /*.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())*/
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endtime.getTimeInMillis())
                 .putExtra(CalendarContract.Events.TITLE, Webinar_title)
                 .putExtra(Intent.EXTRA_EMAIL, AppSettings.get_email_id(context));
         startActivity(intent);

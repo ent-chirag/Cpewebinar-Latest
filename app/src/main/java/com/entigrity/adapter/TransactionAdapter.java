@@ -216,6 +216,7 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
                         Intent i = new Intent(mContext, PdfViewActivity.class);
                         i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                 mList.get(position).getReceipt());
+                        i.putExtra(mContext.getString(R.string.pass_webinar_type),"");
                         i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_receipt));
                         mContext.startActivity(i);
                     }
