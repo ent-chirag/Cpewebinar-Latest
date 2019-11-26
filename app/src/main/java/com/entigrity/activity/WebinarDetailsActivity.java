@@ -539,6 +539,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             String date = token.nextToken();
                             String time = token.nextToken();
 
+                            Constant.Log("time", time + " " + time);
+
 
                             StringTokenizer tok = new StringTokenizer(time, ":");
 
@@ -2434,11 +2436,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 String date = tokens_tim.nextToken();
                                 String time = tokens_tim.nextToken();
 
+                                Constant.Log("time", time + " " + time);
+
 
                                 StringTokenizer tokens_time_mi = new StringTokenizer(time, ":");
 
                                 calender_hour = tokens_time_mi.nextToken();
                                 calender_min = tokens_time_mi.nextToken();
+
+
+
+
 
 
                                 if (calender_min.equalsIgnoreCase("00")) {
@@ -2601,8 +2609,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 for (int i = 0; i < webinar_details.getPayload().getWebinarDetail().getWhoShouldAttend().size(); i++) {
                                     whoshouldattend.add(webinar_details.getPayload().getWebinarDetail().getWhoShouldAttend().get(i));
                                 }
-
-
                             }
 
                             if (webinar_details.getPayload().getWebinarDetail().getWebinarTestimonial().size() > 0) {

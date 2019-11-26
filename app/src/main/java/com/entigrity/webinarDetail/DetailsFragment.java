@@ -51,7 +51,7 @@ public class DetailsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, null, false);
 
         inflater_new = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -77,8 +77,10 @@ public class DetailsFragment extends Fragment {
 
         if (!WebinarDetailsActivity.getInstance().keyterms.equalsIgnoreCase("")) {
             binding.lvKeyTerms.setVisibility(View.VISIBLE);
+            binding.viewkeyterms.setVisibility(View.VISIBLE);
         } else {
             binding.lvKeyTerms.setVisibility(View.GONE);
+            binding.viewkeyterms.setVisibility(View.GONE);
         }
 
 
@@ -94,19 +96,21 @@ public class DetailsFragment extends Fragment {
 
 
         if (!WebinarDetailsActivity.getInstance().course_id.equalsIgnoreCase("")) {
-            binding.viewCourseId.setVisibility(View.VISIBLE);
             binding.lvCourseId.setVisibility(View.VISIBLE);
+            binding.viewIrsCourseId.setVisibility(View.VISIBLE);
             binding.tvCouseId.setText(WebinarDetailsActivity.getInstance().course_id);
         } else {
-            binding.viewCourseId.setVisibility(View.GONE);
             binding.lvCourseId.setVisibility(View.GONE);
+            binding.viewIrsCourseId.setVisibility(View.GONE);
         }
 
         if (!WebinarDetailsActivity.getInstance().ctec_course_id.equalsIgnoreCase("")) {
             binding.lvCtecCourseId.setVisibility(View.VISIBLE);
+            binding.viewCtec.setVisibility(View.VISIBLE);
             binding.tvCtecCourseId.setText(WebinarDetailsActivity.getInstance().ctec_course_id);
         } else {
             binding.lvCtecCourseId.setVisibility(View.GONE);
+            binding.viewCtec.setVisibility(View.GONE);
         }
 
 
@@ -147,16 +151,36 @@ public class DetailsFragment extends Fragment {
             String hour = tokens.nextToken();// this will contain year
             String min = tokens.nextToken();//this will contain month
 
+            Constant.Log("hour", "hour" + hour);
+
 
             if (min.equalsIgnoreCase("00")) {
-                binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hour));
+
+                if (Integer.parseInt(hour) > 1) {
+
+                    binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hours));
+
+                } else {
+                    binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hour));
+                }
+
             } else {
                 if (hour.equalsIgnoreCase("0")) {
                     binding.tvDuration.setText(min +
                             " " + getResources().getString(R.string.str_min));
                 } else {
-                    binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hour) + " " + min +
-                            " " + getResources().getString(R.string.str_min));
+
+                    if (Integer.parseInt(hour) > 1) {
+
+                        binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hours) + " " + min +
+                                " " + getResources().getString(R.string.str_min));
+                    } else {
+                        binding.tvDuration.setText(hour + " " + getResources().getString(R.string.str_hour) + " " + min +
+                                " " + getResources().getString(R.string.str_min));
+
+                    }
+
+
                 }
 
 
@@ -289,6 +313,10 @@ public class DetailsFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent i = new Intent(getActivity(), ActivityWhoYouAre.class);
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question),
+                        WebinarDetailsActivity.getInstance().webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type),
+                        WebinarDetailsActivity.getInstance().webinar_type);
                 i.putStringArrayListExtra(getResources().getString(R.string.pass_who_you_are_list), WebinarDetailsActivity.getInstance().whoshouldattend);
                 startActivity(i);
 
@@ -314,6 +342,7 @@ public class DetailsFragment extends Fragment {
                     Intent i = new Intent(getActivity(), PdfViewActivity.class);
                     i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
                             WebinarDetailsActivity.getInstance().keyterms);
+                    i.putExtra(getActivity().getResources().getString(R.string.str_pdf_view_titile), getActivity().getString(R.string.str_keyterms));
                     getActivity().startActivity(i);
                 } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
@@ -330,9 +359,9 @@ public class DetailsFragment extends Fragment {
                     Intent i = new Intent(getActivity(), PdfViewActivity.class);
                     i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
                             WebinarDetailsActivity.getInstance().instructional_document);
+                    i.putExtra(getActivity().getResources().getString(R.string.str_pdf_view_titile), getActivity().getString(R.string.str_instructional_document));
                     getActivity().startActivity(i);
-                }else
-                {
+                } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_instruction_doc_not_found));
                 }
             }

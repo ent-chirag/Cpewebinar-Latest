@@ -171,6 +171,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/view_irs_course_id"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:background="@color/background_list" />
@@ -209,6 +210,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/view_ctec"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:background="@color/background_list" />
@@ -635,7 +637,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/viewInstructions"
+                android:id="@+id/viewkeyterms"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:background="@color/background_list" />
@@ -678,6 +680,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/viewInstructions"
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:background="@color/background_list" />
