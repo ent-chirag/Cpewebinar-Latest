@@ -29,7 +29,7 @@ public class OtherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_other, null, false);
 
-
+        // For Commit..
         if (!WebinarDetailsActivity.getInstance().faq.equalsIgnoreCase("")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.tvFaq.setText(Html.fromHtml(WebinarDetailsActivity.getInstance().faq, Html.FROM_HTML_MODE_COMPACT));
