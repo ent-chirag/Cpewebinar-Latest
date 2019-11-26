@@ -1,11 +1,13 @@
 package com.entigrity.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -456,7 +458,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                     }
                                 } else {
                                     String url = "" + mList.get(position).getRedirectionUrl();
-                                    try {
+                                    openDialogConfirmRedirect(url);
+                                    /*try {
                                         Intent i = new Intent("android.intent.action.MAIN");
                                         i.setComponent(ComponentName.unflattenFromString("" + url));
                                         i.addCategory("android.intent.category.LAUNCHER");
@@ -466,7 +469,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                         // Chrome is not installed
                                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                         mContext.startActivity(i);
-                                    }
+                                    }*/
                                 }
 
 
@@ -574,6 +577,44 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
         }*/
 
+    }
+
+    private void openDialogConfirmRedirect(final String UrlRedirtect) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Message");
+//        builder.setMessage("Please save your card though website login to register webinar");
+        builder.setMessage(mContext.getResources().getString(R.string.str_save_card));
+
+//                        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton("Save Card",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        String url = "" + UrlRedirtect;
+                        try {
+                            Intent i = new Intent("android.intent.action.MAIN");
+                            i.setComponent(ComponentName.unflattenFromString("" + UrlRedirtect));
+                            i.addCategory("android.intent.category.LAUNCHER");
+                            i.setData(Uri.parse(url));
+                            mContext.startActivity(i);
+                        } catch (ActivityNotFoundException e) {
+                            // Chrome is not installed
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            mContext.startActivity(i);
+                        }
+                    }
+                });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void displayCertificateDialog(List<MyCertificateLinksItem> myCertificateLinks) {

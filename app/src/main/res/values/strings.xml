@@ -555,6 +555,7 @@
     <string name="str_hour">Hour</string>
     <string name="str_hours">Hours</string>
     <string name="str_min">Min</string>
+    <string name="str_save_card">Please save your card though website login to register webinar.</string>
 
     /table form
     <string name="str_cost">Cost</string>

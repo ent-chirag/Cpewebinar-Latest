@@ -745,20 +745,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
                     } else {
-
 //                        String url = "https://my-cpe.com/";
                         String url = "" + strPaymentRedirectionURL;
-                        try {
-                            Intent i = new Intent("android.intent.action.MAIN");
-                            i.setComponent(ComponentName.unflattenFromString("" + strPaymentRedirectionURL));
-                            i.addCategory("android.intent.category.LAUNCHER");
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                        } catch (ActivityNotFoundException e) {
-                            // Chrome is not installed
-                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                            startActivity(i);
-                        }
+                        openDialogConfirmRedirect(url);
                     }
                   /*  Intent i = new Intent(WebinarDetailsActivity.this, PaymentActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
@@ -878,18 +867,66 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
                     .getString(R.string.str_webinar_status_register))) {
 
-
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
-                    RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                if(!Cost.equalsIgnoreCase("")){
+                    if(isCardSaved) {
+                        if (Constant.isNetworkAvailable(context)) {
+                            progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                            RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                        } else {
+                            Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        String url = "" + strPaymentRedirectionURL;
+                        openDialogConfirmRedirect(url);
+                    }
                 } else {
-                    Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
+                        RegisterWebinar(webinarid, binding.tvWebinarStatus);
+                    } else {
+                        Snackbar.make(binding.ivfavorite, context.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
                 }
             }
-
-
         }
 
+    }
+
+    private void openDialogConfirmRedirect(final String UrlRedirtect) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Message");
+        builder.setMessage(getResources().getString(R.string.str_save_card));
+
+//                        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton("Save Card",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        try {
+                            Intent i = new Intent("android.intent.action.MAIN");
+                            i.setComponent(ComponentName.unflattenFromString("" + strPaymentRedirectionURL));
+                            i.addCategory("android.intent.category.LAUNCHER");
+                            i.setData(Uri.parse(UrlRedirtect));
+                            startActivity(i);
+                        } catch (ActivityNotFoundException e) {
+                            // Chrome is not installed
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(UrlRedirtect));
+                            startActivity(i);
+                        }
+                    }
+                });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void showAddReviewPopUp() {
@@ -1411,7 +1448,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
                     play_time_duration = mExoPlayerView.getPlayer().getCurrentWindowIndex();
                     mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
-                    presentation_length = exoPlayer.getDuration();
+//                    presentation_length = exoPlayer.getDuration();
 
                     handler.removeCallbacks(runnable);
 
@@ -1437,7 +1474,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                     play_time_duration = mExoPlayerView.getPlayer().getCurrentWindowIndex();
                     mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
-                    presentation_length = exoPlayer.getDuration();
+//                    presentation_length = exoPlayer.getDuration();
 
                     exo_pause.setVisibility(View.VISIBLE);
                     exo_play.setVisibility(View.GONE);
@@ -1542,6 +1579,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     case Player.STATE_READY:
                         Log.e("STATE_READY", "STATE_READY");
 
+                        presentation_length = exoPlayer.getDuration();
+                        presentation_length = TimeUnit.MILLISECONDS.toMinutes(presentation_length);
+
                         handler.removeCallbacks(runnable);
                         binding.progressBar.setVisibility(View.GONE);
 
@@ -1609,9 +1649,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 if (!checkpause) {
                     if (Constant.isNetworkAvailable(context)) {
                         mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
-                        presentation_length = exoPlayer.getDuration();
+//                        presentation_length = exoPlayer.getDuration();
                         mResumePosition = TimeUnit.MILLISECONDS.toSeconds(mResumePosition);
-                        presentation_length = TimeUnit.MILLISECONDS.toMinutes(presentation_length);
+//                        presentation_length = TimeUnit.MILLISECONDS.toMinutes(presentation_length);
 
                         Log.e("exo_save", "+++" + mResumePosition + "   " + play_time_duration + "   " + presentation_length);
                         Log.e("*+*+*", "CallBack API");
