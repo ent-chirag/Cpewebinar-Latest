@@ -229,6 +229,9 @@ public class WebinarDetail {
     @SerializedName("nasba_approved")
     private NasbaApproved nasbaApproved;
 
+    @SerializedName("irs_approved")
+    private IrsApproved irsApproved;
+
     public CtecApproved getCtecApproved() {
         return ctecApproved;
     }
@@ -266,6 +269,8 @@ public class WebinarDetail {
     public void setInstructionalDocuement(String instructionalDocuement) {
         this.instructionalDocuement = instructionalDocuement;
     }
+
+
 
     public boolean isCardSave() {
         return isCardSave;
@@ -593,6 +598,14 @@ public class WebinarDetail {
 
     public String getRefundAndCancelationPolicy() {
         return refundAndCancelationPolicy;
+    }
+
+    public IrsApproved getIrsApproved() {
+        return irsApproved;
+    }
+
+    public void setIrsApproved(IrsApproved irsApproved) {
+        this.irsApproved = irsApproved;
     }
 
     public void setNasbaApproved(NasbaApproved nasbaApproved) {

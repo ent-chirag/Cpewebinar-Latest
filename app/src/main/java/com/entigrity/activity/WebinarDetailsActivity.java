@@ -68,6 +68,7 @@ import com.entigrity.model.review_answer.AddReview;
 import com.entigrity.model.timezones;
 import com.entigrity.model.video_duration.Video_duration_model;
 import com.entigrity.model.webinar_details_new.MyCertificateLinksItem;
+import com.entigrity.model.webinar_details_new.WebinarDetail;
 import com.entigrity.model.webinar_details_new.WebinarTestimonialItem;
 import com.entigrity.model.webinar_details_new.Webinar_details;
 import com.entigrity.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -272,6 +273,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String ea_description = "";
     public String ea_profile_pic = "";
 
+    public String irs_address = "";
+    public String irs_description = "";
+    public String irs_profile_pic = "";
 
     public String ctec_address = "";
     public String ctec_description = "";
@@ -2697,6 +2701,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             }
 
+                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsAddress().equalsIgnoreCase("")){
+                                irs_address = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsAddress();
+                            }
+
+                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsDesc().equalsIgnoreCase("")){
+                                irs_description = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsDesc();
+                            }
+
+                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsProfileIcon().equalsIgnoreCase("")){
+                                irs_profile_pic = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsProfileIcon();
+                            }
 
                             if (!webinar_details.getPayload().getWebinarDetail().getCtecApproved().getAddress().equalsIgnoreCase("")) {
                                 ctec_address = webinar_details.getPayload().getWebinarDetail().getCtecApproved().getAddress();

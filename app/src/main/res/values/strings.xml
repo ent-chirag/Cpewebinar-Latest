@@ -101,13 +101,13 @@
     <string name="str_video_link_not_avilable">video link is not avilable.</string>
 
 
-    //pass titile to pdf activity
+    <!--//pass titile to pdf activity
 
     <string name="str_certificate">Certificate</string>
     <string name="str_receipt">Receipt</string>
     <string name="str_keyterms">Key Terms</string>
     <string name="str_instructional_document">Instructional Doc</string>
-    <string name="str_pdf_view_titile">pdf_title</string>
+    <string name="str_pdf_view_titile">pdf_title</string>-->
 
     //hashmap key
 
@@ -548,6 +548,7 @@
     program cancellation policies,please connect our offices at 863-337-8573</string>
     <string name="str_nasba_approved">NASBA APPROVED</string>
     <string name="str_ea_approved">EA APPROVED</string>
+    <string name="str_irs_approved">IRS APPROVED</string>
     <string name="str_ctec_approved">CTEC APPROVED</string>
     <string name="str_nasba_address">My Cpe LLC 30N,WY80801</string>
     <string name="str_nasba_approved_content">my-cpe.org is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State Boards of Accountancy have the final authority on the acceptance of individual course for CPE credit.</string>

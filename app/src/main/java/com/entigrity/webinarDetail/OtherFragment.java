@@ -49,7 +49,7 @@ public class OtherFragment extends Fragment {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            binding.irsDescription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            binding.eaDescription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             binding.nasbaDescription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
@@ -74,6 +74,10 @@ public class OtherFragment extends Fragment {
             binding.relNasba.setVisibility(View.VISIBLE);
             binding.relNasbaDesc.setVisibility(View.VISIBLE);
 
+            // Previously we are showing the ea approved data there in CPE/CE and only CE conditions and not showing this in CPE type only
+            // Now instead of showing data for EA Approved we have to show IRS Data there only.. So have to Hide EA Approved Data
+            binding.relEa.setVisibility(View.GONE);
+            binding.relEaDesc.setVisibility(View.GONE);
             binding.relIrs.setVisibility(View.VISIBLE);
             binding.relIrsDesc.setVisibility(View.VISIBLE);
 
@@ -94,13 +98,13 @@ public class OtherFragment extends Fragment {
             if (!WebinarDetailsActivity.getInstance().ea_address.equalsIgnoreCase("")) {
 
 
-                binding.irsAddress.setText(WebinarDetailsActivity.getInstance().ea_address);
+                binding.eaAddress.setText(WebinarDetailsActivity.getInstance().ea_address);
             }
 
             if (!WebinarDetailsActivity.getInstance().ea_description.equalsIgnoreCase("")) {
 
 
-                binding.irsDescription.setText(WebinarDetailsActivity.getInstance().ea_description);
+                binding.eaDescription.setText(WebinarDetailsActivity.getInstance().ea_description);
             }
 
             if (!WebinarDetailsActivity.getInstance().nasba_profile_pic.equalsIgnoreCase("")) {
@@ -109,7 +113,7 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivNasbaProfile));
             }
 
-            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+            if (!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")) {
                 binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
                         .placeholder(R.mipmap.webinar_placeholder)
@@ -121,11 +125,12 @@ public class OtherFragment extends Fragment {
             if (!WebinarDetailsActivity.getInstance().ea_profile_pic.equalsIgnoreCase("")) {
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().ea_profile_pic)
                         .placeholder(R.mipmap.webinar_placeholder)
-                        .into((binding.ivIrsProfile));
+                        .into((binding.ivEaProfile));
             }
 
 
             ShowCtecApproved();
+            showIrsApproved();
 
 
         } else if (WebinarDetailsActivity.getInstance().getwebinar_type.equalsIgnoreCase("CPE")) {
@@ -133,6 +138,8 @@ public class OtherFragment extends Fragment {
             binding.relNasba.setVisibility(View.VISIBLE);
             binding.relNasbaDesc.setVisibility(View.VISIBLE);
 
+            binding.relEa.setVisibility(View.GONE);
+            binding.relEaDesc.setVisibility(View.GONE);
             binding.relIrs.setVisibility(View.GONE);
             binding.relIrsDesc.setVisibility(View.GONE);
 
@@ -153,7 +160,7 @@ public class OtherFragment extends Fragment {
                         .into((binding.ivNasbaProfile));
             }
 
-            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+            if (!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")) {
                 binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
                         .placeholder(R.mipmap.webinar_placeholder)
@@ -164,6 +171,7 @@ public class OtherFragment extends Fragment {
 
 
             ShowCtecApproved();
+            showIrsApproved();
 
 
         } else if (WebinarDetailsActivity.getInstance().getwebinar_type.equalsIgnoreCase("CE")) {
@@ -171,25 +179,29 @@ public class OtherFragment extends Fragment {
             binding.relNasba.setVisibility(View.GONE);
             binding.relNasbaDesc.setVisibility(View.GONE);
 
+            // Previously we are showing the ea approved data there in CPE/CE and only CE conditions and not showing this in CPE type only
+            // Now instead of showing data for EA Approved we have to show IRS Data there only.. So have to Hide EA Approved Data
+            binding.relEa.setVisibility(View.GONE);
+            binding.relEaDesc.setVisibility(View.GONE);
             binding.relIrs.setVisibility(View.VISIBLE);
             binding.relIrsDesc.setVisibility(View.VISIBLE);
 
             if (!WebinarDetailsActivity.getInstance().ea_address.equalsIgnoreCase("")) {
 
-                binding.irsAddress.setText(WebinarDetailsActivity.getInstance().ea_address);
+                binding.eaAddress.setText(WebinarDetailsActivity.getInstance().ea_address);
             }
 
             if (!WebinarDetailsActivity.getInstance().ea_description.equalsIgnoreCase("")) {
 
-                binding.irsDescription.setText(WebinarDetailsActivity.getInstance().ea_description);
+                binding.eaDescription.setText(WebinarDetailsActivity.getInstance().ea_description);
             }
             if (!WebinarDetailsActivity.getInstance().ea_profile_pic.equalsIgnoreCase("")) {
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().ea_profile_pic)
                         .placeholder(R.mipmap.webinar_placeholder)
-                        .into((binding.ivIrsProfile));
+                        .into((binding.ivEaProfile));
             }
 
-            if(!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")){
+            if (!WebinarDetailsActivity.getInstance().nasba_profile_pic_qas.equalsIgnoreCase("")) {
                 binding.ivNasbaProfileQas.setVisibility(View.VISIBLE);
                 Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().nasba_profile_pic_qas)
                         .placeholder(R.mipmap.webinar_placeholder)
@@ -200,12 +212,31 @@ public class OtherFragment extends Fragment {
 
 
             ShowCtecApproved();
+            showIrsApproved();
 
 
         }
 
 
         return view = binding.getRoot();
+    }
+
+    private void showIrsApproved() {
+
+        if (!WebinarDetailsActivity.getInstance().irs_address.equalsIgnoreCase("")) {
+            binding.irsAddress.setText(WebinarDetailsActivity.getInstance().irs_address);
+        }
+
+        if (!WebinarDetailsActivity.getInstance().irs_description.equalsIgnoreCase("")) {
+            binding.irsDescription.setText(WebinarDetailsActivity.getInstance().irs_description);
+        }
+
+        if (!WebinarDetailsActivity.getInstance().irs_profile_pic.equalsIgnoreCase("")) {
+            Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().irs_profile_pic)
+                    .placeholder(R.mipmap.webinar_placeholder)
+                    .into((binding.ivIrsProfile));
+        }
+
     }
 
 
