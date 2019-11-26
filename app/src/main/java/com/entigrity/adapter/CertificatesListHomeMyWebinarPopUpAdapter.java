@@ -56,6 +56,7 @@ public class CertificatesListHomeMyWebinarPopUpAdapter extends RecyclerView.Adap
                 i.putExtra(mContext.getResources().getString(R.string.str_document_link), arraylistMyCreditsCertificateItem
                         .get(position).getCertificateLink());
                 i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
+                i.putExtra(mContext.getString(R.string.pass_webinar_type),"");
                 mContext.startActivity(i);
 
             }
