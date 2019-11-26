@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.entigrity.R;
 import com.entigrity.activity.PdfViewActivity;
-import com.entigrity.activity.WebinarDetailsActivity;
 import com.entigrity.model.My_Credit_New.MyCertificateLinksItem;
 
 import java.util.ArrayList;
