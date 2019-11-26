@@ -585,6 +585,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("Message");
 //        builder.setMessage("Please save your card though website login to register webinar");
+        // Test Lines Added..
         builder.setMessage(mContext.getResources().getString(R.string.str_save_card));
 
 //                        builder.setPositiveButton("OK", null);
