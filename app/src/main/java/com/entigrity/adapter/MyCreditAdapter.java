@@ -131,6 +131,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
                             Intent i = new Intent(mContext, PdfViewActivity.class);
                             i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                     mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                            i.putExtra(mContext.getString(R.string.pass_webinar_type),"");
                             i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
                             mContext.startActivity(i);
 

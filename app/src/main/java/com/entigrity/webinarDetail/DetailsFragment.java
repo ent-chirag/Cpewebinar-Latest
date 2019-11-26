@@ -343,6 +343,12 @@ public class DetailsFragment extends Fragment {
                     i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
                             WebinarDetailsActivity.getInstance().keyterms);
                     i.putExtra(getActivity().getResources().getString(R.string.str_pdf_view_titile), getActivity().getString(R.string.str_keyterms));
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question),
+                            WebinarDetailsActivity.getInstance().webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), WebinarDetailsActivity.getInstance()
+                            .webinar_type);
+
+
                     getActivity().startActivity(i);
                 } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
@@ -360,6 +366,10 @@ public class DetailsFragment extends Fragment {
                     i.putExtra(getActivity().getResources().getString(R.string.str_document_link),
                             WebinarDetailsActivity.getInstance().instructional_document);
                     i.putExtra(getActivity().getResources().getString(R.string.str_pdf_view_titile), getActivity().getString(R.string.str_instructional_document));
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question),
+                            WebinarDetailsActivity.getInstance().webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), WebinarDetailsActivity.getInstance()
+                            .webinar_type);
                     getActivity().startActivity(i);
                 } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_instruction_doc_not_found));

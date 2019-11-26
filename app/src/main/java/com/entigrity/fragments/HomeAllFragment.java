@@ -374,7 +374,7 @@ public class HomeAllFragment extends Fragment {
                             arraysavefilter.get(1).equalsIgnoreCase("")
                     ) {
 
-                        Constant.webinartype = "live";
+                        /*Constant.webinartype = "live";*/
 
                         Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
@@ -446,7 +446,7 @@ public class HomeAllFragment extends Fragment {
                     if (arraysavefilter.get(0).equalsIgnoreCase("") &&
                             arraysavefilter.get(1).equalsIgnoreCase("")
                     ) {
-                        Constant.webinartype = "live";
+                        /*Constant.webinartype = "live";*/
 
                         Constant.price_filter = android.text.TextUtils.join(",", arraypricefilter);
 
@@ -1032,14 +1032,15 @@ public class HomeAllFragment extends Fragment {
                     }
 
                     SubjectAreaFilter = commaSepValueBuilder.toString();
+                    binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnTopics.setTextColor(getResources().getColor(R.color.White));
 
 
                 } else {
                     SubjectAreaFilter = "";
+                    binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
-
-                binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home);
-                binding.btnTopics.setTextColor(getResources().getColor(R.color.White));
 
 
                 start = 0;

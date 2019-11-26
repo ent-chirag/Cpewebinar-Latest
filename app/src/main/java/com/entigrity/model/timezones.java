@@ -69,4 +69,16 @@ public class timezones {
     }
 
     private int start_utc_time = 0;
+
+    public int getEnd_utc_time() {
+        return end_utc_time;
+    }
+
+    public void setEnd_utc_time(int end_utc_time) {
+        this.end_utc_time = end_utc_time;
+    }
+
+    private int end_utc_time = 0;
+
+
 }

@@ -8,6 +8,16 @@ public class StaticTimezonesItem {
     @SerializedName("start_time")
     private String startTime;
 
+    @SerializedName("end_utc_time")
+    private String endutctime;
+
+    public String getEndutctime() {
+        return endutctime;
+    }
+
+    public void setEndutctime(String endutctime) {
+        this.endutctime = endutctime;
+    }
 
     public String getTitle() {
         return title;
@@ -89,6 +99,7 @@ public class StaticTimezonesItem {
         return
                 "TimezonesItem{" +
                         "start_time = '" + startTime + '\'' +
+                        "end_utc_time = '" + endutctime + '\'' +
                         ",timezone = '" + timezone + '\'' +
                         ",title = '" + title + '\'' +
                         ",timezone_short = '" + timezoneShort + '\'' +

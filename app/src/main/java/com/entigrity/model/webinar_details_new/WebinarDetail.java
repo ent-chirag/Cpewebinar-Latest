@@ -173,12 +173,24 @@ public class WebinarDetail {
         return startutctime;
     }
 
+
     public void setStartutctime(int startutctime) {
         this.startutctime = startutctime;
     }
 
     @SerializedName("start_utc_time")
     private int startutctime;
+
+    public int getEndutctime() {
+        return endutctime;
+    }
+
+    public void setEndutctime(int endutctime) {
+        this.endutctime = endutctime;
+    }
+
+    @SerializedName("end_utc_time")
+    private int endutctime;
 
 
     @SerializedName("webinar_video_url")
@@ -685,6 +697,7 @@ public class WebinarDetail {
                         ",webinar_thumbnail = '" + webinarThumbnail + '\'' +
                         ",time_zone = '" + timeZone + '\'' +
                         ",start_utc_time = '" + startutctime + '\'' +
+                        ",end_utc_time = '" + endutctime + '\'' +
                         ",webinar_video_url = '" + webinarVideoUrl + '\'' +
                         ",presentation_handout = '" + presentationHandout + '\'' +
                         ",start_time = '" + startTime + '\'' +
