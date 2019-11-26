@@ -48,9 +48,10 @@ public class ActivityReviewQuestion extends AppCompatActivity {
     ProgressDialog progressDialog;
     private static final String TAG = ActivityReviewQuestion.class.getName();
     public Context context;
-    public int webinar_id = 0;
+
     public ReviewQuestionAdapter adapter;
     private static ActivityReviewQuestion instance;
+    public int webinar_id = 0;
     public String webinar_type = "";
     private String watchedDuration = "";
 

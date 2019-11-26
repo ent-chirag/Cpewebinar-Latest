@@ -537,6 +537,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                     Intent i = new Intent(mContext, PdfViewActivity.class);
                                     i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                             mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                    i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
                                     mContext.startActivity(i);
                                 } else {
                                     displayCertificateDialog(mList.get(position).getMyCertificateLinks());
@@ -560,6 +561,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                     Intent i = new Intent(mContext, PdfViewActivity.class);
                                     i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                             mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
+                                    i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
                                     mContext.startActivity(i);
                                 } else {
                                     displayCertificateDialog(mList.get(position).getMyCertificateLinks());
@@ -640,6 +642,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 Intent i = new Intent(mContext, PdfViewActivity.class);
                 i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
                         get(0));
+                i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
                 mContext.startActivity(i);
             } else {
                 if (arrayListcertificate.size() > 0) {
@@ -933,6 +936,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 Intent i = new Intent(mContext, PdfViewActivity.class);
                 i.putExtra(mContext.getResources().getString(R.string.str_document_link), arrayListcertificate.
                         get(0));
+                i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
                 mContext.startActivity(i);
             } else {
                 if (arrayListcertificate.size() > 0) {

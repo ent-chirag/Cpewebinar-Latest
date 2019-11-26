@@ -14,6 +14,16 @@
     <string name="str_download">Download</string>
 
 
+    //pass titile to pdf activity
+
+    <string name="str_certificate">Certificate</string>
+    <string name="str_receipt">Receipt</string>
+    <string name="str_keyterms">Key Terms</string>
+    <string name="str_instructional_document">Instructional Doc</string>
+    <string name="str_pdf_view_titile">pdf_title</string>
+
+
+
     //sign up to sign up next screen
 
     <string name="str_signup_first_name">fname</string>
@@ -534,6 +544,7 @@
     <string name="str_nasba_address">My Cpe LLC 30N,WY80801</string>
     <string name="str_nasba_approved_content">my-cpe.org is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State Boards of Accountancy have the final authority on the acceptance of individual course for CPE credit.</string>
     <string name="str_hour">Hour</string>
+    <string name="str_hours">Hours</string>
     <string name="str_min">Min</string>
 
     /table form
@@ -577,7 +588,7 @@
     //Home to Webinar details screen pass data
     <string name="pass_webinar_id">Webinarid</string>
     <string name="pass_webinar_type">Webinartype</string>
-    <string name="str_course_id">Course Id</string>
+    <string name="str_course_id">IRS Course Id</string>
     <string name="str_is_notification">isnoti</string>
     <string name="str_ctec_course_id">CTEC COURSE ID</string>
 
@@ -590,7 +601,7 @@
 
 
     <string name="str_noti">Notifications</string>
-    <string name="str_testimonial_header">Testimonial</string>
+    <string name="str_testimonial_header">Testimonials</string>
     <string name="str_my_transaction">My Transactions</string>
     <string name="str_payment_method">Payment Method</string>
     <string name="str_my_credit">My Credits</string>

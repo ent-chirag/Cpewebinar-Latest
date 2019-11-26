@@ -172,6 +172,12 @@ public class HomeAllFragment extends Fragment {
 
             binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home);
             binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.White));
+        } else {
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
         }
 
 
@@ -1065,6 +1071,12 @@ public class HomeAllFragment extends Fragment {
                 binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 SubjectAreaFilter = "";
+
+                if (Constant.isNetworkAvailable(context)) {
+                    GetTopics();
+                } else {
+                    Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                }
 
                 Constant.arraylistselectedsubjectareahomeID.clear();
                 Constant.hashmap_subject_home_area.clear();

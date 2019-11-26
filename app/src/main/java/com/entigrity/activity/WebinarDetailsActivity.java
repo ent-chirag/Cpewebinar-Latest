@@ -537,6 +537,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                             String date = token.nextToken();
                             String time = token.nextToken();
 
+                            Constant.Log("time", time + " " + time);
+
 
                             StringTokenizer tok = new StringTokenizer(time, ":");
 
@@ -759,6 +761,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         Intent i = new Intent(context, PdfViewActivity.class);
                         i.putExtra(context.getResources().getString(R.string.str_document_link),
                                 arraylistmycertificate.get(0).getCertificateLink());
+                        i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                        i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                         context.startActivity(i);
                     } else {
                         displayCertificateDialog(arraylistmycertificate);
@@ -823,6 +828,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     Intent i = new Intent(context, PdfViewActivity.class);
                     i.putExtra(context.getResources().getString(R.string.str_document_link),
                             arraylistmycertificate.get(0).getCertificateLink());
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                     context.startActivity(i);
                 } else {
                     displayCertificateDialog(arraylistmycertificate);
@@ -1742,6 +1750,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
+                                webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
                                 binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_status);
                                 Constant.Log("joinurl", "joinurl" + join_url);
                             } else {
@@ -2035,6 +2044,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                 context.startActivity(i);
             } else {
                 if (arrayListCertificate.size() > 0) {
@@ -2410,11 +2422,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 String date = tokens_tim.nextToken();
                                 String time = tokens_tim.nextToken();
 
+                                Constant.Log("time", time + " " + time);
+
 
                                 StringTokenizer tokens_time_mi = new StringTokenizer(time, ":");
 
                                 calender_hour = tokens_time_mi.nextToken();
                                 calender_min = tokens_time_mi.nextToken();
+
+
+
+
 
 
                                 if (calender_min.equalsIgnoreCase("00")) {
@@ -2577,8 +2595,6 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 for (int i = 0; i < webinar_details.getPayload().getWebinarDetail().getWhoShouldAttend().size(); i++) {
                                     whoshouldattend.add(webinar_details.getPayload().getWebinarDetail().getWhoShouldAttend().get(i));
                                 }
-
-
                             }
 
                             if (webinar_details.getPayload().getWebinarDetail().getWebinarTestimonial().size() > 0) {
@@ -2842,6 +2858,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(context, PdfViewActivity.class);
                 i.putExtra(context.getResources().getString(R.string.str_document_link), arrayListCertificate.
                         get(0));
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                i.putExtra(context.getResources().getString(R.string.str_pdf_view_titile), context.getString(R.string.str_certificate));
                 context.startActivity(i);
             } else {
                 if (arrayListCertificate.size() > 0) {

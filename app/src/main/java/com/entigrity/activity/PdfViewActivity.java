@@ -52,6 +52,9 @@ public class PdfViewActivity extends AppCompatActivity {
     public long refid;
     public ArrayList<Long> list = new ArrayList<>();
     private DownloadManager downloadManager;
+    public int webinar_id = 0;
+    public String webinar_type = "";
+    public String titile = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,13 +65,17 @@ public class PdfViewActivity extends AppCompatActivity {
 
         mProgressDialog = new ProgressDialog(context);
 
-        binding.screentitle.setText(context.getResources().getString(R.string.str_view_web_view_certificate));
 
         Constant.setLightStatusBar(PdfViewActivity.this);
 
         Intent intent = getIntent();
         if (intent != null) {
             myCertificate = intent.getStringExtra(getResources().getString(R.string.str_document_link));
+            titile = intent.getStringExtra(getResources().getString(R.string.str_pdf_view_titile));
+            webinar_id = intent.getIntExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), 0);
+            webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
+
+            binding.screentitle.setText(titile);
         }
 
         registerReceiver(onComplete,
@@ -83,7 +90,17 @@ public class PdfViewActivity extends AppCompatActivity {
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                if (!webinar_type.equalsIgnoreCase("")) {
+                    Intent i = new Intent(context, WebinarDetailsActivity.class);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    startActivity(i);
+                    finish();
+                } else {
+                    finish();
+                }
+
 
             }
         });
@@ -111,6 +128,21 @@ public class PdfViewActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!webinar_type.equalsIgnoreCase("")) {
+            Intent i = new Intent(context, WebinarDetailsActivity.class);
+            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+            startActivity(i);
+            finish();
+        } else {
+            finish();
+        }
 
     }
 
