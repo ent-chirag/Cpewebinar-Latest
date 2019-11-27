@@ -747,6 +747,13 @@ public class AccountFragment extends Fragment {
                             Constant.price_filter = "";
                             Constant.date_filter = "";
 
+                            Constant.webinartype = "live";
+                            Constant.arrsavebooleanstate.clear();
+                            Constant.arraysavefilter.clear();
+                            Constant.arraypricefilter.clear();
+                            Constant.arraylistHomeDateFilter.clear();
+
+
 
                             Intent i = new Intent(getActivity(), PreLoginActivity.class);
                             startActivity(i);

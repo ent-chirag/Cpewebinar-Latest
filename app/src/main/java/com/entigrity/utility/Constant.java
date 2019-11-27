@@ -38,7 +38,11 @@ public class Constant {
 
 
 
-
+    public static List<Boolean> arrsavebooleanstate = new ArrayList();
+    public  static List<String> arraysavefilter = new ArrayList<String>();
+    public static  List<String> arraypricefilter = new ArrayList<String>();
+    //for date home filter
+    public static ArrayList<String> arraylistHomeDateFilter = new ArrayList<>();
 
 
 

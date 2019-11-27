@@ -57,7 +57,11 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.entigrity.utility.Constant.arraylistHomeDateFilter;
 import static com.entigrity.utility.Constant.arraylistselectedvalue;
+import static com.entigrity.utility.Constant.arraypricefilter;
+import static com.entigrity.utility.Constant.arraysavefilter;
+import static com.entigrity.utility.Constant.arrsavebooleanstate;
 import static com.entigrity.utility.Constant.checkmywebinardotstatusset;
 
 public class HomeAllFragment extends Fragment {
@@ -77,11 +81,6 @@ public class HomeAllFragment extends Fragment {
     private String date_filter = "";
     private String topicsofinterest = "";
 
-    public  List<Boolean> arrsavebooleanstate = new ArrayList();
-    public  List<String> arraysavefilter = new ArrayList<String>();
-    public  List<String> arraypricefilter = new ArrayList<String>();
-    //for date home filter
-    public  ArrayList<String> arraylistHomeDateFilter = new ArrayList<>();
 
     private boolean loading = true;
     public int start = 0, limit = 10;
@@ -136,10 +135,18 @@ public class HomeAllFragment extends Fragment {
 
                 binding.btnPremium.setVisibility(View.GONE);
                 binding.btnFree.setVisibility(View.GONE);
+
+                Constant.arrsavebooleanstate.clear();
+                Constant.arraysavefilter.clear();
+                Constant.arraypricefilter.clear();
+                Constant.arraylistHomeDateFilter.clear();
+
+
                 Constant.price_filter = "1";
                 Constant.date_filter = "";
                 Constant.search = "";
                 Constant.webinartype = "live";
+
 
             } else {
                 binding.btnPremium.setVisibility(View.VISIBLE);
@@ -155,21 +162,24 @@ public class HomeAllFragment extends Fragment {
 
         Constant.search = Constant.Trim(binding.edtSearch.getText().toString());
 
-        arrsavebooleanstate.add(0, false);
-        arrsavebooleanstate.add(1, false);
+        if (arrsavebooleanstate.size() == 0) {
+            arrsavebooleanstate.add(0, false);
+            arrsavebooleanstate.add(1, false);
 
 
-        arraysavefilter.add(0, "");
-        arraysavefilter.add(1, "");
+            arraysavefilter.add(0, "");
+            arraysavefilter.add(1, "");
 
 
-        arraypricefilter.add(0, "");
-        arraypricefilter.add(1, "");
+            arraypricefilter.add(0, "");
+            arraypricefilter.add(1, "");
 
 
-        arraylistHomeDateFilter.add(0, "");
-        arraylistHomeDateFilter.add(1, "");
+            arraylistHomeDateFilter.add(0, "");
+            arraylistHomeDateFilter.add(1, "");
 
+
+        }
 
 
         if (Constant.webinartype.equalsIgnoreCase("live")) {
@@ -237,9 +247,6 @@ public class HomeAllFragment extends Fragment {
         binding.rvhome.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.rvhome.setItemAnimator(new DefaultItemAnimator());
         binding.rvhome.setHasFixedSize(true);
-
-
-
 
 
         if (Constant.isNetworkAvailable(context)) {
