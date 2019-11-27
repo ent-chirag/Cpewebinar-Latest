@@ -195,7 +195,7 @@ public class PdfViewActivity extends AppCompatActivity {
         DownloadFileTask task = new DownloadFileTask(
                 PdfViewActivity.this,
                 myCertificate,
-                "/download/Certificate.pdf");
+                "/download/"+titile+".pdf");
         task.startTask();
     }
 
@@ -265,7 +265,7 @@ public class PdfViewActivity extends AppCompatActivity {
 
         File file = new File(Environment.getExternalStorageDirectory()
                 .getAbsolutePath()
-                + "/download/Certificate.pdf");
+                + "/download/"+titile+".pdf");
         if (file.exists()) {
             binding.pdfView.fromFile(file)
                     //.pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
@@ -391,9 +391,9 @@ public class PdfViewActivity extends AppCompatActivity {
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myCertificate));
         String extension = myCertificate.substring(myCertificate.lastIndexOf('.') + 1).trim();
         request.setAllowedOverRoaming(false);
-        request.setTitle("Downloading Certificate");
+        request.setTitle("Downloading "+titile);
         request.setVisibleInDownloadsUi(true);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Certificate" + "." + extension);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + titile + "." + extension);
 
         refid = downloadManager.enqueue(request);
 
