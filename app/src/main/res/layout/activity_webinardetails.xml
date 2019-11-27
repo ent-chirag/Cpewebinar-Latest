@@ -142,6 +142,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_toRightOf="@+id/tv_webinardate"
+                    android:visibility="gone"
                     android:spinnerMode="dialog" />
 
 
@@ -332,7 +333,7 @@
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/White"
                     android:textSize="@dimen/_12sdp"
-                    android:text="WATCH NOW"
+                    android:text=""
                     android:letterSpacing="0.08"
                     app:font_text="Montserrat-Bold.ttf"/>
 

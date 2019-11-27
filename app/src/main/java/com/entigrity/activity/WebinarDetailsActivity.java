@@ -2954,6 +2954,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             //Getting the instance of Spinner and applying OnItemSelectedListener on it
 
             //Creating the ArrayAdapter instance having the user type list
+
+            binding.spinner.setVisibility(View.VISIBLE);
             ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayListtimezone);
             aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
             //Setting the ArrayAdapter data on the Spinner
