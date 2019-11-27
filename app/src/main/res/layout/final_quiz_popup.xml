@@ -14,18 +14,6 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <!--<com.entigrity.view.CustomTextView
-            android:id="@+id/popup_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:text="@string/str_final_quiz"
-            android:textColor="@color/color_title_popup"
-            android:letterSpacing="0.08"
-            android:textSize="@dimen/_18sdp"
-            app:font_text="Montserrat-SemiBold.ttf" />-->
-
         <com.entigrity.view.CustomTextView
             android:id="@+id/popup_description"
             android:layout_width="wrap_content"
