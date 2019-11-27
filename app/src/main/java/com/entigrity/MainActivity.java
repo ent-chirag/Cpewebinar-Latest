@@ -1,10 +1,15 @@
 package com.entigrity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -286,6 +291,44 @@ public class MainActivity extends AppCompatActivity {
 
     public void ShowPopUp() {
 
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getResources().getString(R.string.str_guest_user_dialog_title));
+        builder.setMessage(getResources().getString(R.string.str_guest_user_dialog_msg));
+
+//                        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton(getResources().getString(R.string.str_login_guest),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        arg0.dismiss();
+
+                        Intent i = new Intent(context, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+
+                    }
+                });
+
+        builder.setNegativeButton(getResources().getString(R.string.str_create_account),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                        Intent i = new Intent(context, SignUpActivity.class);
+                        startActivity(i);
+                        finish();
+
+                    }
+                });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+/*
         myDialog = new Dialog(context);
         myDialog.setContentView(R.layout.guest_user_popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -338,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        myDialog.show();
+        myDialog.show();*/
 
 
     }
