@@ -47,6 +47,7 @@ public class TestimonialActivity extends AppCompatActivity {
     private boolean loading = true;
     public boolean islast = false;
     public int webinarid = 0;
+    public String webinar_type = "";
 
 
     @Override
@@ -59,6 +60,7 @@ public class TestimonialActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             webinarid = intent.getIntExtra(getResources().getString(R.string.pass_webinar_id), 0);
+            webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
         }
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
@@ -70,6 +72,10 @@ public class TestimonialActivity extends AppCompatActivity {
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(context, WebinarDetailsActivity.class);
+                i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
                 finish();
             }
         });
@@ -110,6 +116,18 @@ public class TestimonialActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i = new Intent(context, WebinarDetailsActivity.class);
+        i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+        i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+        startActivity(i);
+        finish();
+
+
+    }
 
     private void refreshItems() {
 
@@ -126,8 +144,6 @@ public class TestimonialActivity extends AppCompatActivity {
             Snackbar.make(binding.rvTestimonialList, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
     }
-
-
 
 
     private void GetTestimonialList() {
@@ -182,7 +198,6 @@ public class TestimonialActivity extends AppCompatActivity {
                                     binding.swipeRefreshLayout.setRefreshing(false);
                                 }
                             }
-
 
 
                             islast = model_testimonial.getPayload().isIsLast();

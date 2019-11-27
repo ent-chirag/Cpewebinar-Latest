@@ -39,7 +39,10 @@ public class TestimonialFragment extends Fragment {
                 Intent i = new Intent(getActivity(), TestimonialActivity.class);
                 i.putExtra(getResources().getString(R.string.pass_webinar_id), WebinarDetailsActivity
                         .getInstance().webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type),
+                        WebinarDetailsActivity.getInstance().webinar_type);
                 startActivity(i);
+                getActivity().finish();
 
             }
         });
@@ -72,8 +75,8 @@ public class TestimonialFragment extends Fragment {
                 final TextView tv_date = (TextView) _itemRow.findViewById(R.id.tv_date);
                 final View viewBlack = (View) _itemRow.findViewById(R.id.viewBlack);
 
-                if(i == 0){
-                    if(WebinarDetailsActivity.getInstance().webinartestimonial.size()>1){
+                if (i == 0) {
+                    if (WebinarDetailsActivity.getInstance().webinartestimonial.size() > 1) {
                         viewBlack.setVisibility(View.VISIBLE);
                     } else {
                         viewBlack.setVisibility(View.GONE);

@@ -29,10 +29,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.entigrity.MainActivity;
@@ -78,13 +76,12 @@ public class HomeAllFragment extends Fragment {
     private String price_filter = "";
     private String date_filter = "";
     private String topicsofinterest = "";
-    private List<Boolean> arrsavebooleanstate = new ArrayList();
-    private List<String> arraysavefilter = new ArrayList<String>();
 
-    private List<String> arraypricefilter = new ArrayList<String>();
-
+    public  List<Boolean> arrsavebooleanstate = new ArrayList();
+    public  List<String> arraysavefilter = new ArrayList<String>();
+    public  List<String> arraypricefilter = new ArrayList<String>();
     //for date home filter
-    public ArrayList<String> arraylistHomeDateFilter = new ArrayList<>();
+    public  ArrayList<String> arraylistHomeDateFilter = new ArrayList<>();
 
     private boolean loading = true;
     public int start = 0, limit = 10;
@@ -158,8 +155,25 @@ public class HomeAllFragment extends Fragment {
 
         Constant.search = Constant.Trim(binding.edtSearch.getText().toString());
 
+        arrsavebooleanstate.add(0, false);
+        arrsavebooleanstate.add(1, false);
+
+
+        arraysavefilter.add(0, "");
+        arraysavefilter.add(1, "");
+
+
+        arraypricefilter.add(0, "");
+        arraypricefilter.add(1, "");
+
+
+        arraylistHomeDateFilter.add(0, "");
+        arraylistHomeDateFilter.add(1, "");
+
+
 
         if (Constant.webinartype.equalsIgnoreCase("live")) {
+
             binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
             binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
@@ -225,28 +239,7 @@ public class HomeAllFragment extends Fragment {
         binding.rvhome.setHasFixedSize(true);
 
 
-        arrsavebooleanstate.add(0, false);
-        arrsavebooleanstate.add(1, false);
-        /*arrsavebooleanstate.add(2, false);
-        arrsavebooleanstate.add(3, false);
-        arrsavebooleanstate.add(4, false);
-        arrsavebooleanstate.add(5, false);*/
 
-
-        arraysavefilter.add(0, "");
-        arraysavefilter.add(1, "");
-       /* arraysavefilter.add(2, "");
-        arraysavefilter.add(3, "");
-        arraysavefilter.add(4, "");
-        arraysavefilter.add(5, "");*/
-
-
-        arraypricefilter.add(0, "");
-        arraypricefilter.add(1, "");
-
-
-        arraylistHomeDateFilter.add(0, "");
-        arraylistHomeDateFilter.add(1, "");
 
 
         if (Constant.isNetworkAvailable(context)) {

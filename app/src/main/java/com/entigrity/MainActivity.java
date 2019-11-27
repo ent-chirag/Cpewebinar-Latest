@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     AccountFragment accountFragment;
     MyCreditsFragment myCreditsFragment;
-    MyFavoriteScreenFragment myFavoriteScreenFragment;
-
     HomeAllFragment homeAllFragment;
     MyWebinarFragment myWebinarFragment;
 
@@ -168,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SetDefault("home");
+        SetDefault("default");
 
 
     }

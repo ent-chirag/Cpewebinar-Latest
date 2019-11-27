@@ -319,6 +319,7 @@ public class DetailsFragment extends Fragment {
                         WebinarDetailsActivity.getInstance().webinar_type);
                 i.putStringArrayListExtra(getResources().getString(R.string.pass_who_you_are_list), WebinarDetailsActivity.getInstance().whoshouldattend);
                 startActivity(i);
+                getActivity().finish();
 
             }
         });
@@ -347,9 +348,8 @@ public class DetailsFragment extends Fragment {
                             WebinarDetailsActivity.getInstance().webinarid);
                     i.putExtra(getResources().getString(R.string.pass_webinar_type), WebinarDetailsActivity.getInstance()
                             .webinar_type);
-
-
                     getActivity().startActivity(i);
+                    getActivity().finish();
                 } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
                 }
@@ -371,6 +371,7 @@ public class DetailsFragment extends Fragment {
                     i.putExtra(getResources().getString(R.string.pass_webinar_type), WebinarDetailsActivity.getInstance()
                             .webinar_type);
                     getActivity().startActivity(i);
+                    getActivity().finish();
                 } else {
                     Constant.toast(getActivity(), getResources().getString(R.string.str_instruction_doc_not_found));
                 }

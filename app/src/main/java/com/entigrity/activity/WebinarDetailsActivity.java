@@ -818,7 +818,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                     .getResources().getString(R.string.str_webinar_status_resume_watching))) {
                 if (!VIDEO_URL.equalsIgnoreCase("")) {
                     checkpause = false;
-                    if(checkPlay == 0 || checkPlay ==2){
+                    if (checkPlay == 0 || checkPlay == 2) {
                         handler.removeCallbacks(runnable);
                         PlayVideo();
                     }
@@ -867,8 +867,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(getResources()
                     .getString(R.string.str_webinar_status_register))) {
 
-                if(!Cost.equalsIgnoreCase("")){
-                    if(isCardSaved) {
+                if (!Cost.equalsIgnoreCase("")) {
+                    if (isCardSaved) {
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, context.getResources().getString(R.string.progrees_msg));
                             RegisterWebinar(webinarid, binding.tvWebinarStatus);
@@ -2780,15 +2780,15 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
                             }
 
-                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsAddress().equalsIgnoreCase("")){
+                            if (!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsAddress().equalsIgnoreCase("")) {
                                 irs_address = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsAddress();
                             }
 
-                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsDesc().equalsIgnoreCase("")){
+                            if (!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsDesc().equalsIgnoreCase("")) {
                                 irs_description = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsDesc();
                             }
 
-                            if(!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsProfileIcon().equalsIgnoreCase("")){
+                            if (!webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsProfileIcon().equalsIgnoreCase("")) {
                                 irs_profile_pic = webinar_details.getPayload().getWebinarDetail().getIrsApproved().getIrsProfileIcon();
                             }
 
