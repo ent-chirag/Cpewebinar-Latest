@@ -18,7 +18,6 @@ import com.entigrity.activity.SignUpActivity;
 import com.entigrity.fragments.AccountFragment;
 import com.entigrity.fragments.HomeAllFragment;
 import com.entigrity.fragments.MyCreditsFragment;
-import com.entigrity.fragments.MyFavoriteScreenFragment;
 import com.entigrity.fragments.MyWebinarFragment;
 import com.entigrity.utility.AppSettings;
 import com.entigrity.utility.Constant;
