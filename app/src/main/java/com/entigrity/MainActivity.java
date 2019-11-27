@@ -118,9 +118,16 @@ public class MainActivity extends AppCompatActivity {
                 selectmywebinardtab = 0;
                 checkmywebinardotstatusset = false;
                 SetImageBackground(2);
+
+                Constant.arrsavebooleanstate.clear();
+                Constant.arraysavefilter.clear();
+                Constant.arraypricefilter.clear();
+                Constant.arraylistHomeDateFilter.clear();
+
                 Constant.price_filter = "";
                 Constant.date_filter = "";
                 Constant.search = "";
+                Constant.webinartype = "live";
                 SetDefault("home");
 
             }
@@ -189,6 +196,14 @@ public class MainActivity extends AppCompatActivity {
             Constant.search = "";
             Constant.price_filter = "";
             Constant.date_filter = "";
+
+
+            Constant.webinartype = "live";
+            Constant.arrsavebooleanstate.clear();
+            Constant.arraysavefilter.clear();
+            Constant.arraypricefilter.clear();
+            Constant.arraylistHomeDateFilter.clear();
+
 
             Intent i = new Intent(context, PreLoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
