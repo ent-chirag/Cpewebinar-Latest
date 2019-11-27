@@ -15,6 +15,8 @@ import com.entigrity.utility.Constant;
 public class ActivityAddCard extends AppCompatActivity {
 
     ActivityAddCardBinding binding;
+
+
     private static final int CARD_NUMBER_TOTAL_SYMBOLS = 19; // size of pattern 0000-0000-0000-0000
     private static final int CARD_NUMBER_TOTAL_DIGITS = 16; // max numbers of digits in pattern: 0000 x 4
     private static final int CARD_NUMBER_DIVIDER_MODULO = 5; // means divider position is every 5th symbol beginning with 1
