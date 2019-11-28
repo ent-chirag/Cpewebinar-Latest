@@ -265,7 +265,8 @@ public class WebinarDetail {
     @SerializedName("is_card_save")
     private boolean isCardSave;
 
-    @SerializedName("is_reviewed")
+//    @SerializedName("is_reviewed")
+    @SerializedName("is_rating_reviewed")
     private boolean isReviewed;
 
     @SerializedName("redirection_url")
