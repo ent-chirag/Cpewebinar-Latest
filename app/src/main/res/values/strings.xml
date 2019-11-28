@@ -51,7 +51,9 @@
     <string name="favorite">Favorite</string>
     <string name="str_comming_soon">Comming Soon</string>
     <string name="str_guest_user_dialog_msg">Login or Register to access full feature.</string>
+    <string name="str_guest_user_dialog_msg_new">Login or Create your Account to access full features of the application.</string>
     <string name="str_guest_user_dialog_title">MY CPE</string>
+    <string name="str_guest_user_dialog_title_new">myCPE</string>
     <string name="str_login_guest">Login</string>
     <string name="str_cancel_guest">Cancel</string>
     <string name="str_sharing_not_avilable">Sharing link is not avilable.</string>

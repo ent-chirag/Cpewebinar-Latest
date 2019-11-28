@@ -287,11 +287,11 @@ public class MainActivity extends AppCompatActivity {
     public void ShowPopUp() {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getResources().getString(R.string.str_guest_user_dialog_title));
-        builder.setMessage(getResources().getString(R.string.str_guest_user_dialog_msg));
+        builder.setTitle(getResources().getString(R.string.str_guest_user_dialog_title_new));
+        builder.setMessage(getResources().getString(R.string.str_guest_user_dialog_msg_new));
 
 //                        builder.setPositiveButton("OK", null);
-        builder.setPositiveButton(getResources().getString(R.string.str_login_guest),
+        builder.setPositiveButton(getResources().getString(R.string.str_login_guest).toLowerCase(),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        builder.setNegativeButton(getResources().getString(R.string.str_create_account),
+        builder.setNegativeButton(getResources().getString(R.string.str_create_account).toLowerCase(),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
