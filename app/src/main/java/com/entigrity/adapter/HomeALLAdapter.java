@@ -657,7 +657,44 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
     public void ShowPopUp() {
 
-        myDialog = new Dialog(mContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(mContext.getResources().getString(R.string.str_guest_user_dialog_title_new));
+        builder.setMessage(mContext.getResources().getString(R.string.str_guest_user_dialog_msg_new));
+
+//                        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton(mContext.getResources().getString(R.string.str_login_guest).toLowerCase(),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        arg0.dismiss();
+
+                        Intent i = new Intent(mContext, LoginActivity.class);
+                        mContext.startActivity(i);
+                        ((Activity) mContext).finish();
+
+                    }
+                });
+
+        builder.setNegativeButton(mContext.getResources().getString(R.string.str_create_account).toLowerCase(),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                        Intent i = new Intent(mContext, SignUpActivity.class);
+                        mContext.startActivity(i);
+                        ((Activity) mContext).finish();
+
+                    }
+                });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        /*myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.guest_user_popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -709,7 +746,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         });
 
 
-        myDialog.show();
+        myDialog.show();*/
 
 
     }
