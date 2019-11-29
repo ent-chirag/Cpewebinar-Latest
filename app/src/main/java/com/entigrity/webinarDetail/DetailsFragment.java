@@ -329,7 +329,6 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 checkAndroidVersion();
             }
         });
@@ -435,21 +434,6 @@ public class DetailsFragment extends Fragment {
 
     }
 
-    private void checkAndroidVersion_keyterms() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkPermission_keyTerms();
-        } else {
-            if (WebinarDetailsActivity.getInstance().keyterms.equalsIgnoreCase("")) {
-                DownloadKeyterms(WebinarDetailsActivity.getInstance().keyterms);
-            } else {
-                Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
-            }
-
-        }
-
-    }
-
-
     public void DownloadHandouts(ArrayList<String> arrayListhandout) {
         WebinarDetailsActivity.getInstance().list.clear();
 
@@ -470,26 +454,6 @@ public class DetailsFragment extends Fragment {
 
 
     }
-
-    public void DownloadKeyterms(String key_terms) {
-        WebinarDetailsActivity.getInstance().list.clear();
-
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(key_terms));
-        String extension = key_terms.substring(key_terms.lastIndexOf('.') + 1).trim();
-        request.setAllowedOverRoaming(false);
-        request.setTitle("Downloading Keyterms");
-        request.setVisibleInDownloadsUi(true);
-
-        Log.e("Keyterms", "Keyterms" + key_terms);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/MyCpe/" + "/" + "Webinar_handouts" + "." + extension);
-
-        WebinarDetailsActivity.getInstance().refid = downloadManager.enqueue(request);
-
-        WebinarDetailsActivity.getInstance().list.add(WebinarDetailsActivity.getInstance().refid);
-
-
-    }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkPermission() {
@@ -525,43 +489,6 @@ public class DetailsFragment extends Fragment {
             } else {
                 Constant.toast(getActivity(), getResources().getString(R.string.str_download_link_not_found));
             }
-
-        }
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void checkPermission_keyTerms() {
-
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.READ_EXTERNAL_STORAGE) + ContextCompat
-                .checkSelfPermission(getActivity(),
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale
-                    (getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) ||
-                    ActivityCompat.shouldShowRequestPermissionRationale
-                            (getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                requestPermissions(
-                        new String[]{Manifest.permission
-                                .READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        PERMISSIONS_MULTIPLE_REQUEST_KEYTERMS);
-            } else {
-                requestPermissions(
-                        new String[]{Manifest.permission
-                                .READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        PERMISSIONS_MULTIPLE_REQUEST_KEYTERMS);
-            }
-        } else {
-            // write your logic code if permission already granted
-            if (!WebinarDetailsActivity.getInstance().keyterms.equalsIgnoreCase("")) {
-                DownloadKeyterms(WebinarDetailsActivity.getInstance().keyterms);
-            } else {
-                Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
-            }
-
 
         }
     }
@@ -602,35 +529,6 @@ public class DetailsFragment extends Fragment {
                     }
                 }
                 break;
-            case PERMISSIONS_MULTIPLE_REQUEST_KEYTERMS:
-                if (grantResults.length > 0) {
-                    boolean writePermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    boolean readExternalFile = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-
-                    if (writePermission && readExternalFile) {
-                        // write your logic here
-                        if (!WebinarDetailsActivity.getInstance().keyterms.equalsIgnoreCase("")) {
-                            DownloadKeyterms(WebinarDetailsActivity.getInstance().keyterms);
-                        } else {
-                            Constant.toast(getActivity(), getResources().getString(R.string.str_key_terms_link_not_found));
-                        }
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (Build.VERSION.SDK_INT >= 23 && !shouldShowRequestPermissionRationale(permissions[0])) {
-                            Intent intent = new Intent();
-                            intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                            Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
-                            intent.setData(uri);
-                            startActivity(intent);
-                        } else {
-                            requestPermissions(
-                                    new String[]{Manifest.permission
-                                            .READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    PERMISSIONS_MULTIPLE_REQUEST_KEYTERMS);
-                        }
-                    }
-                }
-                break;
-
         }
     }
 
