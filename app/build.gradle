@@ -46,11 +46,11 @@ android {
 
 
     defaultConfig {
-        applicationId "com.entigrity"
+        applicationId "com.myCPE"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.8"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

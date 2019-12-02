@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.PreLoginActivity" />
+            type="com.myCPE.activity.PreLoginActivity" />
     </data>
 
     <RelativeLayout
@@ -24,7 +24,7 @@
             android:orientation="horizontal">
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/str_skip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_centerInParent="true"
             android:src="@mipmap/splash_logo_new" />
 
-        <com.entigrity.view.CustomButtonView
+        <com.myCPE.view.CustomButtonView
             android:id="@+id/strsignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             app:font_button="Montserrat-Medium.ttf" />
 
 
-        <com.entigrity.view.CustomButtonView
+        <com.myCPE.view.CustomButtonView
             android:id="@+id/strlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

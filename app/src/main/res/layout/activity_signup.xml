@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.SignUpActivity" />
+            type="com.myCPE.activity.SignUpActivity" />
     </data>
 
     <RelativeLayout
@@ -30,7 +30,7 @@
                 android:src="@mipmap/login_logo" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/str_lable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:background="@drawable/rounded_background_white"
                 android:padding="@dimen/_10sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/str_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_firstname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content">
 
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_emailid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content">
 
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_phone_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content">
 
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.entigrity.view.CustomEditTextView
+                        <com.myCPE.view.CustomEditTextView
                             android:id="@+id/edt_confirmpassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -318,7 +318,7 @@
                         android:background="@color/view_edit_profile" />
 
 
-                    <com.entigrity.view.CustomButtonView
+                    <com.myCPE.view.CustomButtonView
                         android:id="@+id/btnNext"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
@@ -350,7 +350,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/_5sdp">
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/str_alredy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -361,7 +361,7 @@
                 android:textStyle="bold"
                 app:font_text="SFUIDisplay-Medium.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

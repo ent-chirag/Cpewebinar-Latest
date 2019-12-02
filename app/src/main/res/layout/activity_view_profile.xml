@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.ViewProfileActivity" />
+            type="com.myCPE.activity.ViewProfileActivity" />
     </data>
 
 
@@ -39,7 +39,7 @@
                     android:src="@mipmap/back" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/screentitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -88,7 +88,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_firstname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -126,7 +126,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_lastname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -164,7 +164,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_emailname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -203,7 +203,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_firmname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -242,7 +242,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_mobilenumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -268,7 +268,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -281,7 +281,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_ptin_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -307,7 +307,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -320,7 +320,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_contry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -347,7 +347,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -360,7 +360,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -386,7 +386,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -399,7 +399,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -425,7 +425,7 @@
                     android:padding="@dimen/_8sdp">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -438,7 +438,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_zipcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -466,7 +466,7 @@
                     android:visibility="gone">
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -479,7 +479,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_topics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -497,7 +497,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_topics_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -525,7 +525,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -538,7 +538,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_who_you_are"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -564,7 +564,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -577,7 +577,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_job_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -600,7 +600,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_8sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -613,7 +613,7 @@
                         app:font_text="SFUIDisplay-Medium.ttf" />
 
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_industry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

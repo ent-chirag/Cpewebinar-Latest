@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.fragments.UserDashBoardFragment" />
+            type="com.myCPE.fragments.UserDashBoardFragment" />
 
 
     </data>
@@ -24,7 +24,7 @@
             android:background="@color/webinar_status"
             android:padding="@dimen/_10sdp">
 
-            <com.entigrity.view.CustomEditTextView
+            <com.myCPE.view.CustomEditTextView
                 android:id="@+id/edt_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_25sdp"
@@ -68,7 +68,7 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_topics"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
@@ -79,7 +79,7 @@
                     android:textSize="@dimen/_8sdp" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_live_webinar"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
@@ -90,7 +90,7 @@
                     android:textSize="@dimen/_8sdp" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_price"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
@@ -100,7 +100,7 @@
                     android:text="@string/str_price"
                     android:textSize="@dimen/_8sdp" />
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_self_study"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
@@ -110,7 +110,7 @@
                     android:text="@string/str_self_on_demand"
                     android:textSize="@dimen/_8sdp" />
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_date"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"

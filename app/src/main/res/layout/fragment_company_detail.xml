@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.webinarDetail.CompanyFragment" />
+            type="com.myCPE.webinarDetail.CompanyFragment" />
     </data>
 
     <ScrollView
@@ -30,7 +30,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 app:font_text="Montserrat-Bold.ttf" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_company_website"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 app:font_text="Montserrat-SemiBold.ttf" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_company_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

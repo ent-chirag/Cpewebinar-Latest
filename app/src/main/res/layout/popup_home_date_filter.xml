@@ -30,7 +30,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -72,7 +72,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -113,7 +113,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -154,7 +154,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -193,7 +193,7 @@
                 android:gravity="right"
                 android:layout_height="wrap_content">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_home_filter_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                     android:textSize="@dimen/_12sdp"
                     app:font_text="Montserrat-SemiBold.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_home_filter_apply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

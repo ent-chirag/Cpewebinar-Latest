@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.PdfViewActivity" />
+            type="com.myCPE.activity.PdfViewActivity" />
 
     </data>
 
@@ -34,7 +34,7 @@
                 android:src="@mipmap/back" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/screentitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:src="@drawable/download_svg" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_webinar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="@dimen/_2sdp">
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_payment_date_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_payment_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_webinarstatus_status"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_10sdp"
@@ -83,7 +83,7 @@
                     app:font_button="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_webinar_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:layout_marginTop="@dimen/_2sdp">
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_trx_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_trx_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
                     android:visibility="gone"></View>
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_payment_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_download_receipt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

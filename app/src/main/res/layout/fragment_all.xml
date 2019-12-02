@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.fragments.HomeAllFragment" />
+            type="com.myCPE.fragments.HomeAllFragment" />
     </data>
 
     <RelativeLayout
@@ -23,7 +23,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true">
 
-            <com.entigrity.view.CustomEditTextView
+            <com.myCPE.view.CustomEditTextView
                 android:id="@+id/edt_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_26sdp"
@@ -74,7 +74,7 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_topics"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -87,7 +87,7 @@
                     app:font_edit="SFUIDisplay-Medium.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_live_webinar"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -100,7 +100,7 @@
                     app:font_edit="SFUIDisplay-Medium.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_self_study"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -110,7 +110,7 @@
                     android:text="@string/str_self_on_demand"
                     android:textSize="@dimen/_7sdp" />
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_premium"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -121,7 +121,7 @@
                     android:textSize="@dimen/_7sdp" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_free"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -131,7 +131,7 @@
                     android:text="@string/str_free"
                     android:textSize="@dimen/_7sdp" />
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_date"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_22sdp"
@@ -157,7 +157,7 @@
             android:weightSum="2">
 
 
-            <com.entigrity.view.CustomButtonView
+            <com.myCPE.view.CustomButtonView
                 android:id="@+id/btn_live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                 android:textSize="@dimen/_12sdp"
                 app:font_text="Montserrat-Medium.ttf" />
 
-            <com.entigrity.view.CustomButtonView
+            <com.myCPE.view.CustomButtonView
                 android:id="@+id/btn_selfstudy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                 android:textSize="@dimen/_12sdp"
                 app:font_text="Montserrat-Medium.ttf" />
 
-            <com.entigrity.view.CustomButtonView
+            <com.myCPE.view.CustomButtonView
                 android:id="@+id/btn_archive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -217,7 +217,7 @@
         </android.support.v4.widget.SwipeRefreshLayout>
 
 
-        <com.entigrity.view.CustomTextView
+        <com.myCPE.view.CustomTextView
             android:id="@+id/tv_nodatafound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

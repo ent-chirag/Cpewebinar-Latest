@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_webinar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textSize="@dimen/_10sdp"
                 app:font_text="Montserrat-SemiBold.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/webinar_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_speaker_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Medium.ttf" />
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_certification_download"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
@@ -86,7 +86,7 @@
                 android:gravity="center_vertical"
                 android:visibility="visible">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
 
             </RelativeLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_job_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 android:gravity="center_vertical">
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/tv_webinar_status"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_15sdp"
@@ -155,7 +155,7 @@
                     app:font_button="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_webinar_type"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_15sdp"

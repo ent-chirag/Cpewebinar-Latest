@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.TopicsOfInterestActivity" />
+            type="com.myCPE.activity.TopicsOfInterestActivity" />
     </data>
 
 
@@ -31,7 +31,7 @@
                 android:src="@mipmap/back" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -62,7 +62,7 @@
             android:background="@color/bottom_submit_footer">
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

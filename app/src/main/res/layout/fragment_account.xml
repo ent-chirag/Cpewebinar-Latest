@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.fragments.AccountFragment" />
+            type="com.myCPE.fragments.AccountFragment" />
     </data>
 
 
@@ -23,7 +23,7 @@
             android:padding="@dimen/_10sdp">
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:background="@color/White"
             android:padding="@dimen/_10sdp">
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 app:font_text="Montserrat-Bold.ttf" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_viewprofile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_notification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:padding="@dimen/_10sdp"
                     android:visibility="visible">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_mytransaction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                     android:padding="@dimen/_10sdp"
                     android:visibility="gone">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_payment_method"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_mycredit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -243,7 +243,7 @@
                     android:padding="@dimen/_10sdp"
                     android:visibility="gone">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_topics_of_interest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -277,7 +277,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_privacy_policy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -311,7 +311,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_terms_and_condition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -345,7 +345,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_contact_us"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -380,7 +380,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -414,7 +414,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_faq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -448,7 +448,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_give_feedback"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -482,7 +482,7 @@
                     android:background="@color/White"
                     android:padding="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -517,7 +517,7 @@
                     android:padding="@dimen/_10sdp"
                     android:visibility="invisible">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

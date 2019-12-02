@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.webinarDetail.DescriptionFragment" />
+            type="com.myCPE.webinarDetail.DescriptionFragment" />
     </data>
 
     <ScrollView
@@ -27,7 +27,7 @@
                 android:orientation="vertical">
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     android:background="@color/background_color"
                     android:padding="@dimen/_5sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_learning_objective"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
 
-        <com.entigrity.view.CustomTextView
+        <com.myCPE.view.CustomTextView
             android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"/>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ans_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
 
             </LinearLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_ans_response_a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"/>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ans_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
 
             </LinearLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_ans_response_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"/>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ans_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
 
             </LinearLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_ans_response_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,7 +249,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"/>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ans_d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
 
             </LinearLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_ans_response_d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -281,7 +281,7 @@
                 android:textSize="@dimen/_11sdp"
                 app:font_text="Montserrat-Medium.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_response_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
                 android:textSize="@dimen/_11sdp"
                 app:font_text="Montserrat-SemiBold.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_ans_response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

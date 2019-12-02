@@ -5,7 +5,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.SplashActivity" />
+            type="com.myCPE.activity.SplashActivity" />
     </data>
 
     <RelativeLayout

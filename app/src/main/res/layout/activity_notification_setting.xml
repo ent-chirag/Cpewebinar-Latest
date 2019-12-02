@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.ActivityNotificationSetting" />
+            type="com.myCPE.activity.ActivityNotificationSetting" />
 
     </data>
 
@@ -34,7 +34,7 @@
                 android:src="@mipmap/back" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/screentitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:layout_below="@+id/rel_titile"
             android:layout_centerVertical="true">
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/pushnotification_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:textSize="@dimen/_18sdp"
                 app:font_text="Montserrat-Bold.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/pushnotification_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rel_push_notification">
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/pushnotification_seeting_lable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:textSize="@dimen/_14sdp"
                 app:font_text="Montserrat-Regular.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/pushnotification_seeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                     android:background="@color/screen_section_notification_background"
                     android:padding="@dimen/_5sdp">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -198,7 +198,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -230,7 +230,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -274,7 +274,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -321,7 +321,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -353,7 +353,7 @@
                         android:orientation="horizontal"
                         android:visibility="gone">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -385,7 +385,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -420,7 +420,7 @@
                     android:padding="@dimen/_5sdp"
                     android:visibility="gone">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -448,7 +448,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -478,7 +478,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -510,7 +510,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -553,7 +553,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -600,7 +600,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -631,7 +631,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -663,7 +663,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
-                        <com.entigrity.view.CustomTextView
+                        <com.myCPE.view.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"

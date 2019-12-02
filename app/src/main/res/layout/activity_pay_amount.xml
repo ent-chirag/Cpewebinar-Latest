@@ -7,7 +7,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.ActivityPayAmount" />
+            type="com.myCPE.activity.ActivityPayAmount" />
 
     </data>
 
@@ -35,7 +35,7 @@
                 android:src="@mipmap/back" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/screentitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_marginRight="@dimen/_10sdp">
 
 
-                <com.entigrity.view.CustomEditTextView
+                <com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_card_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_marginRight="@dimen/_10sdp">
 
 
-                <com.entigrity.view.CustomEditTextView
+                <com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_card_holder_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                     android:layout_weight="1">
 
 
-                    <com.entigrity.view.CustomEditTextView
+                    <com.myCPE.view.CustomEditTextView
                         android:id="@+id/edt_expiry_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                     android:layout_weight="1">
 
 
-                    <com.entigrity.view.CustomEditTextView
+                    <com.myCPE.view.CustomEditTextView
                         android:id="@+id/edt_cvv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
                 android:weightSum="2">
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
                     app:font_text="Montserrat-Medium.ttf" />
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -24,7 +24,7 @@
             android:src="@mipmap/app_icon"
             android:visibility="gone" />
 
-        <com.entigrity.view.CustomTextView
+        <com.myCPE.view.CustomTextView
             android:id="@+id/tv_notification_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:textSize="@dimen/_10sdp"
             app:font_text="Montserrat-SemiBold.ttf" />
 
-        <com.entigrity.view.CustomTextView
+        <com.myCPE.view.CustomTextView
             android:id="@+id/tv_notification_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

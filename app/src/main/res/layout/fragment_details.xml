@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.webinarDetail.DetailsFragment" />
+            type="com.myCPE.webinarDetail.DetailsFragment" />
     </data>
 
     <ScrollView
@@ -26,7 +26,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -37,7 +37,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -74,7 +74,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:padding="@dimen/_8sdp"
                 android:visibility="gone">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -114,7 +114,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ce_credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -155,7 +155,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_couse_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -194,7 +194,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ctec_course_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,7 +221,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -232,7 +232,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -260,7 +260,7 @@
                 android:padding="@dimen/_8sdp"
                 android:visibility="gone">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -271,7 +271,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_ctec_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -301,7 +301,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -312,7 +312,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_subjectarea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -349,7 +349,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_course_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -375,7 +375,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -386,7 +386,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_instructionalmethod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -412,7 +412,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -423,7 +423,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_prerequisite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -449,7 +449,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -460,7 +460,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_advance_preparation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -487,7 +487,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -498,7 +498,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_recorded_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -527,7 +527,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -538,7 +538,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_published_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -566,7 +566,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -578,7 +578,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/tv_download"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_15sdp"
@@ -607,7 +607,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -619,7 +619,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/tv_download_key_terms"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_15sdp"
@@ -650,7 +650,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -662,7 +662,7 @@
                     app:font_text="Montserrat-Regular.ttf" />
 
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/tv_download_instructions"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_15sdp"
@@ -692,7 +692,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_8sdp">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.entigrity">
+    package="com.myCPE">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,7 +17,7 @@
 
 
     <application
-        android:name=".MyCpe"
+        android:name="com.myCPE.MyCpe"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"
@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.myCPE.activity.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
@@ -38,177 +38,177 @@
 
 
         <activity
-            android:name=".activity.WelcomeActivity"
+            android:name="com.myCPE.activity.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
         <activity
-            android:name=".activity.PreLoginActivity"
+            android:name="com.myCPE.activity.PreLoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ActivityReviewQuestion"
+            android:name="com.myCPE.activity.ActivityReviewQuestion"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ActivityEvolutionForm"
+            android:name="com.myCPE.activity.ActivityEvolutionForm"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ActivityFinalQuiz"
+            android:name="com.myCPE.activity.ActivityFinalQuiz"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.WebinarDetailsActivity"
+            android:name="com.myCPE.activity.WebinarDetailsActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
         <activity
-            android:name=".activity.EditProfileActivity"
+            android:name="com.myCPE.activity.EditProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.myCPE.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.StripePaymentActivity"
+            android:name="com.myCPE.activity.StripePaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.ActivityAddCard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-
-        <activity
-            android:name=".activity.ActivityNotificationSetting"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name=".activity.ViewTopicsOfInterestActivity"
+            android:name="com.myCPE.activity.ActivityAddCard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ActivityFavorite"
+            android:name="com.myCPE.activity.ActivityNotificationSetting"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="com.myCPE.activity.ViewTopicsOfInterestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name=".activity.ViewProfileActivity"
+            android:name="com.myCPE.activity.ActivityFavorite"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.SignUpActivity"
+            android:name="com.myCPE.activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.SignUpNextActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-
-        <activity
-            android:name=".activity.TopicsOfInterestActivity"
+            android:name="com.myCPE.activity.ViewProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.TopicsofInterestSignUpActivity"
+            android:name="com.myCPE.activity.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="com.myCPE.activity.SignUpNextActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.TermsandConditionActivity"
+            android:name="com.myCPE.activity.TopicsOfInterestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.PaymentActivity"
+            android:name="com.myCPE.activity.TopicsofInterestSignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.PrivacyPolicyActivity"
+            android:name="com.myCPE.activity.TermsandConditionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name="com.myCPE.activity.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name="com.myCPE.activity.PrivacyPolicyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.FaqActivity"
+            android:name="com.myCPE.activity.FaqActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.PdfViewActivity"
+            android:name="com.myCPE.activity.PdfViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
         <activity
-            android:name=".activity.ActivityChangePassword"
+            android:name="com.myCPE.activity.ActivityChangePassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.ActivityContactUs"
+            android:name="com.myCPE.activity.ActivityContactUs"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.MyTransactionActivity"
+            android:name="com.myCPE.activity.MyTransactionActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
 
 
         <activity
-            android:name=".activity.NotificationActivity"
+            android:name="com.myCPE.activity.NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".activity.TestimonialActivity"
+            android:name="com.myCPE.activity.TestimonialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".activity.ActivityWhoYouAre"
+            android:name="com.myCPE.activity.ActivityWhoYouAre"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.myCPE.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="adjustPan"></activity>
@@ -221,7 +221,7 @@
           </service>
   -->
         <service
-            android:name=".fcm.ReceiveFirebaseMessagingService"
+            android:name="com.myCPE.fcm.ReceiveFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

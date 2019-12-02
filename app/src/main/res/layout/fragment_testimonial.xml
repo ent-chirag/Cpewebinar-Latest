@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.entigrity.webinarDetail.TestimonialFragment" />
+            type="com.myCPE.webinarDetail.TestimonialFragment" />
     </data>
 
     <LinearLayout
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"></LinearLayout>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_view_more_testimonial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

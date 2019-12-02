@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.StripePaymentActivity" />
+            type="com.myCPE.activity.StripePaymentActivity" />
     </data>
 
     <RelativeLayout

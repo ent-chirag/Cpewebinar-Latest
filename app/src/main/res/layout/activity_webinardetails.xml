@@ -7,7 +7,7 @@
 
         <variable
             name="activity"
-            type="com.entigrity.activity.WebinarDetailsActivity" />
+            type="com.myCPE.activity.WebinarDetailsActivity" />
     </data>
 
     <RelativeLayout
@@ -33,7 +33,7 @@
                 android:src="@mipmap/back" />
 
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/screentitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 android:layout_centerVertical="true">
 
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_webinardate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_watchedduration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
 
             </RelativeLayout>
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_addtocalendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
                 android:visibility="gone"
                 app:font_text="Montserrat-Bold.ttf" />
 
-            <com.entigrity.view.CustomTextView
+            <com.myCPE.view.CustomTextView
                 android:id="@+id/tv_error_msg_drag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                 android:visibility="gone"
                 android:weightSum="2">
 
-                <com.entigrity.view.CustomButtonView
+                <com.myCPE.view.CustomButtonView
                     android:id="@+id/tv_rv_questions"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -284,7 +284,7 @@
                         android:visibility="visible"/>
 
                     <!--                    <com.entigrity.view.CustomButtonView-->
-                    <com.entigrity.view.CustomTextView
+                    <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_webinar_status_new"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -326,7 +326,7 @@
                     android:layout_toLeftOf="@+id/tv_webinar_status"
                     android:visibility="gone"/>
 
-                <com.entigrity.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_webinar_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
