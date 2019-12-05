@@ -56,6 +56,10 @@ public class Constant {
     public static String search = "";
     public static String price_filter = "";
     public static String date_filter = "";
+    public static int is_cpd = 0;
+    public static boolean isCpdSelected = false;
+    public static boolean isWebinarCPD = false;
+    public static String cpdCredit = "";
 
 
     //for sign up proffesional credential
@@ -136,6 +140,12 @@ public class Constant {
                 + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                 + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
+    }
+
+    public static boolean isValidCanadianZipCode (String zipcode) {
+
+        return  Pattern.compile("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$")
+                .matcher(zipcode).matches();
     }
 
 

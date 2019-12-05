@@ -81,7 +81,6 @@ public class HomeAllFragment extends Fragment {
     private String date_filter = "";
     private String topicsofinterest = "";
 
-
     private boolean loading = true;
     public int start = 0, limit = 10;
     public boolean islast = false;
@@ -232,6 +231,14 @@ public class HomeAllFragment extends Fragment {
             binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
         }
 
+        if(Constant.isCpdSelected){
+            binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnCpd.setTextColor(getResources().getColor(R.color.White));
+        } else {
+            binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnCpd.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+        }
+
 
         //for animation
 
@@ -251,7 +258,7 @@ public class HomeAllFragment extends Fragment {
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            GetHomeListNewIntial(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+            GetHomeListNewIntial(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -297,7 +304,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -325,7 +332,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -402,7 +409,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -474,7 +481,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -490,6 +497,44 @@ public class HomeAllFragment extends Fragment {
                 ShowDateFilterPopup();
 
 
+            }
+        });
+
+        binding.btnCpd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Apply CPD filter here..
+                // Add event for adding type Constant.is_cpd = 1:
+
+                if(Constant.isCpdSelected){
+                    // Code here to deselect the btnCpd button..
+                    Constant.is_cpd = 0;
+                    Constant.isCpdSelected = false;
+
+                    binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnCpd.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+                    } else {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Constant.is_cpd = 1;
+                    Constant.isCpdSelected = true;
+
+                    binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnCpd.setTextColor(getResources().getColor(R.color.White));
+
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+                    } else {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -598,7 +643,7 @@ public class HomeAllFragment extends Fragment {
 
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                     } else {
                         Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -622,7 +667,7 @@ public class HomeAllFragment extends Fragment {
                         Constant.search = binding.edtSearch.getText().toString();
                         if (Constant.isNetworkAvailable(context)) {
                             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                         } else {
                             Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
@@ -927,7 +972,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -970,7 +1015,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -1050,7 +1095,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -1089,7 +1134,7 @@ public class HomeAllFragment extends Fragment {
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+                    GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
                 } else {
                     Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
@@ -1197,7 +1242,7 @@ public class HomeAllFragment extends Fragment {
     private void loadNextPage() {
         if (Constant.isNetworkAvailable(context)) {
             binding.progressBar.setVisibility(View.VISIBLE);
-            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
         } else {
             Snackbar.make(binding.rvhome, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -1216,7 +1261,7 @@ public class HomeAllFragment extends Fragment {
 
 
         if (Constant.isNetworkAvailable(context)) {
-            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, "", start, limit);
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -1227,11 +1272,12 @@ public class HomeAllFragment extends Fragment {
                                final String webinar_key_text,
                                final String filter_price,
                                final String date_filter,
+                               final int is_cpd,
                                final String topicsofinterest, final int start, final int limit) {
 
         mAPIService_new.GetHomeWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), start, limit, subject_area, webinar_key_text,
-                filter_price, date_filter, webinartype, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                filter_price, date_filter, webinartype, is_cpd, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Webinar_Home_New>() {
                     @Override
                     public void onCompleted() {
@@ -1360,11 +1406,12 @@ public class HomeAllFragment extends Fragment {
                                      final String webinar_key_text,
                                      final String filter_price,
                                      final String date_filter,
+                                     final int is_cpd,
                                      final String topicsofinterest, final int start, final int limit) {
 
         mAPIService_new.GetHomeWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), start, limit, subject_area, webinar_key_text,
-                filter_price, date_filter, webinartype, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                filter_price, date_filter, webinartype, is_cpd, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Webinar_Home_New>() {
                     @Override
                     public void onCompleted() {

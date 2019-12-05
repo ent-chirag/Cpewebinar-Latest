@@ -38,6 +38,8 @@ import com.myCPE.utility.Constant;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+
 public class DetailsFragment extends Fragment {
 
     FragmentDetailsBinding binding;
@@ -92,6 +94,24 @@ public class DetailsFragment extends Fragment {
         } else {
             binding.lvCeCredit.setVisibility(View.GONE);
             binding.viewCeId.setVisibility(View.GONE);
+        }
+
+        /*if(WebinarDetailsActivity.getInstance().webinar_type_details.equalsIgnoreCase("CPD")){
+            binding.lvCpdCredit.setVisibility(View.VISIBLE);
+            binding.viewCpdId.setVisibility(View.VISIBLE);
+            binding.tvCpdCredit.setText("" + WebinarDetailsActivity.getInstance().cecredit);
+        } else {
+            binding.lvCpdCredit.setVisibility(View.GONE);
+            binding.viewCpdId.setVisibility(View.GONE);
+        }*/
+
+        if(Constant.isWebinarCPD){
+            binding.lvCpdCredit.setVisibility(View.VISIBLE);
+            binding.viewCpdId.setVisibility(View.VISIBLE);
+            binding.tvCpdCredit.setText("" + Constant.cpdCredit);
+        } else {
+            binding.lvCpdCredit.setVisibility(View.GONE);
+            binding.viewCpdId.setVisibility(View.GONE);
         }
 
 

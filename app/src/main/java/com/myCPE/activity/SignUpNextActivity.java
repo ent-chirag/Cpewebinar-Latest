@@ -1,14 +1,17 @@
 package com.myCPE.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +19,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
@@ -47,6 +54,7 @@ import com.myCPE.webservice.ApiUtilsNew;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.regex.Pattern;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -100,6 +108,7 @@ public class SignUpNextActivity extends AppCompatActivity {
     public String firstname = "", lastname = "", emailID = "", phonenumber = "", password = "", confirmpassword = "";
 
     public int countryid = 0, stateid = 0, cityid = 0;
+    public String country_name = "";
 
     public int countrypos = 0, statepos = 0, citypos = 0;
 
@@ -126,6 +135,7 @@ public class SignUpNextActivity extends AppCompatActivity {
             password = intent.getStringExtra(getResources().getString(R.string.str_signup_password));
             confirmpassword = intent.getStringExtra(getResources().getString(R.string.str_signup_confirm_password));
             countryid = intent.getIntExtra(getResources().getString(R.string.str_signup_country_id), 0);
+            country_name = intent.getStringExtra(getResources().getString(R.string.str_signup_country_name));
             stateid = intent.getIntExtra(getResources().getString(R.string.str_signup_state_id), 0);
             cityid = intent.getIntExtra(getResources().getString(R.string.str_signup_city_id), 0);
             countrypos = intent.getIntExtra(getResources().getString(R.string.str_signup_country_pos), 0);
@@ -138,6 +148,14 @@ public class SignUpNextActivity extends AppCompatActivity {
         UsPhoneNumberFormatter addLineNumberFormatter = new UsPhoneNumberFormatter(
                 new WeakReference<EditText>(binding.edtMobileNumber));
         binding.edtMobileNumber.addTextChangedListener(addLineNumberFormatter);
+
+        Constant.arraylistselectedproffesionalcredentialID.clear();
+        Constant.arraylistselectedproffesionalcredential.clear();
+        Constant.hashmap_professional_credential.clear();
+
+        Constant.arraylistselectedadditionalqualificationID.clear();
+        Constant.arraylistselectedadditionalqualification.clear();
+        Constant.hashmap_additional_qualification.clear();
 
         binding.tvback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +189,70 @@ public class SignUpNextActivity extends AppCompatActivity {
                 finish();
 
 
+            }
+        });
+
+        if(country_name.equalsIgnoreCase("Canada")){
+            // Change input type programatically..
+            binding.edtZipcode.setInputType(InputType.TYPE_CLASS_TEXT);
+
+            // Change clickable false for PTIN Number and CTEC ID..
+            binding.edtPtinNumber.setFocusable(false);
+            binding.edtPtinNumber.setFocusableInTouchMode(false);
+            binding.edtPtinNumber.setClickable(false);
+
+            binding.edtCTECNumber.setFocusable(false);
+            binding.edtCTECNumber.setFocusableInTouchMode(false);
+            binding.edtCTECNumber.setClickable(false);
+        } else {
+            binding.edtZipcode.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }
+
+        binding.edtZipcode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (country_name.equalsIgnoreCase("Canada")) {
+                        if (!Constant.isValidCanadianZipCode(binding.edtZipcode.getText().toString().trim())) {
+
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignUpNextActivity.this);
+                            builder.setTitle(getResources().getString(R.string.str_alert));
+                            builder.setMessage(getResources().getString(R.string.val_canadian_zip_code));
+
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface arg0, int arg1) {
+
+                                            arg0.dismiss();
+                                            binding.edtZipcode.requestFocus();
+                                        }
+                                    });
+
+                            // create and show the alert dialog
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                    } else {
+                        if(binding.edtZipcode.getText().toString().trim().length() != 5) {
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignUpNextActivity.this);
+                            builder.setTitle(getResources().getString(R.string.str_alert));
+                            builder.setMessage(getResources().getString(R.string.val_us_zip_code));
+
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface arg0, int arg1) {
+                                            arg0.dismiss();
+                                            binding.edtZipcode.requestFocus();
+                                        }
+                                    });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+                    }
+                }
             }
         });
 
@@ -923,6 +1005,39 @@ public class SignUpNextActivity extends AppCompatActivity {
 
             Snackbar.make(binding.edtZipcode, getResources().getString(R.string.val_zip_code), Snackbar.LENGTH_SHORT).show();
             return false;
+        } else if (country_name.equalsIgnoreCase("Canada")) {
+            boolean check = false;
+            if (!Constant.isValidCanadianZipCode(binding.edtZipcode.getText().toString().trim())) {
+//            !Constant.isValidEmailId(Constant.Trim(binding.edtEmailid.getText().toString()))
+
+                binding.edtZipcode.requestFocus();
+                binding.edtMobileNumber.clearFocus();
+                binding.edtCompanyName.clearFocus();
+                binding.edtPtinNumber.clearFocus();
+
+//                Toast.makeText(context, "Error : "+getResources().getString(R.string.val_canadian_zip_code), Toast.LENGTH_SHORT).show();
+                Snackbar.make(binding.edtZipcode, getResources().getString(R.string.val_canadian_zip_code), Snackbar.LENGTH_SHORT).show();
+                check = false;
+            } else {
+
+//                Toast.makeText(context, "Success : Validation is verified", Toast.LENGTH_SHORT).show();
+                check = true;
+            }
+            /*else {
+                check = true;
+            }*/
+//            return false;
+            return check;
+        } else if(country_name.equalsIgnoreCase("United States")) {
+            boolean check = false;
+            if(binding.edtZipcode.getText().toString().length() == 5){
+                check = true;
+            } else {
+                Snackbar.make(binding.edtZipcode, getResources().getString(R.string.val_us_zip_code), Snackbar.LENGTH_SHORT).show();
+                check = false;
+            }
+
+             return check;
         } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).length() < 14) {
 
             binding.edtZipcode.clearFocus();

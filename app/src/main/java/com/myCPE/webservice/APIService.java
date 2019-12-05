@@ -387,6 +387,7 @@ public interface APIService {
             @Field("filter_price") String filter_price,
             @Field("date_filter") String date_filter,
             @Field("webinar_type") String webinar_type,
+            @Field("is_cpd") int is_cpd,
             @Field("topic_of_interest") String topic_of_interest);
 
     //get my webinar list

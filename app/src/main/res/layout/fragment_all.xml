@@ -142,6 +142,17 @@
                     android:text="@string/str_date"
                     android:textSize="@dimen/_7sdp" />
 
+                <com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_cpd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/chipsetview_filter_home_unselected"
+                    android:text="@string/str_cpd"
+                    android:textSize="@dimen/_7sdp" />
+
             </LinearLayout>
 
 

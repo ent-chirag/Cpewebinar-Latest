@@ -26,6 +26,7 @@
     <string name="str_signup_password">password</string>
     <string name="str_signup_confirm_password">confirm password</string>
     <string name="str_signup_country_id">country id</string>
+    <string name="str_signup_country_name">country_name</string>
     <string name="str_signup_state_id">state id</string>
     <string name="str_signup_city_id">city id</string>
 
@@ -71,6 +72,8 @@
     <string name="str_done">Done</string>
     <string name="str_video_validation">Please Register the Webinar.</string>
     <string name="str_video_link_not_avilable">video link is not avilable.</string>
+
+    <string name="str_alert">Oops</string>
 
 
     <!--//pass titile to pdf activity
@@ -222,6 +225,8 @@
     <string name="val_confirm_password_not_match">Password and Confirm Password does not match</string>
     <string name="val_firm_name_register">Please Enter Company Name</string>
     <string name="val_zip_code">Please Enter Zip code</string>
+    <string name="val_canadian_zip_code">Please enter valid Canadian zip code</string>
+    <string name="val_us_zip_code">Please enter valid United states zip code</string>
 
 
     <string name="val_topics">Please select at least one topics of interest</string>
@@ -372,6 +377,7 @@
     /table form
     <string name="str_cost">Cost</string>
     <string name="str_cpe_credit">Cpe Credits</string>
+    <string name="str_cpd_credit">Cpd Credits</string>
     <string name="str_ce_credit">Ce Credits</string>
     <string name="str_duration">Duration</string>
     <string name="str_ctec">CTEC COURSE ID</string>
@@ -583,6 +589,7 @@
     <string name="str_self_on_demand">Self-Study</string>
     <string name="str_price">Price</string>
     <string name="str_date">Date</string>
+    <string name="str_cpd">CPD</string>
 
     <string name="str_premium">Premium</string>
     <string name="str_free">Free</string>

@@ -352,7 +352,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if (boolean_state_spinner) {
                     boolean_state_spinner = false;
                 } else {
-                    if (getstatearralist.get(position).equalsIgnoreCase("State")) {
+                    if (getstatearralist.get(position).equalsIgnoreCase("State") || getstatearralist.get(position).equalsIgnoreCase("Province")) {
                         state_id = 0;
                     } else {
                         state_id = getstatearray.get(position - 1).getId();
@@ -424,6 +424,7 @@ public class SignUpActivity extends AppCompatActivity {
                         i.putExtra(context.getResources().getString(R.string.str_signup_password), Constant.Trim(binding.edtPassword.getText().toString()));
                         i.putExtra(context.getResources().getString(R.string.str_signup_confirm_password), Constant.Trim(binding.edtConfirmpassword.getText().toString()));
                         i.putExtra(context.getResources().getString(R.string.str_signup_country_id), country_id);
+                        i.putExtra(context.getResources().getString(R.string.str_signup_country_name), binding.spinnerCountry.getSelectedItem().toString());
                         i.putExtra(context.getResources().getString(R.string.str_signup_state_id), state_id);
                         i.putExtra(context.getResources().getString(R.string.str_signup_city_id), city_id);
                         i.putExtra(context.getResources().getString(R.string.str_signup_country_pos), country_id_pos);
@@ -535,7 +536,8 @@ public class SignUpActivity extends AppCompatActivity {
             aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
             //Setting the ArrayAdapter data on the Spinner
             binding.spinnerCity.setAdapter(aa);
-            binding.spinnerCity.setSelection(city_id_pos);
+//            binding.spinnerCity.setSelection(city_id_pos);
+            binding.spinnerCity.setSelection(0);
 
 
         }
@@ -589,7 +591,12 @@ public class SignUpActivity extends AppCompatActivity {
                             getstatearralist.clear();
                             getstatearray.clear();
 
-                            getstatearralist.add("State");
+                            if(binding.spinnerCountry.getSelectedItem().equals("Canada")){
+                                getstatearralist.add("Province");
+                            } else {
+                                getstatearralist.add("State");
+                            }
+//                            getstatearralist.add("State");
 
                             if (stateModel.getPayload().getState().size() > 0) {
                                 for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
@@ -694,7 +701,8 @@ public class SignUpActivity extends AppCompatActivity {
             //Setting the ArrayAdapter data on the Spinner
             binding.spinnerState.setAdapter(aa);
 
-            binding.spinnerState.setSelection(state_id_pos);
+//            binding.spinnerState.setSelection(state_id_pos);
+            binding.spinnerState.setSelection(0);
 
         }
 
@@ -724,7 +732,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                             }
                         } else {
-                            getstatearralist.add("State");
+//                            getstatearralist.add("State");
+                            if(binding.spinnerCountry.getSelectedItem().equals("Canada")){
+                                getstatearralist.add("Province");
+                            } else {
+                                getstatearralist.add("State");
+                            }
                             getcityarraylist.add("City");
                             Show_State_Adapter();
                             Show_City_Adapter();

@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityPreloginBinding;
+import com.myCPE.utility.Constant;
 
 public class PreLoginActivity extends AppCompatActivity implements Animation.AnimationListener {
 
@@ -72,6 +73,8 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
             }
         });
 */
+
+        Constant.isCpdSelected = false;
 
 
         binding.lvSkip.setOnClickListener(new View.OnClickListener() {

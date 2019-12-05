@@ -275,6 +275,28 @@ public class WebinarDetail {
     @SerializedName("instructional_docuement")
     private String instructionalDocuement;
 
+    @SerializedName("is_webinar_cpd")
+    private int isWebinarCpd;
+
+    @SerializedName("cpd_credit")
+    private String cpdCredit;
+
+    public int getIsWebinarCpd() {
+        return isWebinarCpd;
+    }
+
+    public void setIsWebinarCpd(int isWebinarCpd) {
+        this.isWebinarCpd = isWebinarCpd;
+    }
+
+    public String getCpdCredit() {
+        return cpdCredit;
+    }
+
+    public void setCpdCredit(String cpdCredit) {
+        this.cpdCredit = cpdCredit;
+    }
+
     public String getInstructionalDocuement() {
         return instructionalDocuement;
     }

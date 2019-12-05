@@ -146,7 +146,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public String overviewoftopic = "";
     public String whyshouldattend = "";
     public Dialog myDialog;
-
+    public String webinar_type_details = "";
 
     public String webinar_share_link = "", ctec_course_id = "";
     private String is_favorite = "";
@@ -2331,6 +2331,14 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 Webinar_title = webinar_details.getPayload().getWebinarDetail().getWebinarTitle();
                             }
 
+                            if (webinar_details.getPayload().getWebinarDetail().getIsWebinarCpd() == 1){
+                                Constant.isWebinarCPD = true;
+                                Constant.cpdCredit = webinar_details.getPayload().getWebinarDetail().getCpdCredit();
+                            } else {
+                                Constant.isWebinarCPD = false;
+                            }
+
+                            webinar_type_details = webinar_details.getPayload().getWebinarDetail().getWebinarType();
 
                             if (!webinar_details.getPayload().getWebinarDetail().getKeyterms().equalsIgnoreCase("")) {
                                 keyterms = webinar_details.getPayload().getWebinarDetail().getKeyterms();
