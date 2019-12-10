@@ -436,7 +436,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-
         binding.ivedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -463,7 +462,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 binding.edtFirstname.setEnabled(true);
                 binding.edtFirmname.setEnabled(true);
-                binding.edtPtinNumber.setEnabled(true);
                 binding.edtMobileNumber.setEnabled(true);
                 binding.edtPhoneNumber.setEnabled(true);
                 binding.edtZipcode.setEnabled(true);
@@ -479,9 +477,15 @@ public class EditProfileActivity extends AppCompatActivity {
                 binding.lvProfessionalCredential.setEnabled(true);
                 binding.additionalQualification.setEnabled(true);
                 binding.lvAdditionalQualification.setEnabled(true);
-                binding.edtCTECNumber.setEnabled(true);
-
-
+                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                    binding.edtCTECNumber.setEnabled(false);
+                    binding.edtPtinNumber.setEnabled(false);
+                    binding.tvTitleState.setText("Province");
+                } else {
+                    binding.edtCTECNumber.setEnabled(true);
+                    binding.edtPtinNumber.setEnabled(true);
+                    binding.tvTitleState.setText("State");
+                }
             }
         });
 
@@ -678,9 +682,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else {
                     if (getcountryarraylist.get(position).equalsIgnoreCase("Country")) {
                         country_id = 0;
+                        binding.tvTitleState.setText("State");
                     } else if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
                         binding.edtCTECNumber.setText("");
                         binding.edtPtinNumber.setText("");
+
+                        binding.tvTitleState.setText("Province");
 
                         country_id = getcountryarray.get(position - 1).getId();
                         checkflagset = true;
@@ -719,6 +726,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     else {
                         country_id = getcountryarray.get(position - 1).getId();
                         checkflagset = true;
+
+                        binding.tvTitleState.setText("State");
 
                         State = "";
                         state_set = 0;
@@ -766,7 +775,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (boolean_state_spinner) {
                     boolean_state_spinner = false;
                 } else {
-                    if (getstatearralist.get(position).equalsIgnoreCase("State")) {
+                    if (getstatearralist.get(position).equalsIgnoreCase("State") || getstatearralist.get(position).equalsIgnoreCase("Province")) {
                         state_id = 0;
                     } else {
                         state_id = getstatearray.get(position - 1).getId();
@@ -1803,8 +1812,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
             if (country_pos == 0) {
                 binding.spinnerCountry.setSelection(0);
+                binding.tvTitleState.setText("State");
             } else {
                 binding.spinnerCountry.setSelection(country_set + 1);
+                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                    binding.tvTitleState.setText("Province");
+                } else {
+                    binding.tvTitleState.setText("State");
+                }
             }
 
 
@@ -2168,7 +2183,15 @@ public class EditProfileActivity extends AppCompatActivity {
                             getstatearralist.clear();
                             getstatearray.clear();
 
-                            getstatearralist.add("State");
+                            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                                getstatearralist.clear();
+                                getstatearray.clear();
+                                getstatearralist.add("Province");
+                            } else {
+                                getstatearralist.clear();
+                                getstatearray.clear();
+                                getstatearralist.add("State");
+                            }
 
                             if (stateModel.getPayload().getState().size() > 0) {
                                 for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
@@ -2261,7 +2284,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             Snackbar.make(binding.edtLastname, getResources().getString(R.string.val_lastname), Snackbar.LENGTH_SHORT).show();
             return false;
-        } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).length() < 14) {
+        } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).length() <= 10) {
 
             binding.edtZipcode.clearFocus();
             binding.edtMobileNumber.requestFocus();
@@ -2286,7 +2309,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             Snackbar.make(binding.edtPhoneNumber, getResources().getString(R.string.val_phone_number), Snackbar.LENGTH_SHORT).show();
             return false;
-        } else if (Constant.Trim(binding.edtPhoneNumber.getText().toString()).length() < 14) {
+        } else if (Constant.Trim(binding.edtPhoneNumber.getText().toString()).length() <= 10) {
 
             binding.edtFirstname.clearFocus();
             binding.edtLastname.clearFocus();

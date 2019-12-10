@@ -982,8 +982,12 @@ public class SignUpActivity extends AppCompatActivity {
             binding.edtPassword.clearFocus();
             binding.edtConfirmpassword.clearFocus();
 
+            if(binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
+            }
 
-            Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (city_id == 0) {
 

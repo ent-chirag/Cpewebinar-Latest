@@ -242,9 +242,10 @@
     <string name="val_industry">Please select industry</string>
     <string name="val_job_title">Please select job title/designation</string>
 
-    <string name="str_country">Please Select Country</string>
-    <string name="str_state">Please Select State</string>
-    <string name="str_city">please select city</string>
+    <string name="str_country">Please select country</string>
+    <string name="str_state">Please select state</string>
+    <string name="str_province">Please select province</string>
+    <string name="str_city">Please select city</string>
 
 
     //contact us

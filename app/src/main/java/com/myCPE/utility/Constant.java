@@ -144,7 +144,7 @@ public class Constant {
 
     public static boolean isValidCanadianZipCode (String zipcode) {
 
-        return  Pattern.compile("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$")
+        return  Pattern.compile("^(?!.*[DFIOQUdfioqu])[A-VXYa-vxy][0-9][A-Za-z] ?[0-9][A-Za-z][0-9]$")
 //        return  Pattern.compile("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] [ ][0-9][A-Z][0-9]$")
                 .matcher(zipcode).matches();
     }
