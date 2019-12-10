@@ -22,7 +22,6 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/iv_home"
         android:orientation="horizontal"
-        android:padding="@dimen/_5sdp"
         android:weightSum="2">
 
         <ImageView
@@ -30,6 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
             android:src="@mipmap/footer_certificate" />
 
         <ImageView
@@ -37,6 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingRight="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
             android:src="@mipmap/footer_mywebinars" />
 
     </LinearLayout>
@@ -59,7 +62,6 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/iv_home"
         android:orientation="horizontal"
-        android:padding="@dimen/_5sdp"
         android:weightSum="2">
 
         <ImageView
@@ -67,6 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
             android:src="@mipmap/footer_premium" />
 
         <ImageView
@@ -74,6 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingRight="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
             android:src="@mipmap/footer_account" />
 
     </LinearLayout>
