@@ -23,6 +23,7 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -994,6 +995,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     selected_additional_qualification = commaSepValueBuilder.toString();
 
                     System.out.println(selected_additional_qualification);
+                    Log.e("*+*+*","Additional qualification : "+selected_additional_qualification);
 
 
                 } else {

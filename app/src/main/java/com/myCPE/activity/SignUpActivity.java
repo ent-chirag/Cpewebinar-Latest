@@ -983,7 +983,7 @@ public class SignUpActivity extends AppCompatActivity {
             binding.edtConfirmpassword.clearFocus();
 
             if(binding.spinnerCountry.getSelectedItem().equals("Canada")) {
-                Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_province), Snackbar.LENGTH_SHORT).show();
             } else {
                 Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
             }
