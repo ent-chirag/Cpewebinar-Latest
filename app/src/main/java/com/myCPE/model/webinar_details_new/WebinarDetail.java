@@ -278,6 +278,12 @@ public class WebinarDetail {
     @SerializedName("is_webinar_cpd")
     private int isWebinarCpd;
 
+    @SerializedName("speaker_id")
+    private int speakerId;
+
+    @SerializedName("company_id")
+    private int companyId;
+
     @SerializedName("cpd_credit")
     private String cpdCredit;
 
@@ -699,6 +705,22 @@ public class WebinarDetail {
         isReviewed = reviewed;
     }
 
+    public int getSpeakerId() {
+        return speakerId;
+    }
+
+    public void setSpeakerId(int speakerId) {
+        this.speakerId = speakerId;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
     @Override
     public String toString() {
         return
@@ -745,6 +767,8 @@ public class WebinarDetail {
                         ",payment_link = '" + paymentlink + '\'' +
                         ",play_time_duration = '" + playTimeDuration + '\'' +
                         ",schedule_id = '" + scheduleId + '\'' +
+                        ",speaker_id = '" + speakerId + '\'' +
+                        ",company_id = '" + companyId + '\'' +
                         ",refund_and_cancelation_policy = '" + refundAndCancelationPolicy + '\'' +
                         ",nasba_approved = '" + nasbaApproved + '\'' +
                         ",ctec_approved = '" + ctecApproved + '\'' +

@@ -113,6 +113,9 @@ public class WebinarItem {
         this.scheduleid = scheduleid;
     }
 
+    @SerializedName("speaker_id")
+    private int speakerId;
+
     @SerializedName("speaker_name")
     private String speakerName;
 
@@ -142,6 +145,9 @@ public class WebinarItem {
 
     @SerializedName("recorded_date")
     private String recordedDate;
+
+    @SerializedName("company_id")
+    private int companyId;
 
     @SerializedName("company_name")
     private String companyName;
@@ -364,6 +370,22 @@ public class WebinarItem {
         isReviewed = reviewed;
     }
 
+    public int getSpeakerId() {
+        return speakerId;
+    }
+
+    public void setSpeakerId(int speakerId) {
+        this.speakerId = speakerId;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
     @Override
     public String toString() {
         return
@@ -382,6 +404,8 @@ public class WebinarItem {
                         ",time_zone = '" + timeZone + '\'' +
                         ",webinar_share_link = '" + webinarShareLink + '\'' +
                         ",duration = '" + duration + '\'' +
+                        ",speaker_id = '" + speakerId + '\'' +
+                        ",company_id = '" + companyId + '\'' +
                         ",start_time = '" + startTime + '\'' +
                         ",recorded_date = '" + recordedDate + '\'' +
                         ",company_name = '" + companyName + '\'' +
