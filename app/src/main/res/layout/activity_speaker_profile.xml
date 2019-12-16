@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.myCPE.activity.SpeakerProfileActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_list">
+
+        <RelativeLayout
+            android:id="@+id/relTopbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/webinar_status">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_title_speaker_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_title_speaker"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_15sdp"
+                app:font_text="SFUIDisplay-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/linBottombar"
+            android:layout_below="@+id/relTopbar">
+
+            <LinearLayout
+                android:id="@+id/relMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white">
+
+                    <ImageView
+                        android:id="@+id/imgBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:background="@mipmap/webinar_placeholder"
+                        android:scaleType="centerCrop" />
+
+                    <RelativeLayout
+                        android:id="@+id/relProfilePic"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/_2sdp"
+                            android:scaleType="centerCrop"
+                            android:src="@color/color_btn_bg" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_speaker_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.013"
+                    android:singleLine="true"
+                    android:text="J. Patrick Garverick, CFP, CPA"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_14sdp"
+                    app:font_text="OpenSans-SemiBold.ttf" />
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_speaker_designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.013"
+                    android:singleLine="true"
+                    android:text="Owner, Phoenix Beach, LLC."
+                    android:textColor="@color/designation"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="OpenSans-SemiBold.ttf" />
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_speaker_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.013"
+                    android:singleLine="true"
+                    android:text="Goodyear, AZ"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="OpenSans-SemiBold.ttf" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.90"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_webinar_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="27"
+                            android:textColor="@color/theme_background"
+                            android:textSize="@dimen/_30sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="Webinars"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@android:color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_prof_trained"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="28"
+                            android:textColor="@color/theme_background"
+                            android:textSize="@dimen/_30sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="Professional Trained"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@android:color/black" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_followers_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="27"
+                            android:textColor="@color/theme_background"
+                            android:textSize="@dimen/_30sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:letterSpacing="0.013"
+                            android:singleLine="true"
+                            android:text="Followers"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/background_list">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.013"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="Pat Garverick is a Certified Public Accountant who currently lives in the Phoenix, Arizona area. He began his career in public accounting in 1988 after obtaining his Bachelor of Science in Business Administration (BSBA) in Accounting from The Ohio State University. After receiving his Master of Taxation (MT) degree from Arizona State University in 1992, Mr. Garverick began operating his own tax and financial planning business. He also started writing, reviewing, and teaching tax and financial planning continuing professional education courses around the country."
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:textColor="@color/designation"
+                        android:textSize="@dimen/_9sdp"
+                        app:font_text="OpenSans-Regular.ttf" />
+                    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@color/view_sep"/>
+
+                    <LinearLayout
+                        android:id="@+id/linNoSpeaker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.13"
+                            android:layout_weight="0.8"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:text="Website of the firm"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-Regular.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.14"
+                            android:layout_weight="1.3"
+                            android:gravity="center_vertical"
+                            android:text="www.phoenixbeach.com"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/view_sep"/>
+
+                    <LinearLayout
+                        android:id="@+id/linWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.13"
+                            android:layout_weight="0.8"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:text="Number of Speakers"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-Regular.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.13"
+                            android:layout_weight="1.2"
+                            android:gravity="center_vertical"
+                            android:text="2"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/view_sep"/>
+
+                    <LinearLayout
+                        android:id="@+id/linRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.13"
+                            android:layout_weight="0.8"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:text="Rating"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-Regular.ttf" />
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:letterSpacing="0.13"
+                            android:layout_weight="1.2"
+                            android:gravity="center_vertical"
+                            android:text="4.4 (189 Reviews)"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:textColor="@color/designation"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_text="OpenSans-SemiBold.ttf" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/linBottombar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/details_bottombar"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:id="@+id/linLiveWebinars"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.myCPE.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:letterSpacing="0.013"
+                    android:text="@string/str_live_webinar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_text="SFUIDisplay-Bold.ttf" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dividor" />
+
+            <RelativeLayout
+                android:id="@+id/linPastWebinars"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.myCPE.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:letterSpacing="0.013"
+                    android:text="@string/str_past_webinar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_text="SFUIDisplay-Bold.ttf" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

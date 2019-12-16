@@ -1,10 +1,12 @@
 package com.myCPE.webinarDetail;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.myCPE.R;
+import com.myCPE.activity.CompanyProfileActivity;
+import com.myCPE.activity.SpeakerProfileActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
 import com.myCPE.databinding.FragmentCompanyDetailBinding;
 import com.squareup.picasso.Picasso;
@@ -21,6 +25,9 @@ import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 public class CompanyFragment extends Fragment {
 
     FragmentCompanyDetailBinding binding;
+
+    private int company_id = 0;
+    private int speaker_id = 0;
 
     View view;
 
@@ -34,7 +41,13 @@ public class CompanyFragment extends Fragment {
             binding.tvCompanyName.setText(WebinarDetailsActivity.getInstance().aboutpresenterCompanyName);
         }
 
+        if (WebinarDetailsActivity.getInstance().company_id != 0) {
+            company_id = WebinarDetailsActivity.getInstance().company_id;
+        }
 
+        if (WebinarDetailsActivity.getInstance().speaker_id != 0) {
+            speaker_id = WebinarDetailsActivity.getInstance().speaker_id;
+        }
 
         if (!WebinarDetailsActivity.getInstance().company_logo.equalsIgnoreCase("")) {
             Picasso.with(getActivity()).load(WebinarDetailsActivity.getInstance().company_logo)
@@ -55,6 +68,19 @@ public class CompanyFragment extends Fragment {
             binding.tvCompanyWebsite.setText(WebinarDetailsActivity.getInstance().aboutpresenterCompanyWebsite);
         }
 
+        binding.relCompanyDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (speaker_id != 0) {
+                    Intent intent = new Intent(getActivity(), CompanyProfileActivity.class);
+                    intent.putExtra("speaker_id", speaker_id);
+                    intent.putExtra("company_id", company_id);
+                    startActivity(intent);
+                } else {
+                    Snackbar.make(binding.relCompanyDetails, getResources().getString(R.string.str_company_id_not_found), Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         if (!WebinarDetailsActivity.getInstance().aboutpresenterCompanyDesc.equalsIgnoreCase("")) {
 

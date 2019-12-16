@@ -27,9 +27,11 @@ import android.widget.TextView;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
+import com.myCPE.activity.CompanyProfileActivity;
 import com.myCPE.activity.LoginActivity;
 import com.myCPE.activity.PdfViewActivity;
 import com.myCPE.activity.SignUpActivity;
+import com.myCPE.activity.SpeakerProfileActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
 import com.myCPE.model.homewebinarnew.MyCertificateLinksItem;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
@@ -438,6 +440,65 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            ((HomeViewHolder) viewHolder).relSpeakerDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            ((HomeViewHolder) viewHolder).iv_speaker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            ((HomeViewHolder) viewHolder).tv_favorite_speaker_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            ((HomeViewHolder) viewHolder).relCompanyDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            ((HomeViewHolder) viewHolder).iv_company.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
+
+            ((HomeViewHolder) viewHolder).tv_company_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                    intent.putExtra("company_id", mList.get(position).getCompanyId());
+                    mContext.startActivity(intent);
+                }
+            });
 
             ((HomeViewHolder) viewHolder).webinar_status.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -798,7 +859,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         RelativeLayout rel_date_and_time;
         View dv_divider;
         Button credit_status, webinar_status, tv_webinar_type, tv_webinar_price_status;
-        ImageView ivfavorite;
+        RelativeLayout relSpeakerDetails, relCompanyDetails;
+        ImageView ivfavorite, iv_company, iv_speaker;
         RelativeLayout rel_item;
 
 
@@ -807,6 +869,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
             dv_divider = (View) itemView.findViewById(R.id.dv_divider);
 
+            relSpeakerDetails = (RelativeLayout) itemView.findViewById(R.id.rel_speaker_details);
+            relCompanyDetails = (RelativeLayout) itemView.findViewById(R.id.rel_company_details);
 
             tv_lable = (TextView) itemView.findViewById(R.id.tv_lable);
             tv_enrolled = (TextView) itemView.findViewById(R.id.tv_enrolled);
@@ -818,6 +882,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
 
             ivfavorite = (ImageView) itemView.findViewById(R.id.ivfavorite);
+            iv_company = (ImageView) itemView.findViewById(R.id.iv_company);
+            iv_speaker = (ImageView) itemView.findViewById(R.id.iv_speaker);
             credit_status = (Button) itemView.findViewById(R.id.credit_status);
             webinar_status = (Button) itemView.findViewById(R.id.webinar_status);
             ivwebinar_thumbhel = (ImageView) itemView.findViewById(R.id.ivwebinar_thumbhel);

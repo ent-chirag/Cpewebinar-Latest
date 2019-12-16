@@ -13,6 +13,8 @@
     <color name="background_topics">#C7C6CB</color>
     <color name="view_edit_profile">#A7A7A8</color>
     <color name="detail_heading">#fafafa</color>
+    <color name="designation">#7b7b7d</color>
+    <color name="view_sep">#e5e5e7</color>
 
     <color name="sign_up_heading">#001944</color>
     <color name="edit_field_hint">#bcbcbc</color>
@@ -68,6 +70,8 @@
     <color name="header_topics_interest">#08264c</color>
     <color name="bottom_submit_footer">#001944</color>
     <color name="background_color">#efeff4</color>
+    <color name="details_bottombar">#001844</color>
+    <color name="dividor">#39506f</color>
 
 
     //vimeo

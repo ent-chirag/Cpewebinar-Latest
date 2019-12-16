@@ -310,6 +310,9 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     private int is_like = 0;
     private String strReview = "";
 
+    public int speaker_id = 0;
+    public int company_id = 0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -2374,6 +2377,13 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                                 presenter_image = webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getPresenterImage();
                             }
 
+                            if(webinar_details.getPayload().getWebinarDetail().getCompanyId() != 0) {
+                                company_id = webinar_details.getPayload().getWebinarDetail().getCompanyId();
+                            }
+
+                            if(webinar_details.getPayload().getWebinarDetail().getSpeakerId() != 0) {
+                                speaker_id = webinar_details.getPayload().getWebinarDetail().getSpeakerId();
+                            }
 
                             if (!webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getCompanyLogo().
                                     equalsIgnoreCase("")) {

@@ -16,7 +16,6 @@
     <string name="str_pdf_view_titile">pdf_title</string>
 
 
-
     //sign up to sign up next screen
 
     <string name="str_signup_first_name">fname</string>
@@ -246,6 +245,12 @@
     <string name="str_state">Please select state</string>
     <string name="str_province">Please select province</string>
     <string name="str_city">Please select city</string>
+
+    <string name="str_speaker_id_not_found">Oops, speaker details not found.</string>
+    <string name="str_company_id_not_found">Oops, company details not found.</string>
+
+    <string name="str_title_speaker">Speaker</string>
+    <string name="str_title_company">Company</string>
 
 
     //contact us
@@ -587,6 +592,7 @@
 
     <string name="str_topics">Topics</string>
     <string name="str_live_webinar">Live Webinars</string>
+    <string name="str_past_webinar">Past Webinars</string>
     <string name="str_self_on_demand">Self-Study</string>
     <string name="str_price">Price</string>
     <string name="str_date">Date</string>
