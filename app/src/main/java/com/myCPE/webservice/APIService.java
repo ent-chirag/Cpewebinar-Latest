@@ -10,6 +10,7 @@ import com.myCPE.model.changepassword.ChangePasswordModel;
 import com.myCPE.model.city.CityModel;
 import com.myCPE.model.company.CompanyModel;
 import com.myCPE.model.company_details.Company_details_model;
+import com.myCPE.model.company_details_new.CompanyDetailsModel;
 import com.myCPE.model.company_like.Company_Like_Model;
 import com.myCPE.model.companyfavorites.Company_Favorite;
 import com.myCPE.model.contactus.ContactUsModel;
@@ -441,6 +442,11 @@ public interface APIService {
     //get privacy policy
     @GET("cms/privacy_policy")
     Observable<GetPrivacyPolicy> GetPrivacyPolicy(
+            @Header("Accept") String accept);
+
+    //get company details
+    @GET("cms/company")
+    Observable<CompanyDetailsModel> GetCompanyDetailsNew(
             @Header("Accept") String accept);
 
     //get terms and condition
