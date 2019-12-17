@@ -5,6 +5,7 @@ import com.myCPE.model.Instructorlist_details.Instructor_Details_Model;
 import com.myCPE.model.Job_title.ModelJobTitle;
 import com.myCPE.model.MyCreditNew.Response;
 import com.myCPE.model.My_Credit_New.Model_My_Credit_New;
+import com.myCPE.model.SpeakerDetails.SpeakerDetailsNew;
 import com.myCPE.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.myCPE.model.changepassword.ChangePasswordModel;
 import com.myCPE.model.city.CityModel;
@@ -70,6 +71,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -445,9 +447,16 @@ public interface APIService {
             @Header("Accept") String accept);
 
     //get company details
-    @GET("cms/company")
+    @GET("company/{company_id}")
     Observable<CompanyDetailsModel> GetCompanyDetailsNew(
-            @Header("Accept") String accept);
+            @Header("Accept") String accept,
+            @Path("company_id") String company_id);
+
+    //get speaker details
+    @GET("speaker/{speaker_id}")
+    Observable<SpeakerDetailsNew> GetSpeakerDetailsNew(
+            @Header("Accept") String accept,
+            @Path("speaker_id") String speaker_id);
 
     //get terms and condition
     @GET("cms/terms_condition")

@@ -20,6 +20,7 @@ import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
+import com.squareup.picasso.Picasso;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -34,6 +35,19 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
 
     private int company_id = 0;
     private int speaker_id = 0;
+
+    private String profile_pic_url = "";
+    private String company_name = "";
+    private String company_location = "";
+    private String webinar_count = "";
+    private String professional_trained_count = "";
+    private String followers_count = "";
+    private String description = "";
+    private String website = "";
+    private String no_of_speakers = "";
+    private String rating = "";
+    private String review_count = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +65,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
         Log.e("*+*+*", "Company ID : " + company_id);
         Log.e("*+*+*", "Speaker ID : " + speaker_id);
 
+        binding.relImgBack.setOnClickListener(this);
+
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetCompanyDetails();
@@ -61,7 +77,7 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
     }
 
     private void GetCompanyDetails() {
-        mAPIService.GetCompanyDetailsNew(getResources().getString(R.string.accept)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mAPIService.GetCompanyDetailsNew(getResources().getString(R.string.accept), ""+company_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<CompanyDetailsModel>() {
                     @Override
                     public void onCompleted() {
@@ -91,6 +107,55 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
 
                             String sampleResponse = companyDetailsModel.getPayload().getCompany().getCompanyName();
                             Log.e("*+*+*","Sample response : "+sampleResponse);
+
+                            // Now we have all the data here to show in each tags..
+                            if(!companyDetailsModel.getPayload().getCompany().getCompanyProfilePic().equalsIgnoreCase("")) {
+                                profile_pic_url = companyDetailsModel.getPayload().getCompany().getCompanyProfilePic();
+
+                                Picasso.with(context).load(profile_pic_url)
+                                        .placeholder(R.drawable.profile_place_holder)
+                                        .into(binding.imgProfilePic);
+                            }
+
+                            if(!companyDetailsModel.getPayload().getCompany().getCompanyName().equalsIgnoreCase("")) {
+                              company_name = companyDetailsModel.getPayload().getCompany().getCompanyName();
+                            }
+
+                            if(!companyDetailsModel.getPayload().getCompany().getState().equalsIgnoreCase("") ||
+                                    !companyDetailsModel.getPayload().getCompany().getCity().equalsIgnoreCase("")) {
+                                company_location = companyDetailsModel.getPayload().getCompany().getCity() + ", " +companyDetailsModel.getPayload().getCompany().getState();
+                            }
+
+                            if(!companyDetailsModel.getPayload().getCompany().getRating().equalsIgnoreCase("")) {
+                                rating = companyDetailsModel.getPayload().getCompany().getRating();
+                            }
+
+                            if(!companyDetailsModel.getPayload().getCompany().getCompanyWebsite().equalsIgnoreCase("")) {
+                                website = companyDetailsModel.getPayload().getCompany().getCompanyWebsite();
+                            }
+
+                            if(!companyDetailsModel.getPayload().getCompany().getCompanyDescription().equalsIgnoreCase("")) {
+                                description = companyDetailsModel.getPayload().getCompany().getCompanyDescription();
+                            }
+
+                            if(companyDetailsModel.getPayload().getCompany().getReviewCount() != 0) {
+                                review_count = ""+companyDetailsModel.getPayload().getCompany().getReviewCount();
+                            }
+
+                            if(companyDetailsModel.getPayload().getCompany().getNoOfWebinar() != 0) {
+                                webinar_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfWebinar();
+                            }
+
+                            if(companyDetailsModel.getPayload().getCompany().getNoOfFollowers() != 0) {
+                                followers_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfFollowers();
+                            }
+
+                            if(companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained() != 0) {
+                                professional_trained_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained();
+                            }
+
+                            loadScreenData();
+
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
@@ -98,27 +163,19 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                             Snackbar.make(binding.relImgBack, companyDetailsModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
-                    /*@Override
-                    public void onNext(GetPrivacyPolicy getPrivacyPolicy) {
-
-                        if (getPrivacyPolicy.isSuccess() == true) {
-
-                            binding.webview.setWebViewClient(new PrivacyPolicyActivity.CustomWebViewClient());
-                            WebSettings webSetting = binding.webview.getSettings();
-                            webSetting.setJavaScriptEnabled(true);
-                            webSetting.setDisplayZoomControls(true);
-                            binding.webview.loadUrl(getPrivacyPolicy.getPayload().getLink());
-
-                        } else {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-                            Snackbar.make(binding.ivback, getPrivacyPolicy.getMessage(), Snackbar.LENGTH_SHORT).show();
-                        }
-
-
-                    }*/
                 });
+    }
+
+    private void loadScreenData() {
+
+        binding.tvCompanyName.setText(company_name);
+        binding.tvCompanyLocation.setText(company_location);
+        binding.tvWebinarCount.setText(webinar_count);
+        binding.tvProfTrained.setText(professional_trained_count);
+        binding.tvFollowersCount.setText(followers_count);
+        binding.tvDescription.setText(description);
+        binding.tvWebsite.setText(website);
+        binding.tvRatingReview.setText(rating+" ("+review_count+" reviews)");
 
     }
 
