@@ -47,6 +47,12 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
     private String rating = "";
     private String review_count = "";
     private String speaker_designation = "";
+    private String area_of_expertise = "";
+
+    private int selfStudyWebinarCount = 0;
+    private int liveWebinarCount = 0;
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,8 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         context = SpeakerProfileActivity.this;
 
         binding.relImgBack.setOnClickListener(this);
+        binding.linLiveWebinars.setOnClickListener(this);
+        binding.linSelfStudy.setOnClickListener(this);
 
         Intent intent = getIntent();
         company_id = intent.getIntExtra("company_id", 0);
@@ -143,6 +151,19 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                                 description = speakerDetails.getPayload().getSpeaker().getSpeakerDescription();
                             }
 
+                            if (speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().size() > 0) {
+                                binding.linAreaOfExpertise.setVisibility(View.VISIBLE);
+                                for (int i = 0; i < speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().size(); i++) {
+                                    if(i == 0) {
+                                        area_of_expertise = speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().get(0);
+                                    } else {
+                                        area_of_expertise = area_of_expertise + ", \n"+speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().get(i);
+                                    }
+                                }
+                            } else {
+                                binding.linAreaOfExpertise.setVisibility(View.GONE);
+                            }
+
                             if(speakerDetails.getPayload().getSpeaker().getReviewCount() != 0) {
                                 review_count = ""+speakerDetails.getPayload().getSpeaker().getReviewCount();
                             }
@@ -154,6 +175,12 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                             if(speakerDetails.getPayload().getSpeaker().getNoOfFollowers() != 0) {
                                 followers_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfFollowers();
                             }
+
+                            if(speakerDetails.getPayload().getSpeaker().getSelfstudyWebinarCount() != 0) {
+                                selfStudyWebinarCount = speakerDetails.getPayload().getSpeaker().getSelfstudyWebinarCount();
+                            }
+
+                            liveWebinarCount = speakerDetails.getPayload().getSpeaker().getUpcomingWebinarCount() + speakerDetails.getPayload().getSpeaker().getPastWebinarCount();
 
                             if(speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained() != 0) {
                                 professional_trained_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained();
@@ -181,7 +208,15 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         binding.tvFollowersCount.setText(followers_count);
         binding.tvDescription.setText(description);
         binding.tvWebsite.setText(website);
-        binding.tvRatingReview.setText(rating+" ("+review_count+" reviews)");
+        if(rating.equalsIgnoreCase("0.0")) {
+            binding.tvRatingReview.setText(rating);
+        } else {
+            binding.tvRatingReview.setText(rating+" ("+review_count+" reviews)");
+        }
+        binding.tvAreaOfexpertise.setText(""+area_of_expertise);
+
+        binding.tvSelfStudyWebinarCount.setText(getResources().getString(R.string.str_self_on_demand).toUpperCase() +" ("+selfStudyWebinarCount+")");
+        binding.tvLiveWebinarCount.setText(getResources().getString(R.string.str_live_webinar).toUpperCase() + " ("+liveWebinarCount+")");
 
     }
 
@@ -190,6 +225,28 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.relImgBack:
                 finish();
+                break;
+
+            case R.id.linLiveWebinars:
+                if(liveWebinarCount != 0) {
+                    intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
+                    intent.putExtra("company_id",""+company_id);
+                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("webinar_type","live");
+                    intent.putExtra("is_from", "speaker");
+                    startActivity(intent);
+                }
+                break;
+
+            case R.id.linSelfStudy:
+                if(selfStudyWebinarCount != 0) {
+                    intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
+                    intent.putExtra("company_id",""+company_id);
+                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("webinar_type","self_study");
+                    intent.putExtra("is_from", "speaker");
+                    startActivity(intent);
+                }
                 break;
         }
     }

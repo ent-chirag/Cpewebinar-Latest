@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.myCPE.activity.SpeakerCompanyWebinarList" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_list"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relTopbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/webinar_status">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_title_company_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:letterSpacing="0.05"
+                android:text="@string/str_title_listing"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_15sdp"
+                app:font_text="SFUIDisplay-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relTopbar"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relTopbar"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/chipsetview_filter_home_unselected"
+                    android:text="@string/str_upcoming"
+                    android:textColor="@color/home_tab_color_unselected"
+                    android:textSize="@dimen/_7sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_past"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/chipsetview_filter_home_unselected"
+                    android:text="@string/str_past"
+                    android:textColor="@color/home_tab_color_unselected"
+                    android:textSize="@dimen/_7sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+            </LinearLayout>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayouthome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvhome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/_70sdp"
+                    android:scrollbars="vertical" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+        <com.myCPE.view.CustomTextView
+            android:id="@+id/tv_nodatafound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_data_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:font_text="Montserrat-Medium.ttf" />
+
+        <!--<FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/relTopbar">-->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateTint="@color/theme_background"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone" />
+
+
+        <!--</FrameLayout>-->
+
+    </RelativeLayout>
+
+</layout>

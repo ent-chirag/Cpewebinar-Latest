@@ -29,6 +29,9 @@ public class Speaker{
 	@SerializedName("upcoming_webinar_count")
 	private int upcomingWebinarCount;
 
+	@SerializedName("selfstudy_webinar_count")
+	private int selfstudyWebinarCount;
+
 	@SerializedName("speaker_linked_in_profile")
 	private String speakerLinkedInProfile;
 
@@ -203,6 +206,14 @@ public class Speaker{
 		return noOfProfessionalsTrained;
 	}
 
+	public int getSelfstudyWebinarCount() {
+		return selfstudyWebinarCount;
+	}
+
+	public void setSelfstudyWebinarCount(int selfstudyWebinarCount) {
+		this.selfstudyWebinarCount = selfstudyWebinarCount;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -215,7 +226,8 @@ public class Speaker{
 			",speaker_profile_pic = '" + speakerProfilePic + '\'' + 
 			",speaker_description = '" + speakerDescription + '\'' + 
 			",upcoming_webinar_count = '" + upcomingWebinarCount + '\'' + 
-			",speaker_linked_in_profile = '" + speakerLinkedInProfile + '\'' + 
+			",selfstudy_webinar_count = '" + selfstudyWebinarCount + '\'' +
+			",speaker_linked_in_profile = '" + speakerLinkedInProfile + '\'' +
 			",no_of_webinar = '" + noOfWebinar + '\'' + 
 			",past_webinar_count = '" + pastWebinarCount + '\'' + 
 			",no_of_followers = '" + noOfFollowers + '\'' + 

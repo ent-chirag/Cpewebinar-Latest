@@ -48,6 +48,10 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
     private String rating = "";
     private String review_count = "";
 
+    private int selfStudyWebinarCount = 0;
+    private int liveWebinarCount = 0;
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
         Log.e("*+*+*", "Speaker ID : " + speaker_id);
 
         binding.relImgBack.setOnClickListener(this);
+        binding.linLiveWebinars.setOnClickListener(this);
+        binding.linSelfStudy.setOnClickListener(this);
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
@@ -150,6 +156,12 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                                 followers_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfFollowers();
                             }
 
+                            if(companyDetailsModel.getPayload().getCompany().getSelfstudyWebinarCount() != 0) {
+                                selfStudyWebinarCount = companyDetailsModel.getPayload().getCompany().getSelfstudyWebinarCount();
+                            }
+
+                            liveWebinarCount = companyDetailsModel.getPayload().getCompany().getUpcomingWebinarCount() + companyDetailsModel.getPayload().getCompany().getPastWebinarCount();
+
                             if(companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained() != 0) {
                                 professional_trained_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained();
                             }
@@ -177,15 +189,38 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
         binding.tvWebsite.setText(website);
         binding.tvRatingReview.setText(rating+" ("+review_count+" reviews)");
 
+        binding.tvSelfStudyWebinarCount.setText(getResources().getString(R.string.str_self_on_demand).toUpperCase() +" ("+selfStudyWebinarCount+")");
+        binding.tvLiveWebinarCount.setText(getResources().getString(R.string.str_live_webinar).toUpperCase() + " ("+liveWebinarCount+")");
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.relImgBack:
-
                 finish();
+                break;
 
+            case R.id.linLiveWebinars:
+                if(liveWebinarCount != 0) {
+                    intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
+                    intent.putExtra("company_id",""+company_id);
+                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("webinar_type","live");
+                    intent.putExtra("is_from", "company");
+                    startActivity(intent);
+                }
+                break;
+
+            case R.id.linSelfStudy:
+                if(selfStudyWebinarCount != 0) {
+                    intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
+                    intent.putExtra("company_id",""+company_id);
+                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("webinar_type","self_study");
+                    intent.putExtra("is_from", "company");
+                    startActivity(intent);
+                }
                 break;
         }
     }

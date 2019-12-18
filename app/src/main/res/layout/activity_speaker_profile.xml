@@ -40,9 +40,9 @@
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:letterSpacing="0.05"
                 android:text="@string/str_title_speaker"
                 android:textColor="@color/White"
-                android:letterSpacing="0.05"
                 android:textSize="@dimen/_15sdp"
                 app:font_text="SFUIDisplay-Bold.ttf" />
 
@@ -99,11 +99,11 @@
                     android:id="@+id/tv_speaker_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center_horizontal"
                     android:letterSpacing="0.013"
                     android:singleLine="true"
                     android:text=""
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_14sdp"
                     app:font_text="OpenSans-SemiBold.ttf" />
@@ -255,18 +255,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:background="@color/background_list"
                     android:elevation="@dimen/_10sdp"
-                    android:background="@color/background_list">
+                    android:orientation="vertical">
 
                     <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="0.013"
-                        android:layout_marginTop="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:layout_marginRight="@dimen/_15sdp"
+                        android:letterSpacing="0.013"
                         android:textColor="@color/designation"
                         android:textSize="@dimen/_10sdp"
                         app:font_text="OpenSans-Regular.ttf" />
@@ -275,7 +275,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:background="@color/view_sep"/>
+                        android:background="@color/view_sep" />
 
                     <LinearLayout
                         android:id="@+id/linWebsite"
@@ -287,9 +287,9 @@
                         <com.myCPE.view.CustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_weight="0.8"
                             android:gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_15sdp"
                             android:text="Website of the firm"
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
@@ -299,10 +299,10 @@
                             android:id="@+id/tvWebsite"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_15sdp"
                             android:layout_weight="1.2"
                             android:gravity="center_vertical"
                             android:text=""
-                            android:layout_marginRight="@dimen/_15sdp"
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-SemiBold.ttf" />
@@ -312,22 +312,21 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/view_sep"/>
+                        android:background="@color/view_sep" />
 
                     <LinearLayout
                         android:id="@+id/linRating"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="@dimen/_10sdp"
                         android:weightSum="2">
 
                         <com.myCPE.view.CustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_weight="0.8"
                             android:gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_15sdp"
                             android:text="Rating"
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
@@ -337,51 +336,56 @@
                             android:id="@+id/tvRatingReview"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_15sdp"
                             android:layout_weight="1.2"
                             android:gravity="center_vertical"
                             android:text=""
-                            android:layout_marginRight="@dimen/_15sdp"
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-SemiBold.ttf" />
 
                     </LinearLayout>
 
-                    <!--<View
+                    <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/view_sep"/>
+                        android:background="@color/view_sep" />
 
                     <LinearLayout
-                        android:id="@+id/linNoSpeaker"
+                        android:id="@+id/linAreaOfExpertise"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:minHeight="@dimen/_35sdp"
                         android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
                         android:weightSum="2">
 
                         <com.myCPE.view.CustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.9"
-                            android:gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_15sdp"
-                            android:text="Number of Speakers"
+                            android:layout_weight="0.8"
+                            android:gravity="center_vertical"
+                            android:text="Area of Expertise"
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
                         <com.myCPE.view.CustomTextView
+                            android:id="@+id/tvAreaOfexpertise"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.1"
-                            android:gravity="center_vertical"
-                            android:text="2"
                             android:layout_marginRight="@dimen/_15sdp"
+                            android:layout_weight="1.2"
+                            android:gravity="center_vertical"
+                            android:text=""
                             android:textColor="@color/designation"
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-SemiBold.ttf" />
 
-                    </LinearLayout>-->
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -406,6 +410,7 @@
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
+                    android:id="@+id/tvLiveWebinarCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -433,6 +438,7 @@
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
+                    android:id="@+id/tvSelfStudyWebinarCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

@@ -34,6 +34,9 @@ public class Company{
 	@SerializedName("past_webinar_count")
 	private int pastWebinarCount;
 
+	@SerializedName("selfstudy_webinar_count")
+	private int selfstudyWebinarCount;
+
 	@SerializedName("no_of_followers")
 	private int noOfFollowers;
 
@@ -169,6 +172,14 @@ public class Company{
 		return isFollowing;
 	}
 
+	public int getSelfstudyWebinarCount() {
+		return selfstudyWebinarCount;
+	}
+
+	public void setSelfstudyWebinarCount(int selfstudyWebinarCount) {
+		this.selfstudyWebinarCount = selfstudyWebinarCount;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -180,7 +191,8 @@ public class Company{
 			",rating = '" + rating + '\'' + 
 			",review_count = '" + reviewCount + '\'' + 
 			",upcoming_webinar_count = '" + upcomingWebinarCount + '\'' + 
-			",company_description = '" + companyDescription + '\'' + 
+			",selfstudy_webinar_count = '" + selfstudyWebinarCount + '\'' +
+			",company_description = '" + companyDescription + '\'' +
 			",no_of_webinar = '" + noOfWebinar + '\'' + 
 			",past_webinar_count = '" + pastWebinarCount + '\'' + 
 			",no_of_followers = '" + noOfFollowers + '\'' + 

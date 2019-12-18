@@ -394,6 +394,21 @@ public interface APIService {
             @Field("is_cpd") int is_cpd,
             @Field("topic_of_interest") String topic_of_interest);
 
+    //get company/speaker webinar list
+    @POST("webinar/cs-webinar")
+    @FormUrlEncoded
+    Observable<Webinar_Home_New> GetCompanySpeakerWebinarListNew(
+            @Header("Accept") String accept,
+            @Header("Authorization") String authorization,
+            @Field("start") int start,
+            @Field("limit") int limit,
+//            @Field("company_id") int company_id,
+            @Field("company_id") String company_id,
+//            @Field("speaker_id") int speaker_id,
+            @Field("speaker_id") String speaker_id,
+            @Field("webinar_type") String webinar_type,
+            @Field("is_upcomming") int is_upcoming);
+
     //get my webinar list
     @POST("webinar/my-webinar")
     @FormUrlEncoded

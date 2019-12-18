@@ -251,6 +251,7 @@
 
     <string name="str_title_speaker">Speaker</string>
     <string name="str_title_company">Company</string>
+    <string name="str_title_listing">Listing</string>
 
 
     //contact us
@@ -590,6 +591,8 @@
     //home screen filter
 
 
+    <string name="str_upcoming">Upcoming</string>
+    <string name="str_past">Past</string>
     <string name="str_topics">Topics</string>
     <string name="str_live_webinar">Live Webinars</string>
     <string name="str_past_webinar">Past Webinars</string>
