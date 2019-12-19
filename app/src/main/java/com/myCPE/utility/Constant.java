@@ -92,6 +92,7 @@ public class Constant {
     public static boolean isAllAnswerTrue = false;
 
     public static String is_from = "";
+    public static String webinar_id = "";
 
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();

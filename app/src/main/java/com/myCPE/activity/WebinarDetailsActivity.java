@@ -81,6 +81,7 @@ import com.myCPE.webinarDetail.DetailsFragment;
 import com.myCPE.webinarDetail.OtherFragment;
 import com.myCPE.webinarDetail.OverviewOfTopicsFragment;
 import com.myCPE.webinarDetail.PresenterFragment;
+import com.myCPE.webinarDetail.ReviewQuestionsFragment;
 import com.myCPE.webinarDetail.TestimonialFragment;
 import com.myCPE.webinarDetail.WhyYouShouldAttend;
 import com.myCPE.webservice.APIService;
@@ -3259,6 +3260,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new TestimonialFragment(), getResources().getString(R.string.str_testimonials));
         adapter.addFragment(new OtherFragment(), getResources().getString(R.string.str_others));
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+            if (!webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
+                if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
+                        webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
+                    if (!isAnswered) {
+                        Constant.webinar_id = ""+webinarid;
+                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
+                    }
+                }
+            }
+        }
         viewPager.setAdapter(adapter);
     }
 
@@ -3281,6 +3293,17 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new OtherFragment(), getResources().getString(R.string.str_others));
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+            if (!webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
+                if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
+                        webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
+                    if (!isAnswered) {
+                        Constant.webinar_id = ""+webinarid;
+                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
+                    }
+                }
+            }
+        }
         viewPager.setAdapter(adapter);
     }
 

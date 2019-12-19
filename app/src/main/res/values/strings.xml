@@ -578,6 +578,7 @@
     <string name="str_detail_company">COMPANY</string>
     <string name="str_testimonials">TESTIMONIALS</string>
     <string name="str_others">OTHERS</string>
+    +++
 
     //pass payment link
     <string name="str_payment_link">paymentlink</string>
