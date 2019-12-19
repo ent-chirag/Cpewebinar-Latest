@@ -50,7 +50,8 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
     private String speaker_id = "";
     private String webinar_type = "";
     private int is_upcoming = 1;
-    private String is_from = "";
+//    private String is_from = "";
+//    public static String is_from = "";
 
     private boolean loading = true;
 
@@ -83,9 +84,9 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
         company_id = intent.getStringExtra("company_id");
         speaker_id = intent.getStringExtra("speaker_id");
         webinar_type = intent.getStringExtra("webinar_type");
-        is_from = intent.getStringExtra("is_from");
+        Constant.is_from = intent.getStringExtra("is_from");
 
-        if(is_from.equalsIgnoreCase("company")) {
+        if(Constant.is_from.equalsIgnoreCase("company")) {
             speaker_id = "";
         } else {
             company_id = "";

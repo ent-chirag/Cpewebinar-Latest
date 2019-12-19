@@ -91,6 +91,8 @@ public class Constant {
     public static boolean isClickedSubmit = false;
     public static boolean isAllAnswerTrue = false;
 
+    public static String is_from = "";
+
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();

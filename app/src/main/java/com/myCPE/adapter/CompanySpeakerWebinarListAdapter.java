@@ -443,60 +443,72 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
             ((HomeViewHolder) viewHolder).relSpeakerDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("company")) {
+                        Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
             ((HomeViewHolder) viewHolder).iv_speaker.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("company")) {
+                        Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
             ((HomeViewHolder) viewHolder).tv_favorite_speaker_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("company")) {
+                        Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
             ((HomeViewHolder) viewHolder).relCompanyDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("speaker")) {
+                        Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
             ((HomeViewHolder) viewHolder).iv_company.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("speaker")) {
+                        Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
             ((HomeViewHolder) viewHolder).tv_company_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, CompanyProfileActivity.class);
-                    intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
-                    intent.putExtra("company_id", mList.get(position).getCompanyId());
-                    mContext.startActivity(intent);
+                    if (Constant.is_from.equalsIgnoreCase("speaker")) {
+                        Intent intent = new Intent(mContext, CompanyProfileActivity.class);
+                        intent.putExtra("speaker_id", mList.get(position).getSpeakerId());
+                        intent.putExtra("company_id", mList.get(position).getCompanyId());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
@@ -583,7 +595,7 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                                         i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                                 mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
                                         i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
-                                        i.putExtra(mContext.getString(R.string.pass_webinar_type),"");
+                                        i.putExtra(mContext.getString(R.string.pass_webinar_type), "");
                                         mContext.startActivity(i);
                                     } else {
                                         displayCertificateDialog(mList.get(position).getMyCertificateLinks());
@@ -602,7 +614,7 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                                         i.putExtra(mContext.getResources().getString(R.string.str_document_link),
                                                 mList.get(position).getMyCertificateLinks().get(0).getCertificateLink());
                                         i.putExtra(mContext.getResources().getString(R.string.str_pdf_view_titile), mContext.getString(R.string.str_certificate));
-                                        i.putExtra(mContext.getString(R.string.pass_webinar_type),"");
+                                        i.putExtra(mContext.getString(R.string.pass_webinar_type), "");
                                         mContext.startActivity(i);
                                     } else {
                                         displayCertificateDialog(mList.get(position).getMyCertificateLinks());
