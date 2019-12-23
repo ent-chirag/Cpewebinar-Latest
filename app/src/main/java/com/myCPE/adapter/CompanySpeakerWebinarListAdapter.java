@@ -430,8 +430,9 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
+                        i.putExtra("isFromCompanySpeakerList",true);
                         mContext.startActivity(i);
-                        ((Activity) mContext).finish();
+//                        ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }
@@ -1053,6 +1054,7 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                             i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                     .get(position).getWebinarType());
+                            i.putExtra("isFromCompanySpeakerList",true);
 
                             mContext.startActivity(i);
                             // ((Activity) mContext).finish();

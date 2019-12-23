@@ -50,6 +50,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
 
     private int selfStudyWebinarCount = 0;
     private int liveWebinarCount = 0;
+    private int upcomingWebinarCount = 0;
+    private int previousWebinarCount = 0;
 
     private Intent intent;
 
@@ -163,8 +165,11 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                             liveWebinarCount = companyDetailsModel.getPayload().getCompany().getUpcomingWebinarCount() + companyDetailsModel.getPayload().getCompany().getPastWebinarCount();
 
                             if(companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained() != 0) {
-                                professional_trained_count = ""+companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained();
+                                professional_trained_count = "" + companyDetailsModel.getPayload().getCompany().getNoOfProfessionalsTrained();
                             }
+
+                            upcomingWebinarCount = companyDetailsModel.getPayload().getCompany().getUpcomingWebinarCount();
+                            previousWebinarCount = companyDetailsModel.getPayload().getCompany().getPastWebinarCount();
 
                             loadScreenData();
 
@@ -206,6 +211,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                     intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("upcoming_count", upcomingWebinarCount);
+                    intent.putExtra("past_count", previousWebinarCount);
                     intent.putExtra("webinar_type","live");
                     intent.putExtra("is_from", "company");
                     startActivity(intent);
@@ -217,6 +224,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                     intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("upcoming_count", upcomingWebinarCount);
+                    intent.putExtra("past_count", previousWebinarCount);
                     intent.putExtra("webinar_type","self_study");
                     intent.putExtra("is_from", "company");
                     startActivity(intent);

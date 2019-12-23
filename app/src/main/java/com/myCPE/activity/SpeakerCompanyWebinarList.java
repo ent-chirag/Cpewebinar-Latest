@@ -39,7 +39,7 @@ import static com.myCPE.utility.Constant.arraylistselectedvalue;
 public class SpeakerCompanyWebinarList extends AppCompatActivity implements View.OnClickListener {
 
     ActivitySpeakerCompanyWebinarListBinding binding;
-//    ActivitySpeakerProfileBinding binding;
+    //    ActivitySpeakerProfileBinding binding;
     public Context context;
     private APIService mAPIService;
     ProgressDialog progressDialog;
@@ -53,12 +53,15 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
 //    private String is_from = "";
 //    public static String is_from = "";
 
+    private int upcoming_count = 0;
+    private int past_count = 0;
+
     private boolean loading = true;
 
     LinearLayoutManager linearLayoutManager;
 
     private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<WebinarItem>();
-//    HomeALLAdapter adapter;
+    //    HomeALLAdapter adapter;
     CompanySpeakerWebinarListAdapter adapter;
     public boolean islast = false;
 
@@ -85,22 +88,37 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
         speaker_id = intent.getStringExtra("speaker_id");
         webinar_type = intent.getStringExtra("webinar_type");
         Constant.is_from = intent.getStringExtra("is_from");
+        upcoming_count = intent.getIntExtra("upcoming_count", 0);
+        past_count = intent.getIntExtra("past_count", 0);
 
-        if(Constant.is_from.equalsIgnoreCase("company")) {
+        if (Constant.is_from.equalsIgnoreCase("company")) {
             speaker_id = "";
         } else {
             company_id = "";
         }
 
-        if(webinar_type.equalsIgnoreCase("live")) {
+        if (webinar_type.equalsIgnoreCase("live")) {
             binding.linFilter.setVisibility(View.VISIBLE);
+            if (upcoming_count == 0) {
+                binding.btnUpcoming.setVisibility(View.GONE);
+                binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                binding.btnPast.setTextColor(getResources().getColor(R.color.White));
+                is_upcoming = 0;
+            }
+
+            if (past_count == 0) {
+                binding.btnPast.setVisibility(View.GONE);
+                binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                binding.btnUpcoming.setTextColor(getResources().getColor(R.color.White));
+                is_upcoming = 1;
+            }
         } else {
             binding.linFilter.setVisibility(View.GONE);
         }
 
-        Log.e("*+*+*","Company_id : "+company_id);
-        Log.e("*+*+*","Speaker_id : "+speaker_id);
-        Log.e("*+*+*","Webinar_type : "+webinar_type);
+        Log.e("*+*+*", "Company_id : " + company_id);
+        Log.e("*+*+*", "Speaker_id : " + speaker_id);
+        Log.e("*+*+*", "Webinar_type : " + webinar_type);
 
         if (Constant.isNetworkAvailable(context)) {
 
@@ -128,7 +146,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     @Override
                     public void onCompleted() {
 
-                        Log.e("*+*+*","list_onCompleted is called");
+                        Log.e("*+*+*", "list_onCompleted is called");
 
                         if (binding.progressBar.getVisibility() == View.VISIBLE) {
                             binding.progressBar.setVisibility(View.GONE);
@@ -154,7 +172,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     @Override
                     public void onError(Throwable e) {
 
-                        Log.e("*+*+*","list_onError is called");
+                        Log.e("*+*+*", "list_onError is called");
 
                         if (start == 0 && limit == 10) {
                             if (progressDialog.isShowing()) {
@@ -178,7 +196,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     @Override
                     public void onNext(Webinar_Home_New webinar_home_new) {
 
-                        Log.e("*+*+*","list_onNext is called");
+                        Log.e("*+*+*", "list_onNext is called");
 
                         if (webinar_home_new.isSuccess() == true) {
                             if (progressDialog.isShowing()) {
@@ -242,34 +260,38 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
 
             case R.id.btn_upcoming:
 
-                binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
-                binding.btnPast.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home);
-                binding.btnUpcoming.setTextColor(getResources().getColor(R.color.White));
+                if (past_count != 0) {
+                    binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnPast.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                    binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnUpcoming.setTextColor(getResources().getColor(R.color.White));
 
-                is_upcoming = 1;
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    getListingData();
-                } else {
-                    Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    is_upcoming = 1;
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        getListingData();
+                    } else {
+                        Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
                 }
 
                 break;
 
             case R.id.btn_past:
 
-                binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
-                binding.btnUpcoming.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
-                binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home);
-                binding.btnPast.setTextColor(getResources().getColor(R.color.White));
+                if (upcoming_count != 0) {
+                    binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnUpcoming.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                    binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnPast.setTextColor(getResources().getColor(R.color.White));
 
-                is_upcoming = 0;
-                if (Constant.isNetworkAvailable(context)) {
-                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    getListingData();
-                } else {
-                    Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    is_upcoming = 0;
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        getListingData();
+                    } else {
+                        Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
                 }
 
                 break;

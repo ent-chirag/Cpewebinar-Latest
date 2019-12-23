@@ -314,6 +314,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
     public int speaker_id = 0;
     public int company_id = 0;
 
+    private boolean isFromSpeakerCompanyProfile = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -349,6 +351,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             webinarid = intent.getIntExtra(getResources().getString(R.string.pass_webinar_id), 0);
             screen_details = intent.getIntExtra(getResources().getString(R.string.screen_detail), 0);
             webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
+            isFromSpeakerCompanyProfile = intent.getBooleanExtra("isFromCompanySpeakerList", false);
 
             Constant.Log(TAG, "webinar_id" + webinarid);
 
@@ -485,41 +488,43 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNotification) {
-                    Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
+                if(isFromSpeakerCompanyProfile) {
                     finish();
-
                 } else {
+                    if (isNotification) {
+                        Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
 
-                    if (screen_details == 0) {
-                        // handler.removeCallbacks(runnable);
-                        Intent i = new Intent(context, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                    } else if (screen_details == 1) {
-                        Intent i = new Intent(context, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                    } else if (screen_details == 2) {
-                        Constant.isdataupdate = true;
-                        finish();
-                    } else if (screen_details == 3) {
-                        Intent i = new Intent(context, NotificationActivity.class);
-                        startActivity(i);
-                        finish();
-                    } else if (screen_details == 4) {
-                        Intent i = new Intent(context, ActivityFavorite.class);
-                        startActivity(i);
-                        finish();
-                    } else if (screen_details == 5) {
-                        finish();
+                    } else {
+
+                        if (screen_details == 0) {
+                            // handler.removeCallbacks(runnable);
+                            Intent i = new Intent(context, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (screen_details == 1) {
+                            Intent i = new Intent(context, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (screen_details == 2) {
+                            Constant.isdataupdate = true;
+                            finish();
+                        } else if (screen_details == 3) {
+                            Intent i = new Intent(context, NotificationActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (screen_details == 4) {
+                            Intent i = new Intent(context, ActivityFavorite.class);
+                            startActivity(i);
+                            finish();
+                        } else if (screen_details == 5) {
+                            finish();
+                        }
+
                     }
-
                 }
-
-
             }
         });
 
@@ -2265,6 +2270,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         super.onBackPressed();
         if (mExoPlayerFullscreen) {
             closeFullscreenDialog();
+        } else if(isFromSpeakerCompanyProfile) {
+            finish();
         } else if (isNotification) {
             Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

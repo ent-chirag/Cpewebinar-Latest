@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
+import com.myCPE.activity.ActivityReviewQuestion;
 import com.myCPE.adapter.ReviewQuestionAdapter;
 import com.myCPE.databinding.FragmentReviewQuestionsBinding;
 import com.myCPE.model.review_question.ReviewQuestionsItem;
@@ -37,7 +38,7 @@ import static com.myCPE.utility.Constant.arraylistselectedreviewanswerreview;
 
 public class ReviewQuestionsFragment extends Fragment implements View.OnClickListener {
 
-//    FragmentDescriptionBinding binding;
+    //    FragmentDescriptionBinding binding;
     FragmentReviewQuestionsBinding binding;
     View view;
 
@@ -49,7 +50,7 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
     public List<Boolean> arrayboolean = new ArrayList<>();
 
     private int webinar_id = 0;
-    private int question_showing = 0;
+    private int question_showing = 1;
 
     @Nullable
     @Override
@@ -98,7 +99,7 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
                     @Override
                     public void onCompleted() {
 
-                        Log.e("*+*+*","Review Questions size : "+reviewquestion.size());
+                        Log.e("*+*+*", "Review Questions size : " + reviewquestion.size());
 
                         if (reviewquestion.size() > 0) {
                             // Previously we are loading data here in adapter from here..
@@ -112,7 +113,6 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
                             binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
 
                             binding.relPrev.setVisibility(View.INVISIBLE);
-                            question_showing++;
 
                             /*adapter = new ReviewQuestionAdapter(context, reviewquestion, arrayboolean);
                             binding.recyclerviewReviewQuestion.setAdapter(adapter);*/
@@ -193,65 +193,321 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.relNextSubmit:
-                Log.e("*+*+*","nextPrev click on next button question showing : "+question_showing);
-                if(question_showing == 0) {
-                    Log.e("*+*+*","nextPrev click on next button question showing == 0 : "+question_showing);
-
-                    binding.relPrev.setVisibility(View.INVISIBLE);
-                    binding.tvNumber.setText("1");
-                    binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
-                    binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
-                    binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
-                    binding.tvAnsC.setText(reviewquestion.get(0).getC().getOptionTitle());
-                    binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
-
-                    question_showing++;
-                } else {
-
-                    if(question_showing != reviewquestion.size()) {
-//                        int j = question_showing+1;
-                        int j = question_showing;
-                        binding.relPrev.setVisibility(View.VISIBLE);
-                        binding.tvNumber.setText(""+j);
-                        binding.tvQuestion.setText(reviewquestion.get(j).getQuestionTitle());
-                        binding.tvAnsA.setText(reviewquestion.get(j).getA().getOptionTitle());
-                        binding.tvAnsB.setText(reviewquestion.get(j).getB().getOptionTitle());
-                        binding.tvAnsC.setText(reviewquestion.get(j).getC().getOptionTitle());
-                        binding.tvAnsD.setText(reviewquestion.get(j).getD().getOptionTitle());
-
-                        question_showing++;
-                    }
-                }
-
-                if(question_showing == reviewquestion.size()) {
-                    binding.tvNextSubmit.setText("Submit");
-                } else {
-                    binding.tvNextSubmit.setText("Next");
-                }
+                btnNext();
                 break;
 
             case R.id.relPrev:
-
-                if(question_showing != 0) {
-                    question_showing--;
-
-                    int j = question_showing;
-                    binding.relPrev.setVisibility(View.VISIBLE);
-                    binding.tvNumber.setText(""+j);
-                    binding.tvQuestion.setText(reviewquestion.get(j).getQuestionTitle());
-                    binding.tvAnsA.setText(reviewquestion.get(j).getA().getOptionTitle());
-                    binding.tvAnsB.setText(reviewquestion.get(j).getB().getOptionTitle());
-                    binding.tvAnsC.setText(reviewquestion.get(j).getC().getOptionTitle());
-                    binding.tvAnsD.setText(reviewquestion.get(j).getD().getOptionTitle());
-                }
-
+                btnPrev();
                 break;
 
             case R.id.tv_next_submit:
+                btnNext();
                 break;
 
             case R.id.tv_prev:
+                btnPrev();
+                break;
+
+            case R.id.tv_ans_a:
+                answerA();
+                break;
+
+            case R.id.checkbox_select_a:
+                answerA();
+                break;
+
+            case R.id.lv_a:
+                answerA();
+                break;
+
+            case R.id.tv_ans_b:
+                answerB();
+                break;
+
+            case R.id.checkbox_select_b:
+                answerB();
+                break;
+
+            case R.id.lv_b:
+                answerB();
+                break;
+
+            case R.id.tv_ans_c:
+                answerC();
+                break;
+
+            case R.id.checkbox_select_c:
+                answerC();
+                break;
+
+            case R.id.lv_c:
+                answerC();
+                break;
+
+            case R.id.tv_ans_d:
+                answerD();
+                break;
+
+            case R.id.checkbox_select_d:
+                answerD();
+                break;
+
+            case R.id.lv_d:
+                answerD();
                 break;
         }
+    }
+
+    private void resetAnswer() {
+        // When ever user is clicking on the next or the previous button..
+        // On this condition we have to check for the question is changed or the same..
+        // If the question is changed then have to go for the checking the below conditions..
+        // We have to check the condition for the is user answered this question or not..
+        // But if the user didn't answered the question then in that case we have to reset all selections..
+        // If user has answered the question then we have to set that answer as selected..
+        // Now for the answered or not in that case we have to add the answers on the hashmap with the ids for the question id..
+
+        // New Logic..
+        // Whenever user will click on the next and previous button then we have already placed the conditions there..
+        // In those conditions we are already checking for question state is changed or not..
+        // now if we have the question changed state..
+        // Then we have to just check the condition for if the question is answered or not..
+        // If not answered then have to reset all selection there..
+        // If answered there then have to check for the which option is given from the help of hashmap with the id as param..
+
+        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvResponseTag.setVisibility(View.GONE);
+        binding.tvAnsResponse.setVisibility(View.GONE);
+
+    }
+
+    private void answerA() {
+
+        int aa = question_showing-1;
+        if (reviewquestion.get(aa).isAnswerable()) {
+            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+
+            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvResponseTag.setVisibility(View.GONE);
+            binding.tvAnsResponse.setVisibility(View.GONE);
+
+            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(aa).getId(), true);
+            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(aa).getId(), "a");
+
+//            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
+
+            if (reviewquestion.get(aa).getA().getIsAnswer().equalsIgnoreCase("true")) {
+                arrayboolean.set(aa, true);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            } else {
+                arrayboolean.set(aa, false);
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            }
+        }
+    }
+
+    private void answerB() {
+        int ab = question_showing-1;
+        if (reviewquestion.get(ab).isAnswerable()) {
+            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+
+            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvResponseTag.setVisibility(View.GONE);
+            binding.tvAnsResponse.setVisibility(View.GONE);
+
+            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(ab), true);
+            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(ab).getId(), "b");
+
+//            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
+
+            if (reviewquestion.get(ab).getB().getIsAnswer().equalsIgnoreCase("true")) {
+                arrayboolean.set(ab, true);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            } else {
+                arrayboolean.set(ab, false);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            }
+        }
+    }
+
+    private void answerC() {
+
+        int ac = question_showing-1;
+        if (reviewquestion.get(ac).isAnswerable()) {
+            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+
+            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvResponseTag.setVisibility(View.GONE);
+            binding.tvAnsResponse.setVisibility(View.GONE);
+
+            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(ac), true);
+            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(ac).getId(), "c");
+
+//            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
+
+            if (reviewquestion.get(ac).getC().getIsAnswer().equalsIgnoreCase("true")) {
+                arrayboolean.set(ac, true);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            } else {
+                arrayboolean.set(ac, false);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            }
+        }
+
+    }
+
+    private void answerD() {
+
+        int ad = question_showing-1;
+        if (reviewquestion.get(ad).isAnswerable()) {
+            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+
+            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+            binding.tvResponseTag.setVisibility(View.GONE);
+            binding.tvAnsResponse.setVisibility(View.GONE);
+
+            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(ad), true);
+            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(ad).getId(), "d");
+
+//            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
+
+            if (reviewquestion.get(ad).getD().getIsAnswer().equalsIgnoreCase("true")) {
+                arrayboolean.set(ad, true);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            } else {
+                arrayboolean.set(ad, false);
+
+                if (areAllTrue(arrayboolean)) {
+                    Constant.isAllAnswerTrue = true;
+                } else {
+                    Constant.isAllAnswerTrue = false;
+                }
+            }
+        }
+
+    }
+
+    public static boolean areAllTrue(List<Boolean> array) {
+        for (boolean b : array) if (!b) return false;
+        return true;
+    }
+
+    private void btnNext() {
+
+        int lp = question_showing;
+        binding.relPrev.setVisibility(View.VISIBLE);
+
+        binding.tvNumber.setText("" + (lp + 1));
+        binding.tvQuestion.setText(reviewquestion.get(lp).getQuestionTitle());
+        binding.tvAnsA.setText(reviewquestion.get(lp).getA().getOptionTitle());
+        binding.tvAnsB.setText(reviewquestion.get(lp).getB().getOptionTitle());
+        binding.tvAnsC.setText(reviewquestion.get(lp).getC().getOptionTitle());
+        binding.tvAnsD.setText(reviewquestion.get(lp).getD().getOptionTitle());
+
+        question_showing++;
+
+        if (question_showing == reviewquestion.size()) {
+            binding.tvNextSubmit.setText("Submit");
+        } else {
+            binding.tvNextSubmit.setText("Next");
+        }
+
+    }
+
+    private void btnPrev() {
+
+        binding.tvNextSubmit.setText("Next");
+        Log.e("*+*+*", "Question showing default is : " + question_showing);
+        if (question_showing == 1) {
+            Log.e("*+*+*", "Question showing is if : " + question_showing);
+            binding.tvNumber.setText("1");
+            binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
+            binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
+            binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
+            binding.tvAnsC.setText(reviewquestion.get(0).getC().getOptionTitle());
+            binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
+
+        } else {
+            question_showing--;
+            binding.tvNumber.setText("" + question_showing);
+            int dv = question_showing - 1;
+            binding.tvQuestion.setText(reviewquestion.get(dv).getQuestionTitle());
+            binding.tvAnsA.setText(reviewquestion.get(dv).getA().getOptionTitle());
+            binding.tvAnsB.setText(reviewquestion.get(dv).getB().getOptionTitle());
+            binding.tvAnsC.setText(reviewquestion.get(dv).getC().getOptionTitle());
+            binding.tvAnsD.setText(reviewquestion.get(dv).getD().getOptionTitle());
+
+            Log.e("*+*+*", "Question showing is else : " + question_showing);
+            if (question_showing == 1) {
+                binding.relPrev.setVisibility(View.INVISIBLE);
+            }
+        }
+
     }
 }

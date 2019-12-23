@@ -52,6 +52,9 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
     private int selfStudyWebinarCount = 0;
     private int liveWebinarCount = 0;
 
+    private int upcomingWebinarCount = 0;
+    private int previousWebinarCount = 0;
+
     private Intent intent;
 
     @Override
@@ -186,6 +189,9 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                                 professional_trained_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained();
                             }
 
+                            upcomingWebinarCount = speakerDetails.getPayload().getSpeaker().getUpcomingWebinarCount();
+                            previousWebinarCount = speakerDetails.getPayload().getSpeaker().getPastWebinarCount();
+
                             loadScreenData();
 
                         } else {
@@ -232,6 +238,8 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("upcoming_count", upcomingWebinarCount);
+                    intent.putExtra("past_count", previousWebinarCount);
                     intent.putExtra("webinar_type","live");
                     intent.putExtra("is_from", "speaker");
                     startActivity(intent);
@@ -243,6 +251,8 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("upcoming_count", upcomingWebinarCount);
+                    intent.putExtra("past_count", previousWebinarCount);
                     intent.putExtra("webinar_type","self_study");
                     intent.putExtra("is_from", "speaker");
                     startActivity(intent);
