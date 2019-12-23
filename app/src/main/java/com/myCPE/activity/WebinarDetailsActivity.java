@@ -351,7 +351,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             webinarid = intent.getIntExtra(getResources().getString(R.string.pass_webinar_id), 0);
             screen_details = intent.getIntExtra(getResources().getString(R.string.screen_detail), 0);
             webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
-            isFromSpeakerCompanyProfile = intent.getBooleanExtra("isFromCompanySpeakerList", false);
+//            isFromSpeakerCompanyProfile = intent.getBooleanExtra("isFromCompanySpeakerList", false);
+            isFromSpeakerCompanyProfile = Constant.isFromSpeakerCompanyWebinarList;
 
             Constant.Log(TAG, "webinar_id" + webinarid);
 

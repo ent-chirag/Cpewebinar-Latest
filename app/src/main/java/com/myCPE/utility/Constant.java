@@ -94,6 +94,8 @@ public class Constant {
     public static String is_from = "";
     public static String webinar_id = "";
 
+    public static boolean isFromSpeakerCompanyWebinarList = false;
+
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();

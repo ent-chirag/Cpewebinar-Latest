@@ -92,6 +92,8 @@ public class AccountFragment extends Fragment {
 
         OnClick();
 
+        Constant.isFromSpeakerCompanyWebinarList = false;
+
         binding.getRoot().setFocusableInTouchMode(true);
         binding.getRoot().requestFocus();
         binding.getRoot().setOnKeyListener(new View.OnKeyListener() {

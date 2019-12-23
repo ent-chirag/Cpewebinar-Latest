@@ -119,6 +119,8 @@ public class HomeAllFragment extends Fragment {
         myDialog_topics = new Dialog(context);
         myDialog_datefilter = new Dialog(context);
 
+        Constant.isFromSpeakerCompanyWebinarList = false;
+
         bundle = getArguments();
 
         if (bundle != null) {

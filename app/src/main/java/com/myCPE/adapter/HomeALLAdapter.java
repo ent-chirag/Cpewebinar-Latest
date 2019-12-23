@@ -430,6 +430,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
+                        Constant.isFromSpeakerCompanyWebinarList = false;
                         mContext.startActivity(i);
                         ((Activity) mContext).finish();
                     } else {
@@ -1041,6 +1042,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                     .get(position).getWebinarType());
+                            Constant.isFromSpeakerCompanyWebinarList = false;
 
                             mContext.startActivity(i);
                             // ((Activity) mContext).finish();

@@ -33,6 +33,7 @@ import com.myCPE.activity.PdfViewActivity;
 import com.myCPE.activity.SignUpActivity;
 import com.myCPE.activity.SpeakerProfileActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
+import com.myCPE.model.company_details.Company;
 import com.myCPE.model.homewebinarnew.MyCertificateLinksItem;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -430,7 +431,8 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                         i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
-                        i.putExtra("isFromCompanySpeakerList",true);
+//                        i.putExtra("isFromCompanySpeakerList",true);
+                        Constant.isFromSpeakerCompanyWebinarList = true;
                         mContext.startActivity(i);
 //                        ((Activity) mContext).finish();
                     } else {
@@ -1054,7 +1056,8 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                             i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                     .get(position).getWebinarType());
-                            i.putExtra("isFromCompanySpeakerList",true);
+//                            i.putExtra("isFromCompanySpeakerList",true);
+                            Constant.isFromSpeakerCompanyWebinarList = true;
 
                             mContext.startActivity(i);
                             // ((Activity) mContext).finish();
