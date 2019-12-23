@@ -88,6 +88,8 @@ public class Constant {
     public static HashMap<String, String> hashmap_asnwer_string_review_question = new HashMap<String, String>();
     public static HashMap<String, String> hashmap_answer_string_final_question = new HashMap<String, String>();
 
+    public static HashMap<String, Boolean> hashmap_answer_state = new HashMap<>();
+
     public static boolean isClickedSubmit = false;
     public static boolean isAllAnswerTrue = false;
 

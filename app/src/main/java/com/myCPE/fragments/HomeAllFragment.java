@@ -120,6 +120,7 @@ public class HomeAllFragment extends Fragment {
         myDialog_datefilter = new Dialog(context);
 
         Constant.isFromSpeakerCompanyWebinarList = false;
+        Constant.hashmap_asnwer_review_question.clear();
 
         bundle = getArguments();
 
