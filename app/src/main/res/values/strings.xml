@@ -115,6 +115,10 @@
     <string name="str_archive">ARCHIVED</string>
     <string name="str_favorite">FAVAROITE</string>
 
+    <string name="why_correct">why it\'s correct?</string>
+    <string name="why_incorrect">Why it\'s incorrect?</string>
+    <string name="ans_all_question">Please answer all question first.</string>
+
 
     //filter option with home screen
     <string name="str_filter_live">live</string>

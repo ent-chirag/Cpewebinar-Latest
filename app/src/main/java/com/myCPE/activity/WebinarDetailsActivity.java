@@ -337,6 +337,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
         Constant.setLightStatusBar(WebinarDetailsActivity.this);
+        Constant.hashmap_answer_state.clear();
+        Constant.hashmap_asnwer_string_review_question.clear();
+        Constant.hashmap_answer_string_final_question.clear();
+        Constant.hashmap_asnwer_review_question.clear();
 
 
         if (savedInstanceState != null) {
@@ -429,7 +433,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, ActivityReviewQuestion.class);
+//                Intent i = new Intent(context, ActivityReviewQuestion.class);
+                Intent i = new Intent(context, ActivityReviewQuestionNew.class);
                 i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
