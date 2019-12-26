@@ -17,6 +17,7 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.ReviewQuestionAdapter;
 import com.myCPE.databinding.ActivityReviewQuestionNewBinding;
+import com.myCPE.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.myCPE.model.review_question.ReviewQuestionsItem;
 import com.myCPE.model.review_question.Review_Question;
 import com.myCPE.utility.AppSettings;
@@ -27,6 +28,7 @@ import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import rx.Subscriber;
@@ -627,7 +629,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             Log.e("*+*+*","All true");
             // Take api call to submit the review questions and set the quiz to the first question..
 
-            Toast.makeText(context, "All answered are true..", Toast.LENGTH_SHORT).show();
+            Log.e("*+*+*","All answers are true");
+            /*Toast.makeText(context, "All answered are true..", Toast.LENGTH_SHORT).show();
             question_showing = 1;
 
             binding.tvNumber.setText("1");
@@ -641,7 +644,40 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             binding.tvNextSubmit.setText("Next");
 
             binding.tvResponseTag.setVisibility(View.VISIBLE);
-            binding.tvAnsResponse.setVisibility(View.VISIBLE);
+            binding.tvAnsResponse.setVisibility(View.VISIBLE);*/
+
+            String questionsParams = "";
+            String ansParams = "";
+
+            Iterator myVeryOwnIterator = Constant.hashmap_asnwer_string_review_question.keySet().iterator();
+            while (myVeryOwnIterator.hasNext()) {
+                String key = (String) myVeryOwnIterator.next();
+                String value = (String) Constant.hashmap_asnwer_string_review_question.get(key);
+
+                if (questionsParams.equalsIgnoreCase("")) {
+                    questionsParams = "" + key;
+                } else {
+                    questionsParams = questionsParams + "," + key;
+                }
+
+                if (ansParams.equalsIgnoreCase("")) {
+                    ansParams = "" + value;
+                } else {
+                    ansParams = ansParams + "," + value;
+                }
+            }
+
+            Log.e("*+*+*","Question Params : " + questionsParams);
+            Log.e("*+*+*","Answer Params : " + ansParams);
+
+            if (Constant.isAllAnswerTrue) {
+                if (Constant.isNetworkAvailable(context)) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                    GetSubmitAnswer(questionsParams, ansParams);
+                } else {
+                    Snackbar.make(binding.relNextSubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                }
+            }
 
         } else {
             Log.e("*+*+*","Oops");
@@ -710,40 +746,28 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                         selectionA();
                         if(isSubmit) {
                             binding.tvAnsA.setTextColor(getResources().getColor(R.color.correct_ans));
-                            binding.lvA.setClickable(false);
-                            binding.lvB.setClickable(false);
-                            binding.lvC.setClickable(false);
-                            binding.lvD.setClickable(false);
+                            disableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("b")) {
                         selectionB();
                         if(isSubmit) {
                             binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
-                            binding.lvA.setClickable(false);
-                            binding.lvB.setClickable(false);
-                            binding.lvC.setClickable(false);
-                            binding.lvD.setClickable(false);
+                            disableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("c")) {
                         selectionC();
                         if(isSubmit) {
                             binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
-                            binding.lvA.setClickable(false);
-                            binding.lvB.setClickable(false);
-                            binding.lvC.setClickable(false);
-                            binding.lvD.setClickable(false);
+                            disableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("d")) {
                         selectionD();
                         if(isSubmit) {
                             binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
-                            binding.lvA.setClickable(false);
-                            binding.lvB.setClickable(false);
-                            binding.lvC.setClickable(false);
-                            binding.lvD.setClickable(false);
+                            disableClick();
                         }
                         break;
                     }
@@ -753,40 +777,28 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                         selectionA();
                         if(isSubmit) {
                             binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            binding.lvA.setClickable(true);
-                            binding.lvB.setClickable(true);
-                            binding.lvC.setClickable(true);
-                            binding.lvD.setClickable(true);
+                            enableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("b")) {
                         selectionB();
                         if(isSubmit) {
                             binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            binding.lvA.setClickable(true);
-                            binding.lvB.setClickable(true);
-                            binding.lvC.setClickable(true);
-                            binding.lvD.setClickable(true);
+                            enableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("c")) {
                         selectionC();
                         if(isSubmit) {
                             binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            binding.lvA.setClickable(true);
-                            binding.lvB.setClickable(true);
-                            binding.lvC.setClickable(true);
-                            binding.lvD.setClickable(true);
+                            enableClick();
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("d")) {
                         selectionD();
                         if(isSubmit) {
                             binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            binding.lvA.setClickable(true);
-                            binding.lvB.setClickable(true);
-                            binding.lvC.setClickable(true);
-                            binding.lvD.setClickable(true);
+                            enableClick();
                         }
                         break;
                     }
@@ -795,5 +807,94 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 resetSelection();
             }
         }
+    }
+
+    private void disableClick() {
+        binding.lvA.setEnabled(false);
+        binding.lvB.setEnabled(false);
+        binding.lvC.setEnabled(false);
+        binding.lvD.setEnabled(false);
+
+        binding.tvAnsA.setEnabled(false);
+        binding.tvAnsB.setEnabled(false);
+        binding.tvAnsC.setEnabled(false);
+        binding.tvAnsD.setEnabled(false);
+
+        binding.checkboxSelectA.setEnabled(false);
+        binding.checkboxSelectB.setEnabled(false);
+        binding.checkboxSelectC.setEnabled(false);
+        binding.checkboxSelectD.setEnabled(false);
+    }
+
+    private void enableClick() {
+        binding.lvA.setEnabled(true);
+        binding.lvB.setEnabled(true);
+        binding.lvC.setEnabled(true);
+        binding.lvD.setEnabled(true);
+
+        binding.tvAnsA.setEnabled(true);
+        binding.tvAnsB.setEnabled(true);
+        binding.tvAnsC.setEnabled(true);
+        binding.tvAnsD.setEnabled(true);
+
+        binding.checkboxSelectA.setEnabled(true);
+        binding.checkboxSelectB.setEnabled(true);
+        binding.checkboxSelectC.setEnabled(true);
+        binding.checkboxSelectD.setEnabled(true);
+    }
+
+    private void GetSubmitAnswer(String reviewquestion, String reviewanswer) {
+
+        mAPIService.SubmitReviewAnswer(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id
+                , reviewquestion, reviewanswer, watchedDuration).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<SubmitAnswerModel>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onNext(SubmitAnswerModel submitAnswerModel) {
+
+                        if (submitAnswerModel.isSuccess() == true) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            arraylistselectedquestionreview.clear();
+                            arraylistselectedreviewanswerreview.clear();
+//                            finish();
+                            Intent i = new Intent(context, WebinarDetailsActivity.class);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                            startActivity(i);
+                            finish();
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Snackbar.make(binding.ivback, submitAnswerModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
+
     }
 }

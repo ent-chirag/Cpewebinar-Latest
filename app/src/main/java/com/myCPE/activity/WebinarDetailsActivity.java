@@ -3279,7 +3279,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                     if (!isAnswered) {
                         Constant.webinar_id = ""+webinarid;
-                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
+//                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
                     }
                 }
             }
@@ -3312,7 +3312,7 @@ public class WebinarDetailsActivity extends AppCompatActivity {
                         webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                     if (!isAnswered) {
                         Constant.webinar_id = ""+webinarid;
-                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
+//                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
                     }
                 }
             }
