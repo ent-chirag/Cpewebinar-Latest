@@ -71,17 +71,17 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
         mAPIService = ApiUtilsNew.getAPIService();
         instance = ActivityReviewQuestionNew.this;
 
+        Constant.hashmap_submit_answers.clear();
+        Constant.hashmap_answer_state.clear();
+        Constant.hashmap_asnwer_review_question.clear();
+        Constant.hashmap_asnwer_string_review_question.clear();
+        Constant.hashmap_answer_string_final_question.clear();
+
         Intent intent = getIntent();
         if (intent != null) {
             webinar_id = intent.getIntExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), 0);
             webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
         }
-
-        /*linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        binding.recyclerviewReviewQuestion.setLayoutManager(linearLayoutManager);
-        binding.recyclerviewReviewQuestion.addItemDecoration(new SimpleDividerItemDecoration(context));
-        binding.recyclerviewReviewQuestion.setItemAnimator(new DefaultItemAnimator());
-        Constant.hashmap_asnwer_string_review_question.clear();*/
 
         watchedDuration = Constant.watchedDuration;
 
@@ -327,51 +327,51 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
 //        int aa = question_showing - 1;
         qPos = question_showing - 1;
-        if (reviewquestion.get(qPos).isAnswerable()) {
-            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        if (reviewquestion.get(qPos).isAnswerable()) {
+        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
-            binding.tvAnsResponse.setText(reviewquestion.get(qPos).getA().getDescription());
+        binding.tvAnsResponse.setText(reviewquestion.get(qPos).getA().getDescription());
 
-            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos).getId(), true);
-            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "a");
+        Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos).getId(), true);
+        Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "a");
 
-            if(reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("a")) {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), true);
+        if (reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("a")) {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), true);
 //                reviewquestion.get(qPos).setAnswerable(false);
-            } else {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), false);
+        } else {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), false);
 //                reviewquestion.get(qPos).setAnswerable(true);
-            }
+        }
 
 //            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-            if (reviewquestion.get(qPos).getA().getIsAnswer().equalsIgnoreCase("true")) {
-                arrayboolean.set(qPos, true);
+        if (reviewquestion.get(qPos).getA().getIsAnswer().equalsIgnoreCase("true")) {
+            arrayboolean.set(qPos, true);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
             } else {
-                arrayboolean.set(qPos, false);
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+                Constant.isAllAnswerTrue = false;
+            }
+        } else {
+            arrayboolean.set(qPos, false);
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
+            } else {
+                Constant.isAllAnswerTrue = false;
             }
         }
+//        }
     }
 
     private void selectionB() {
@@ -391,52 +391,52 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     private void answerB() {
 //        int ab = question_showing - 1;
         qPos = question_showing - 1;
-        if (reviewquestion.get(qPos).isAnswerable()) {
-            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        if (reviewquestion.get(qPos).isAnswerable()) {
+        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
-            binding.tvAnsResponse.setText(reviewquestion.get(qPos).getB().getDescription());
+        binding.tvAnsResponse.setText(reviewquestion.get(qPos).getB().getDescription());
 
-            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
-            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "b");
+        Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
+        Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "b");
 
-            if(reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("b")) {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), true);
+        if (reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("b")) {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), true);
 //                reviewquestion.get(qPos).setAnswerable(false);
-            } else {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), false);
+        } else {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), false);
 //                reviewquestion.get(qPos).setAnswerable(true);
-            }
+        }
 
 //            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-            if (reviewquestion.get(qPos).getB().getIsAnswer().equalsIgnoreCase("true")) {
-                arrayboolean.set(qPos, true);
+        if (reviewquestion.get(qPos).getB().getIsAnswer().equalsIgnoreCase("true")) {
+            arrayboolean.set(qPos, true);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
             } else {
-                arrayboolean.set(qPos, false);
+                Constant.isAllAnswerTrue = false;
+            }
+        } else {
+            arrayboolean.set(qPos, false);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
+            } else {
+                Constant.isAllAnswerTrue = false;
             }
         }
+//        }
     }
 
     private void selectionC() {
@@ -457,53 +457,52 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
 //        int ac = question_showing - 1;
         qPos = question_showing - 1;
-        if (reviewquestion.get(qPos).isAnswerable()) {
-            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        if (reviewquestion.get(qPos).isAnswerable()) {
+        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
-            binding.tvAnsResponse.setText(reviewquestion.get(qPos).getC().getDescription());
+        binding.tvAnsResponse.setText(reviewquestion.get(qPos).getC().getDescription());
 
-            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
-            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "c");
+        Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
+        Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "c");
 
-            if(reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("c")) {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), true);
+        if (reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("c")) {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), true);
 //                reviewquestion.get(qPos).setAnswerable(false);
-            } else {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), false);
+        } else {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), false);
 //                reviewquestion.get(qPos).setAnswerable(true);
-            }
+        }
 
 //            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-            if (reviewquestion.get(qPos).getC().getIsAnswer().equalsIgnoreCase("true")) {
-                arrayboolean.set(qPos, true);
+        if (reviewquestion.get(qPos).getC().getIsAnswer().equalsIgnoreCase("true")) {
+            arrayboolean.set(qPos, true);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
             } else {
-                arrayboolean.set(qPos, false);
+                Constant.isAllAnswerTrue = false;
+            }
+        } else {
+            arrayboolean.set(qPos, false);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
+            } else {
+                Constant.isAllAnswerTrue = false;
             }
         }
-
+//        }
     }
 
     private void selectionD() {
@@ -524,53 +523,52 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
 //        int ad = question_showing - 1;
         qPos = question_showing - 1;
-        if (reviewquestion.get(qPos).isAnswerable()) {
-            binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-            binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        if (reviewquestion.get(qPos).isAnswerable()) {
+        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
 
-            binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-            binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
-            binding.tvAnsResponse.setText(reviewquestion.get(qPos).getD().getDescription());
+        binding.tvAnsResponse.setText(reviewquestion.get(qPos).getD().getDescription());
 
-            Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
-            Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "d");
+        Constant.hashmap_asnwer_review_question.put("" + reviewquestion.get(qPos), true);
+        Constant.hashmap_asnwer_string_review_question.put("" + reviewquestion.get(qPos).getId(), "d");
 
-            if(reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("d")) {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), true);
+        if (reviewquestion.get(qPos).getAnswer().equalsIgnoreCase("d")) {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), true);
 //                reviewquestion.get(qPos).setAnswerable(false);
-            } else {
-                Constant.hashmap_answer_state.put(""+reviewquestion.get(qPos).getId(), false);
+        } else {
+            Constant.hashmap_answer_state.put("" + reviewquestion.get(qPos).getId(), false);
 //                reviewquestion.get(qPos).setAnswerable(true);
-            }
+        }
 
 //            ActivityReviewQuestion.getInstance().ShowHideSubmitButton();
 
-            if (reviewquestion.get(qPos).getD().getIsAnswer().equalsIgnoreCase("true")) {
-                arrayboolean.set(qPos, true);
+        if (reviewquestion.get(qPos).getD().getIsAnswer().equalsIgnoreCase("true")) {
+            arrayboolean.set(qPos, true);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
             } else {
-                arrayboolean.set(qPos, false);
+                Constant.isAllAnswerTrue = false;
+            }
+        } else {
+            arrayboolean.set(qPos, false);
 
-                if (areAllTrue(arrayboolean)) {
-                    Constant.isAllAnswerTrue = true;
-                } else {
-                    Constant.isAllAnswerTrue = false;
-                }
+            if (areAllTrue(arrayboolean)) {
+                Constant.isAllAnswerTrue = true;
+            } else {
+                Constant.isAllAnswerTrue = false;
             }
         }
-
+//        }
     }
 
     public static boolean areAllTrue(List<Boolean> array) {
@@ -585,8 +583,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         // Submit Button Click
         if (question_showing == reviewquestion.size()) {
-            if(Constant.hashmap_asnwer_string_review_question.size() == reviewquestion.size()) {
+            // All questions are answered..
+            if (Constant.hashmap_asnwer_string_review_question.size() == reviewquestion.size()) {
                 isSubmit = true;
+                Constant.hashmap_submit_answers.putAll(Constant.hashmap_asnwer_string_review_question);
                 checkAnswers();
             } else {
                 Snackbar.make(binding.tvNumber, getResources().getString(R.string.ans_all_question), Snackbar.LENGTH_SHORT).show();
@@ -617,7 +617,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         boolean check = false;
         for (int i = 0; i < reviewquestion.size(); i++) {
-            if(Constant.hashmap_answer_state.get(""+reviewquestion.get(i).getId())) {
+            if (Constant.hashmap_answer_state.get("" + reviewquestion.get(i).getId())) {
                 check = true;
             } else {
                 check = false;
@@ -625,26 +625,11 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             }
         }
 
-        if(check) {
-            Log.e("*+*+*","All true");
+        if (check) {
+            Log.e("*+*+*", "All true");
             // Take api call to submit the review questions and set the quiz to the first question..
 
-            Log.e("*+*+*","All answers are true");
-            /*Toast.makeText(context, "All answered are true..", Toast.LENGTH_SHORT).show();
-            question_showing = 1;
-
-            binding.tvNumber.setText("1");
-            binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
-            binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
-            binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
-            binding.tvAnsC.setText(reviewquestion.get(0).getC().getOptionTitle());
-            binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
-
-            binding.relPrev.setVisibility(View.INVISIBLE);
-            binding.tvNextSubmit.setText("Next");
-
-            binding.tvResponseTag.setVisibility(View.VISIBLE);
-            binding.tvAnsResponse.setVisibility(View.VISIBLE);*/
+            Log.e("*+*+*", "All answers are true");
 
             String questionsParams = "";
             String ansParams = "";
@@ -667,8 +652,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 }
             }
 
-            Log.e("*+*+*","Question Params : " + questionsParams);
-            Log.e("*+*+*","Answer Params : " + ansParams);
+            Log.e("*+*+*", "Question Params : " + questionsParams);
+            Log.e("*+*+*", "Answer Params : " + ansParams);
 
             if (Constant.isAllAnswerTrue) {
                 if (Constant.isNetworkAvailable(context)) {
@@ -680,9 +665,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             }
 
         } else {
-            Log.e("*+*+*","Oops");
+            Log.e("*+*+*", "Oops");
 
             question_showing = 1;
+//            isSubmit = false;
 
             binding.tvNumber.setText("1");
             binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
@@ -740,34 +726,64 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 String selectedOption = Constant.hashmap_asnwer_string_review_question.get(key);
                 boolean ansState = Constant.hashmap_answer_state.get(key);
 
-                if(ansState) {
+                if (ansState) {
                     binding.tvResponseTag.setText(getResources().getString(R.string.why_correct));
                     if (selectedOption.equalsIgnoreCase("a")) {
                         selectionA();
-                        if(isSubmit) {
-                            binding.tvAnsA.setTextColor(getResources().getColor(R.color.correct_ans));
-                            disableClick();
+                        if (isSubmit) {
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("a")) {
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.correct_ans));
+                                disableClick();
+                            } else {
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("b")) {
                         selectionB();
-                        if(isSubmit) {
-                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
-                            disableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
+//                            disableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("b")) {
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
+                                disableClick();
+                            } else {
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("c")) {
                         selectionC();
-                        if(isSubmit) {
-                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
-                            disableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
+//                            disableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("c")) {
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
+                                disableClick();
+                            } else {
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("d")) {
                         selectionD();
-                        if(isSubmit) {
-                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
-                            disableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
+//                            disableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("d")) {
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
+                                disableClick();
+                            } else {
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     }
@@ -775,30 +791,62 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                     binding.tvResponseTag.setText(getResources().getString(R.string.why_incorrect));
                     if (selectedOption.equalsIgnoreCase("a")) {
                         selectionA();
-                        if(isSubmit) {
-                            binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            enableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
+//                            enableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("a")) {
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                enableClick();
+                            } else {
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("b")) {
                         selectionB();
-                        if(isSubmit) {
-                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            enableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
+//                            enableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("b")) {
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                enableClick();
+                            } else {
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("c")) {
                         selectionC();
-                        if(isSubmit) {
-                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            enableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
+//                            enableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("c")) {
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                enableClick();
+                            } else {
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     } else if (selectedOption.equalsIgnoreCase("d")) {
                         selectionD();
-                        if(isSubmit) {
-                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
-                            enableClick();
+                        if (isSubmit) {
+//                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
+//                            enableClick();
+                            if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("d")) {
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                enableClick();
+                            } else {
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+                                Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
+                                enableClick();
+                            }
                         }
                         break;
                     }

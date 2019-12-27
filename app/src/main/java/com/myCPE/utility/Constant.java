@@ -89,6 +89,7 @@ public class Constant {
     public static HashMap<String, String> hashmap_answer_string_final_question = new HashMap<String, String>();
 
     public static HashMap<String, Boolean> hashmap_answer_state = new HashMap<>();
+    public static HashMap<String, String> hashmap_submit_answers = new HashMap<>();
 
     public static boolean isClickedSubmit = false;
     public static boolean isAllAnswerTrue = false;
