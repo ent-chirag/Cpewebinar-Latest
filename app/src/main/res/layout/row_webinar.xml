@@ -168,18 +168,15 @@
                             android:background="@drawable/rounded_webinar_status"
                             android:textColor="@color/White"
                             android:textSize="@dimen/_9sdp"
-                            app:font_button="Montserrat-Medium.ttf"
-
-
-                            />
+                            app:font_button="Montserrat-Medium.ttf"/>
 
                         <com.myCPE.view.CustomButtonView
                             android:id="@+id/credit_status"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_25sdp"
                             android:layout_weight="1"
-                            android:background="@drawable/rounded_webinar_status"
                             android:textColor="@color/White"
+                            android:background="@drawable/rounded_webinar_status"
                             android:textSize="@dimen/_9sdp"
                             app:font_button="Montserrat-Medium.ttf" />
 

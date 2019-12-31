@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Background Color -->
-    <solid android:color="@android:color/transparent" />
+  <!-- Background Color -->
+  <solid android:color="@android:color/transparent" />
 
-    <!-- Border Color -->
-    <stroke
-        android:width="2px"
-        android:color="@color/feedback_field" />
+  <!-- Border Color -->
+  <stroke
+      android:width="2px"
+      android:color="@color/feedback_field" />
 
-    <!-- Round Corners -->
-    <corners android:radius="1dp" />
+  <!-- Round Corners -->
+  <corners android:radius="1dp" />
 
 </shape>
