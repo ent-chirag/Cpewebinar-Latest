@@ -134,7 +134,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class WebinarDetailsActivity extends AppCompatActivity {
+public class WebinarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     public Context context;
     ActivityWebinardetailsBinding binding;
     private APIService mAPIService;
@@ -342,6 +342,8 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         Constant.hashmap_answer_string_final_question.clear();
         Constant.hashmap_asnwer_review_question.clear();
 
+        binding.relImgBack.setOnClickListener(this);
+        binding.ivback.setOnClickListener(this);
 
         if (savedInstanceState != null) {
             play_time_duration = savedInstanceState.getLong(STATE_RESUME_WINDOW);
@@ -490,47 +492,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
             }
         });
 
-
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isFromSpeakerCompanyProfile) {
-                    finish();
-                } else {
-                    if (isNotification) {
-                        Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(i);
-                        finish();
 
-                    } else {
-
-                        if (screen_details == 0) {
-                            // handler.removeCallbacks(runnable);
-                            Intent i = new Intent(context, MainActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (screen_details == 1) {
-                            Intent i = new Intent(context, MainActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (screen_details == 2) {
-                            Constant.isdataupdate = true;
-                            finish();
-                        } else if (screen_details == 3) {
-                            Intent i = new Intent(context, NotificationActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (screen_details == 4) {
-                            Intent i = new Intent(context, ActivityFavorite.class);
-                            startActivity(i);
-                            finish();
-                        } else if (screen_details == 5) {
-                            finish();
-                        }
-
-                    }
-                }
             }
         });
 
@@ -3054,6 +3019,63 @@ public class WebinarDetailsActivity extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.ivback:
+                Log.e("*+*+*","click ivBack");
+                backpress();
+            break;
+
+            case R.id.relImgBack:
+                backpress();
+                Log.e("*+*+*","click relImgBack");
+                break;
+        }
+    }
+
+    private void backpress() {
+
+        if(isFromSpeakerCompanyProfile) {
+            finish();
+        } else {
+            if (isNotification) {
+                Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                finish();
+
+            } else {
+
+                if (screen_details == 0) {
+                    // handler.removeCallbacks(runnable);
+                    Intent i = new Intent(context, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                } else if (screen_details == 1) {
+                    Intent i = new Intent(context, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                } else if (screen_details == 2) {
+                    Constant.isdataupdate = true;
+                    finish();
+                } else if (screen_details == 3) {
+                    Intent i = new Intent(context, NotificationActivity.class);
+                    startActivity(i);
+                    finish();
+                } else if (screen_details == 4) {
+                    Intent i = new Intent(context, ActivityFavorite.class);
+                    startActivity(i);
+                    finish();
+                } else if (screen_details == 5) {
+                    finish();
+                }
+
+            }
+        }
     }
 
     private class DownloadTask extends AsyncTask<String, Integer, String> {
