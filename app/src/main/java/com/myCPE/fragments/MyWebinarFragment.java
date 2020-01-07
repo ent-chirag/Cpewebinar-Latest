@@ -509,6 +509,7 @@ public class MyWebinarFragment extends Fragment {
                 dialog.cancel();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     getActivity().finishAffinity();
+                    System.exit(0);
                 } else {
                     getActivity().finish();
                 }

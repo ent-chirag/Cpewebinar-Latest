@@ -2761,6 +2761,10 @@ public class WebinarDetailsActivity extends AppCompatActivity {
 
 
                             if (!webinar_details.getPayload().getWebinarDetail().getWebinarThumbnail().equalsIgnoreCase("")) {
+
+//                                (context).ivwebinar_thumbhel.getLayoutParams().height = Math.round(Constant.progHeigth);
+                                binding.ivthumbhel.getLayoutParams().height = Math.round(Constant.progHeigth);
+
                                 Picasso.with(context).load(webinar_details.getPayload().getWebinarDetail().getWebinarThumbnail())
                                         .placeholder(R.mipmap.webinar_placeholder)
                                         .into((binding.ivthumbhel));

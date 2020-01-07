@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_background_white_new">
 
 
     <RelativeLayout
@@ -24,10 +25,9 @@
             <RelativeLayout
                 android:id="@+id/rel_date_filter_today"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:button="@null"
                     android:checked="true"
                     android:drawableRight="@drawable/checkbox_date_filter_selector"
@@ -59,17 +60,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/color_view_date_filter_popup" />
 
             <RelativeLayout
                 android:id="@+id/rel_date_filter_tommorow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_below="@+id/rel_date_filter_today"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
@@ -89,6 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:button="@null"
                     android:checked="true"
                     android:drawableRight="@drawable/checkbox_date_filter_selector"
@@ -100,17 +99,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/color_view_date_filter_popup" />
 
             <RelativeLayout
                 android:id="@+id/rel_date_this_week"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_below="@+id/rel_date_filter_tommorow"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
@@ -130,6 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:button="@null"
                     android:checked="true"
                     android:drawableRight="@drawable/checkbox_date_filter_selector"
@@ -141,17 +138,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/color_view_date_filter_popup" />
 
             <RelativeLayout
                 android:id="@+id/rel_date_this_month"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_below="@+id/rel_date_this_week"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <com.myCPE.view.CustomTextView
@@ -171,6 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:button="@null"
                     android:checked="true"
                     android:drawableRight="@drawable/checkbox_date_filter_selector"
@@ -182,14 +177,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/color_view_date_filter_popup" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:gravity="right"
                 android:layout_height="wrap_content">
 
@@ -215,34 +210,18 @@
                     android:textSize="@dimen/_12sdp"
                     app:font_text="Montserrat-SemiBold.ttf" />
 
-
-
-
             </LinearLayout>
-
-
-
-
-
-
 
         </LinearLayout>
 
-
-      <!--  <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:visibility="gone"
-            android:layout_marginBottom="@dimen/_5sdp">
-
-
-
-
-        </RelativeLayout>-->
-
+        <!--  <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:visibility="gone"
+              android:layout_marginBottom="@dimen/_5sdp">
+          </RelativeLayout>-->
 
     </RelativeLayout>
-
 
 </RelativeLayout>

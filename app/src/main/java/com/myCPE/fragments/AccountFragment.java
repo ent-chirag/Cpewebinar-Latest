@@ -493,6 +493,7 @@ public class AccountFragment extends Fragment {
                 dialog.cancel();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getActivity().finishAffinity();
+                    System.exit(0);
                 } else {
                     getActivity().finish();
                 }

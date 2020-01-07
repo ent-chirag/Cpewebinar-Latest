@@ -44,7 +44,8 @@ public class Constant {
     //for date home filter
     public static ArrayList<String> arraylistHomeDateFilter = new ArrayList<>();
 
-
+    public static float progWidth = 0;
+    public static float progHeigth= 0;
 
 
 

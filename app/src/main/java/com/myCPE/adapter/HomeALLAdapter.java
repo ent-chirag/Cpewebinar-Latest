@@ -9,13 +9,17 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +48,21 @@ import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import retrofit2.adapter.rxjava.HttpException;
+import rx.Observable;
+import rx.Observer;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.internal.util.ActionNotificationObserver;
 import rx.schedulers.Schedulers;
 
 public class HomeALLAdapter extends RecyclerView.Adapter {
@@ -111,7 +123,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         if (viewHolder instanceof HomeViewHolder) {
             Constant.Log("size", "" + mList.size());
 
-          /*  if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).tv_webinar_title.setText(mList.get(position).getWebinarTitle());
             }*/
 
@@ -131,7 +143,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                 ((HomeViewHolder) viewHolder).rel_date_and_time.setVisibility(View.GONE);
             }
-
 
             if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
 
@@ -275,6 +286,60 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             } else {
                 ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.setImageResource(R.mipmap.webinar_placeholder);
             }
+
+            Log.e("*+*+*","Converted height from adapter is : "+Constant.progHeigth);
+            Log.e("*+*+*","Converted height from Rounded value adapter is : "+Math.round(Constant.progHeigth));
+
+            ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.getLayoutParams().height = Math.round(Constant.progHeigth);
+
+            Observable observable = Observable.create(new Observable.OnSubscribe() {
+                @Override
+                public void call(Object o) {
+
+                }
+            });
+
+            Observer observer = new Observer() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Object o) {
+
+                }
+            };
+
+//            Uri uri =  Uri.parse( "http://www.facebook.com" );
+            /*Uri uri =  Uri.parse("" + mList.get(position).getWebinarThumbnailImage());
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(new File(uri.getPath()).getAbsolutePath(), options);
+
+            int imageHeight = options.outHeight;
+            int imageWidth = options.outWidth;
+
+            Log.e("*+*+*","URL image size height is URL : " + mList.get(position).getWebinarThumbnailImage());
+            Log.e("*+*+*","URL image size height is URI : " + uri);
+            Log.e("*+*+*","URL image size height is : "+imageHeight + " width : "+imageWidth);*/
+
+            /*URL url = null;
+            try {
+                url = new URL(""+mList.get(position).getWebinarThumbnailImage());
+                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+
+                Log.e("*+*+*","New URL : "+url+" new height : "+bmp.getHeight() + " new width : "+bmp.getWidth());
+            }  catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
 
             if (!mList.get(position).getCpaCredit().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).credit_status.setText(mList.get(position).getCpaCredit());
