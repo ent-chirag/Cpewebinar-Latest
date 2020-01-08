@@ -20,19 +20,21 @@
         <RelativeLayout
             android:id="@+id/rel_titile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/webinar_status"
-            android:padding="@dimen/_10sdp">
+            android:layout_height="@dimen/_45sdp"
+            android:background="@color/webinar_status">
 
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ivback"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/_5sdp"
-                android:src="@mipmap/back" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back" />
 
+            </RelativeLayout>
 
             <com.myCPE.view.CustomTextView
                 android:id="@+id/screentitle"
@@ -42,8 +44,8 @@
                 android:layout_centerVertical="true"
                 android:text="@string/str_noti"
                 android:textColor="@color/White"
-                android:textSize="@dimen/_18sdp"
-                app:font_text="Montserrat-Bold.ttf" />
+                android:textSize="@dimen/_17sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
 
 
         </RelativeLayout>

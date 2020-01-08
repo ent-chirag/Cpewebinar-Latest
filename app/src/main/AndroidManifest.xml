@@ -94,7 +94,7 @@
         <activity
             android:name=".activity.ActivityNotificationSetting"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.ViewTopicsOfInterestActivity"
             android:screenOrientation="portrait"
@@ -131,7 +131,7 @@
         <activity
             android:name=".activity.TermsandConditionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.PaymentActivity"
             android:screenOrientation="portrait"
@@ -143,7 +143,7 @@
         <activity
             android:name=".activity.FaqActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.PdfViewActivity"
             android:screenOrientation="portrait"
@@ -151,11 +151,11 @@
         <activity
             android:name=".activity.ActivityChangePassword"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.ActivityContactUs"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.MyTransactionActivity"
             android:configChanges="orientation|keyboardHidden"

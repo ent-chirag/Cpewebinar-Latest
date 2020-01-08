@@ -57,7 +57,7 @@ public class ActivityContactUs extends AppCompatActivity {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetContactUsInfo();
         } else {
-            Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
 
@@ -72,7 +72,7 @@ public class ActivityContactUs extends AppCompatActivity {
                         PostContactUsQuery(getResources().getString(R.string.accept),
                                 binding.edtReview.getText().toString(), binding.edtSubject.getText().toString());
                     } else {
-                        Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
 
 
@@ -83,7 +83,7 @@ public class ActivityContactUs extends AppCompatActivity {
         });
 
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -219,7 +219,7 @@ public class ActivityContactUs extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -249,7 +249,7 @@ public class ActivityContactUs extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.ivback, getContactUsInfo.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, getContactUsInfo.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 

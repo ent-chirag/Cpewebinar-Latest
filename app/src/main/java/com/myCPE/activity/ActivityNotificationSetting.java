@@ -289,7 +289,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
         }
 
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -301,6 +301,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
 
 
                 if (Constant.isNetworkAvailable(context)) {
+                    progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                     SaveNotificationSettingList(selectedlistpush, selectedlisttext);
                 } else {
                     Snackbar.make(binding.quizTextPending, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -325,6 +326,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
 
 
         if (Constant.isNetworkAvailable(context)) {
+            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             SaveNotificationSettingList(selectedlistpush, selectedlisttext);
         } else {
             Snackbar.make(binding.quizTextPending, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -338,26 +340,32 @@ public class ActivityNotificationSetting extends AppCompatActivity {
                 .subscribe(new Subscriber<SubmitNotification>() {
                     @Override
                     public void onCompleted() {
-
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
 
                         String message = Constant.GetReturnResponse(context, e);
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
-
 
                     }
 
                     @Override
                     public void onNext(SubmitNotification submitNotification) {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
 
                         if (submitNotification.isSuccess() == true) {
                             finish();
@@ -366,7 +374,6 @@ public class ActivityNotificationSetting extends AppCompatActivity {
 
                         }
                     }
-
 
                 });
 
@@ -393,7 +400,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -512,7 +519,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.ivback, getNotificationModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, getNotificationModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 

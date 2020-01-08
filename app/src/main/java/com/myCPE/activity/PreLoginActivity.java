@@ -75,6 +75,7 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
 */
 
         Constant.isCpdSelected = false;
+        Constant.is_cpd = 0;
 
 
         binding.lvSkip.setOnClickListener(new View.OnClickListener() {

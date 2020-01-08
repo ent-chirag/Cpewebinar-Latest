@@ -42,7 +42,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         context = ActivityChangePassword.this;
 
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
