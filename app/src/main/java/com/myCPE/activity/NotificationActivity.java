@@ -59,7 +59,8 @@ public class NotificationActivity extends AppCompatActivity {
         binding.rvNotificationlist.setItemAnimator(new DefaultItemAnimator());
 
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+//        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -184,7 +185,7 @@ public class NotificationActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -247,7 +248,7 @@ public class NotificationActivity extends AppCompatActivity {
                                     binding.swipeRefreshLayout.setRefreshing(false);
                                 }
                             }
-                            Snackbar.make(binding.ivback, notificationModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, notificationModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 

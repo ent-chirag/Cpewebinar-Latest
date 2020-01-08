@@ -99,6 +99,10 @@
     //home
     <color name="home_topbar_bgcolor">#193f70</color>
     <color name="webinar_status">#ed9e37</color>
+<!--    <color name="webinar_statusbar_color">#f8dcb4</color>-->
+<!--    <color name="webinar_statusbar_color">#d7671f</color>-->
+<!--    <color name="webinar_statusbar_color">#e98f24</color>-->
+    <color name="webinar_statusbar_color">#dedede</color>
 
 
     //account

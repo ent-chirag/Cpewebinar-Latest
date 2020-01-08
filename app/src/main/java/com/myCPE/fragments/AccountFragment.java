@@ -90,6 +90,9 @@ public class AccountFragment extends Fragment {
         context = getActivity();
         mAPIService_new = ApiUtilsNew.getAPIService();
 
+        Constant.isCpdSelected = false;
+        Constant.is_cpd = 0;
+
         OnClick();
 
         Constant.isFromSpeakerCompanyWebinarList = false;

@@ -61,7 +61,8 @@ public class MyTransactionActivity extends AppCompatActivity {
         binding.myTranscationlist.setItemAnimator(new DefaultItemAnimator());
 
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+//        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -192,7 +193,8 @@ public class MyTransactionActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -255,7 +257,8 @@ public class MyTransactionActivity extends AppCompatActivity {
                                     binding.swipeRefreshLayout.setRefreshing(false);
                                 }
                             }
-                            Snackbar.make(binding.ivback, model_transcation.getMessage(), Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(binding.ivback, model_transcation.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, model_transcation.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 

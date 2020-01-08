@@ -13,6 +13,7 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivitySplashBinding;
 import com.myCPE.utility.AppSettings;
+import com.myCPE.utility.Constant;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         context = SplashActivity.this;
 
+        Constant.isCpdSelected = false;
+        Constant.is_cpd = 0;
 
         DisplayVersionName();
         Navigation();

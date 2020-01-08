@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         AppSettings.set_device_id(context, Constant.GetDeviceid(context));
 
         Constant.isCpdSelected = false;
+        Constant.is_cpd = 0;
 
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -139,7 +139,7 @@
         <activity
             android:name=".activity.PrivacyPolicyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.FaqActivity"
             android:screenOrientation="portrait"
@@ -160,11 +160,11 @@
             android:name=".activity.MyTransactionActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.NotificationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.TestimonialActivity"
             android:screenOrientation="portrait"
