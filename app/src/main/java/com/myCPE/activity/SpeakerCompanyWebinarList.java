@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -104,6 +105,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                 binding.btnPast.setBackgroundResource(R.drawable.chipsetview_filter_home);
                 binding.btnPast.setTextColor(getResources().getColor(R.color.White));
                 is_upcoming = 0;
+                Constant.isUpcomingListing = false;
             }
 
             if (past_count == 0) {
@@ -111,6 +113,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                 binding.btnUpcoming.setBackgroundResource(R.drawable.chipsetview_filter_home);
                 binding.btnUpcoming.setTextColor(getResources().getColor(R.color.White));
                 is_upcoming = 1;
+                Constant.isUpcomingListing = true;
             }
         } else {
             binding.linFilter.setVisibility(View.GONE);
@@ -119,6 +122,19 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
         Log.e("*+*+*", "Company_id : " + company_id);
         Log.e("*+*+*", "Speaker_id : " + speaker_id);
         Log.e("*+*+*", "Webinar_type : " + webinar_type);
+
+        callApiContent();
+
+        binding.swipeRefreshLayouthome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                callApiContent();
+            }
+        });
+
+    }
+
+    private void callApiContent() {
 
         if (Constant.isNetworkAvailable(context)) {
 
@@ -166,6 +182,10 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                         } else {
                             adapter.addLoadingFooter();
                         }
+
+                        if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                            binding.swipeRefreshLayouthome.setRefreshing(false);
+                        }
                     }
 
 
@@ -191,12 +211,20 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                         } else {
                             Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
+
+                        if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                            binding.swipeRefreshLayouthome.setRefreshing(false);
+                        }
                     }
 
                     @Override
                     public void onNext(Webinar_Home_New webinar_home_new) {
 
                         Log.e("*+*+*", "list_onNext is called");
+
+                        if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                            binding.swipeRefreshLayouthome.setRefreshing(false);
+                        }
 
                         if (webinar_home_new.isSuccess() == true) {
                             if (progressDialog.isShowing()) {
@@ -267,6 +295,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     binding.btnUpcoming.setTextColor(getResources().getColor(R.color.White));
 
                     is_upcoming = 1;
+                    Constant.isUpcomingListing = true;
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                         getListingData();
@@ -286,6 +315,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     binding.btnPast.setTextColor(getResources().getColor(R.color.White));
 
                     is_upcoming = 0;
+                    Constant.isUpcomingListing = false;
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                         getListingData();

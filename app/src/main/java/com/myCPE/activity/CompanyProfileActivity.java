@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -74,6 +75,7 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
         binding.relImgBack.setOnClickListener(this);
         binding.linLiveWebinars.setOnClickListener(this);
         binding.linSelfStudy.setOnClickListener(this);
+        binding.tvWebsite.setOnClickListener(this);
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
@@ -229,6 +231,18 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                     intent.putExtra("webinar_type","self_study");
                     intent.putExtra("is_from", "company");
                     startActivity(intent);
+                }
+                break;
+
+            case R.id.tvWebsite:
+                String url = website;
+                Log.e("*+*+*","Website : " + url);
+                if (!url.equalsIgnoreCase("")) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                } else {
+                    Snackbar.make(binding.relImgBack, "Oops, we didn't have the URL.", Snackbar.LENGTH_SHORT).show();
                 }
                 break;
         }

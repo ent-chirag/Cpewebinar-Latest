@@ -120,6 +120,11 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
                 certificate_link = mList.get(position).getCertificatelink();
             }*/
 
+            if(Constant.isUpcomingListing) {
+                ((HomeViewHolder) viewHolder).relBottomButton.setVisibility(View.VISIBLE);
+            } else {
+                ((HomeViewHolder) viewHolder).relBottomButton.setVisibility(View.GONE);
+            }
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
                     .getString(R.string.str_live))) {
@@ -874,7 +879,7 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
         RelativeLayout rel_date_and_time;
         View dv_divider;
         Button credit_status, webinar_status, tv_webinar_type, tv_webinar_price_status;
-        RelativeLayout relSpeakerDetails, relCompanyDetails;
+        RelativeLayout relSpeakerDetails, relCompanyDetails, relBottomButton;
         ImageView ivfavorite, iv_company, iv_speaker;
         RelativeLayout rel_item;
 
@@ -886,6 +891,7 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
 
             relSpeakerDetails = (RelativeLayout) itemView.findViewById(R.id.rel_speaker_details);
             relCompanyDetails = (RelativeLayout) itemView.findViewById(R.id.rel_company_details);
+            relBottomButton = (RelativeLayout) itemView.findViewById(R.id.relBottomButton);
 
             tv_lable = (TextView) itemView.findViewById(R.id.tv_lable);
             tv_enrolled = (TextView) itemView.findViewById(R.id.tv_enrolled);

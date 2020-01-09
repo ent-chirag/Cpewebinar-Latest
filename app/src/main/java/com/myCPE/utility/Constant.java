@@ -61,6 +61,7 @@ public class Constant {
     public static boolean isCpdSelected = false;
     public static boolean isWebinarCPD = false;
     public static String cpdCredit = "";
+    public static boolean isUpcomingListing = true;
 
 
     //for sign up proffesional credential

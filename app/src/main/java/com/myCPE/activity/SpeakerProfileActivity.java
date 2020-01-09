@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         binding.relImgBack.setOnClickListener(this);
         binding.linLiveWebinars.setOnClickListener(this);
         binding.linSelfStudy.setOnClickListener(this);
+        binding.tvWebsite.setOnClickListener(this);
 
         Intent intent = getIntent();
         company_id = intent.getIntExtra("company_id", 0);
@@ -85,11 +87,10 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         }
 
 
-
     }
 
     private void GetSpeakerDetails() {
-        mAPIService.GetSpeakerDetailsNew(getResources().getString(R.string.accept), ""+speaker_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mAPIService.GetSpeakerDetailsNew(getResources().getString(R.string.accept), "" + speaker_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<SpeakerDetailsNew>() {
                     @Override
                     public void onCompleted() {
@@ -118,10 +119,10 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                             }
 
                             String sampleResponse = speakerDetails.getPayload().getSpeaker().getSpeakerName();
-                            Log.e("*+*+*","Sample response : "+sampleResponse);
+                            Log.e("*+*+*", "Sample response : " + sampleResponse);
 
                             // Now we have all the data here to show in each tags..
-                            if(!speakerDetails.getPayload().getSpeaker().getSpeakerProfilePic().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getSpeakerProfilePic().equalsIgnoreCase("")) {
                                 profile_pic_url = speakerDetails.getPayload().getSpeaker().getSpeakerProfilePic();
 
                                 Picasso.with(context).load(profile_pic_url)
@@ -129,64 +130,64 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                                         .into(binding.imgProfilePic);
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getSpeakerName().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getSpeakerName().equalsIgnoreCase("")) {
                                 speaker_name = speakerDetails.getPayload().getSpeaker().getSpeakerName();
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getState().equalsIgnoreCase("") ||
+                            if (!speakerDetails.getPayload().getSpeaker().getState().equalsIgnoreCase("") ||
                                     !speakerDetails.getPayload().getSpeaker().getCity().equalsIgnoreCase("")) {
-                                speaker_location = speakerDetails.getPayload().getSpeaker().getCity() + ", " +speakerDetails.getPayload().getSpeaker().getState();
+                                speaker_location = speakerDetails.getPayload().getSpeaker().getCity() + ", " + speakerDetails.getPayload().getSpeaker().getState();
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getRating().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getRating().equalsIgnoreCase("")) {
                                 rating = speakerDetails.getPayload().getSpeaker().getRating();
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getSpeakerWebsite().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getSpeakerWebsite().equalsIgnoreCase("")) {
                                 website = speakerDetails.getPayload().getSpeaker().getSpeakerWebsite();
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getSpeakerDesignation().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getSpeakerDesignation().equalsIgnoreCase("")) {
                                 speaker_designation = speakerDetails.getPayload().getSpeaker().getSpeakerDesignation();
                             }
 
-                            if(!speakerDetails.getPayload().getSpeaker().getSpeakerDescription().equalsIgnoreCase("")) {
+                            if (!speakerDetails.getPayload().getSpeaker().getSpeakerDescription().equalsIgnoreCase("")) {
                                 description = speakerDetails.getPayload().getSpeaker().getSpeakerDescription();
                             }
 
                             if (speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().size() > 0) {
                                 binding.linAreaOfExpertise.setVisibility(View.VISIBLE);
                                 for (int i = 0; i < speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().size(); i++) {
-                                    if(i == 0) {
+                                    if (i == 0) {
                                         area_of_expertise = speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().get(0);
                                     } else {
-                                        area_of_expertise = area_of_expertise + ", \n"+speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().get(i);
+                                        area_of_expertise = area_of_expertise + ", \n" + speakerDetails.getPayload().getSpeaker().getAreaOfExpertise().get(i);
                                     }
                                 }
                             } else {
                                 binding.linAreaOfExpertise.setVisibility(View.GONE);
                             }
 
-                            if(speakerDetails.getPayload().getSpeaker().getReviewCount() != 0) {
-                                review_count = ""+speakerDetails.getPayload().getSpeaker().getReviewCount();
+                            if (speakerDetails.getPayload().getSpeaker().getReviewCount() != 0) {
+                                review_count = "" + speakerDetails.getPayload().getSpeaker().getReviewCount();
                             }
 
-                            if(speakerDetails.getPayload().getSpeaker().getNoOfWebinar() != 0) {
-                                webinar_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfWebinar();
+                            if (speakerDetails.getPayload().getSpeaker().getNoOfWebinar() != 0) {
+                                webinar_count = "" + speakerDetails.getPayload().getSpeaker().getNoOfWebinar();
                             }
 
-                            if(speakerDetails.getPayload().getSpeaker().getNoOfFollowers() != 0) {
-                                followers_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfFollowers();
+                            if (speakerDetails.getPayload().getSpeaker().getNoOfFollowers() != 0) {
+                                followers_count = "" + speakerDetails.getPayload().getSpeaker().getNoOfFollowers();
                             }
 
-                            if(speakerDetails.getPayload().getSpeaker().getSelfstudyWebinarCount() != 0) {
+                            if (speakerDetails.getPayload().getSpeaker().getSelfstudyWebinarCount() != 0) {
                                 selfStudyWebinarCount = speakerDetails.getPayload().getSpeaker().getSelfstudyWebinarCount();
                             }
 
                             liveWebinarCount = speakerDetails.getPayload().getSpeaker().getUpcomingWebinarCount() + speakerDetails.getPayload().getSpeaker().getPastWebinarCount();
 
-                            if(speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained() != 0) {
-                                professional_trained_count = ""+speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained();
+                            if (speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained() != 0) {
+                                professional_trained_count = "" + speakerDetails.getPayload().getSpeaker().getNoOfProfessionalsTrained();
                             }
 
                             upcomingWebinarCount = speakerDetails.getPayload().getSpeaker().getUpcomingWebinarCount();
@@ -214,15 +215,15 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         binding.tvFollowersCount.setText(followers_count);
         binding.tvDescription.setText(description);
         binding.tvWebsite.setText(website);
-        if(rating.equalsIgnoreCase("0.0")) {
+        if (rating.equalsIgnoreCase("0.0")) {
             binding.tvRatingReview.setText(rating);
         } else {
-            binding.tvRatingReview.setText(rating+" ("+review_count+" reviews)");
+            binding.tvRatingReview.setText(rating + " (" + review_count + " reviews)");
         }
-        binding.tvAreaOfexpertise.setText(""+area_of_expertise);
+        binding.tvAreaOfexpertise.setText("" + area_of_expertise);
 
-        binding.tvSelfStudyWebinarCount.setText(getResources().getString(R.string.str_self_on_demand).toUpperCase() +" ("+selfStudyWebinarCount+")");
-        binding.tvLiveWebinarCount.setText(getResources().getString(R.string.str_live_webinar).toUpperCase() + " ("+liveWebinarCount+")");
+        binding.tvSelfStudyWebinarCount.setText(getResources().getString(R.string.str_self_on_demand).toUpperCase() + " (" + selfStudyWebinarCount + ")");
+        binding.tvLiveWebinarCount.setText(getResources().getString(R.string.str_live_webinar).toUpperCase() + " (" + liveWebinarCount + ")");
 
     }
 
@@ -234,29 +235,43 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.linLiveWebinars:
-                if(liveWebinarCount != 0) {
+                if (liveWebinarCount != 0) {
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
-                    intent.putExtra("company_id",""+company_id);
-                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("company_id", "" + company_id);
+                    intent.putExtra("speaker_id", "" + speaker_id);
                     intent.putExtra("upcoming_count", upcomingWebinarCount);
                     intent.putExtra("past_count", previousWebinarCount);
-                    intent.putExtra("webinar_type","live");
+                    intent.putExtra("webinar_type", "live");
                     intent.putExtra("is_from", "speaker");
                     startActivity(intent);
                 }
                 break;
 
             case R.id.linSelfStudy:
-                if(selfStudyWebinarCount != 0) {
+                if (selfStudyWebinarCount != 0) {
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
-                    intent.putExtra("company_id",""+company_id);
-                    intent.putExtra("speaker_id",""+speaker_id);
+                    intent.putExtra("company_id", "" + company_id);
+                    intent.putExtra("speaker_id", "" + speaker_id);
                     intent.putExtra("upcoming_count", upcomingWebinarCount);
                     intent.putExtra("past_count", previousWebinarCount);
-                    intent.putExtra("webinar_type","self_study");
+                    intent.putExtra("webinar_type", "self_study");
                     intent.putExtra("is_from", "speaker");
                     startActivity(intent);
                 }
+                break;
+
+            case R.id.tvWebsite:
+
+                String url = website;
+                Log.e("*+*+*","Website : " + url);
+                if (!url.equalsIgnoreCase("")) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                } else {
+                    Snackbar.make(binding.relImgBack, "Oops, we didn't have the URL.", Snackbar.LENGTH_SHORT).show();
+                }
+
                 break;
         }
     }

@@ -57,7 +57,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
 
 
-        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+//        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

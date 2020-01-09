@@ -17,7 +17,7 @@
         <RelativeLayout
             android:id="@+id/relTopbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
             android:background="@color/webinar_status">
 
             <RelativeLayout
@@ -42,9 +42,8 @@
                 android:layout_centerVertical="true"
                 android:text="@string/str_title_company"
                 android:textColor="@color/White"
-                android:letterSpacing="0.05"
-                android:textSize="@dimen/_15sdp"
-                app:font_text="SFUIDisplay-Bold.ttf" />
+                android:textSize="@dimen/_17sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
 
         </RelativeLayout>
 
