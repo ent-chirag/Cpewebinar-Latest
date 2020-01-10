@@ -72,6 +72,8 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
         binding.linSelfStudy.setOnClickListener(this);
         binding.tvWebsite.setOnClickListener(this);
 
+        Constant.isFromCSPast = false;
+
         Intent intent = getIntent();
         company_id = intent.getIntExtra("company_id", 0);
         speaker_id = intent.getIntExtra("speaker_id", 0);

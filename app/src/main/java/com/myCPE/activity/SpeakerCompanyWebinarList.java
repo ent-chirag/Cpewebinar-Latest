@@ -318,6 +318,7 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                     Constant.isUpcomingListing = false;
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        Constant.isFromCSPast = true;
                         getListingData();
                     } else {
                         Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();

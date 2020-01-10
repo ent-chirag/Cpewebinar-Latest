@@ -47,6 +47,8 @@ public class Constant {
     public static float progWidth = 0;
     public static float progHeigth= 0;
 
+    public static boolean isFromCSPast = false;
+
 
 
     //Global Search

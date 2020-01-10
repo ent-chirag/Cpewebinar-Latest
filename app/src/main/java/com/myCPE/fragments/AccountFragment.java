@@ -92,6 +92,7 @@ public class AccountFragment extends Fragment {
 
         Constant.isCpdSelected = false;
         Constant.is_cpd = 0;
+        Constant.isFromCSPast = false;
 
         OnClick();
 

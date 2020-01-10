@@ -70,6 +70,7 @@ public class MyCreditsFragment extends Fragment {
         Constant.isFromSpeakerCompanyWebinarList = false;
         Constant.isCpdSelected = false;
         Constant.is_cpd = 0;
+        Constant.isFromCSPast = false;
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.recyclerviewMycredit.setLayoutManager(linearLayoutManager);

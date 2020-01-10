@@ -805,17 +805,20 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
 
-            } /*else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+            /*else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_resume_watching))) {
                 if (!VIDEO_URL.equalsIgnoreCase("")) {
                     PlayVideo();
                 } else {
                     Snackbar.make(binding.ivPlay, context.getResources().getString(R.string.str_video_link_not_avilable), Snackbar.LENGTH_SHORT).show();
                 }
-            } */ else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
+            } */
+            } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
                 // Load review Popup here..
-                showAddReviewPopUp();
+                if(!Constant.isFromCSPast) {
+                    showAddReviewPopUp();
+                }
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_certificate))) {
                 // checkAndroidVersionCertificate();
@@ -2241,7 +2244,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         super.onBackPressed();
         if (mExoPlayerFullscreen) {
             closeFullscreenDialog();
-        } else if(isFromSpeakerCompanyProfile) {
+        } else if (isFromSpeakerCompanyProfile) {
             finish();
         } else if (isNotification) {
             Intent i = new Intent(WebinarDetailsActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -2313,7 +2316,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 Webinar_title = webinar_details.getPayload().getWebinarDetail().getWebinarTitle();
                             }
 
-                            if (webinar_details.getPayload().getWebinarDetail().getIsWebinarCpd() == 1){
+                            if (webinar_details.getPayload().getWebinarDetail().getIsWebinarCpd() == 1) {
                                 Constant.isWebinarCPD = true;
                                 Constant.cpdCredit = webinar_details.getPayload().getWebinarDetail().getCpdCredit();
                             } else {
@@ -2356,11 +2359,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 presenter_image = webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getPresenterImage();
                             }
 
-                            if(webinar_details.getPayload().getWebinarDetail().getCompanyId() != 0) {
+                            if (webinar_details.getPayload().getWebinarDetail().getCompanyId() != 0) {
                                 company_id = webinar_details.getPayload().getWebinarDetail().getCompanyId();
                             }
 
-                            if(webinar_details.getPayload().getWebinarDetail().getSpeakerId() != 0) {
+                            if (webinar_details.getPayload().getWebinarDetail().getSpeakerId() != 0) {
                                 speaker_id = webinar_details.getPayload().getWebinarDetail().getSpeakerId();
                             }
 
@@ -2920,9 +2923,9 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                             if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                                     .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
-
-                                showAddReviewPopUp();
-
+                                if(!Constant.isFromCSPast) {
+                                    showAddReviewPopUp();
+                                }
                             }
 
                             if (webinartestimonial.size() > 0) {
@@ -3026,20 +3029,20 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
 
             case R.id.ivback:
-                Log.e("*+*+*","click ivBack");
+                Log.e("*+*+*", "click ivBack");
                 backpress();
-            break;
+                break;
 
             case R.id.relImgBack:
                 backpress();
-                Log.e("*+*+*","click relImgBack");
+                Log.e("*+*+*", "click relImgBack");
                 break;
         }
     }
 
     private void backpress() {
 
-        if(isFromSpeakerCompanyProfile) {
+        if (isFromSpeakerCompanyProfile) {
             finish();
         } else {
             if (isNotification) {
@@ -3299,12 +3302,12 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new TestimonialFragment(), getResources().getString(R.string.str_testimonials));
         adapter.addFragment(new OtherFragment(), getResources().getString(R.string.str_others));
-        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
             if (!webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
                 if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                         webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                     if (!isAnswered) {
-                        Constant.webinar_id = ""+webinarid;
+                        Constant.webinar_id = "" + webinarid;
 //                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
                     }
                 }
@@ -3332,12 +3335,12 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         adapter.addFragment(new PresenterFragment(), getResources().getString(R.string.str_presenter));
         adapter.addFragment(new CompanyFragment(), getResources().getString(R.string.str_detail_company));
         adapter.addFragment(new OtherFragment(), getResources().getString(R.string.str_others));
-        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
             if (!webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_register))) {
                 if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                         webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
                     if (!isAnswered) {
-                        Constant.webinar_id = ""+webinarid;
+                        Constant.webinar_id = "" + webinarid;
 //                        adapter.addFragment(new ReviewQuestionsFragment(), getResources().getString(R.string.str_review_question_lable));
                     }
                 }

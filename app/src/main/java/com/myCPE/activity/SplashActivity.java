@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Constant.isCpdSelected = false;
         Constant.is_cpd = 0;
+        Constant.isFromCSPast = false;
 
         DisplayVersionName();
         Navigation();

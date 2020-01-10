@@ -121,6 +121,7 @@ public class HomeAllFragment extends Fragment {
 
         Constant.isFromSpeakerCompanyWebinarList = false;
         Constant.hashmap_asnwer_review_question.clear();
+        Constant.isFromCSPast = false;
 
         bundle = getArguments();
 

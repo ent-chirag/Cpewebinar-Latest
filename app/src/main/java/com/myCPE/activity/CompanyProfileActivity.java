@@ -65,6 +65,8 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
         mAPIService = ApiUtilsNew.getAPIService();
         context = CompanyProfileActivity.this;
 
+        Constant.isFromCSPast = false;
+
         Intent intent = getIntent();
         company_id = intent.getIntExtra("company_id", 0);
         speaker_id = intent.getIntExtra("speaker_id", 0);
