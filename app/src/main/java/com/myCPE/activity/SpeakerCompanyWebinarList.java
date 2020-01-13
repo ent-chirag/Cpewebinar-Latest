@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -131,6 +133,29 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
                 callApiContent();
             }
         });
+
+        binding.rvhome.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (loading) {
+                    if (!islast) {
+                        if (isLastVisible()) {
+                            loading = false;
+                            start = start + 10;
+                            limit = 10;
+                            loadNextPage();
+                        }
+                    }
+                }
+            }
+        });
+
+        /*binding.rvhome.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });*/
 
     }
 
@@ -327,5 +352,23 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
 
                 break;
         }
+    }
+
+    private void loadNextPage() {
+        if (Constant.isNetworkAvailable(context)) {
+            binding.progressBar.setVisibility(View.VISIBLE);
+//            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+            getListingData();
+        } else {
+            Snackbar.make(binding.rvhome, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    boolean isLastVisible() {
+        LinearLayoutManager layoutManager = ((LinearLayoutManager) binding.rvhome.getLayoutManager());
+        int pos = layoutManager.findLastCompletelyVisibleItemPosition();
+        int numItems = binding.rvhome.getAdapter().getItemCount() - 1;
+
+        return (pos >= numItems);
     }
 }
