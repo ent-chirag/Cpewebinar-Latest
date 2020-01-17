@@ -8,6 +8,7 @@ import com.myCPE.model.My_Credit_New.Model_My_Credit_New;
 import com.myCPE.model.SpeakerDetails.SpeakerDetailsNew;
 import com.myCPE.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.myCPE.model.changepassword.ChangePasswordModel;
+import com.myCPE.model.check_version.VersionCheck;
 import com.myCPE.model.city.CityModel;
 import com.myCPE.model.company.CompanyModel;
 import com.myCPE.model.company_details.Company_details_model;
@@ -88,7 +89,6 @@ public interface APIService {
 
     //rxjava
 
-
     //login
     @POST("login")
     @FormUrlEncoded
@@ -157,6 +157,14 @@ public interface APIService {
             @Field("device_id") String device_id,
             @Field("device_token") String device_token,
             @Field("device_type") String device_type);
+
+    // Version Check
+    @POST("get-version")
+    @FormUrlEncoded
+    Observable<VersionCheck> get_version(
+            @Header("Accept") String accept,
+            @Field("device_type") String device_type1,
+            @Field("current_version") String version);
 
 
     //change password
