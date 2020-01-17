@@ -238,6 +238,9 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
 
             case R.id.linLiveWebinars:
                 if (liveWebinarCount != 0) {
+
+                    Constant.isUpcomingListing = true;
+
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id", "" + company_id);
                     intent.putExtra("speaker_id", "" + speaker_id);
@@ -251,6 +254,9 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
 
             case R.id.linSelfStudy:
                 if (selfStudyWebinarCount != 0) {
+
+                    Constant.isUpcomingListing = true;
+
                     intent = new Intent(SpeakerProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id", "" + company_id);
                     intent.putExtra("speaker_id", "" + speaker_id);
@@ -264,11 +270,22 @@ public class SpeakerProfileActivity extends AppCompatActivity implements View.On
 
             case R.id.tvWebsite:
 
+                if(website.contains("http")) {
+                    Log.e("*+*+*","Website contains https : "+website);
+                } else {
+//                    website = "https://"+website;
+                    website = "http://"+website;
+                    Log.e("*+*+*","Website didn't contains https : "+website);
+                }
+
                 String url = website;
+//                Uri uri = Uri.parse(""+url);
                 Log.e("*+*+*","Website : " + url);
+//                Log.e("*+*+*","Website URI : " + uri);
                 if (!url.equalsIgnoreCase("")) {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
+//                    Intent i = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(i);
                 } else {
                     Snackbar.make(binding.relImgBack, "Oops, we didn't have the URL.", Snackbar.LENGTH_SHORT).show();

@@ -61,6 +61,8 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
 
     private boolean loading = true;
 
+    private int apiCallCount = 0;
+
     LinearLayoutManager linearLayoutManager;
 
     private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<WebinarItem>();
@@ -73,6 +75,8 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_speaker_company_webinar_list);
 //        setContentView(R.layout.activity_speaker_company_webinar_list);
+
+        apiCallCount = 0;
 
         mAPIService = ApiUtilsNew.getAPIService();
         context = SpeakerCompanyWebinarList.this;
@@ -169,7 +173,9 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
             binding.rvhome.setItemAnimator(new DefaultItemAnimator());
             binding.rvhome.setHasFixedSize(true);
 
-            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+            if(apiCallCount == 0) {
+                progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+            }
             getListingData();
         } else {
             Snackbar.make(binding.relImgBack, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -178,6 +184,8 @@ public class SpeakerCompanyWebinarList extends AppCompatActivity implements View
     }
 
     private void getListingData() {
+
+        apiCallCount++;
 
 //        mAPIService.GetHomeWebinarListNew(getResources().getString(R.string.accept),
         mAPIService.GetCompanySpeakerWebinarListNew(getResources().getString(R.string.accept),

@@ -212,6 +212,9 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
 
             case R.id.linLiveWebinars:
                 if(liveWebinarCount != 0) {
+
+                    Constant.isUpcomingListing = true;
+
                     intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
@@ -225,6 +228,9 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
 
             case R.id.linSelfStudy:
                 if(selfStudyWebinarCount != 0) {
+
+                    Constant.isUpcomingListing = true;
+
                     intent = new Intent(CompanyProfileActivity.this, SpeakerCompanyWebinarList.class);
                     intent.putExtra("company_id",""+company_id);
                     intent.putExtra("speaker_id",""+speaker_id);
@@ -237,6 +243,15 @@ public class CompanyProfileActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.tvWebsite:
+
+                if(website.contains("http")) {
+                    Log.e("*+*+*","Website contains https : "+website);
+                } else {
+//                    website = "https://"+website;
+                    website = "http://"+website;
+                    Log.e("*+*+*","Website didn't contains https : "+website);
+                }
+
                 String url = website;
                 Log.e("*+*+*","Website : " + url);
                 if (!url.equalsIgnoreCase("")) {
