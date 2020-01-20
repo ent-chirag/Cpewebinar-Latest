@@ -13,6 +13,12 @@ public class Data{
 	@SerializedName("current_version")
 	private String currentVersion;
 
+	@SerializedName("update_message")
+	private String updateMessage;
+
+	@SerializedName("is_logout")
+	private boolean isLogout;
+
 	public void setIsForceUpdate(boolean isForceUpdate){
 		this.isForceUpdate = isForceUpdate;
 	}
@@ -37,13 +43,31 @@ public class Data{
 		return currentVersion;
 	}
 
-	@Override
+    public String getUpdateMessage() {
+        return updateMessage;
+    }
+
+    public void setUpdateMessage(String updateMessage) {
+        this.updateMessage = updateMessage;
+    }
+
+    public boolean isLogout() {
+        return isLogout;
+    }
+
+    public void setLogout(boolean logout) {
+        isLogout = logout;
+    }
+
+    @Override
  	public String toString(){
-		return 
-			"Data{" + 
-			"is_force_update = '" + isForceUpdate + '\'' + 
-			",is_update = '" + isUpdate + '\'' + 
-			",current_version = '" + currentVersion + '\'' + 
+		return
+			"Data{" +
+			"is_force_update = '" + isForceUpdate + '\'' +
+			",is_update = '" + isUpdate + '\'' +
+			",current_version = '" + currentVersion + '\'' +
+			",update_message = '" + updateMessage + '\'' +
+			",is_logout = '" + isLogout + '\'' +
 			"}";
 		}
 }

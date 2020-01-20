@@ -72,6 +72,9 @@
     <string name="str_video_validation">Please Register the Webinar.</string>
     <string name="str_video_link_not_avilable">video link is not avilable.</string>
 
+    <string name="str_forceupdate_1">You must need to update the app for using further app.</string>
+    <string name="str_update_1">New version of application is available on the play store, would you like to update your app?</string>
+
     <string name="str_alert">Oops</string>
 
 
