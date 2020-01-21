@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_5sdp">
-
+        android:layout_marginTop="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/ivwebinar_thumbhel"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
             android:scaleType="fitXY" />
 
         <FrameLayout
@@ -98,15 +99,13 @@
 
         </FrameLayout>
 
-
         <RelativeLayout
             android:id="@+id/relbottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivwebinar_thumbhel"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:padding="@dimen/_2sdp">
+            android:layout_marginTop="@dimen/_5sdp">
 
 
             <RelativeLayout

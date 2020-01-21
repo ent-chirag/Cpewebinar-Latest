@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -281,6 +282,12 @@ public class CompanySpeakerWebinarListAdapter extends RecyclerView.Adapter {
             } else {
                 ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.setImageResource(R.mipmap.webinar_placeholder);
             }
+
+            Log.e("*+*+*","Converted height from adapter is : "+Constant.progHeigth);
+            Log.e("*+*+*","Converted height from Rounded value adapter is : "+Math.round(Constant.progHeigth));
+
+//            ((HomeALLAdapter.HomeViewHolder) viewHolder).ivwebinar_thumbhel.getLayoutParams().height = Math.round(Constant.progHeigth);
+            ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.getLayoutParams().height = Math.round(Constant.progHeigth);
 
             if (!mList.get(position).getCpaCredit().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).credit_status.setText(mList.get(position).getCpaCredit());
