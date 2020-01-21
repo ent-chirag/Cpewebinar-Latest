@@ -79,16 +79,11 @@ public class SplashActivity extends AppCompatActivity {
                     public void onError(Throwable e) {
                         //handle failure response
 
-                        /*if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }*/
-
                         String message = Constant.GetReturnResponse(context, e);
                         Snackbar.make(binding.tvbuildnumber, message, Snackbar.LENGTH_SHORT).show();
 
                     }
-
-
+                    
                     @Override
                     public void onNext(VersionCheck versionCheck) {
                         if (versionCheck.isSuccess()) {
@@ -137,89 +132,6 @@ public class SplashActivity extends AppCompatActivity {
                                 boolean isForceUpdate = versionCheck.getPayload().getData().isIsForceUpdate();
 
                                 callUpdateCheck(isUpdate, isForceUpdate);
-                                /*if(versionCheck.getPayload().getData().isIsUpdate()) {
-                                    // There is the update here now have to check for the force update here..
-                                    // Show the popup for the update..
-                                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-                                    if(versionCheck.getPayload().getData().isIsForceUpdate()){
-                                        // This is the force update case..
-//                                    alertDialog.setMessage(getResources().getString(R.string.str_forceupdate_1));
-                                        alertDialog.setMessage(""+update_msg);
-                                        alertDialog.setCancelable(false);
-                                        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-
-                                                final String appPackageName = getPackageName(); // package name of the app
-                                                try {
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                                                } catch (android.content.ActivityNotFoundException anfe) {
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                                                }
-
-                                            *//*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                finishAffinity();
-                                                System.exit(0);
-                                            } else {
-                                                finish();
-                                            }*//*
-                                            }
-                                        });
-                                        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                    finishAffinity();
-                                                    System.exit(0);
-                                                } else {
-                                                    finish();
-                                                }
-                                            }
-                                        });
-
-                                        alertDialog.show();
-                                    } else {
-                                        // This is the normal update only..
-
-//                                    alertDialog.setMessage(getResources().getString(R.string.str_update_1));
-                                        alertDialog.setMessage(""+update_msg);
-                                        alertDialog.setCancelable(false);
-                                        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-
-                                                final String appPackageName = getPackageName(); // package name of the app
-                                                try {
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                                                } catch (android.content.ActivityNotFoundException anfe) {
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                                                }
-
-                                            *//*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                finishAffinity();
-                                                System.exit(0);
-                                            } else {
-                                                finish();
-                                            }*//*
-                                            }
-                                        });
-                                        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-                                                newNavigation();
-                                            }
-                                        });
-
-                                        alertDialog.show();
-                                    }
-                                } else {
-                                    // There is no need to update the app and allow user to access the app as normally..
-                                    newNavigation();
-                                }*/
                             }
                         } else {
                             Snackbar.make(binding.tvbuildnumber, versionCheck.getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -249,12 +161,6 @@ public class SplashActivity extends AppCompatActivity {
                                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                                         }
 
-                                            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                finishAffinity();
-                                                System.exit(0);
-                                            } else {
-                                                finish();
-                                            }*/
                                     }
                                 });
                                 alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -289,12 +195,6 @@ public class SplashActivity extends AppCompatActivity {
                                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                                         }
 
-                                            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                                finishAffinity();
-                                                System.exit(0);
-                                            } else {
-                                                finish();
-                                            }*/
                                     }
                                 });
                                 alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
