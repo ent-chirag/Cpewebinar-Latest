@@ -15,6 +15,7 @@
     <color name="detail_heading">#fafafa</color>
     <color name="designation">#7b7b7d</color>
     <color name="view_sep">#e5e5e7</color>
+    <color name="red_warning">#fe0000</color>
 
     <color name="sign_up_heading">#001944</color>
     <color name="edit_field_hint">#bcbcbc</color>

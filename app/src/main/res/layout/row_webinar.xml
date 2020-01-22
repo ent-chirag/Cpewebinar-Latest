@@ -27,7 +27,6 @@
             android:layout_alignBottom="@+id/ivwebinar_thumbhel"
             android:visibility="gone">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +52,6 @@
                         android:src="@drawable/like"
                         android:visibility="gone" />
 
-
                     <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_favorite_count"
                         android:layout_width="wrap_content"
@@ -66,7 +64,6 @@
                         android:visibility="gone"
                         app:font_text="Montserrat-Medium.ttf" />
 
-
                     <ImageView
                         android:id="@+id/ivgroup"
                         android:layout_width="wrap_content"
@@ -76,7 +73,6 @@
                         android:layout_toLeftOf="@+id/tv_attend_views"
                         android:src="@mipmap/group"
                         android:visibility="gone" />
-
 
                     <com.myCPE.view.CustomTextView
                         android:id="@+id/tv_attend_views"
@@ -90,12 +86,9 @@
                         android:visibility="gone"
                         app:font_text="Montserrat-Medium.ttf" />
 
-
                 </RelativeLayout>
 
-
             </RelativeLayout>
-
 
         </FrameLayout>
 
@@ -107,7 +100,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/_5sdp">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,9 +108,7 @@
                 android:layout_toLeftOf="@+id/ivmain"
                 android:visibility="gone">
 
-
             </RelativeLayout>
-
 
             <!--  <ImageView
                   android:id="@+id/ivmain"
@@ -134,7 +124,6 @@
                 android:layout_centerHorizontal="true"
                 android:background="@color/fav_date_time"
                 android:visibility="gone"></View>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -179,7 +168,6 @@
                             android:textSize="@dimen/_9sdp"
                             app:font_button="Montserrat-Medium.ttf" />
 
-
                         <com.myCPE.view.CustomButtonView
                             android:id="@+id/tv_webinar_type"
                             android:layout_width="wrap_content"
@@ -190,7 +178,6 @@
                             android:textColor="@color/White"
                             android:textSize="@dimen/_9sdp"
                             app:font_button="Montserrat-Medium.ttf" />
-
 
                     </LinearLayout>
 
@@ -222,7 +209,6 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
-
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_rating_number"
                             android:layout_width="wrap_content"
@@ -234,7 +220,6 @@
                             android:textSize="@dimen/_8sdp"
                             app:font_text="Montserrat-Bold.ttf" />
 
-
                         <ImageView
                             android:id="@+id/iv_rating"
                             android:layout_width="wrap_content"
@@ -242,7 +227,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/_5sdp"
                             android:layout_toLeftOf="@+id/tv_rating_count" />
-
 
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_rating_count"
@@ -253,7 +237,6 @@
                             android:textColor="@color/home_tab_color_unselected"
                             android:textSize="@dimen/_8sdp"
                             app:font_text="Montserrat-Bold.ttf" />
-
 
                     </RelativeLayout>
 
@@ -282,7 +265,6 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -298,7 +280,6 @@
                             android:layout_centerVertical="true"
                             android:src="@mipmap/home_clock" />
 
-
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_webinar_date"
                             android:layout_width="wrap_content"
@@ -311,7 +292,6 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
-
                         <View
                             android:id="@+id/dv_divider"
                             android:layout_width="1dp"
@@ -321,7 +301,6 @@
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_toRightOf="@+id/tv_webinar_date"
                             android:background="@color/webinar_status" />
-
 
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_webinar_time"
@@ -335,7 +314,6 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
-
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_timezone"
                             android:layout_width="wrap_content"
@@ -347,14 +325,12 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_text="OpenSans-Regular.ttf" />
 
-
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp">
-
 
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_lable"
@@ -366,10 +342,9 @@
                             android:ems="11"
                             android:inputType="textMultiLine|textNoSuggestions"
                             android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="@dimen/_10sdp"
-                            app:font_text="Montserrat-Bold.ttf" />
-
+                            android:textColor="@color/red_warning"
+                            android:textSize="@dimen/_9sdp"
+                            app:font_text="Montserrat-SemiBold.ttf" />
 
                         <com.myCPE.view.CustomTextView
                             android:id="@+id/tv_enrolled"
@@ -382,7 +357,6 @@
                             app:font_text="Montserrat-Bold.ttf" />
 
                     </RelativeLayout>
-
 
                     <RelativeLayout
                         android:id="@+id/relBottomButton"
@@ -400,24 +374,20 @@
                             android:textSize="@dimen/_9sdp"
                             app:font_button="Montserrat-Medium.ttf" />
 
-
                         <ImageView
                             android:id="@+id/ivshare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_15sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
                             android:layout_toLeftOf="@+id/webinar_status"
-                            android:src="@mipmap/home_share"
-                            />
-
+                            android:src="@mipmap/home_share"/>
 
                     </RelativeLayout>
 
-
                 </LinearLayout>
-
 
             </RelativeLayout>
 
@@ -430,11 +400,8 @@
             android:layout_below="@+id/relbottom"
             android:visibility="invisible">
 
-
         </RelativeLayout>
 
-
     </RelativeLayout>
-
 
 </RelativeLayout>
