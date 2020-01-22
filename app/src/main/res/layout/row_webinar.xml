@@ -106,9 +106,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toLeftOf="@+id/ivmain"
-                android:visibility="gone">
-
-            </RelativeLayout>
+                android:visibility="gone"/>
 
             <!--  <ImageView
                   android:id="@+id/ivmain"
@@ -123,7 +121,7 @@
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/fav_date_time"
-                android:visibility="gone"></View>
+                android:visibility="gone"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -398,9 +396,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_below="@+id/relbottom"
-            android:visibility="invisible">
-
-        </RelativeLayout>
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 
