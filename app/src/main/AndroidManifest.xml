@@ -73,6 +73,7 @@
         <activity
             android:name=".activity.WebinarDetailsActivity"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activity.EditProfileActivity"
