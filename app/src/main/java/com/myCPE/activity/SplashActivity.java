@@ -147,9 +147,10 @@ public class SplashActivity extends AppCompatActivity {
                             if(isForceUpdate){
                                 // This is the force update case..
 //                                    alertDialog.setMessage(getResources().getString(R.string.str_forceupdate_1));
+                                alertDialog.setTitle("myCPE");
                                 alertDialog.setMessage(""+update_msg);
                                 alertDialog.setCancelable(false);
-                                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                alertDialog.setPositiveButton("Update Now", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
@@ -163,7 +164,7 @@ public class SplashActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                /*alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
@@ -174,16 +175,17 @@ public class SplashActivity extends AppCompatActivity {
                                             finish();
                                         }
                                     }
-                                });
+                                });*/
 
                                 alertDialog.show();
                             } else {
                                 // This is the normal update only..
 
 //                                    alertDialog.setMessage(getResources().getString(R.string.str_update_1));
+                                alertDialog.setTitle("myCPE");
                                 alertDialog.setMessage(""+update_msg);
                                 alertDialog.setCancelable(false);
-                                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                alertDialog.setPositiveButton("Update Now", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
@@ -197,7 +199,7 @@ public class SplashActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                alertDialog.setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
