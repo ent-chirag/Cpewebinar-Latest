@@ -16,6 +16,7 @@ import android.view.View;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityLoginBinding;
+import com.myCPE.databinding.ActivityLoginNewLayoutBinding;
 import com.myCPE.model.login.LoginModel;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
@@ -28,7 +29,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity {
-    ActivityLoginBinding binding;
+//    ActivityLoginBinding binding;
+    ActivityLoginNewLayoutBinding binding;
     public Context context;
     private APIService mAPIService;
     private boolean checkpasswordvisiblestatus = false;
@@ -39,7 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login_new_layout);
         mAPIService = ApiUtilsNew.getAPIService();
         context = LoginActivity.this;
 
@@ -49,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         Constant.isCpdSelected = false;
         Constant.is_cpd = 0;
 
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        binding.relSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Constant.hideKeyboard((Activity) context);
@@ -59,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginPost(Constant.Trim(binding.edtusername.getText().toString()), Constant.Trim(binding.edtpassword.getText()
                                 .toString()), AppSettings.get_device_id(context), AppSettings.get_device_token(context), Constant.device_type);
                     } else {
-                        Snackbar.make(binding.btnSubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(binding.relSignIn, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
 
 
@@ -68,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        binding.tvregister.setOnClickListener(new View.OnClickListener() {
+        binding.txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -81,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        binding.strForgotpassword.setOnClickListener(new View.OnClickListener() {
+        binding.txtForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
@@ -154,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         String message = Constant.GetReturnResponse(context, e);
-                        Snackbar.make(binding.btnSubmit, message, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(binding.relSignIn, message, Snackbar.LENGTH_SHORT).show();
 
 
                     }
@@ -188,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
 
 
-                            Snackbar.make(binding.btnSubmit, login.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relSignIn, login.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 

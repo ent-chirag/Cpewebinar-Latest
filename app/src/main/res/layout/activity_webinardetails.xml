@@ -103,6 +103,15 @@
 
         </RelativeLayout>
 
+        <ImageView
+            android:id="@+id/ivthumbhelDummy"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/webinar_placeholder"
+            android:layout_below="@+id/rvtitle"
+            android:visibility="invisible" />
+
         <RelativeLayout
             android:id="@+id/rvwebinartitle"
             android:layout_width="match_parent"
