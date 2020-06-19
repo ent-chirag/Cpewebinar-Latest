@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.myCPE.activity.SignUpActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/relTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:src="@mipmap/back"
+                android:tint="@color/black" />
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="match_parent" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/str_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_signup_n"
+                android:textColor="@color/sign_up_heading"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relTitle"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:layout_marginRight="@dimen/_22sdp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.myCPE.view.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:lineSpacingExtra="@dimen/_1sdp"
+                    android:text="@string/str_register_yourself"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_22sdp"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:background="@drawable/underline_bg"
+                    android:hint="@string/str_first_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg"
+                    android:textSize="@dimen/_13sdp"
+                    android:hint="@string/str_last_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_emailid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_emailid"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg"
+                    android:hint="@string/str_email_id"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg"
+                    android:hint="@string/str_phone_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="14"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg"
+                    android:drawableRight="@mipmap/password_eys"
+                    android:hint="@string/str_reg_password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <!--<android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_confirmpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+                <com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_confirmpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg"
+                    android:drawableRight="@mipmap/password_eys"
+                    android:hint="@string/str_confirm_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg">
+
+                    <Spinner
+                        android:id="@+id/spinner_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:src="@mipmap/drop_down_arrow" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:background="@color/view_edit_profile" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg">
+
+                    <Spinner
+                        android:id="@+id/spinner_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:src="@mipmap/drop_down_arrow" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:background="@color/view_edit_profile" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/underline_bg">
+
+                    <Spinner
+                        android:id="@+id/spinner_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:src="@mipmap/drop_down_arrow" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:background="@color/view_edit_profile" />-->
+
+                <!--<com.myCPE.view.CustomButtonView
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/str_btn_next"
+                    android:textColor="@color/White"
+                    app:font_button="SFUIDisplay-Bold.ttf" />-->
+
+                <RelativeLayout
+                    android:id="@+id/relRawLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtpassword"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_50sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtSignIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_next"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/card_text_number_color"
+                        android:textSize="@dimen/_22sdp"
+                        app:font_text="Montserrat-Bold.ttf" />
+
+                    <RelativeLayout
+                        android:id="@+id/relNext"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:background="@drawable/circular_button_orange"
+                        android:layout_alignParentRight="true"></RelativeLayout>
+
+                </RelativeLayout>
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_signin_ul"
+                    android:visibility="gone"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:textStyle="bold"
+                    app:font_text="Montserrat-Bold.ttf" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!--<RelativeLayout
+            android:id="@+id/relbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/str_alredy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/str_alredy_account"
+                android:textColor="@color/login_do_not_have_account"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:font_text="SFUIDisplay-Medium.ttf" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/str_alredy"
+                android:text="@string/str_logi_now"
+                android:textColor="@color/sign_up_heading"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:font_text="SFUIDisplay-Medium.ttf" />
+
+        </RelativeLayout>-->
+
+    </RelativeLayout>
+
+</layout>

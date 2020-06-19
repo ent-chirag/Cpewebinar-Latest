@@ -87,7 +87,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen"/>
         <activity
             android:name=".activity.StripePaymentActivity"
             android:screenOrientation="portrait"

@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityForgotpasswordBinding;
+import com.myCPE.databinding.ActivityForgotpasswordNewLayoutBinding;
 import com.myCPE.model.forgotpassword.Forgotpaawordmodel;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
@@ -24,7 +25,8 @@ import rx.schedulers.Schedulers;
 
 
 public class ForgotPasswordActivity extends AppCompatActivity {
-    ActivityForgotpasswordBinding binding;
+//    ActivityForgotpasswordBinding binding;
+    ActivityForgotpasswordNewLayoutBinding binding;
     public Context context;
     private APIService mAPIService_new;
     ProgressDialog progressDialog;
@@ -32,7 +34,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_forgotpassword);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_forgotpassword);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_forgotpassword_new_layout);
         context = ForgotPasswordActivity.this;
         mAPIService_new = ApiUtilsNew.getAPIService();
 

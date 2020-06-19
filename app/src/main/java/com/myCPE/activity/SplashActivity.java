@@ -83,7 +83,7 @@ public class SplashActivity extends AppCompatActivity {
                         Snackbar.make(binding.tvbuildnumber, message, Snackbar.LENGTH_SHORT).show();
 
                     }
-                    
+
                     @Override
                     public void onNext(VersionCheck versionCheck) {
                         if (versionCheck.isSuccess()) {
@@ -92,9 +92,9 @@ public class SplashActivity extends AppCompatActivity {
                             update_msg = versionCheck.getPayload().getData().getUpdateMessage();
                             // First we have to check for the user as guest user or logged in user..
                             // If the user is guest user then we have to check for the isUpdate the app..
-                            if(!AppSettings.get_login_token(context).isEmpty()) {
+                            if (!AppSettings.get_login_token(context).isEmpty()) {
                                 // User is logged in..
-                                if(versionCheck.getPayload().getData().isLogout()){
+                                if (versionCheck.getPayload().getData().isLogout()) {
                                     if (Constant.isNetworkAvailable(context)) {
                                         AppSettings.removeFromSharedPreferences(context, getResources().getString(R.string.str_token));
                                         AppSettings.set_login_token(context, "");
@@ -140,15 +140,15 @@ public class SplashActivity extends AppCompatActivity {
 
                     private void callUpdateCheck(boolean isUpdate, boolean isForceUpdate) {
 
-                        if(isUpdate) {
+                        if (isUpdate) {
                             // There is the update here now have to check for the force update here..
                             // Show the popup for the update..
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-                            if(isForceUpdate){
+                            if (isForceUpdate) {
                                 // This is the force update case..
 //                                    alertDialog.setMessage(getResources().getString(R.string.str_forceupdate_1));
                                 alertDialog.setTitle("myCPE");
-                                alertDialog.setMessage(""+update_msg);
+                                alertDialog.setMessage("" + update_msg);
                                 alertDialog.setCancelable(false);
                                 alertDialog.setPositiveButton("Update Now", new DialogInterface.OnClickListener() {
                                     @Override
@@ -183,7 +183,7 @@ public class SplashActivity extends AppCompatActivity {
 
 //                                    alertDialog.setMessage(getResources().getString(R.string.str_update_1));
                                 alertDialog.setTitle("myCPE");
-                                alertDialog.setMessage(""+update_msg);
+                                alertDialog.setMessage("" + update_msg);
                                 alertDialog.setCancelable(false);
                                 alertDialog.setPositiveButton("Update Now", new DialogInterface.OnClickListener() {
                                     @Override
@@ -253,23 +253,23 @@ public class SplashActivity extends AppCompatActivity {
 
         } else {
 
-            if (!AppSettings.get_walkthrough(context)) {
+            /*if (!AppSettings.get_walkthrough(context)) {
 
                 Intent i = new Intent(SplashActivity.this, WelcomeActivity.class);
                 startActivity(i);
                 finish();
 
+            } else {*/
+            if (!AppSettings.get_login_token(context).isEmpty()) {
+                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             } else {
-                if (!AppSettings.get_login_token(context).isEmpty()) {
-                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                } else {
-                    Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
-                    startActivity(i);
-                    finish();
-                }
+                Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                startActivity(i);
+                finish();
             }
+//            }
 
 
         }

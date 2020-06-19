@@ -36,6 +36,7 @@ import com.myCPE.R;
 import com.myCPE.adapter.AdditionalQualificationPopUpAdapter;
 import com.myCPE.adapter.ProffesionalCredentialPopUpAdapter;
 import com.myCPE.databinding.ActivitySignupNextBinding;
+import com.myCPE.databinding.ActivitySignupNextNewLayoutBinding;
 import com.myCPE.model.Job_title.ModelJobTitle;
 import com.myCPE.model.Proffesional_Credential.Model_proffesional_Credential;
 import com.myCPE.model.additional_qualification.Model_additional_qualification;
@@ -62,7 +63,8 @@ import rx.schedulers.Schedulers;
 
 public class SignUpNextActivity extends AppCompatActivity {
 
-    ActivitySignupNextBinding binding;
+//    ActivitySignupNextBinding binding;
+    ActivitySignupNextNewLayoutBinding binding;
 
     private APIService mAPIService_new;
     ProgressDialog progressDialog;
@@ -120,7 +122,8 @@ public class SignUpNextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_next);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_next);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_next_new_layout);
         context = SignUpNextActivity.this;
         myDialog_proffesionl_credential = new Dialog(context);
         myDialog_additional_qualification = new Dialog(context);

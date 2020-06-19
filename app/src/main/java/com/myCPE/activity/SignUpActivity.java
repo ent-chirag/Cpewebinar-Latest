@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivitySignupBinding;
+import com.myCPE.databinding.ActivitySignupNewLayoutBinding;
 import com.myCPE.model.EmailValidation.emailvalidationmodel;
 import com.myCPE.model.city.CityItem;
 import com.myCPE.model.city.CityModel;
@@ -50,7 +51,8 @@ import rx.schedulers.Schedulers;
 
 public class SignUpActivity extends AppCompatActivity {
     public Context context;
-    ActivitySignupBinding binding;
+//    ActivitySignupBinding binding;
+    ActivitySignupNewLayoutBinding binding;
     private APIService mAPIService_new;
     private static final String TAG = SignUpActivity.class.getName();
     private boolean checkpasswordvisiblestatus = false;
@@ -87,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_new_layout);
         context = SignUpActivity.this;
         mAPIService_new = ApiUtilsNew.getAPIService();
 
@@ -127,6 +129,14 @@ public class SignUpActivity extends AppCompatActivity {
                 new WeakReference<EditText>(binding.edtPhoneNumber));
         binding.edtPhoneNumber.addTextChangedListener(addLineNumberFormatter);
 
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, PreLoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         binding.edtPhoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -168,7 +178,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (Constant.isNetworkAvailable(context)) {
                             CheckEmail(Constant.Trim(binding.edtEmailid.getText().toString()));
                         } else {
-                            Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
 
                     } else {
@@ -190,7 +200,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (Constant.isNetworkAvailable(context)) {
                         CheckEmail(Constant.Trim(binding.edtEmailid.getText().toString()));
                     } else {
-                        Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
 
                 } else {
@@ -205,7 +215,7 @@ public class SignUpActivity extends AppCompatActivity {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetCountry();
         } else {
-            Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
 
@@ -327,7 +337,7 @@ public class SignUpActivity extends AppCompatActivity {
                             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                             GetState(country_id);
                         } else {
-                            Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -364,7 +374,7 @@ public class SignUpActivity extends AppCompatActivity {
                             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                             GetCity(state_id);
                         } else {
-                            Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 
@@ -409,12 +419,12 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+        binding.relNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (Constant.isNetworkAvailable(context)) {
-                    if (Validation()) {
+//                    if (Validation()) {
 
                         Intent i = new Intent(SignUpActivity.this, SignUpNextActivity.class);
                         i.putExtra(context.getResources().getString(R.string.str_signup_first_name), Constant.Trim(binding.edtFirstname.getText().toString()));
@@ -434,9 +444,9 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
 
-                    }
+//                    }
                 } else {
-                    Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                 }
 
 
@@ -467,7 +477,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.btnNext, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -516,7 +526,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                            Snackbar.make(binding.btnNext, cityModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, cityModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -555,7 +565,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (Constant.isNetworkAvailable(context)) {
                                 GetCity(state_id_pos);
                             } else {
-                                Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                             }
                         }
 
@@ -572,7 +582,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.btnNext, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -626,7 +636,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                            Snackbar.make(binding.btnNext, stateModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, stateModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -658,7 +668,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } /*else {
-                            Snackbar.make(binding.btnNext, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, message, Snackbar.LENGTH_SHORT).show();
                         }*/
 
 
@@ -674,7 +684,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             isemailexist = emailvalidationmodel.getMessage();
 
-                            Snackbar.make(binding.btnNext, emailvalidationmodel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, emailvalidationmodel.getMessage(), Snackbar.LENGTH_SHORT).show();
 
                         } else {
 
@@ -712,7 +722,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(context, LoginActivity.class);
+        Intent i = new Intent(context, PreLoginActivity.class);
         startActivity(i);
         finish();
     }
@@ -729,7 +739,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (Constant.isNetworkAvailable(context)) {
                                 GetState(country_id_pos);
                             } else {
-                                Snackbar.make(binding.btnNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(binding.relNext, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                             }
                         } else {
 //                            getstatearralist.add("State");
@@ -757,7 +767,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.btnNext, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, message, Snackbar.LENGTH_SHORT).show();
 
                         }
 
@@ -802,7 +812,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                            Snackbar.make(binding.btnNext, CountryModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relNext, CountryModel.getMessage(), Snackbar.LENGTH_SHORT).show();
 
                         }
 

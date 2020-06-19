@@ -55,6 +55,7 @@
     <string name="str_guest_user_dialog_title">MY CPE</string>
     <string name="str_guest_user_dialog_title_new">myCPE</string>
     <string name="str_login_guest">Login</string>
+    <string name="str_login_guest_ul"><u>Login</u></string>
     <string name="str_cancel_guest">Cancel</string>
     <string name="str_sharing_not_avilable">Sharing link is not avilable.</string>
     <string name="str_joinlink_not_avilable">Join link is not avilable.</string>
@@ -105,8 +106,12 @@
     <string name="str_walk_through_screen">walkscreen</string>
     <string name="str_create_account">Create an Account</string>
     <string name="str_welcome">Welcome\nBack</string>
+    <string name="str_register_yourself">Register\nYourself</string>
     <string name="str_signin">Sign In</string>
+    <string name="str_signin_ul"><u>Sign In</u></string>
+    <string name="str_signup_ul"><u>Sign Up</u></string>
     <string name="str_signup_n">Sign Up</string>
+    <string name="str_fp_ul"><u>Forgot Password?</u></string>
 
 
     //dashboard
@@ -181,6 +186,7 @@
     <string name="forgot_password_submit_button">SUBMIT</string>
     <string name="forgot_edit_email">Enter Your Email Address</string>
     <string name="forgot_header_text">Please Enter Your Registered Email</string>
+    <string name="forgot_header_text_new">Enter Your \nRegistered Email</string>
     action_settings
 
     //contact us
@@ -332,6 +338,7 @@
     //rating popup
     <string name="review_popup_header">Give us your Feedback</string>
     <string name="str_submit">SUBMIT</string>
+    <string name="str_submit_lower">Submit</string>
     <string name="str_your_name">Your Feedback</string>
     <string name="str_subject">Subject</string>
     <string name="val_subject">Please Enter Subject</string>

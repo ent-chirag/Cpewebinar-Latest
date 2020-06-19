@@ -7,6 +7,6 @@
     android:layout_marginLeft="@dimen/_2sdp"
     android:background="@drawable/spineritem_border"
     android:padding="@dimen/_5sdp"
-    android:textSize="@dimen/_12sdp"
+    android:textSize="@dimen/_13sdp"
     app:font_edit="SFUIDisplay-Medium.ttf" />
 
