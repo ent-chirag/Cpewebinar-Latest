@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +18,13 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.myCPE.MainActivity;
@@ -95,6 +99,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         AppSettings.set_device_id(context, Constant.GetDeviceid(context));
 
+        final Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -188,6 +194,22 @@ public class SignUpActivity extends AppCompatActivity {
 
                 }
                 return false;
+            }
+        });
+
+        binding.txtSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relCountryView.startAnimation(slide_up);
+                binding.relCountryView.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.relCountryView.setVisibility(View.VISIBLE);
+                    }
+                },1500);
+
             }
         });
 

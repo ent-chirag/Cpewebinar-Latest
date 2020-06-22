@@ -5,4 +5,4 @@
     android:layout_height="wrap_content"
     android:textSize="@dimen/_13sdp"
     android:textColor="@color/grid_topics"
-    app:font_edit="SFUIDisplay-Medium.ttf" />
+    app:font_edit="Whitney-Semibold.ttf" />

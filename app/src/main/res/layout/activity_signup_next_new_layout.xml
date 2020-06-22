@@ -414,7 +414,15 @@
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/circular_button_orange"></RelativeLayout>
+                        android:background="@drawable/circular_button_orange">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:background="@drawable/ic_arrow_right_max"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 

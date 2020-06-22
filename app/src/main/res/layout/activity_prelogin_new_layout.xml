@@ -28,12 +28,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_toLeftOf="@+id/iv_forward"
                 android:text="Skip"
-                android:textColor="@color/theme_background"
+                android:textColor="@color/black_full"
                 android:textSize="@dimen/_14sdp"
-                app:font_text="Montserrat-Regular.ttf" />
+                app:font_text="Whitney-Medium.ttf" />
 
             <ImageView
                 android:id="@+id/iv_forward"
@@ -43,8 +43,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_9sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:visibility="gone"
                 android:src="@drawable/forward"
-                android:tint="@color/theme_background" />
+                android:tint="@color/black_full" />
 
         </LinearLayout>
 
@@ -98,8 +99,8 @@
                 android:textColor="@color/White"
                 android:background="@drawable/rounded_login"
                 android:lineSpacingExtra="@dimen/_3sdp"
-                android:textSize="@dimen/_11sdp"
-                app:font_text="Montserrat-Medium.ttf" />
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Whitney-Bold.ttf" />
 
             <com.myCPE.view.CustomTextView
                 android:id="@+id/strsignup"
@@ -112,8 +113,8 @@
                 android:textColor="@color/White"
                 android:background="@drawable/rounded_signup"
                 android:lineSpacingExtra="@dimen/_3sdp"
-                android:textSize="@dimen/_11sdp"
-                app:font_text="Montserrat-Medium.ttf" />
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Whitney-Bold.ttf" />
 
         </LinearLayout>
 

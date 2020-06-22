@@ -27,9 +27,8 @@
                 android:layout_marginTop="@dimen/_90sdp"
                 android:text="@string/str_welcome"
                 android:textColor="@color/theme_background"
-                android:lineSpacingExtra="@dimen/_3sdp"
                 android:textSize="@dimen/_22sdp"
-                app:font_text="Montserrat-Bold.ttf" />
+                app:font_text="Whitney-Bold.ttf" />
 
         </RelativeLayout>
 
@@ -51,20 +50,33 @@
                 android:textSize="@dimen/_15sdp"
                 app:font_text="SFUIDisplay-Bold.ttf" />-->
 
+            <EditText
+                android:id="@+id/edtusername"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/str_header"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/underline_bg"
+                android:hint="@string/str_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/whitney_semibold" />
 
-                <com.myCPE.view.CustomEditTextView
-                    android:id="@+id/edtusername"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_below="@+id/str_header"
-                    android:hint="@string/str_email"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:background="@drawable/underline_bg"
-                    android:singleLine="true"
-                    android:textSize="@dimen/_14sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+            <!--<com.myCPE.view.CustomEdittextFont
+                android:id="@+id/edtusername"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/str_header"
+                android:hint="@string/str_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/underline_bg"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sdp"
+                app:font_edit="Whitney-Black.ttf" />-->
 
             <!--<android.support.design.widget.TextInputLayout
                 android:id="@+id/input_email_password"
@@ -73,21 +85,34 @@
                 android:layout_below="@+id/edtusername"
                 android:layout_marginTop="@dimen/_5sdp">-->
 
+            <EditText
+                android:id="@+id/edtpassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/edtusername"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:background="@drawable/underline_bg"
+                android:drawableRight="@mipmap/password_eys"
+                android:hint="@string/str_password"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/whitney_semibold" />
 
-                <com.myCPE.view.CustomEditTextView
-                    android:id="@+id/edtpassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_below="@+id/edtusername"
-                    android:background="@drawable/underline_bg"
-                    android:drawableRight="@mipmap/password_eys"
-                    android:layout_marginTop="@dimen/_45sdp"
-                    android:hint="@string/str_password"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textSize="@dimen/_14sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+            <!--<com.myCPE.view.CustomEdittextFont
+                android:id="@+id/edtpassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/edtusername"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:background="@drawable/underline_bg"
+                android:drawableRight="@mipmap/password_eys"
+                android:hint="@string/str_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sdp"
+                app:font_edit="Whitney-Black.ttf" />-->
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -102,18 +127,26 @@
                     android:id="@+id/txtSignIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_signin"
                     android:layout_centerVertical="true"
+                    android:text="@string/str_signin"
                     android:textColor="@color/card_text_number_color"
                     android:textSize="@dimen/_22sdp"
-                    app:font_text="Montserrat-Bold.ttf" />
+                    app:font_text="Whitney-Black.ttf" />
 
                 <RelativeLayout
                     android:id="@+id/relSignIn"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:background="@drawable/circular_button_orange"
-                    android:layout_alignParentRight="true"></RelativeLayout>
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circular_button_orange">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:background="@drawable/ic_arrow_right_max"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -132,7 +165,7 @@
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    app:font_text="Montserrat-Bold.ttf" />
+                    app:font_text="Whitney-Bold.ttf" />
 
                 <com.myCPE.view.CustomTextView
                     android:id="@+id/txtForgetPass"
@@ -143,7 +176,7 @@
                     android:textColor="@color/color_my_cretificate_menu_divider"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    app:font_text="Montserrat-Bold.ttf" />
+                    app:font_text="Whitney-Bold.ttf" />
 
             </RelativeLayout>
 
@@ -151,15 +184,15 @@
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/relSignUpFP"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@drawable/rounded_button"
                 android:text="@string/str_logi_now"
-                android:visibility="gone"
                 android:textColor="@color/White"
+                android:visibility="gone"
                 app:font_button="SFUIDisplay-Bold.ttf" />
 
             <com.myCPE.view.CustomTextView
@@ -169,7 +202,6 @@
                 android:layout_below="@+id/btn_submit"
                 android:layout_alignParentLeft="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -177,6 +209,7 @@
                 android:textColor="@color/login_do_not_have_account"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:font_text="SFUIDisplay-Medium.ttf" />
 
             <com.myCPE.view.CustomTextView
@@ -192,8 +225,8 @@
                 android:text="@string/str_create_account"
                 android:textColor="@color/theme_background"
                 android:textSize="@dimen/_11sdp"
-                android:visibility="gone"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:font_text="SFUIDisplay-Medium.ttf" />
 
 
