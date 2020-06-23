@@ -84,13 +84,13 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_40sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_first_name"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_firstname"
@@ -118,13 +118,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
-                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_last_name"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_lastname"
@@ -151,13 +151,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_email_id"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_emailid"
@@ -184,14 +184,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_phone_number"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
                     android:maxLength="14"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_phone_number"
@@ -220,13 +220,13 @@
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
                     android:drawableRight="@mipmap/password_eys"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_reg_password"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_password"
@@ -255,13 +255,13 @@
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
                     android:drawableRight="@mipmap/password_eys"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_confirm_password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--<com.myCPE.view.CustomEditTextView
                     android:id="@+id/edt_confirmpassword"
@@ -409,8 +409,8 @@
                         android:id="@+id/txtSignIn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_next"
                         android:layout_centerVertical="true"
+                        android:text="@string/str_next"
                         android:textColor="@color/card_text_number_color"
                         android:textSize="@dimen/_22sdp"
                         app:font_text="Whitney-Black.ttf" />
@@ -419,14 +419,14 @@
                         android:id="@+id/relNext"
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
-                        android:background="@drawable/circular_button_orange"
-                        android:layout_alignParentRight="true">
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/circular_button_orange">
 
                         <RelativeLayout
                             android:layout_width="@dimen/_22sdp"
                             android:layout_height="@dimen/_22sdp"
-                            android:background="@drawable/ic_arrow_right_max"
-                            android:layout_centerInParent="true"/>
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/ic_arrow_right_max" />
 
                     </RelativeLayout>
 
@@ -436,12 +436,12 @@
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_50sdp"
                     android:text="@string/str_signin_ul"
-                    android:visibility="gone"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_50sdp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:font_text="Montserrat-Bold.ttf" />
 
             </LinearLayout>
@@ -491,44 +491,50 @@
             android:visibility="gone">
 
             <LinearLayout
+                android:id="@+id/linPopup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_marginTop="@dimen/_100sdp"
-                android:background="@drawable/rounded_top_bluegray">
+                android:background="@drawable/rounded_top_bluegray"
+                android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_46sdp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_46sdp">
 
-                        <com.myCPE.view.CustomTextView
-                            android:id="@+id/txtPopupCancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:text="@string/str_cancel_guest"
-                            android:textColor="@color/black_full"
-                            android:textSize="@dimen/_12sdp"
-                            app:font_text="Whitney-Semibold.ttf" />
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_cancel_guest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Semibold.ttf" />
 
-                        <com.myCPE.view.CustomTextView
-                            android:id="@+id/txtPopupCName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:text="@string/view_profile_country"
-                            android:textColor="@color/black_full"
-                            android:textSize="@dimen/_14sdp"
-                            app:font_text="Whitney-Bold.ttf" />
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupCName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/view_profile_country"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
 
-                    </RelativeLayout>
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black_full"/>
+                    android:background="@color/black_full" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/relPopupList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

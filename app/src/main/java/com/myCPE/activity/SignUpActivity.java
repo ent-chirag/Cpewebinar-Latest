@@ -200,16 +200,31 @@ public class SignUpActivity extends AppCompatActivity {
         binding.txtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.relCountryView.startAnimation(slide_up);
+                binding.linPopup.startAnimation(slide_up);
                 binding.relCountryView.setVisibility(View.VISIBLE);
-                Handler handler = new Handler();
+                /*Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         binding.relCountryView.setVisibility(View.VISIBLE);
                     }
-                },1500);
+                },1500);*/
 
+            }
+        });
+
+        binding.relCountryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                binding.relCountryView.setVisibility(View.GONE);
+                // Perform nothing on click for this layout so that will not allow to click on the background.
+            }
+        });
+
+        binding.txtPopupCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relCountryView.setVisibility(View.GONE);
             }
         });
 
