@@ -500,7 +500,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_46sdp">
+                    android:layout_height="@dimen/_50sdp">
 
                     <com.myCPE.view.CustomTextView
                         android:id="@+id/txtPopupCancel"
@@ -532,9 +532,11 @@
                     android:background="@color/black_full" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/relPopupList"
+                    android:id="@+id/rvPopupList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:background="@color/color_bg"/>
 
             </LinearLayout>
 

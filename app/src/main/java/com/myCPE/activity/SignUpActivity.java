@@ -10,6 +10,9 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
@@ -29,6 +32,7 @@ import android.widget.TextView;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
+import com.myCPE.adapter.PopupSingleItemSelectionAdapter;
 import com.myCPE.databinding.ActivitySignupBinding;
 import com.myCPE.databinding.ActivitySignupNewLayoutBinding;
 import com.myCPE.model.EmailValidation.emailvalidationmodel;
@@ -41,12 +45,14 @@ import com.myCPE.model.state.StateModel;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
+import com.myCPE.view.SimpleDividerItemDecoration;
 import com.myCPE.view.UsPhoneNumberFormatter;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -55,7 +61,7 @@ import rx.schedulers.Schedulers;
 
 public class SignUpActivity extends AppCompatActivity {
     public Context context;
-//    ActivitySignupBinding binding;
+    //    ActivitySignupBinding binding;
     ActivitySignupNewLayoutBinding binding;
     private APIService mAPIService_new;
     private static final String TAG = SignUpActivity.class.getName();
@@ -67,7 +73,12 @@ public class SignUpActivity extends AppCompatActivity {
     public boolean boolean_state_spinner = true;
     public boolean boolean_city_spinner = true;
     public ArrayList<String> getcountryarraylist = new ArrayList<String>();
+    //    public static List<String> getcountryarraylistNew = new ArrayList<String>();
     public ArrayList<CountryItem> getcountryarray = new ArrayList<CountryItem>();
+
+    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
+    //    private List<CountryModel> arrCountryList = new ArrayList<CountryModel>();
+    private List<CountryItem> arrCountryList = new ArrayList<CountryItem>();
 
 
     public ArrayList<String> getstatearralist = new ArrayList<String>();
@@ -88,6 +99,9 @@ public class SignUpActivity extends AppCompatActivity {
     public String firstname = "", lastname = "", emailID = "", phonenumber = "", password = "", confirmpassword = "";
 
     private String isemailexist = "";
+    LinearLayoutManager linearLayoutManager;
+    private RecyclerView.LayoutManager layoutManager;
+    PopupSingleItemSelectionAdapter mAdapter;
 
 
     @Override
@@ -202,6 +216,13 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 binding.linPopup.startAnimation(slide_up);
                 binding.relCountryView.setVisibility(View.VISIBLE);
+
+                binding.rvPopupList.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(SignUpActivity.this);
+                binding.rvPopupList.setLayoutManager(layoutManager);
+
+                mAdapter = new PopupSingleItemSelectionAdapter(context, arrCountryList);
+                binding.rvPopupList.setAdapter(mAdapter);
                 /*Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -209,6 +230,35 @@ public class SignUpActivity extends AppCompatActivity {
                         binding.relCountryView.setVisibility(View.VISIBLE);
                     }
                 },1500);*/
+
+                /*Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.rvPopupList.setHasFixedSize(true);
+                        layoutManager = new LinearLayoutManager(SignUpActivity.this);
+                        binding.rvPopupList.setLayoutManager(layoutManager);
+
+                        mAdapter = new PopupSingleItemSelectionAdapter(context, arrCountryList);
+                        Log.e("*+*+*","Size before setting up adapter is : "+arrCountryList.size());
+                        binding.rvPopupList.setAdapter(mAdapter);
+                    }
+                },2000);*/
+
+
+                /*binding.rvPopupList.setHasFixedSize(true);
+                linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                binding.rvPopupList.setLayoutManager(linearLayoutManager);
+                binding.rvPopupList.addItemDecoration(new SimpleDividerItemDecoration(context));
+                binding.rvPopupList.setItemAnimator(new DefaultItemAnimator());
+                binding.rvPopupList.setHasFixedSize(true);
+
+//                adapter = new HomeALLAdapter(context, arrHomelistnew);
+//                binding.rvhome.setAdapter(adapter);
+
+                mAdapter = new PopupSingleItemSelectionAdapter(context, arrCountryList);
+                Log.e("*+*+*","Size before setting up adapter is : "+arrCountryList.size());
+                binding.rvPopupList.setAdapter(mAdapter);*/
 
             }
         });
@@ -463,23 +513,23 @@ public class SignUpActivity extends AppCompatActivity {
                 if (Constant.isNetworkAvailable(context)) {
 //                    if (Validation()) {
 
-                        Intent i = new Intent(SignUpActivity.this, SignUpNextActivity.class);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_first_name), Constant.Trim(binding.edtFirstname.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_last_name), Constant.Trim(binding.edtLastname.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_email_id), Constant.Trim(binding.edtEmailid.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_phone_number), Constant.Trim(binding.edtPhoneNumber.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_password), Constant.Trim(binding.edtPassword.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_confirm_password), Constant.Trim(binding.edtConfirmpassword.getText().toString()));
-                        i.putExtra(context.getResources().getString(R.string.str_signup_country_id), country_id);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_country_name), binding.spinnerCountry.getSelectedItem().toString());
-                        i.putExtra(context.getResources().getString(R.string.str_signup_state_id), state_id);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_city_id), city_id);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_country_pos), country_id_pos);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_state_pos), state_id_pos);
-                        i.putExtra(context.getResources().getString(R.string.str_signup_city_pos), city_id_pos);
+                    Intent i = new Intent(SignUpActivity.this, SignUpNextActivity.class);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_first_name), Constant.Trim(binding.edtFirstname.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_last_name), Constant.Trim(binding.edtLastname.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_email_id), Constant.Trim(binding.edtEmailid.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_phone_number), Constant.Trim(binding.edtPhoneNumber.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_password), Constant.Trim(binding.edtPassword.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_confirm_password), Constant.Trim(binding.edtConfirmpassword.getText().toString()));
+                    i.putExtra(context.getResources().getString(R.string.str_signup_country_id), country_id);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_country_name), binding.spinnerCountry.getSelectedItem().toString());
+                    i.putExtra(context.getResources().getString(R.string.str_signup_state_id), state_id);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_city_id), city_id);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_country_pos), country_id_pos);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_state_pos), state_id_pos);
+                    i.putExtra(context.getResources().getString(R.string.str_signup_city_pos), city_id_pos);
 
-                        startActivity(i);
-                        finish();
+                    startActivity(i);
+                    finish();
 
 //                    }
                 } else {
@@ -638,7 +688,7 @@ public class SignUpActivity extends AppCompatActivity {
                             getstatearralist.clear();
                             getstatearray.clear();
 
-                            if(binding.spinnerCountry.getSelectedItem().equals("Canada")){
+                            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
                                 getstatearralist.add("Province");
                             } else {
                                 getstatearralist.add("State");
@@ -759,9 +809,13 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        /*if(binding.relCountryView.getVisibility()== View.VISIBLE) {
+            binding.relCountryView.setVisibility(View.GONE);
+        } else {*/
         Intent i = new Intent(context, PreLoginActivity.class);
         startActivity(i);
         finish();
+//        }
     }
 
 
@@ -780,7 +834,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         } else {
 //                            getstatearralist.add("State");
-                            if(binding.spinnerCountry.getSelectedItem().equals("Canada")){
+                            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
                                 getstatearralist.add("Province");
                             } else {
                                 getstatearralist.add("State");
@@ -822,14 +876,17 @@ public class SignUpActivity extends AppCompatActivity {
                             }
 
                             getcountryarraylist.clear();
+//                            getcountryarraylistNew.clear();
                             getcountryarray.clear();
 
                             getcountryarraylist.add("Country");
+//                            getcountryarraylistNew.add("Country");
 
-
+                            arrCountryList = CountryModel.getPayload().getCountry();
                             if (CountryModel.getPayload().getCountry().size() > 0) {
                                 for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
                                     getcountryarraylist.add(CountryModel.getPayload().getCountry().get(i).getName());
+//                                    getcountryarraylistNew.add(CountryModel.getPayload().getCountry().get(i).getName());
                                 }
 
                                 for (int j = 0; j < CountryModel.getPayload().getCountry().size(); j++) {
@@ -1029,7 +1086,7 @@ public class SignUpActivity extends AppCompatActivity {
             binding.edtPassword.clearFocus();
             binding.edtConfirmpassword.clearFocus();
 
-            if(binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
                 Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_province), Snackbar.LENGTH_SHORT).show();
             } else {
                 Snackbar.make(binding.spinnerState, getResources().getString(R.string.str_state), Snackbar.LENGTH_SHORT).show();
