@@ -36,7 +36,17 @@ public class Constant {
 
     public static String watchedDuration = "";
 
+    public static String selectedCountryIdSU = "0";
+    public static String selectedCountryNameSU = "Country";
+    public static String selectedCountryPositionSU = "0";
 
+    public static String selectedStateIdSU = "0";
+    public static String selectedStateNameSU = "State";
+    public static String selectedStatePositionSU = "0";
+
+    public static String selectedCityIdSU = "0";
+    public static String selectedCityNameSU = "City";
+    public static String selectedCityPositionSU = "0";
 
     public static List<Boolean> arrsavebooleanstate = new ArrayList();
     public  static List<String> arraysavefilter = new ArrayList<String>();

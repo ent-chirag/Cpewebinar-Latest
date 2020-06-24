@@ -2,10 +2,8 @@ package com.myCPE.adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +15,12 @@ import android.widget.TextView;
 import com.myCPE.R;
 import com.myCPE.activity.SignUpActivity;
 import com.myCPE.model.country.CountryItem;
-import com.myCPE.model.country.CountryModel;
+import com.myCPE.model.state.StateItem;
 import com.myCPE.utility.Constant;
-import com.myCPE.webservice.ApiUtilsNew;
+
 import java.util.List;
 
-public class PopupSingleItemSelectionAdapter extends RecyclerView.Adapter {
+public class PopupSingleItemSelectionStateAdapter extends RecyclerView.Adapter {
 
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -32,11 +30,12 @@ public class PopupSingleItemSelectionAdapter extends RecyclerView.Adapter {
 //    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
 //    public List<SignUpActivity.getcountryarraylistNew> mListNew;
 //    public List<CountryModel> mListNew;
-    public List<CountryItem> mListNew;
+//    public List<CountryItem> mListNew;
+    public List<StateItem> mListNew;
     public Dialog dialogCertificate;
 
 //    public PopupSingleItemSelectionAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
-    public PopupSingleItemSelectionAdapter(Context mContext, List<CountryItem> mListNew) {
+    public PopupSingleItemSelectionStateAdapter(Context mContext, List<StateItem> mListNew) {
         this.mContext = mContext;
         this.mListNew = mListNew;
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -83,11 +82,11 @@ public class PopupSingleItemSelectionAdapter extends RecyclerView.Adapter {
                     Log.e("*+*+*","Selected Company name is : "+mListNew.get(position).getName());
                     Log.e("*+*+*","Selected Company id is : "+mListNew.get(position).getId());
 
-                    Constant.selectedCountryIdSU = "" + mListNew.get(position).getId();
-                    Constant.selectedCountryNameSU = "" + mListNew.get(position).getName();
-                    Constant.selectedCountryPositionSU = "" + position;
+                    Constant.selectedStateIdSU = "" + mListNew.get(position).getId();
+                    Constant.selectedStateNameSU = "" + mListNew.get(position).getName();
+                    Constant.selectedStatePositionSU = "" + position;
 
-                    SignUpActivity.getInstance().selectCountry();
+                    SignUpActivity.getInstance().selectState();
                 }
             });
         }
