@@ -24,6 +24,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -118,6 +120,8 @@ public class SignUpNextActivity extends AppCompatActivity {
     public String selected_additional_qualification = "";
     private String CTEC_prefix = "A";
 
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -159,6 +163,45 @@ public class SignUpNextActivity extends AppCompatActivity {
         Constant.arraylistselectedadditionalqualificationID.clear();
         Constant.arraylistselectedadditionalqualification.clear();
         Constant.hashmap_additional_qualification.clear();
+
+        final Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        binding.relPopupView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do nothing here as this will disables background click in transparent area..
+            }
+        });
+
+        binding.txtPopupCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relPopupView.setVisibility(View.GONE);
+            }
+        });
+
+        binding.strHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.linPopup.startAnimation(slide_up);
+                binding.relPopupView.setVisibility(View.VISIBLE);
+
+                binding.rvPopupList.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
+                binding.rvPopupList.setLayoutManager(layoutManager);
+
+                Log.e("*+*+*","Size for arraylistModelProfessionalCredentials is : "+arraylistModelProffesioanlCredential.size());
+
+                if (arraylistModelProffesioanlCredential.size() > 0) {
+                    proffesionalCredentialPopUpAdapter = new ProffesionalCredentialPopUpAdapter(context,
+                            arraylistModelProffesioanlCredential);
+                    binding.rvPopupList.setAdapter(proffesionalCredentialPopUpAdapter);
+                }
+            }
+        });
+
+
 
         binding.tvback.setOnClickListener(new View.OnClickListener() {
             @Override

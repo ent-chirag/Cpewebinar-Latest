@@ -2,7 +2,7 @@
 <resources>
 
     <color name="color_bg">#fbfbfb</color>
-    <color name="color_rounded_btn_orange">#ff5722</color>
+    <color name="color_rounded_btn_orange">#FBB42C</color>
     <color name="color_rounded_grayblue">#f3f5f9</color>
     <color name="color_rounded_yellow">#fef0d5</color>
 

@@ -488,6 +488,94 @@
 
         </ScrollView>
 
+        <RelativeLayout
+            android:id="@+id/relPopupView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/linPopup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:background="@drawable/rounded_top_bluegray"
+                android:layout_above="@+id/relBottom"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_cancel_guest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Semibold.ttf" />
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_profestional_credential"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black_full" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:background="@color/color_bg"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relBottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_rounded_grayblue">
+
+                <RelativeLayout
+                    android:id="@+id/relPopupSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_background_yellow_theme"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_submit_lower"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </layout>
