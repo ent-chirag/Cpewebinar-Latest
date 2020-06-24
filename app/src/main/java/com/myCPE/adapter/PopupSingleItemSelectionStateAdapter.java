@@ -76,6 +76,14 @@ public class PopupSingleItemSelectionStateAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).rel_date_and_time.setVisibility(View.VISIBLE);
             }*/
 
+            if(!Constant.selectedStateIdSU.equalsIgnoreCase("0")) {
+                if(Integer.parseInt(Constant.selectedStateIdSU) == mListNew.get(position).getId()) {
+                    ((HomeViewHolder) viewHolder).txtCountryName.setBackgroundResource(R.drawable.rounded_background_yellow_selected);
+                } else {
+                    ((HomeViewHolder) viewHolder).txtCountryName.setBackgroundResource(R.drawable.rounded_background_blue_white);
+                }
+            }
+
             ((HomeViewHolder) viewHolder).txtCountryName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
