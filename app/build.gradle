@@ -148,5 +148,9 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
+//    implementation 'co.lujun:androidtagview:1.1.7'
+//    implementation 'androidx.appcompat:appcompat:1.0.1'
+//    implementation 'com.robertlevonyan.view:MaterialChipView:2.0.4'
+
 }
 apply plugin: 'com.google.gms.google-services'
