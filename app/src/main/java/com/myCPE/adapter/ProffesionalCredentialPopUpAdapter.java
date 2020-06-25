@@ -57,19 +57,21 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
 
         /*if (isChecked) {
 //            viewHolder.cbselection.setChecked(true);
-            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
         } else {
 //            viewHolder.cbselection.setChecked(false);
-            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
         }*/
 
 
         if (model_proffesional_credential.isChecked()) {
 //            viewHolder.cbselection.setChecked(true);
-            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
+            viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_yellow_selected));
         } else {
 //            viewHolder.cbselection.setChecked(false);
-            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+            viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+            viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_blue_white));
         }
 
         viewHolder.tv_professional_credential.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +80,12 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                 Log.e("*+*+*","Clicked on the TextView Position : "+position+ "Checked Status : " +viewHolder.isCheckedS);
                 /*if (!viewHolder.isCheckedS) {
 //            viewHolder.cbselection.setChecked(true);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
                     viewHolder.isCheckedS = true;
                     model_proffesional_credential.setChecked(true);
                 } else {
 //            viewHolder.cbselection.setChecked(false);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
                     viewHolder.isCheckedS = false;
                     model_proffesional_credential.setChecked(false);
                 }*/
@@ -108,7 +110,8 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                             , false);
 
 //                    viewHolder.cbselection.setChecked(false);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                    viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_blue_white));
 
                 } else {
                     model_proffesional_credential.setChecked(true);
@@ -124,7 +127,8 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                     Constant.hashmap_professional_credential.put(arraylistModelProffesioanlCredential.get(position).name
                             , true);
 //                    viewHolder.cbselection.setChecked(true);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                    viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_yellow_selected));
                 }
             }
         });
@@ -142,12 +146,12 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                 Log.e("*+*+*","Clicked on the rel_topics Position : "+position+ "Checked Status : " +viewHolder.isCheckedS);
                 /*if (!viewHolder.isCheckedS) {
 //            viewHolder.cbselection.setChecked(true);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
                     viewHolder.isCheckedS = true;
                     model_proffesional_credential.setChecked(true);
                 } else {
 //            viewHolder.cbselection.setChecked(false);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
                     viewHolder.isCheckedS = false;
                     model_proffesional_credential.setChecked(false);
                 }*/
@@ -173,7 +177,8 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                             , false);
 
 //                    viewHolder.cbselection.setChecked(false);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                    viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_blue_white));
 
                 } else {
                     model_proffesional_credential.setChecked(true);
@@ -189,7 +194,8 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                     Constant.hashmap_professional_credential.put(arraylistModelProffesioanlCredential.get(position).name
                             , true);
 //                    viewHolder.cbselection.setChecked(true);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                    viewHolder.rel_topics.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rounded_background_yellow_selected));
                 }
             }
         });
@@ -200,11 +206,11 @@ public class ProffesionalCredentialPopUpAdapter extends RecyclerView.Adapter<Pro
                 Log.e("*+*+*","Clicked on the relChecked Position : "+position+ "Checked Status : " +viewHolder.isCheckedS);
                 if (!viewHolder.isCheckedS) {
 //            viewHolder.cbselection.setChecked(true);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_checked));
                     viewHolder.isCheckedS = true;
                 } else {
 //            viewHolder.cbselection.setChecked(false);
-                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.blue_not_select));
+                    viewHolder.relChecked.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
                     viewHolder.isCheckedS = false;
                 }
             }

@@ -65,7 +65,7 @@ import rx.schedulers.Schedulers;
 
 public class SignUpNextActivity extends AppCompatActivity {
 
-//    ActivitySignupNextBinding binding;
+    //    ActivitySignupNextBinding binding;
     ActivitySignupNextNewLayoutBinding binding;
 
     private APIService mAPIService_new;
@@ -75,13 +75,11 @@ public class SignUpNextActivity extends AppCompatActivity {
     private int industry_id = 0;
     private TextView tv_header, tv_submit, tv_cancel;
 
-
     public boolean boolean_jobtitle_spinner = true;
     public boolean boolean_industry_spinner = true;
     public boolean checkprivacypolicystatus = false;
 
     public RecyclerView rv_professional_credential;
-
 
     private ArrayList<String> arrayListjobtitle = new ArrayList<String>();
     private ArrayList<Integer> arrayListjobtitleid = new ArrayList<Integer>();
@@ -89,12 +87,10 @@ public class SignUpNextActivity extends AppCompatActivity {
     private ArrayList<String> arrayListindustry = new ArrayList<String>();
     private ArrayList<Integer> arrayListindustryid = new ArrayList<Integer>();
 
-
     public ArrayList<Model_proffesional_Credential> arraylistModelProffesioanlCredential = new ArrayList<>();
     public ArrayList<Model_additional_qualification> arraylistModeladditionalcredential = new ArrayList<>();
 
     LinearLayoutManager linearLayoutManager;
-
 
     private static final String TAG = SignUpNextActivity.class.getName();
 
@@ -122,6 +118,9 @@ public class SignUpNextActivity extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
 
+    // For professinal creds : 1
+    // For Additional qualification : 2
+    private int intPopupNumber = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -181,26 +180,118 @@ public class SignUpNextActivity extends AppCompatActivity {
             }
         });
 
-        binding.strHeader.setOnClickListener(new View.OnClickListener() {
+        /*binding.strHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.linPopup.startAnimation(slide_up);
-                binding.relPopupView.setVisibility(View.VISIBLE);
 
-                binding.rvPopupList.setHasFixedSize(true);
-                layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
-                binding.rvPopupList.setLayoutManager(layoutManager);
+            }
+        });*/
 
-                Log.e("*+*+*","Size for arraylistModelProfessionalCredentials is : "+arraylistModelProffesioanlCredential.size());
 
-                if (arraylistModelProffesioanlCredential.size() > 0) {
-                    proffesionalCredentialPopUpAdapter = new ProffesionalCredentialPopUpAdapter(context,
-                            arraylistModelProffesioanlCredential);
-                    binding.rvPopupList.setAdapter(proffesionalCredentialPopUpAdapter);
+        binding.relPopupSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(intPopupNumber == 1) {
+                    // This is for the professional credentials...
+                    ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));
+
+                    Log.e("*+*+*","Prof creds selected are : "+Constant.arraylistselectedproffesionalcredential.toString());
+                    if (myArrayList.size() > 0) {
+                        binding.relPopupView.setVisibility(View.GONE);
+                        StringBuilder commaSepValueBuilder = new StringBuilder();
+
+                        //Looping through the list
+                        for (int i = 0; i < myArrayList.size(); i++) {
+                            //append the value into the builder
+                            commaSepValueBuilder.append(myArrayList.get(i));
+
+                            //if the value is not the last element of the list
+                            //then append the comma(,) as well
+                            if (i != myArrayList.size() - 1) {
+                                commaSepValueBuilder.append(",");
+                            }
+                        }
+                        //System.out.println(commaSepValueBuilder.toString());
+                        selected_proffesional_credential = commaSepValueBuilder.toString();
+                        System.out.println(selected_proffesional_credential);
+                    } else {
+                        selected_proffesional_credential = "";
+                        Snackbar.make(binding.relPopupSubmit, context.getResources().getString(R.string.validation_professional_credential), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                    if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
+                        binding.professionalCredential.setVisibility(View.GONE);
+                        binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+                        binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
+                        binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
+                        if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
+                            int more = Constant.arraylistselectedproffesionalcredential.size() - 1;
+                            binding.tvProfessionalCredentialMore.setVisibility(View.VISIBLE);
+                            binding.tvProfessionalCredentialMore.setText(("+" + more
+                                    + " more"));
+                        } else {
+                            binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
+                        }
+                    } else {
+                        binding.professionalCredential.setVisibility(View.VISIBLE);
+                        binding.lvProfessionalCredential.setVisibility(View.GONE);
+                        binding.tvProfessionalCredential.setVisibility(View.GONE);
+                        binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
+                    }
+                } else if(intPopupNumber == 2) {
+                    // This is for the addidtional qualification..
+                    ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedadditionalqualificationID));
+
+
+                    if (myArrayList.size() > 0) {
+                        binding.relPopupView.setVisibility(View.GONE);
+                        StringBuilder commaSepValueBuilder = new StringBuilder();
+
+                        //Looping through the list
+                        for (int i = 0; i < myArrayList.size(); i++) {
+                            //append the value into the builder
+                            commaSepValueBuilder.append(myArrayList.get(i));
+
+                            //if the value is not the last element of the list
+                            //then append the comma(,) as well
+                            if (i != myArrayList.size() - 1) {
+                                commaSepValueBuilder.append(",");
+                            }
+                        }
+                        //System.out.println(commaSepValueBuilder.toString());
+                        selected_additional_qualification = commaSepValueBuilder.toString();
+
+                        System.out.println(selected_additional_qualification);
+
+
+                    } else {
+                        selected_additional_qualification = "";
+                        Snackbar.make(binding.relPopupSubmit, context.getResources().getString(R.string.validation_additional_qualification), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                    if (Constant.arraylistselectedadditionalqualification.size() > 0) {
+                        binding.additionalQualification.setVisibility(View.GONE);
+                        binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
+                        if (Constant.arraylistselectedadditionalqualification.size() > 1) {
+                            int more = Constant.arraylistselectedadditionalqualification.size() - 1;
+                            binding.tvAdditionalQualificationMore.setVisibility(View.VISIBLE);
+                            binding.tvAdditionalQualificationMore.setText(("+" + more
+                                    + " more"));
+                        } else {
+                            binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
+                        }
+                    } else {
+                        binding.additionalQualification.setVisibility(View.VISIBLE);
+                        binding.lvAdditionalQualification.setVisibility(View.GONE);
+                        binding.tvAdditionalQualification.setVisibility(View.GONE);
+                        binding.tvAdditionalQualificationMore.setVisibility(View.GONE);
+                    }
                 }
             }
         });
-
 
 
         binding.tvback.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +329,7 @@ public class SignUpNextActivity extends AppCompatActivity {
             }
         });
 
-        if(country_name.equalsIgnoreCase("Canada")){
+        if (country_name.equalsIgnoreCase("Canada")) {
             // Change input type programatically..
             binding.edtZipcode.setInputType(InputType.TYPE_CLASS_TEXT);
 
@@ -280,7 +371,7 @@ public class SignUpNextActivity extends AppCompatActivity {
                             dialog.show();
                         }
                     } else {
-                        if(binding.edtZipcode.getText().toString().trim().length() != 5) {
+                        if (binding.edtZipcode.getText().toString().trim().length() != 5) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(SignUpNextActivity.this);
                             builder.setTitle(getResources().getString(R.string.str_alert));
                             builder.setMessage(getResources().getString(R.string.val_us_zip_code));
@@ -476,16 +567,13 @@ public class SignUpNextActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
         binding.professionalCredential.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                ShowProffesionlCredentialPopup();
-
+                ShowProfessionalCredsNew();
                 return false;
             }
         });
@@ -493,9 +581,8 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.additionalQualification.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                ShowAdditionalQualification();
-
+//                ShowAdditionalQualification();
+                ShowAdditionalQualificationNew();
                 return false;
             }
         });
@@ -504,7 +591,7 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.lvProfessionalCredential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowProffesionlCredentialPopup();
+                ShowProfessionalCredsNew();
             }
         });
 
@@ -512,7 +599,8 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.lvAdditionalQualification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowAdditionalQualification();
+//                ShowAdditionalQualification();
+                ShowAdditionalQualificationNew();
             }
         });
 
@@ -802,6 +890,59 @@ public class SignUpNextActivity extends AppCompatActivity {
 
     }
 
+    private void ShowAdditionalQualificationNew() {
+        intPopupNumber = 2;
+
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        binding.linPopup.startAnimation(slide_up);
+        binding.relPopupView.setVisibility(View.VISIBLE);
+        binding.rvPopupList.setVisibility(View.GONE);
+        binding.rvPopupAdditionalQualification.setVisibility(View.VISIBLE);
+        binding.txtPopupTitle.setText(getResources().getString(R.string.str_additional_qualification));
+
+        binding.rvPopupAdditionalQualification.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
+        binding.rvPopupAdditionalQualification.setLayoutManager(layoutManager);
+
+        Log.e("*+*+*", "Size for arraylistModeladditionalcredential is : " + arraylistModeladditionalcredential.size());
+
+        if (arraylistModeladditionalcredential.size() > 0) {
+            additionalQualificationPopUpAdapter = new AdditionalQualificationPopUpAdapter(context,
+                    arraylistModeladditionalcredential);
+            binding.rvPopupAdditionalQualification.setAdapter(additionalQualificationPopUpAdapter);
+        }
+    }
+
+    private void ShowProfessionalCredsNew() {
+
+        intPopupNumber = 1;
+
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+//                ShowProffesionlCredentialPopup();
+        binding.linPopup.startAnimation(slide_up);
+        binding.relPopupView.setVisibility(View.VISIBLE);
+        binding.rvPopupList.setVisibility(View.VISIBLE);
+        binding.rvPopupAdditionalQualification.setVisibility(View.GONE);
+        binding.txtPopupTitle.setText(getResources().getString(R.string.str_profestional_credential));
+
+        binding.rvPopupList.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
+        binding.rvPopupList.setLayoutManager(layoutManager);
+
+        Log.e("*+*+*", "Size for arraylistModelProfessionalCredentials is : " + arraylistModelProffesioanlCredential.size());
+
+        if (arraylistModelProffesioanlCredential.size() > 0) {
+            proffesionalCredentialPopUpAdapter = new ProffesionalCredentialPopUpAdapter(context,
+                    arraylistModelProffesioanlCredential);
+            binding.rvPopupList.setAdapter(proffesionalCredentialPopUpAdapter);
+        }
+
+    }
+
     public void ShowAdditionalQualification() {
 
 
@@ -1074,16 +1215,16 @@ public class SignUpNextActivity extends AppCompatActivity {
             }*/
 //            return false;
             return check;
-        } else if(country_name.equalsIgnoreCase("United States")) {
+        } else if (country_name.equalsIgnoreCase("United States")) {
             boolean check = false;
-            if(binding.edtZipcode.getText().toString().length() == 5){
+            if (binding.edtZipcode.getText().toString().length() == 5) {
                 check = true;
             } else {
                 Snackbar.make(binding.edtZipcode, getResources().getString(R.string.val_us_zip_code), Snackbar.LENGTH_SHORT).show();
                 check = false;
             }
 
-             return check;
+            return check;
         } else if (Constant.Trim(binding.edtMobileNumber.getText().toString()).length() < 14) {
 
             binding.edtZipcode.clearFocus();
