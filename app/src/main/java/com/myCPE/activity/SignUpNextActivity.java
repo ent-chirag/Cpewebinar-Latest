@@ -13,6 +13,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.chip.Chip;
+import android.support.design.chip.ChipGroup;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -57,7 +60,6 @@ import com.myCPE.webservice.ApiUtilsNew;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.regex.Pattern;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -197,6 +199,7 @@ public class SignUpNextActivity extends AppCompatActivity {
                     ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));
 
                     Log.e("*+*+*","Prof creds selected are : "+Constant.arraylistselectedproffesionalcredential.toString());
+
                     if (myArrayList.size() > 0) {
                         binding.relPopupView.setVisibility(View.GONE);
                         StringBuilder commaSepValueBuilder = new StringBuilder();
@@ -646,6 +649,15 @@ public class SignUpNextActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void addChip(String pItem, ChipGroup pChipGroup) {
+        Chip lChip = new Chip(this);
+        lChip.setText(pItem);
+        lChip.setTextColor(getResources().getColor(R.color.black));
+        lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+
+        pChipGroup.addView(lChip, pChipGroup.getChildCount() - 1);
     }
 
     public void RegisterPost(

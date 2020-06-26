@@ -302,26 +302,6 @@
 
                 </LinearLayout>
 
-                <!--<com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup"
-                    android:layout_width="match_parent"
-                    app:chipSpacingVertical="2dp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_height="wrap_content"/>-->
-
-                <!--<co.lujun.androidtagview.TagContainerLayout
-                    android:id="@+id/tagProfCreds"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:padding="10dp"
-                    android:background="@drawable/underline_bg"
-                    app:container_enable_drag="false"
-                    app:horizontal_interval="10dp"
-                    app:vertical_interval="10dp"
-                    app:tag_clickable="true"
-                    app:tag_theme="none" />-->
-
                 <com.myCPE.view.CustomEditTextView
                     android:id="@+id/additional_qualification"
                     android:layout_width="match_parent"
