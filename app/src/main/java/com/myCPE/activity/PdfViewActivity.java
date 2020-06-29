@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityPdfviewBinding;
+import com.myCPE.databinding.ActivityPdfviewNewBinding;
 import com.myCPE.utility.Constant;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 
@@ -43,7 +44,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class PdfViewActivity extends AppCompatActivity {
-    ActivityPdfviewBinding binding;
+//    ActivityPdfviewBinding binding;
+    ActivityPdfviewNewBinding binding;
     ProgressDialog mProgressDialog;
     public Context context;
     public String myCertificate = "";
@@ -59,7 +61,8 @@ public class PdfViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pdfview);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_pdfview);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_pdfview_new);
         context = PdfViewActivity.this;
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
