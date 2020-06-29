@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.myCPE.fragments.AccountFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_rounded_grayblue">
+
+        <RelativeLayout
+            android:id="@+id/rv_account_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_rounded_grayblue"
+            android:padding="@dimen/_10sdp">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_header_profile"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Whitney-Semibold.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_name_profilepic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_account_title"
+            android:background="@color/color_rounded_grayblue"
+            android:padding="@dimen/_10sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivprofilepicture"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivprofilepicture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_17sdp"
+                app:font_text="Whitney-Bold.ttf" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_viewprofile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_username"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/str_lable_view"
+                android:textColor="@color/black_full"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone"
+                app:font_text="Montserrat-Regular.ttf" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_name_profilepic"
+            android:background="@drawable/rounded_top_white"
+            android:scrollIndicators="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="visible" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_notification_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_noti"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rv_my_transcation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_my_transaction_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_mytransaction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_my_transaction"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/tv_payment_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_payment_method"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Medium.ttf" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_credit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_my_credits_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_mycredit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_my_credit"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_topics_of_interest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/tv_topics_of_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_topics_of_interest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Medium.ttf" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_privacy_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_privacy_policy_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_privacy_policy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_privacy_policy"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_terms_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_t_c_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_terms_and_condition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_terms_condition"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_contact_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_contactus_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_contact_us"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_contact_us"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_change_pass_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_change_password"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rv_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_faq_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_faq"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_faqs"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_feedback_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_give_feedback"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/str_give_us_your_feedback"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rv_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:background="@drawable/rounded_login">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:src="@drawable/ic_logout_svg"
+                                android:layout_centerInParent="true"/>
+
+                        </RelativeLayout>
+
+                        <com.myCPE.view.CustomTextView
+                            android:id="@+id/tv_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/str_logout"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_right_arrow_svg" />
+
+                </RelativeLayout>
+
+                <!--<View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background_list" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:background="@color/White"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="invisible">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/str_logout"
+                        android:textColor="@color/viewprofile_sections"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Medium.ttf" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@mipmap/right_arrow" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>

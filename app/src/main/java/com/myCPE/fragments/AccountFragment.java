@@ -39,6 +39,7 @@ import com.myCPE.activity.PrivacyPolicyActivity;
 import com.myCPE.activity.TermsandConditionActivity;
 import com.myCPE.activity.TopicsOfInterestActivity;
 import com.myCPE.databinding.FragmentAccountBinding;
+import com.myCPE.databinding.FragmentAccountNewBinding;
 import com.myCPE.model.logout.LogoutModel;
 import com.myCPE.model.postfeedback.PostFeedback;
 import com.myCPE.model.view_topics_of_interest.TopicOfInterestsItem;
@@ -62,7 +63,8 @@ public class AccountFragment extends Fragment {
 
     View view;
     public Context context;
-    FragmentAccountBinding binding;
+//    FragmentAccountBinding binding;
+    FragmentAccountNewBinding binding;
     ProgressDialog progressDialog;
     public Dialog myDialog;
     private APIService mAPIService_new;
@@ -86,7 +88,8 @@ public class AccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, null, false);
+//        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, null, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_new, null, false);
         context = getActivity();
         mAPIService_new = ApiUtilsNew.getAPIService();
 
