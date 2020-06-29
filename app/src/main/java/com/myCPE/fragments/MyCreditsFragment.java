@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -25,6 +26,7 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.MyCreditAdapter;
 import com.myCPE.databinding.FragmentMycreditBinding;
+import com.myCPE.databinding.FragmentMycreditNewBinding;
 import com.myCPE.model.My_Credit_New.Model_My_Credit_New;
 import com.myCPE.model.My_Credit_New.MyCreditsItem;
 import com.myCPE.utility.AppSettings;
@@ -45,7 +47,7 @@ public class MyCreditsFragment extends Fragment {
 
     View view;
     public Context context;
-    FragmentMycreditBinding binding;
+    FragmentMycreditNewBinding binding;
     MyCreditAdapter adapter;
     private APIService mAPIService;
     Typeface font;
@@ -61,7 +63,7 @@ public class MyCreditsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mycredit, null, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mycredit_new, null, false);
         context = getActivity();
         mAPIService = ApiUtilsNew.getAPIService();
 
@@ -74,7 +76,8 @@ public class MyCreditsFragment extends Fragment {
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.recyclerviewMycredit.setLayoutManager(linearLayoutManager);
-        binding.recyclerviewMycredit.addItemDecoration(new SimpleDividerItemDecoration(context));
+//        binding.recyclerviewMycredit.addItemDecoration(new SimpleDividerItemDecoration(context));
+        binding.recyclerviewMycredit.addItemDecoration(new DividerItemDecoration(context, 0));
         binding.recyclerviewMycredit.setItemAnimator(new DefaultItemAnimator());
         binding.recyclerviewMycredit.setHasFixedSize(true);
 
@@ -90,9 +93,16 @@ public class MyCreditsFragment extends Fragment {
             public void onClick(View v) {
 
 
-                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray_select);
-                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
-                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+//                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray_select);
+                binding.lvAll.setBackgroundResource(R.drawable.rounded_bg_selection_darkblue);
+//                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvLive.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
+//                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvSelfStudy.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
+
+                binding.tvAll.setTextColor(getResources().getColor(R.color.White));
+                binding.tvLive.setTextColor(getResources().getColor(R.color.color_text_black));
+                binding.tvSelfStudy.setTextColor(getResources().getColor(R.color.color_text_black));
 
 
                 filter_type = 0;
@@ -113,10 +123,16 @@ public class MyCreditsFragment extends Fragment {
             public void onClick(View v) {
 
 
-                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
-                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray_select);
-                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+//                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvAll.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
+//                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray_select);
+                binding.lvLive.setBackgroundResource(R.drawable.rounded_bg_selection_darkblue);
+//                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvSelfStudy.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
 
+                binding.tvAll.setTextColor(getResources().getColor(R.color.color_text_black));
+                binding.tvLive.setTextColor(getResources().getColor(R.color.White));
+                binding.tvSelfStudy.setTextColor(getResources().getColor(R.color.color_text_black));
 
                 filter_type = 1;
                 start = 0;
@@ -134,10 +150,16 @@ public class MyCreditsFragment extends Fragment {
         binding.lvSelfStudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
-                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
-                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray_select);
+//                binding.lvAll.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvAll.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
+//                binding.lvLive.setBackgroundResource(R.mipmap.my_certi_gray);
+                binding.lvLive.setBackgroundResource(R.drawable.rounded_bg_gray_blue);
+//                binding.lvSelfStudy.setBackgroundResource(R.mipmap.my_certi_gray_select);
+                binding.lvSelfStudy.setBackgroundResource(R.drawable.rounded_bg_selection_darkblue);
 
+                binding.tvAll.setTextColor(getResources().getColor(R.color.color_text_black));
+                binding.tvLive.setTextColor(getResources().getColor(R.color.color_text_black));
+                binding.tvSelfStudy.setTextColor(getResources().getColor(R.color.White));
 
                 filter_type = 2;
                 start = 0;

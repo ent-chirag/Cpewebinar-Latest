@@ -107,7 +107,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
 
         } else {
             View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.row_mycredit, parent, false);
+                    R.layout.row_mycredit_new, parent, false);
 
             vh = new ViewHolder(v);
         }
@@ -351,8 +351,8 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tv_webinar_title, tv_speaker_name, tv_credit, tv_job_title, webinar_date;
-        public Button btn_webinar_type, tv_webinar_status, btn_certification_download;
-        public RelativeLayout rel_item;
+        public Button btn_webinar_type, tv_webinar_status;
+        public RelativeLayout rel_item, btn_certification_download;
 
 
         private ViewHolder(View itemView) {
@@ -365,7 +365,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
             btn_webinar_type = (Button) itemView.findViewById(R.id.btn_webinar_type);
             tv_webinar_status = (Button) itemView.findViewById(R.id.tv_webinar_status);
             rel_item = (RelativeLayout) itemView.findViewById(R.id.rel_item);
-            btn_certification_download = (Button) itemView.findViewById(R.id.btn_certification_download);
+            btn_certification_download = (RelativeLayout) itemView.findViewById(R.id.btn_certification_download);
 
 
         }

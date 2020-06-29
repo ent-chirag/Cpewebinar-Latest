@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rel_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/morerounded_bg_gray_blue">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_webinar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:ellipsize="end"
+                android:inputType="textMultiLine"
+                android:text="Ethics for tax professionals opportunity (Latest 2020)"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Whitney-Medium.ttf" />
+
+            <!--<com.myCPE.view.CustomTextView
+                android:id="@+id/webinar_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="@color/my_credit_header_email_id"
+                android:textSize="@dimen/_10sdp"
+                app:font_text="Montserrat-Medium.ttf" />-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp">
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_speaker_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Josh Malancuk"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_text="Whitney-Medium.ttf" />
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/webinar_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_160sdp"
+                    android:text="June 18"
+                    android:textColor="@color/my_credit_header_email_id"
+                    android:textSize="@dimen/_13sdp"
+                    app:font_text="Whitney-Medium.ttf" />
+
+                <RelativeLayout
+                    android:id="@+id/btn_certification_download"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circular_button_orange">
+
+                    <ImageView
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:src="@drawable/ic_download_svg"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--<com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_certification_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/rounded_webinar_home"
+                    android:gravity="center"
+                    android:text="@string/str_download"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_7sdp"
+                    app:font_button="Montserrat-Bold.ttf" />-->
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_minus3sdp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/my_credit_header_email_id"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_text="Montserrat-Medium.ttf" />
+
+                <View
+                    android:id="@id/view_webinartopic"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/tv_credit"
+                    android:background="@color/my_credit_header_email_id"
+                    android:visibility="gone">
+
+                </View>
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_job_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_main"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/my_credit_header_email_id"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone"
+                app:font_text="Montserrat-Medium.ttf" />
+
+            <RelativeLayout
+                android:id="@+id/rel_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:gravity="center_vertical">
+
+                <com.myCPE.view.CustomButtonView
+                    android:id="@+id/tv_webinar_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/btn_webinar_type"
+                    android:background="@drawable/my_credit_status"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_7sdp"
+                    android:visibility="gone"
+                    app:font_button="Montserrat-Regular.ttf" />
+
+                <com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_webinar_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/rounded_webinar_status"
+                    android:gravity="center"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_7sdp"
+                    android:visibility="gone"
+                    app:font_button="Montserrat-Medium.ttf" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

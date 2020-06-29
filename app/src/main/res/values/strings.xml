@@ -456,9 +456,9 @@
     //my credits
 
     <string name="str_mycredit">My Certificate</string>
-    <string name="str_my_credit_all">ALL</string>
-    <string name="str_my_credit_live">LIVE</string>
-    <string name="str_my_credit_self_study">SELF-STUDY</string>
+    <string name="str_my_credit_all">All</string>
+    <string name="str_my_credit_live">Live</string>
+    <string name="str_my_credit_self_study">Self-Study</string>
 
     /row file
 
