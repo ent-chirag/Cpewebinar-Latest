@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.myCPE.fragments.HomeAllFragment" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+        <RelativeLayout
+            android:id="@+id/rvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@color/color_rounded_grayblue"
+            android:padding="@dimen/_10sdp">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/screentitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_home"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Whitney-Semibold.ttf" />
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_search_svg"
+                android:layout_toLeftOf="@+id/ivnotification"
+                android:paddingRight="@dimen/_12sdp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/ivnotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_bell"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black_full"
+            android:layout_below="@+id/rvtitle"/>
+
+        <RelativeLayout
+            android:id="@+id/rvtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/webinar_status"
+            android:layout_below="@+id/rvtitle"
+            android:focusable="true"
+            android:visibility="gone"
+            android:focusableInTouchMode="true">
+
+            <com.myCPE.view.CustomEditTextView
+                android:id="@+id/edt_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_toLeftOf="@+id/relNotifications"
+                android:background="@mipmap/search_box"
+                android:drawableLeft="@mipmap/search_home"
+                android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center|left"
+                android:hint="@string/str_search"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapWords"
+                android:paddingLeft="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColorHint="@color/home_edit_search"
+                android:textSize="@dimen/_10sdp"
+                app:font_edit="SFUIDisplay-Medium.ttf" />
+
+            <RelativeLayout
+                android:id="@+id/relNotifications"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/ivnotification1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/home_bell" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvtitle1"
+            android:paddingTop="@dimen/_9sdp"
+            android:paddingBottom="@dimen/_9sdp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/linFilterTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_topics"
+                    android:minWidth="@dimen/_70sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_topics"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium"/>
+
+
+                <TextView
+                    android:id="@+id/btn_live_webinar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_live_webinar"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+
+                <TextView
+                    android:id="@+id/btn_self_study"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_self_on_demand"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+                <TextView
+                    android:id="@+id/btn_premium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_premium"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+
+                <TextView
+                    android:id="@+id/btn_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_free"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+                <TextView
+                    android:id="@+id/btn_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_date"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+                <TextView
+                    android:id="@+id/btn_cpd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:text="@string/str_cpd"
+                    android:minWidth="@dimen/_70sdp"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/lv_home_all_sections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+
+            <com.myCPE.view.CustomButtonView
+                android:id="@+id/btn_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/home_child_selector_all"
+                android:gravity="center"
+                android:text="@string/str_live"
+                android:textColor="#484848"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
+            <com.myCPE.view.CustomButtonView
+                android:id="@+id/btn_selfstudy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/home_child_selector_all"
+                android:gravity="center"
+                android:text="@string/str_self_study"
+                android:textColor="#484848"
+                android:textSize="@dimen/_12sdp"
+                app:font_text="Montserrat-Medium.ttf" />
+
+            <com.myCPE.view.CustomButtonView
+                android:id="@+id/btn_archive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/home_child_selector_all"
+                android:gravity="center"
+                android:text="@string/str_archive"
+                android:textColor="#484848"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
+                app:font_text="Montserrat-Medium.ttf"
+
+
+                />
+
+
+        </LinearLayout>
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayouthome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/scrollview">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvhome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/_70sdp"
+                android:scrollbars="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <com.myCPE.view.CustomTextView
+            android:id="@+id/tv_nodatafound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_data_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:font_text="Montserrat-Medium.ttf" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:indeterminateTint="@color/theme_background"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone" />
+
+
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

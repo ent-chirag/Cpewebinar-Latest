@@ -455,6 +455,7 @@
 
     //my credits
 
+    <string name="str_home">Home</string>
     <string name="str_mycredit">My Certificate</string>
     <string name="str_my_credit_all">All</string>
     <string name="str_my_credit_live">Live</string>

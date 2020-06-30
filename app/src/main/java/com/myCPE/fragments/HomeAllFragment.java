@@ -39,6 +39,7 @@ import com.myCPE.activity.NotificationActivity;
 import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
 import com.myCPE.databinding.FragmentAllBinding;
+import com.myCPE.databinding.FragmentAllNewBinding;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.model.subject_area.Subject_Area;
 import com.myCPE.model.subjects_store.Model_Subject_Area;
@@ -65,7 +66,8 @@ import static com.myCPE.utility.Constant.arrsavebooleanstate;
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
 public class HomeAllFragment extends Fragment {
-    private FragmentAllBinding binding;
+//    private FragmentAllBinding binding;
+    private FragmentAllNewBinding binding;
     public Context context;
     HomeALLAdapter adapter;
     private static final String TAG = HomeAllFragment.class.getName();
@@ -112,7 +114,8 @@ public class HomeAllFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, null, false);
+//        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all, null, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_new, null, false);
         mAPIService_new = ApiUtilsNew.getAPIService();
         instance = HomeAllFragment.this;
         context = getActivity();
@@ -187,59 +190,59 @@ public class HomeAllFragment extends Fragment {
 
         if (Constant.webinartype.equalsIgnoreCase("live")) {
 
-            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.tag_unselected);
             binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.tag_selected);
             binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
 
         } else if (Constant.webinartype.equalsIgnoreCase("self_study")) {
-            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.tag_unselected);
             binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.tag_selected);
             binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.White));
         } else {
-            binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnSelfStudy.setBackgroundResource(R.drawable.tag_unselected);
             binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-            binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnLiveWebinar.setBackgroundResource(R.drawable.tag_selected);
             binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
         }
 
 
         if (Constant.price_filter.equalsIgnoreCase("0")) {
-            binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnFree.setBackgroundResource(R.drawable.tag_selected);
             binding.btnFree.setTextColor(getResources().getColor(R.color.White));
 
         } else if (Constant.price_filter.equalsIgnoreCase("1")) {
-            binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnPremium.setBackgroundResource(R.drawable.tag_selected);
             binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
 
 
         } else if (Constant.price_filter.equalsIgnoreCase("0,1") ||
                 Constant.price_filter.equalsIgnoreCase("1,0")) {
-            binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnFree.setBackgroundResource(R.drawable.tag_selected);
             binding.btnFree.setTextColor(getResources().getColor(R.color.White));
 
-            binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnPremium.setBackgroundResource(R.drawable.tag_selected);
             binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
         }
 
         if (!Constant.date_filter.equalsIgnoreCase("")) {
-            binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnDate.setBackgroundResource(R.drawable.tag_selected);
             binding.btnDate.setTextColor(getResources().getColor(R.color.White));
 
         } else {
-            binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnDate.setBackgroundResource(R.drawable.tag_unselected);
             binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
         }
 
         if(Constant.isCpdSelected){
-            binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home);
+            binding.btnCpd.setBackgroundResource(R.drawable.tag_selected);
             binding.btnCpd.setTextColor(getResources().getColor(R.color.White));
         } else {
-            binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+            binding.btnCpd.setBackgroundResource(R.drawable.tag_unselected);
             binding.btnCpd.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
         }
 
@@ -299,10 +302,10 @@ public class HomeAllFragment extends Fragment {
 
                 Constant.webinartype = "live";
 
-                binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                binding.btnSelfStudy.setBackgroundResource(R.drawable.tag_unselected);
                 binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-                binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                binding.btnLiveWebinar.setBackgroundResource(R.drawable.tag_selected);
                 binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.White));
 
 
@@ -327,10 +330,10 @@ public class HomeAllFragment extends Fragment {
 
                 Constant.webinartype = "self_study";
 
-                binding.btnLiveWebinar.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                binding.btnLiveWebinar.setBackgroundResource(R.drawable.tag_unselected);
                 binding.btnLiveWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-                binding.btnSelfStudy.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                binding.btnSelfStudy.setBackgroundResource(R.drawable.tag_selected);
                 binding.btnSelfStudy.setTextColor(getResources().getColor(R.color.White));
 
 
@@ -371,7 +374,7 @@ public class HomeAllFragment extends Fragment {
                     }
 
 
-                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnFree.setBackgroundResource(R.drawable.tag_selected);
                     binding.btnFree.setTextColor(getResources().getColor(R.color.White));
                 } else {
                     arrsavebooleanstate.set(1, false);
@@ -405,7 +408,7 @@ public class HomeAllFragment extends Fragment {
                     }
 
 
-                    binding.btnFree.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnFree.setBackgroundResource(R.drawable.tag_unselected);
                     binding.btnFree.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
@@ -445,7 +448,7 @@ public class HomeAllFragment extends Fragment {
                         Constant.price_filter = Constant.price_filter.replaceAll(",", "");
                     }
 
-                    binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnPremium.setBackgroundResource(R.drawable.tag_selected);
                     binding.btnPremium.setTextColor(getResources().getColor(R.color.White));
                 } else {
                     arrsavebooleanstate.set(0, false);
@@ -477,7 +480,7 @@ public class HomeAllFragment extends Fragment {
                     }
 
 
-                    binding.btnPremium.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnPremium.setBackgroundResource(R.drawable.tag_unselected);
                     binding.btnPremium.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
@@ -515,7 +518,7 @@ public class HomeAllFragment extends Fragment {
                     Constant.is_cpd = 0;
                     Constant.isCpdSelected = false;
 
-                    binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnCpd.setBackgroundResource(R.drawable.tag_unselected);
                     binding.btnCpd.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                     if (Constant.isNetworkAvailable(context)) {
@@ -529,7 +532,7 @@ public class HomeAllFragment extends Fragment {
                     Constant.is_cpd = 1;
                     Constant.isCpdSelected = true;
 
-                    binding.btnCpd.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnCpd.setBackgroundResource(R.drawable.tag_selected);
                     binding.btnCpd.setTextColor(getResources().getColor(R.color.White));
 
                     if (Constant.isNetworkAvailable(context)) {
@@ -961,7 +964,7 @@ public class HomeAllFragment extends Fragment {
                 }
 
 
-                binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                binding.btnDate.setBackgroundResource(R.drawable.tag_unselected);
                 binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 arraylistHomeDateFilter.set(0, "");
@@ -993,7 +996,7 @@ public class HomeAllFragment extends Fragment {
                 }
 
 
-                binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                binding.btnDate.setBackgroundResource(R.drawable.tag_selected);
                 binding.btnDate.setTextColor(getResources().getColor(R.color.White));
 
                 start = 0;
@@ -1005,7 +1008,7 @@ public class HomeAllFragment extends Fragment {
                         && cb_date_this_month.isChecked() == false) {
 
                     Constant.date_filter = "";
-                    binding.btnDate.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnDate.setBackgroundResource(R.drawable.tag_unselected);
                     binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                     arraylistHomeDateFilter.set(0, "");
@@ -1081,13 +1084,13 @@ public class HomeAllFragment extends Fragment {
                     }
 
                     SubjectAreaFilter = commaSepValueBuilder.toString();
-                    binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home);
+                    binding.btnTopics.setBackgroundResource(R.drawable.tag_selected);
                     binding.btnTopics.setTextColor(getResources().getColor(R.color.White));
 
 
                 } else {
                     SubjectAreaFilter = "";
-                    binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                    binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
                     binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 }
 
@@ -1117,7 +1120,7 @@ public class HomeAllFragment extends Fragment {
                     myDialog_topics.dismiss();
                 }
 
-                binding.btnTopics.setBackgroundResource(R.drawable.chipsetview_filter_home_unselected);
+                binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
                 binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 SubjectAreaFilter = "";
