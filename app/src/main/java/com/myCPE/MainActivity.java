@@ -7,22 +7,32 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.myCPE.activity.LoginActivity;
 import com.myCPE.activity.PreLoginActivity;
 import com.myCPE.activity.SignUpActivity;
+import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
 import com.myCPE.fragments.AccountFragment;
 import com.myCPE.fragments.HomeAllFragment;
 import com.myCPE.fragments.MyCreditsFragment;
 import com.myCPE.fragments.MyWebinarFragment;
+import com.myCPE.model.subjects_store.Model_Subject_Area;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
@@ -45,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     public String webinar_type = "";
 
+    private RelativeLayout relPopupView, relPopupSubmit;
+    private LinearLayout linPopup;
+    private TextView txtPopupCancel, txtPopupTitle;
+    private RecyclerView rvPopupList;
+
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
         iv_home = (ImageView) findViewById(R.id.iv_home);
         iv_premium = (ImageView) findViewById(R.id.iv_premium);
         iv_account = (ImageView) findViewById(R.id.iv_account);
+
+        relPopupView = (RelativeLayout) findViewById(R.id.relPopupView);
+        relPopupSubmit = (RelativeLayout) findViewById(R.id.relPopupSubmit);
+        linPopup = (LinearLayout) findViewById(R.id.linPopup);
+        txtPopupCancel = (TextView) findViewById(R.id.txtPopupCancel);
+        txtPopupTitle = (TextView) findViewById(R.id.txtPopupTitle);
+        rvPopupList = (RecyclerView) findViewById(R.id.rvPopupList);
 
 
         context = MainActivity.this;
@@ -179,6 +202,51 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        txtPopupCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relPopupView.setVisibility(View.GONE);
+                HomeAllFragment.getInstance().cancelTopic();
+            }
+        });
+
+        relPopupSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedsubjectareahomeID));
+                relPopupView.setVisibility(View.GONE);
+
+                HomeAllFragment.getInstance().checkTopics();
+
+                /*if (myArrayList.size() > 0) {
+
+                    StringBuilder commaSepValueBuilder = new StringBuilder();
+
+                    //Looping through the list
+                    for (int i = 0; i < myArrayList.size(); i++) {
+                        //append the value into the builder
+                        commaSepValueBuilder.append(myArrayList.get(i));
+
+                        //if the value is not the last element of the list
+                        //then append the comma(,) as well
+                        if (i != myArrayList.size() - 1) {
+                            commaSepValueBuilder.append(",");
+                        }
+                    }
+
+                    SubjectAreaFilter = commaSepValueBuilder.toString();
+                    binding.btnTopics.setBackgroundResource(R.drawable.tag_selected);
+                    binding.btnTopics.setTextColor(getResources().getColor(R.color.White));
+
+
+                } else {
+                    SubjectAreaFilter = "";
+                    binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
+                    binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                }*/
             }
         });
 
@@ -391,5 +459,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void showPopupTopics(ArrayList<Model_Subject_Area> arraylistModelSubjectArea) {
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        linPopup.startAnimation(slide_up);
+        relPopupView.setVisibility(View.VISIBLE);
+        rvPopupList.setVisibility(View.VISIBLE);
+
+        rvPopupList.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        rvPopupList.setLayoutManager(layoutManager);
+
+        if (arraylistModelSubjectArea.size() > 0) {
+            TopicsFilterHomePopUpAdapter topicsFilterHomePopUpAdapter = new TopicsFilterHomePopUpAdapter(context,
+                    arraylistModelSubjectArea);
+            rvPopupList.setAdapter(topicsFilterHomePopUpAdapter);
+        }
+    }
 
 }

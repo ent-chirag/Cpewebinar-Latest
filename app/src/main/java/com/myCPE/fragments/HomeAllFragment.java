@@ -18,10 +18,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.widget.TextView;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.activity.NotificationActivity;
+import com.myCPE.activity.SignUpNextActivity;
 import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
 import com.myCPE.databinding.FragmentAllBinding;
@@ -66,7 +69,7 @@ import static com.myCPE.utility.Constant.arrsavebooleanstate;
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
 public class HomeAllFragment extends Fragment {
-//    private FragmentAllBinding binding;
+    //    private FragmentAllBinding binding;
     private FragmentAllNewBinding binding;
     public Context context;
     HomeALLAdapter adapter;
@@ -110,6 +113,8 @@ public class HomeAllFragment extends Fragment {
 
     View view;
     public Dialog myDialogaddreview;
+
+    private RecyclerView.LayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -238,7 +243,7 @@ public class HomeAllFragment extends Fragment {
             binding.btnDate.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
         }
 
-        if(Constant.isCpdSelected){
+        if (Constant.isCpdSelected) {
             binding.btnCpd.setBackgroundResource(R.drawable.tag_selected);
             binding.btnCpd.setTextColor(getResources().getColor(R.color.White));
         } else {
@@ -258,7 +263,8 @@ public class HomeAllFragment extends Fragment {
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.rvhome.setLayoutManager(linearLayoutManager);
-        binding.rvhome.addItemDecoration(new SimpleDividerItemDecoration(context));
+//        binding.rvhome.addItemDecoration(new SimpleDividerItemDecoration(context));
+        binding.rvhome.addItemDecoration(new DividerItemDecoration(context, 0));
         binding.rvhome.setItemAnimator(new DefaultItemAnimator());
         binding.rvhome.setHasFixedSize(true);
 
@@ -513,7 +519,7 @@ public class HomeAllFragment extends Fragment {
                 // Apply CPD filter here..
                 // Add event for adding type Constant.is_cpd = 1:
 
-                if(Constant.isCpdSelected){
+                if (Constant.isCpdSelected) {
                     // Code here to deselect the btnCpd button..
                     Constant.is_cpd = 0;
                     Constant.isCpdSelected = false;
@@ -561,6 +567,13 @@ public class HomeAllFragment extends Fragment {
                 }
             }
         });
+
+        /*binding.txtPopupCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relPopupView.setVisibility(View.GONE);
+            }
+        });*/
 
 
         /*binding.rvhome.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1038,7 +1051,27 @@ public class HomeAllFragment extends Fragment {
 
 
     public void ShowTopicsPopup() {
-        myDialog_topics.setContentView(R.layout.popup_professional_credential);
+
+        MainActivity.getInstance().showPopupTopics(arraylistModelSubjectArea);
+
+        /*Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+                R.anim.slide_up_new);
+
+        binding.linPopup.startAnimation(slide_up);
+        binding.relPopupView.setVisibility(View.VISIBLE);
+        binding.rvPopupList.setVisibility(View.VISIBLE);
+
+        binding.rvPopupList.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        binding.rvPopupList.setLayoutManager(layoutManager);
+
+        if (arraylistModelSubjectArea.size() > 0) {
+            topicsFilterHomePopUpAdapter = new TopicsFilterHomePopUpAdapter(context,
+                    arraylistModelSubjectArea);
+            binding.rvPopupList.setAdapter(topicsFilterHomePopUpAdapter);
+        }*/
+
+        /*myDialog_topics.setContentView(R.layout.popup_professional_credential);
         myDialog_topics.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         tv_header = (TextView) myDialog_topics.findViewById(R.id.tv_header);
@@ -1057,7 +1090,6 @@ public class HomeAllFragment extends Fragment {
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if (myDialog_topics.isShowing()) {
                     myDialog_topics.cancel();
@@ -1156,9 +1188,84 @@ public class HomeAllFragment extends Fragment {
             topicsFilterHomePopUpAdapter = new TopicsFilterHomePopUpAdapter(context,
                     arraylistModelSubjectArea);
             rv_topics.setAdapter(topicsFilterHomePopUpAdapter);
+        }*/
+
+
+    }
+
+    public void cancelTopic() {
+        binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
+        binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+        SubjectAreaFilter = "";
+
+        if (Constant.isNetworkAvailable(context)) {
+            GetTopics();
+        } else {
+            Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
+
+        Constant.arraylistselectedsubjectareahomeID.clear();
+        Constant.hashmap_subject_home_area.clear();
+
+        start = 0;
+        limit = 10;
+        loading = true;
+
+
+        if (Constant.isNetworkAvailable(context)) {
+            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+        } else {
+            Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    ;
+
+    public void checkTopics() {
+        Log.e("*+*+*", "HomeAllFragment Size for arraylistselectedsubjectareahomeID : " + Constant.arraylistselectedsubjectareahomeID.size());
+        Log.e("*+*+*", "HomeAllFragment Size for arraylistselectedsubjectareahomeID : " + Constant.arraylistselectedsubjectareahomeID);
+        ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedsubjectareahomeID));
+        if (myArrayList.size() > 0) {
+
+            StringBuilder commaSepValueBuilder = new StringBuilder();
+
+            //Looping through the list
+            for (int i = 0; i < myArrayList.size(); i++) {
+                //append the value into the builder
+                commaSepValueBuilder.append(myArrayList.get(i));
+
+                //if the value is not the last element of the list
+                //then append the comma(,) as well
+                if (i != myArrayList.size() - 1) {
+                    commaSepValueBuilder.append(",");
+                }
+            }
+
+            SubjectAreaFilter = commaSepValueBuilder.toString();
+            binding.btnTopics.setBackgroundResource(R.drawable.tag_selected);
+            binding.btnTopics.setTextColor(getResources().getColor(R.color.White));
+
+
+        } else {
+            SubjectAreaFilter = "";
+            binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
+            binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
         }
 
 
+        start = 0;
+        limit = 10;
+        loading = true;
+
+
+        if (Constant.isNetworkAvailable(context)) {
+            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+        } else {
+            Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     public void ConfirmationPopup() {

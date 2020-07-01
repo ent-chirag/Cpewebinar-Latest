@@ -2,9 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <data>
-
         <variable
             name="fragment"
             type="com.myCPE.fragments.HomeAllFragment" />
@@ -126,21 +124,21 @@
                     android:id="@+id/btn_topics"
                     android:minWidth="@dimen/_70sdp"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/tag_unselected"
                     android:text="@string/str_topics"
                     android:gravity="center"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium"/>
 
 
                 <TextView
                     android:id="@+id/btn_live_webinar"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
@@ -150,14 +148,14 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
 
                 <TextView
                     android:id="@+id/btn_self_study"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
@@ -167,13 +165,13 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
                 <TextView
                     android:id="@+id/btn_premium"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
@@ -183,14 +181,14 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
 
                 <TextView
                     android:id="@+id/btn_free"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
@@ -200,13 +198,13 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
                 <TextView
                     android:id="@+id/btn_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
@@ -216,13 +214,13 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
                 <TextView
                     android:id="@+id/btn_cpd"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_5sdp"
@@ -233,7 +231,7 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/whitney_medium" />
 
             </LinearLayout>
@@ -339,8 +337,95 @@
 
         </FrameLayout>
 
+        <!--<RelativeLayout
+            android:id="@+id/relPopupView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/linPopup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:background="@drawable/rounded_top_bluegray"
+                android:layout_above="@+id/relBottom"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_cancel_guest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Whitney-Semibold.ttf" />
+
+                    <com.myCPE.view.CustomTextView
+                        android:id="@+id/txtPopupTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_topics"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black_full" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:background="@color/color_bg"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relBottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_bg">
+
+                <RelativeLayout
+                    android:id="@+id/relPopupSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_background_yellow_theme"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_submit_lower"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>-->
 
     </RelativeLayout>
-
 
 </layout>
