@@ -17,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityContactUsBinding;
+import com.myCPE.databinding.ActivityContactUsNewBinding;
 import com.myCPE.model.getcontactusinfo.GetContactUsInfo;
 import com.myCPE.model.postcontactus.PostContactQuery;
 import com.myCPE.utility.Constant;
@@ -30,7 +31,7 @@ import rx.schedulers.Schedulers;
 
 public class ActivityContactUs extends AppCompatActivity {
 
-    ActivityContactUsBinding binding;
+    ActivityContactUsNewBinding binding;
     private APIService mAPIService;
     ProgressDialog progressDialog;
     public Context context;
@@ -41,7 +42,7 @@ public class ActivityContactUs extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_contact_us);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_contact_us_new);
         context = ActivityContactUs.this;
         mAPIService = ApiUtilsNew.getAPIService();
 

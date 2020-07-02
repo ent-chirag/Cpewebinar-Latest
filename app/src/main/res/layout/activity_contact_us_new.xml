@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.myCPE.activity.ActivityContactUs" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_rounded_grayblue"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@color/color_rounded_grayblue">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back"
+                    android:tint="@color/color_text_black" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/screentitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_contactus"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_15sdp"
+                app:font_text="Whitney-Semibold.ttf" />
+
+            <ImageView
+                android:id="@+id/ivnotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_bell"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <!--<RelativeLayout
+            android:id="@+id/rvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@color/webinar_status">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/screentitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_contactus"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_17sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
+
+
+        </RelativeLayout>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relbottom"
+            android:layout_below="@+id/rvtitle"
+            android:background="@color/color_rounded_grayblue">
+
+            <LinearLayout
+                android:id="@+id/linContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:layout_marginRight="@dimen/_22sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:fontFamily="@font/whitney_bold"
+                    android:text="@string/str_need_help"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_22sdp" />
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/str_address"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_15sdp"
+                    android:visibility="gone"
+                    app:font_button="Montserrat-Regular.ttf" />
+
+                <LinearLayout
+                    android:id="@+id/lv_call"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/rounded_login"
+                    android:backgroundTint="@color/White"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@drawable/rounded_login">
+
+                        <ImageView
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_call_svg" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_mobile_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:fontFamily="@font/whitney_medium"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/_14sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/rounded_login"
+                    android:backgroundTint="@color/White"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@drawable/rounded_login">
+
+                        <ImageView
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_contactus_svg" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_emailid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:fontFamily="@font/whitney_medium"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/_14sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linContent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:paddingLeft="@dimen/_22sdp"
+                android:paddingRight="@dimen/_22sdp"
+                android:background="@drawable/rounded_more_top_white"
+                android:orientation="vertical">
+
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/str_or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/str_or"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_18sdp"
+                    android:visibility="gone"
+                    app:font_button="Montserrat-Regular.ttf" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/str_or"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edt_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/underline_bg"
+                        android:fontFamily="@font/whitney_semibold"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_17sdp"
+                        android:textColor="@color/color_text_black"
+                        android:textColorHint="@color/color_text_hint"
+                        android:hint="@string/str_subject"/>
+
+                    <EditText
+                        android:id="@+id/edt_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/underline_bg"
+                        android:fontFamily="@font/whitney_semibold"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:maxLines="3"
+                        android:textSize="@dimen/_17sdp"
+                        android:textColor="@color/color_text_black"
+                        android:textColorHint="@color/color_text_hint"
+                        android:hint="@string/str_msg"/>
+
+                    <RelativeLayout
+                        android:id="@+id/relRawLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edtpassword"
+                        android:layout_marginTop="@dimen/_50sdp">
+
+                        <TextView
+                            android:id="@+id/txtSignIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/contact_send"
+                            android:textColor="@color/card_text_number_color"
+                            android:textSize="@dimen/_22sdp"
+                            android:fontFamily="@font/whitney_black"
+                            app:font_text="Whitney-Black.ttf" />
+
+                        <RelativeLayout
+                            android:id="@+id/btnsubmit"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/circular_button_orange">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/ic_arrow_right_max" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <!--<com.myCPE.view.CustomEditTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/editext_background"
+                        android:hint="@string/str_subject"
+                        android:imeOptions="actionNext"
+                        android:inputType="textMultiLine|textCapWords"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:scrollbars="vertical"
+                        android:scrollHorizontally="false"
+                        android:visibility="gone"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Light.ttf" />
+
+
+                    <com.myCPE.view.CustomEditTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_below="@+id/str_header"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/editext_background"
+                        android:gravity="top|left"
+                        android:hint="@string/str_your_name"
+                        android:visibility="gone"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:scrollbars="vertical"
+                        android:scrollHorizontally="false"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Light.ttf" />-->
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+<!--
+        <RelativeLayout
+            android:id="@+id/relbottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/webinar_status">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/btnsubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/contact_send"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+
+        </RelativeLayout>
+-->
+    </RelativeLayout>
+
+</layout>

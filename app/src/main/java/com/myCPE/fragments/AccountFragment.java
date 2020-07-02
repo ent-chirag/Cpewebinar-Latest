@@ -270,7 +270,7 @@ public class AccountFragment extends Fragment {
 
                             if (viewProfileModel.getPayload().getData().getFirstName() != null
                                     && !viewProfileModel.getPayload().getData().getFirstName().equalsIgnoreCase("")) {
-                                binding.tvUsername.setText(viewProfileModel.getPayload().getData().getFirstName());
+                                binding.tvUsername.setText(viewProfileModel.getPayload().getData().getFirstName()+" "+viewProfileModel.getPayload().getData().getLastName());
                             }
 
 
