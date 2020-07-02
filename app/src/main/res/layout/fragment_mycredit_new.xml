@@ -38,7 +38,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_bell"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -203,9 +203,9 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/no_data_found"
             android:textColor="@color/black"
-            android:textSize="@dimen/_25sdp"
+            android:textSize="@dimen/_15sdp"
             android:visibility="gone"
-            app:font_text="Montserrat-Medium.ttf" />
+            app:font_text="Whitney-Semibold.ttf" />
 
         <FrameLayout
             android:layout_width="match_parent"

@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.myCPE.activity.ActivityNotificationSetting" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rvtitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:background="@color/color_rounded_grayblue">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back"
+                    android:tint="@color/color_text_black" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/screentitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_notification_settings"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_15sdp"
+                app:font_text="Whitney-Semibold.ttf" />
+
+            <ImageView
+                android:id="@+id/ivnotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_bell"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_text_black"
+            android:layout_below="@+id/rvtitle"/>
+
+        <!--<RelativeLayout
+            android:id="@+id/rel_titile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@color/webinar_status">
+
+            <RelativeLayout
+                android:id="@+id/relImgBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back" />
+
+            </RelativeLayout>
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/screentitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/str_noti"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_17sdp"
+                app:font_text="Montserrat-SemiBold.ttf" />
+
+        </RelativeLayout>-->
+
+        <RelativeLayout
+            android:id="@+id/rel_push_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvtitle"
+            android:visibility="gone">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/pushnotification_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/str_notification_lable"
+                android:textColor="@color/theme_background"
+                android:textSize="@dimen/_18sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/pushnotification_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:text="@string/str_notification_status"
+                android:textColor="@color/notification_switch_status"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Montserrat-Bold.ttf" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_rel_push_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_push_notification"
+            android:visibility="gone">
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/pushnotification_seeting_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/str_settings_lable"
+                android:textColor="@color/black_full"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Montserrat-Regular.ttf" />
+
+            <com.myCPE.view.CustomTextView
+                android:id="@+id/pushnotification_seeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/pushnotification_seeting_lable"
+                android:text="@string/str_notification"
+                android:textColor="@color/notification_switch_status"
+                android:textSize="@dimen/_14sdp"
+                app:font_text="Montserrat-Regular.ttf" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rel_rel_push_settings"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:scrollIndicators="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
+                    android:background="@color/screen_section_notification_background"
+                    android:padding="@dimen/_5sdp">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="@string/str_push_notification_lable"
+                        android:textColor="@color/theme_background"
+                        android:textSize="@dimen/_16sdp"
+                        app:font_text="Whitney-Semibold.ttf" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_webinar_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_webinar_lable"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_16sdp"
+                            app:font_text="Whitney-Semibold.ttf" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:src="@mipmap/down_arrow"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_register_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_notification_register"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/_15sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_push_webinar_register"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_reminder_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_notification_reminder"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/_15sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_push_webinar_reminder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="0dp"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/background_list" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="@string/str_webinar_updates"
+                        android:textColor="@color/notification_child_color"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+                    <CheckBox
+                        android:id="@+id/cb_push_webinar_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableRight="@drawable/checkbox_selector"
+                        android:focusable="false" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_pending_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_pending_action"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_16sdp"
+                            app:font_text="Whitney-Semibold.ttf" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:src="@mipmap/down_arrow"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_push_quiz_pending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_quiz_pending"
+                            android:textColor="@color/notification_child_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_push_quiz_pending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_push_pending_evolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_pending_evolution"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/_15sdp"
+                            app:font_text="Whitney-Medium.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_push_pending_evoluation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/screen_section_notification_background"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="@string/str_text"
+                        android:textColor="@color/theme_background"
+                        android:textSize="@dimen/_16sdp"
+                        app:font_text="Montserrat-Bold.ttf" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_webinar_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_webinar_lable"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_14sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:src="@mipmap/down_arrow" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_text_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_notification_register"
+                            android:textColor="@color/notification_child_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_text_webinar_register"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_text_reminder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_notification_reminder"
+                            android:textColor="@color/notification_child_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_text_webinar_reminder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/background_list"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="@string/str_webinar_updates"
+                        android:textColor="@color/notification_child_color"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_text="Montserrat-Regular.ttf" />
+
+                    <CheckBox
+                        android:id="@+id/cb_text_webinar_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableRight="@drawable/checkbox_selector"
+                        android:focusable="false" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/background_list" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/rel_text_pending_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_pending_action"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_14sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:src="@mipmap/down_arrow" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/quiz_text_pending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_quiz_pending"
+                            android:textColor="@color/notification_child_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_text_quiz_pending"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_text_pending_evolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <com.myCPE.view.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="@string/str_pending_evolution"
+                            android:textColor="@color/notification_child_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:font_text="Montserrat-Regular.ttf" />
+
+                        <CheckBox
+                            android:id="@+id/cb_text_pending_evoluation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableRight="@drawable/checkbox_selector"
+                            android:focusable="false" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>

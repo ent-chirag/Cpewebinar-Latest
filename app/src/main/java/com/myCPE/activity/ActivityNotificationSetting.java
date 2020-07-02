@@ -20,6 +20,7 @@ import android.widget.CompoundButton;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityNotificationSettingBinding;
+import com.myCPE.databinding.ActivityNotificationSettingNewBinding;
 import com.myCPE.model.getnotificationsetting.GetNotificationModel;
 import com.myCPE.model.savenotificationsetting.SubmitNotification;
 import com.myCPE.utility.AppSettings;
@@ -36,7 +37,7 @@ import rx.schedulers.Schedulers;
 
 public class ActivityNotificationSetting extends AppCompatActivity {
 
-    ActivityNotificationSettingBinding binding;
+    ActivityNotificationSettingNewBinding binding;
     private static final String TAG = ActivityNotificationSetting.class.getName();
     public Context context;
     public boolean checkexpand_pushnoti_webinar = true;
@@ -56,7 +57,7 @@ public class ActivityNotificationSetting extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_notification_setting);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notification_setting_new);
         context = ActivityNotificationSetting.this;
         mAPIService = ApiUtilsNew.getAPIService();
 

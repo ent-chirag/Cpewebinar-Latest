@@ -42,7 +42,7 @@
     <string name="please_check_internet_condition">Please Check Internet Connection.</string>
     <string name="device_token">device token</string>
     <string name="device_i">device id</string>
-    <string name="no_data_found">No Data Available</string>
+    <string name="no_data_found">No data available</string>
     <string name="exit_validation">Are you sure you want to Exit?</string>
     <string name="logout_text">Are you sure you want to Logout?</string>
     <string name="password_length">Password must be at least 6 characters.</string>
@@ -513,6 +513,7 @@
     <string name="str_download_receipt"><u>Download Receipt</u></string>
 
     //notification settings
+    <string name="str_notification_settings">Notification Settings</string>
     <string name="str_notification_lable">Push notifications</string>
     <string name="str_notification_status">Off</string>
     <string name="str_settings_lable">To enable notification,go to</string>
