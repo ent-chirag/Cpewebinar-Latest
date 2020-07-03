@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -34,6 +35,7 @@ import com.myCPE.R;
 import com.myCPE.activity.NotificationActivity;
 import com.myCPE.adapter.HomeMyWebinarAdapter;
 import com.myCPE.databinding.FragmentMywebinarBinding;
+import com.myCPE.databinding.FragmentMywebinarNewBinding;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
@@ -55,7 +57,7 @@ import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 public class MyWebinarFragment extends Fragment {
 
     View view;
-    private FragmentMywebinarBinding binding;
+    private FragmentMywebinarNewBinding binding;
     HomeMyWebinarAdapter adapter;
     private static final String TAG = MyWebinarFragment.class.getName();
     public Context context;
@@ -77,7 +79,7 @@ public class MyWebinarFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mywebinar, null, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mywebinar_new, null, false);
         context = getActivity();
         mAPIService_new = ApiUtilsNew.getAPIService();
         instance = MyWebinarFragment.this;
@@ -94,7 +96,8 @@ public class MyWebinarFragment extends Fragment {
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         binding.rvhomewebinar.setLayoutManager(linearLayoutManager);
-        binding.rvhomewebinar.addItemDecoration(new SimpleDividerItemDecoration(context));
+//        binding.rvhomewebinar.addItemDecoration(new SimpleDividerItemDecoration(context));
+        binding.rvhomewebinar.addItemDecoration(new DividerItemDecoration(context, 0));
         binding.rvhomewebinar.setItemAnimator(new DefaultItemAnimator());
         binding.rvhomewebinar.setHasFixedSize(true);
 
@@ -135,6 +138,19 @@ public class MyWebinarFragment extends Fragment {
             binding.tvNodatafound.setText(getResources().getString(R.string.str_guest_user_dialog_msg));
         }
 
+        binding.ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rvtitle1.setVisibility(View.VISIBLE);
+            }
+        });
+
+        binding.txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rvtitle1.setVisibility(View.GONE);
+            }
+        });
 
         binding.edtSearch.addTextChangedListener(new TextWatcher() {
             @Override

@@ -165,9 +165,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         ((HomeViewHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_0)));
                     }
 
-//                    ((HomeViewHolder) viewHolder).tvWebinarState.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
-//                    ((HomeViewHolder) viewHolder).tvWebinarCredit.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
-//                    ((HomeViewHolder) viewHolder).tvWebinarPrice.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
                     ((HomeViewHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
                     ((HomeViewHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
                     ((HomeViewHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
@@ -178,9 +175,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         ((HomeViewHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_1)));
                     }
 
-//                    ((HomeViewHolder) viewHolder).tvWebinarState.setTextColor(mContext.getResources().getColor(R.color.White));
-//                    ((HomeViewHolder) viewHolder).tvWebinarCredit.setTextColor(mContext.getResources().getColor(R.color.White));
-//                    ((HomeViewHolder) viewHolder).tvWebinarPrice.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.White));
@@ -191,9 +185,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         ((HomeViewHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_2)));
                     }
 
-//                    ((HomeViewHolder) viewHolder).tvWebinarState.setTextColor(mContext.getResources().getColor(R.color.White));
-//                    ((HomeViewHolder) viewHolder).tvWebinarCredit.setTextColor(mContext.getResources().getColor(R.color.White));
-//                    ((HomeViewHolder) viewHolder).tvWebinarPrice.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.White));
                     ((HomeViewHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.White));

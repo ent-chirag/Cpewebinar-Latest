@@ -122,6 +122,7 @@
     <string name="str_home_title_detail">Webinar</string>
     <string name="str_all">ALL</string>
     <string name="str_my_webinar">MY WEBINAR</string>
+    <string name="str_my_webinar_small">My Webinar</string>
     <string name="str_live">LIVE</string>
     <string name="str_self_study">ON-DEMAND</string>
     <string name="str_archive">ARCHIVED</string>

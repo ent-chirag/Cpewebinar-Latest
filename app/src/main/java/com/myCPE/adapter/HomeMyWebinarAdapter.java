@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,7 +134,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
         } else {
             View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.row_webinar, parent, false);
+//                    R.layout.row_webinar, parent, false);
+                    R.layout.row_webinar_new, parent, false);
 
             vh = new MyWebinarHolder(v);
         }
@@ -156,6 +159,62 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
         if (viewHolder instanceof MyWebinarHolder) {
 
+            ((MyWebinarHolder) viewHolder).tvWebinarState.setText(mList.get(position).getWebinarType().toUpperCase());
+            ((MyWebinarHolder) viewHolder).tvWebinarCredit.setText(mList.get(position).getCpaCredit());
+            if (!mList.get(position).getFee().equalsIgnoreCase("")) {
+                ((MyWebinarHolder) viewHolder).tvWebinarPrice.setText("$" + mList.get(position).getFee());
+            } else {
+                ((MyWebinarHolder) viewHolder).tvWebinarPrice.setText("Free");
+            }
+            ((MyWebinarHolder) viewHolder).txtWebinarTitle.setText(mList.get(position).getWebinarTitle());
+            ((MyWebinarHolder) viewHolder).txtWebinarAuthor.setText(mList.get(position).getSpeakerName());
+            if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_filter_live))) {
+                ((MyWebinarHolder) viewHolder).txtWebinarDate.setVisibility(View.VISIBLE);
+            } else {
+                ((MyWebinarHolder) viewHolder).txtWebinarDate.setVisibility(View.INVISIBLE);
+            }
+            String inpWebStatus = mList.get(position).getStatus();
+            char charAt0 = inpWebStatus.charAt(0);
+            String reminingString = inpWebStatus.substring(1).toLowerCase();
+
+            String outputWebStaus = charAt0+reminingString;
+
+//            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
+            ((MyWebinarHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
+
+            for (int i = 0; i < mList.size() ; i++) {
+                Log.e("*+*+*","Position is : "+position);
+                if(position % 3 == 0){
+                    Log.e("*+*+*","Entered on position type : 0");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ((MyWebinarHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_0)));
+                    }
+
+                    ((MyWebinarHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
+                    ((MyWebinarHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
+                    ((MyWebinarHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
+
+                } else if(position % 3 == 1){
+                    Log.e("*+*+*","Entered on position type : 1");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ((MyWebinarHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_1)));
+                    }
+
+                    ((MyWebinarHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.White));
+                    ((MyWebinarHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.White));
+                    ((MyWebinarHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.White));
+
+                } else {
+                    Log.e("*+*+*","Entered on position type : 2");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ((MyWebinarHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_2)));
+                    }
+
+                    ((MyWebinarHolder) viewHolder).txtWebinarTitle.setTextColor(mContext.getResources().getColor(R.color.White));
+                    ((MyWebinarHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.White));
+                    ((MyWebinarHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.White));
+                }
+            }
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
                     .getString(R.string.str_live))) {
@@ -704,6 +763,10 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         View dv_divider;
         RelativeLayout rel_item;
 
+        RelativeLayout relBGShapeCard, relWebinarRegister;
+        TextView tvWebinarState, tvWebinarCredit, tvWebinarPrice, txtWebinarTitle, txtWebinarAuthor, txtWebinarDate;
+        TextView txtWebinarRegistrationState;
+
 
         private MyWebinarHolder(View itemView) {
             super(itemView);
@@ -734,6 +797,18 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             tv_timezone = (TextView) itemView.findViewById(R.id.tv_timezone);
 
             dv_divider = (View) itemView.findViewById(R.id.dv_divider);
+
+            relBGShapeCard = (RelativeLayout) itemView.findViewById(R.id.relBGShapeCard);
+            relWebinarRegister = (RelativeLayout) itemView.findViewById(R.id.relWebinarRegister);
+
+            tvWebinarState = (TextView) itemView.findViewById(R.id.tvWebinarState);
+            tvWebinarCredit = (TextView) itemView.findViewById(R.id.tvWebinarCredit);
+            tvWebinarPrice = (TextView) itemView.findViewById(R.id.tvWebinarPrice);
+            txtWebinarTitle = (TextView) itemView.findViewById(R.id.txtWebinarTitle);
+            txtWebinarAuthor = (TextView) itemView.findViewById(R.id.txtWebinarAuthor);
+            txtWebinarDate = (TextView) itemView.findViewById(R.id.txtWebinarDate);
+
+            txtWebinarRegistrationState = (TextView) itemView.findViewById(R.id.txtWebinarRegistrationState);
 
 
         }

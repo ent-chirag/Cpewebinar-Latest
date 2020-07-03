@@ -127,7 +127,7 @@
 
             <RelativeLayout
                 android:id="@+id/relWebinarRegister"
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="@dimen/_125sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/_15sdp"
