@@ -108,7 +108,7 @@
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rvtitle1"
+            android:layout_below="@+id/rvtitle"
             android:paddingTop="@dimen/_9sdp"
             android:paddingBottom="@dimen/_9sdp"
             android:scrollbars="none">

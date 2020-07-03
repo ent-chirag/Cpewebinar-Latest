@@ -4,15 +4,13 @@
     android:id="@+id/rel_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:layout_marginBottom="@dimen/_10sdp"
-    android:background="@color/White">
+    android:background="@color/color_bg">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,15 +18,15 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
+            android:visibility="gone"
             android:orientation="vertical">
 
-
             <com.myCPE.view.CustomTextView
-                android:id="@+id/tv_webinar_title"
+                android:id="@+id/tv_webinar_title1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
                 android:inputType="textMultiLine"
                 android:text="@string/str_basic_management"
@@ -37,12 +35,10 @@
                 android:textSize="@dimen/_10sdp"
                 app:font_text="Montserrat-SemiBold.ttf" />
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp">
-
 
                 <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_payment_date_label"
@@ -54,9 +50,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
                 <com.myCPE.view.CustomTextView
-                    android:id="@+id/tv_payment_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -66,14 +60,12 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
                 <com.myCPE.view.CustomButtonView
                     android:id="@+id/btn_webinarstatus_status"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_10sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_toRightOf="@+id/tv_payment_date"
                     android:background="@drawable/rounded_webinar_status"
                     android:gravity="center"
                     android:text="@string/transcation_str_live"
@@ -82,9 +74,7 @@
                     android:visibility="gone"
                     app:font_button="Montserrat-Regular.ttf" />
 
-
                 <com.myCPE.view.CustomTextView
-                    android:id="@+id/tv_webinar_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -94,14 +84,12 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_2sdp">
-
 
                 <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_trx_label"
@@ -113,9 +101,7 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
                 <com.myCPE.view.CustomTextView
-                    android:id="@+id/tv_trx_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -125,16 +111,13 @@
                     android:textSize="@dimen/_10sdp"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
                 <View
                     android:id="@id/view_webinartopic"
                     android:layout_width="0.5dp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_toRightOf="@+id/tv_trx_value"
                     android:background="@color/my_credit_header_email_id"
                     android:visibility="gone"></View>
-
 
                 <com.myCPE.view.CustomTextView
                     android:id="@+id/tv_payment_status"
@@ -148,12 +131,9 @@
                     android:visibility="gone"
                     app:font_text="Montserrat-Regular.ttf" />
 
-
                 <com.myCPE.view.CustomTextView
-                    android:id="@+id/tv_download_receipt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_trx_value"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:text="@string/str_download_receipt"
@@ -161,14 +141,134 @@
                     android:textSize="@dimen/_9sdp"
                     app:font_text="Montserrat-SemiBold.ttf" />
 
-
             </RelativeLayout>
-
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/morerounded_bg_gray_blue"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_webinar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:ellipsize="end"
+                android:fontFamily="@font/whitney_medium"
+                android:inputType="textMultiLine"
+                android:paddingLeft="@dimen/_10sdp"
+                android:maxLines="2"
+                android:paddingRight="@dimen/_30sdp"
+                android:text="Ethics for tax professionals opportunity (Latest 2020)"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/_12sdp" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tr ID #: "
+                    android:textColor="@color/color_text_black_oppacity"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_medium"/>
+
+                <TextView
+                    android:id="@+id/tv_trx_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textColor="@color/color_text_black_oppacity"
+                    android:fontFamily="@font/whitney_medium"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_webinar_cost"
+                    android:minWidth="@dimen/_50sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:text="$10"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/White"
+                    android:background="@drawable/rounded_signup"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+                <TextView
+                    android:id="@+id/tv_payment_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/tv_webinar_cost"
+                    android:text="@string/str_payment_date"
+                    android:textColor="@color/my_credit_header_email_id"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_medium" />
+
+                <RelativeLayout
+                    android:id="@+id/tv_download_receipt"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circular_button_orange">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_download_svg"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--<com.myCPE.view.CustomButtonView
+                    android:id="@+id/btn_certification_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/rounded_webinar_home"
+                    android:gravity="center"
+                    android:text="@string/str_download"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_7sdp"
+                    app:font_button="Montserrat-Bold.ttf" />-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

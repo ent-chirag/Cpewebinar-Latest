@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -172,8 +173,8 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
 
         if (viewHolder instanceof ViewHolder) {
 
-            String htmlString = "<u>Download Receipt</u>";
-            ((ViewHolder) viewHolder).tv_download_receipt.setText(Html.fromHtml(htmlString));
+            /*String htmlString = "<u>Download Receipt</u>";
+            ((ViewHolder) viewHolder).tv_download_receipt.setText(Html.fromHtml(htmlString));*/
 
 
             if (!mList.get(position).getTitle().equalsIgnoreCase("")) {
@@ -340,13 +341,14 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tv_download_receipt, tv_webinar_title, tv_payment_date, tv_webinar_cost, tv_trx_value;
+        public TextView tv_webinar_title, tv_payment_date, tv_webinar_cost, tv_trx_value;
         public Button btn_webinarstatus_status;
+        public RelativeLayout tv_download_receipt;
 
 
         private ViewHolder(View itemView) {
             super(itemView);
-            tv_download_receipt = (TextView) itemView.findViewById(R.id.tv_download_receipt);
+            tv_download_receipt = (RelativeLayout) itemView.findViewById(R.id.tv_download_receipt);
             tv_webinar_title = (TextView) itemView.findViewById(R.id.tv_webinar_title);
             tv_payment_date = (TextView) itemView.findViewById(R.id.tv_payment_date);
             tv_webinar_cost = (TextView) itemView.findViewById(R.id.tv_webinar_cost);

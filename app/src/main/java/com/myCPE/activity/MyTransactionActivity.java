@@ -17,6 +17,7 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.TransactionAdapter;
 import com.myCPE.databinding.ActivityMytransactionBinding;
+import com.myCPE.databinding.ActivityMytransactionNewBinding;
 import com.myCPE.model.payment_transcation.Model_Transcation;
 import com.myCPE.model.payment_transcation.TransactionItem;
 import com.myCPE.utility.AppSettings;
@@ -34,7 +35,7 @@ import rx.schedulers.Schedulers;
 
 public class MyTransactionActivity extends AppCompatActivity {
 
-    ActivityMytransactionBinding binding;
+    ActivityMytransactionNewBinding binding;
     TransactionAdapter adapter;
     ProgressDialog progressDialog;
     private APIService mAPIService;
@@ -49,7 +50,7 @@ public class MyTransactionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_mytransaction);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mytransaction_new);
         context = MyTransactionActivity.this;
         mAPIService = ApiUtilsNew.getAPIService();
 
