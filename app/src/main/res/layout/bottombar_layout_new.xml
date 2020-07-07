@@ -12,8 +12,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_20sdp"
-            android:background="@drawable/shadow_trans_2"/>
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/shadow_trans_1"
+            android:layout_marginBottom="@dimen/_minus30sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
