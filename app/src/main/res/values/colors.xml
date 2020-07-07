@@ -10,6 +10,7 @@
     <color name="color_text_hint">#BDBFCA</color>
     <color name="color_text_green">#00A81B</color>
     <color name="color_search_gray_bg">#12767680</color>
+    <color name="color_icon_gray">#777777</color>
 
     <color name="color_pos_0">#fec127</color>
     <color name="color_pos_1">#4163dc</color>

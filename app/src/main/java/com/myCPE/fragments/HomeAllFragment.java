@@ -632,7 +632,7 @@ public class HomeAllFragment extends Fragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    getActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                    /*getActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                     MainActivity.getInstance().rel_top_bottom.startAnimation(slide_up);
                     MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
                     Handler handler = new Handler();
@@ -641,11 +641,11 @@ public class HomeAllFragment extends Fragment {
                         public void run() {
                             MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
                         }
-                    }, 500);
+                    }, 500);*/
 
                 } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
 //                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down);
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
+//                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
                     /*Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override

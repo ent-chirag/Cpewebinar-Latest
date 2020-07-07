@@ -382,6 +382,12 @@
     <string name="my_webinar_fragment">mywebinarfragment</string>
     <string name="add_to_back_stack">null</string>
 
+    // Tabbar Screens
+    <string name="tab_home">Home</string>
+    <string name="tab_my_webinar">My webinars</string>
+    <string name="tab_certificate">Certificate</string>
+    <string name="tab_premium">Premium</string>
+    <string name="tab_profile">Profile</string>
 
     //webinar details screen
 

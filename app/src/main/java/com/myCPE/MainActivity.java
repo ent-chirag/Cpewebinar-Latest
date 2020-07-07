@@ -5,7 +5,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
     private static MainActivity instance;
     public RelativeLayout rel_top_bottom;
     public ImageView iv_mycredit, iv_mywebinar, iv_home, iv_premium, iv_account;
+    public ImageView imgTabCertificate, imgTabWebinars, imgTabHome, imgTabPremium, imgTabProfile;
+    private LinearLayout linCertificate, linMyWebinars, linHome, linPremium, linProfile;
+    private TextView txtCertificate, txtMyWebinar, txtHome, txtPremium, txtProfile;
     public int setselectedtab = 0;
     public int selectmywebinardtab = 0;
     public Dialog myDialog;
@@ -76,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
         iv_home = (ImageView) findViewById(R.id.iv_home);
         iv_premium = (ImageView) findViewById(R.id.iv_premium);
         iv_account = (ImageView) findViewById(R.id.iv_account);
+//        imgTabCertificate, imgTabWebinars, imgTabHome, imgTabPremium, imgTabProfile
+        imgTabCertificate = (ImageView) findViewById(R.id.imgTabCertificate);
+        imgTabWebinars = (ImageView) findViewById(R.id.imgTabWebinars);
+        imgTabHome = (ImageView) findViewById(R.id.imgTabHome);
+        imgTabPremium = (ImageView) findViewById(R.id.imgTabPremium);
+        imgTabProfile = (ImageView) findViewById(R.id.imgTabProfile);
+
+//        linCertificate, linMyWebinars, linHome, linPremium, linProfile
+        linCertificate = (LinearLayout) findViewById(R.id.linCertificate);
+        linMyWebinars = (LinearLayout) findViewById(R.id.linMyWebinars);
+        linHome = (LinearLayout) findViewById(R.id.linHome);
+        linPremium = (LinearLayout) findViewById(R.id.linPremium);
+        linProfile = (LinearLayout) findViewById(R.id.linProfile);
+
+//        txtCertificate, txtMyWebinar, txtHome, txtPremium, txtProfile
+        txtCertificate = (TextView) findViewById(R.id.txtCertificate);
+        txtMyWebinar = (TextView) findViewById(R.id.txtMyWebinar);
+        txtHome = (TextView) findViewById(R.id.txtHome);
+        txtPremium = (TextView) findViewById(R.id.txtPremium);
+        txtProfile = (TextView) findViewById(R.id.txtProfile);
 
         relPopupView = (RelativeLayout) findViewById(R.id.relPopupView);
         relPopupSubmit = (RelativeLayout) findViewById(R.id.relPopupSubmit);
@@ -89,7 +115,10 @@ public class MainActivity extends AppCompatActivity {
         Constant.setLightStatusBar(MainActivity.this);
 
 
-        iv_mycredit.setOnClickListener(new View.OnClickListener() {
+//        iv_mycredit.setOnClickListener(new View.OnClickListener() {
+//        imgTabCertificate.setOnClickListener(new View.OnClickListener() {
+        linCertificate.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -118,7 +147,10 @@ public class MainActivity extends AppCompatActivity {
         Constant.progWidth = displayMetrics.widthPixels;
         Constant.progHeigth = (float) (Constant.progWidth/1.69);
 
-        iv_mywebinar.setOnClickListener(new View.OnClickListener() {
+//        iv_mywebinar.setOnClickListener(new View.OnClickListener() {
+//        imgTabWebinars.setOnClickListener(new View.OnClickListener() {
+        linMyWebinars.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -143,7 +175,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        iv_home.setOnClickListener(new View.OnClickListener() {
+//        iv_home.setOnClickListener(new View.OnClickListener() {
+//        imgTabHome.setOnClickListener(new View.OnClickListener() {
+        linHome.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 setselectedtab = 0;
@@ -166,7 +201,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        iv_premium.setOnClickListener(new View.OnClickListener() {
+//        iv_premium.setOnClickListener(new View.OnClickListener() {
+//        imgTabPremium.setOnClickListener(new View.OnClickListener() {
+        linPremium.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -183,7 +221,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        iv_account.setOnClickListener(new View.OnClickListener() {
+//        iv_account.setOnClickListener(new View.OnClickListener() {
+//        imgTabProfile.setOnClickListener(new View.OnClickListener() {
+        linProfile.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -292,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void SetCreditScreen() {
         setselectedtab = 0;
         selectmywebinardtab = 0;
@@ -303,33 +345,94 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void SetImageBackground(int position) {
 
         if (position == 0) {
-            iv_mycredit.setImageResource(R.mipmap.footer_certificate_select_orange);
-            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_premium.setImageResource(R.mipmap.footer_premium);
-            iv_account.setImageResource(R.mipmap.footer_account);
+            Log.e("*+*+*","Position 0 Selected");
+            imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate);
+            imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
+            imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
+            imgTabPremium.setImageResource(R.drawable.ic_tab_premium_un);
+            imgTabProfile.setImageResource(R.drawable.ic_tab_account_un);
+
+            txtCertificate.setTextColor(getResources().getColor(R.color.theme_background));
+            txtMyWebinar.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtHome.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtPremium.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtProfile.setTextColor(getResources().getColor(R.color.color_icon_gray));
+//            iv_mycredit.setImageResource(R.mipmap.footer_certificate_select_orange);
+//            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
+//            iv_premium.setImageResource(R.mipmap.footer_premium);
+//            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 1) {
-            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
-            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars_select);
-            iv_premium.setImageResource(R.mipmap.footer_premium);
-            iv_account.setImageResource(R.mipmap.footer_account);
+            Log.e("*+*+*","Position 1 Selected");
+            imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
+            imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar);
+            imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
+            imgTabPremium.setImageResource(R.drawable.ic_tab_premium_un);
+            imgTabProfile.setImageResource(R.drawable.ic_tab_account_un);
+
+            txtCertificate.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtMyWebinar.setTextColor(getResources().getColor(R.color.theme_background));
+            txtHome.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtPremium.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtProfile.setTextColor(getResources().getColor(R.color.color_icon_gray));
+//            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
+//            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars_select);
+//            iv_premium.setImageResource(R.mipmap.footer_premium);
+//            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 2) {
-            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
-            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_premium.setImageResource(R.mipmap.footer_premium);
-            iv_account.setImageResource(R.mipmap.footer_account);
+            Log.e("*+*+*","Position 2 Selected");
+            imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
+            imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
+            imgTabHome.setImageResource(R.drawable.ic_tab_home);
+            imgTabPremium.setImageResource(R.drawable.ic_tab_premium_un);
+            imgTabProfile.setImageResource(R.drawable.ic_tab_account_un);
+
+            txtCertificate.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtMyWebinar.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtHome.setTextColor(getResources().getColor(R.color.theme_background));
+            txtPremium.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtProfile.setTextColor(getResources().getColor(R.color.color_icon_gray));
+//            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
+//            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
+//            iv_premium.setImageResource(R.mipmap.footer_premium);
+//            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 3) {
-            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
-            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_premium.setImageResource(R.mipmap.footer_premium_select_orange);
-            iv_account.setImageResource(R.mipmap.footer_account);
+            Log.e("*+*+*","Position 3 Selected");
+            imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
+            imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
+            imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
+            imgTabPremium.setImageResource(R.drawable.ic_tab_premium);
+            imgTabProfile.setImageResource(R.drawable.ic_tab_account_un);
+
+            txtCertificate.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtMyWebinar.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtHome.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtPremium.setTextColor(getResources().getColor(R.color.theme_background));
+            txtProfile.setTextColor(getResources().getColor(R.color.color_icon_gray));
+//            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
+//            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
+//            iv_premium.setImageResource(R.mipmap.footer_premium_select_orange);
+//            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 4) {
-            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
-            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
-            iv_premium.setImageResource(R.mipmap.footer_premium);
-            iv_account.setImageResource(R.mipmap.footer_account_select);
+            Log.e("*+*+*","Position 4 Selected");
+            imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
+            imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
+            imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
+            imgTabPremium.setImageResource(R.drawable.ic_tab_premium_un);
+            imgTabProfile.setImageResource(R.drawable.ic_tab_account);
+
+            txtCertificate.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtMyWebinar.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtHome.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtPremium.setTextColor(getResources().getColor(R.color.color_icon_gray));
+            txtProfile.setTextColor(getResources().getColor(R.color.theme_background));
+//            iv_mycredit.setImageResource(R.mipmap.footer_certificate);
+//            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars);
+//            iv_premium.setImageResource(R.mipmap.footer_premium);
+//            iv_account.setImageResource(R.mipmap.footer_account_select);
         }
 
 
@@ -463,7 +566,7 @@ public class MainActivity extends AppCompatActivity {
         Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_up_new);
 
-        linPopup.startAnimation(slide_up);
+//        linPopup.startAnimation(slide_up);
         relPopupView.setVisibility(View.VISIBLE);
         rvPopupList.setVisibility(View.VISIBLE);
 
