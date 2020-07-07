@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.myCPE.fragments.MyWebinarFragment" />
@@ -20,111 +21,103 @@
             android:background="@color/color_rounded_grayblue"
             android:padding="@dimen/_10sdp">
 
-            <com.myCPE.view.CustomTextView
-                android:id="@+id/screentitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/str_my_webinar_small"
-                android:textColor="@color/color_text_black"
-                android:textSize="@dimen/_14sdp"
-                app:font_text="Whitney-Semibold.ttf" />
+            <RelativeLayout
+                android:id="@+id/relSection1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ivSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_search_svg"
-                android:layout_toLeftOf="@+id/ivnotification"
-                android:paddingRight="@dimen/_12sdp"
-                android:visibility="visible" />
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/screentitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/str_my_webinar_small"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_14sdp"
+                    app:font_text="Whitney-Semibold.ttf" />
 
-            <ImageView
-                android:id="@+id/ivnotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_bell"
-                android:visibility="visible" />
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/ivnotification"
+                    android:paddingRight="@dimen/_12sdp"
+                    android:src="@drawable/ic_search_svg"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/ivnotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_bell"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rvtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@color/color_rounded_grayblue"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:layout_toLeftOf="@+id/txtCancel"
+                    android:background="@drawable/rounded_bg_gray_blue"
+                    android:backgroundTint="@color/color_search_gray_bg"
+                    android:drawableLeft="@drawable/ic_search_gray_svg"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center|left"
+                    android:hint="@string/str_search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textCapWords"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/color_text_hint"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/txtCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Cancel"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/whitney_medium"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/black_full"
-            android:layout_below="@+id/rvtitle"/>
-
-        <RelativeLayout
-            android:id="@+id/rvtitle1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_44sdp"
-            android:background="@color/color_bg"
-            android:focusable="true"
-            android:visibility="visible"
-            android:layout_below="@+id/view"
-            android:focusableInTouchMode="true">
-
-            <EditText
-                android:id="@+id/edt_search"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_7sdp"
-                android:layout_toLeftOf="@+id/txtCancel"
-                android:background="@drawable/rounded_bg_gray_blue"
-                android:backgroundTint="@color/color_search_gray_bg"
-                android:drawableLeft="@drawable/ic_search_gray_svg"
-                android:drawablePadding="@dimen/_5sdp"
-                android:gravity="center|left"
-                android:hint="@string/str_search"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapWords"
-                android:paddingLeft="@dimen/_10sdp"
-                android:singleLine="true"
-                android:textColorHint="@color/color_text_hint"
-                android:textColor="@color/color_text_black"
-                android:textSize="@dimen/_14sdp"
-                android:fontFamily="@font/whitney_medium" />
-
-            <TextView
-                android:id="@+id/txtCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Cancel"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/theme_background"
-                android:textSize="@dimen/_14sdp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="@dimen/_7sdp"
-                android:padding="@dimen/_5sdp"/>
-
-            <!--<RelativeLayout
-                android:id="@+id/relNotifications"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_alignParentRight="true">
-
-                <ImageView
-                    android:id="@+id/ivnotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/home_bell" />
-
-            </RelativeLayout>-->
-
-        </RelativeLayout>
+            android:layout_height="1dp"
+            android:layout_below="@+id/rvtitle"
+            android:background="@color/black_full" />
 
         <HorizontalScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
-            android:layout_below="@+id/rvtitle1"
+            android:layout_below="@+id/view"
             android:layout_marginTop="@dimen/_2sdp"
             android:scrollbars="none"
             android:visibility="gone">
@@ -308,11 +301,11 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:indeterminateTint="@color/theme_background"
-                android:indeterminateTintMode="src_atop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:indeterminateTint="@color/theme_background"
+                android:indeterminateTintMode="src_atop"
                 android:visibility="gone" />
 
 

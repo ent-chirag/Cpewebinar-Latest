@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.myCPE.fragments.HomeAllFragment" />
@@ -20,95 +21,137 @@
             android:background="@color/color_rounded_grayblue"
             android:padding="@dimen/_10sdp">
 
-            <com.myCPE.view.CustomTextView
-                android:id="@+id/screentitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/str_home"
-                android:textColor="@color/color_text_black"
-                android:textSize="@dimen/_14sdp"
-                app:font_text="Whitney-Semibold.ttf" />
-
-            <ImageView
-                android:id="@+id/ivSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_search_svg"
-                android:layout_toLeftOf="@+id/ivnotification"
-                android:paddingRight="@dimen/_12sdp"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/ivnotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_bell"
-                android:visibility="visible" />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/black_full"
-            android:layout_below="@+id/rvtitle"/>
-
-        <RelativeLayout
-            android:id="@+id/rvtitle1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@color/webinar_status"
-            android:layout_below="@+id/rvtitle"
-            android:focusable="true"
-            android:visibility="gone"
-            android:focusableInTouchMode="true">
-
-            <com.myCPE.view.CustomEditTextView
-                android:id="@+id/edt_search"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_26sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_7sdp"
-                android:layout_toLeftOf="@+id/relNotifications"
-                android:background="@mipmap/search_box"
-                android:drawableLeft="@mipmap/search_home"
-                android:drawablePadding="@dimen/_5sdp"
-                android:gravity="center|left"
-                android:hint="@string/str_search"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapWords"
-                android:paddingLeft="@dimen/_10sdp"
-                android:singleLine="true"
-                android:textColorHint="@color/home_edit_search"
-                android:textSize="@dimen/_10sdp"
-                app:font_edit="SFUIDisplay-Medium.ttf" />
-
             <RelativeLayout
-                android:id="@+id/relNotifications"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_alignParentRight="true">
+                android:id="@+id/relSection1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/ivnotification1"
+                <com.myCPE.view.CustomTextView
+                    android:id="@+id/screentitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@mipmap/home_bell" />
+                    android:text="@string/str_home"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_14sdp"
+                    app:font_text="Whitney-Semibold.ttf" />
+
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/ivnotification"
+                    android:paddingRight="@dimen/_12sdp"
+                    android:src="@drawable/ic_search_svg"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/ivnotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_bell"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rvtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@color/color_rounded_grayblue"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:layout_toLeftOf="@+id/txtCancel"
+                    android:background="@drawable/rounded_bg_gray_blue"
+                    android:backgroundTint="@color/color_search_gray_bg"
+                    android:drawableLeft="@drawable/ic_search_gray_svg"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center|left"
+                    android:hint="@string/str_search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textCapWords"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/color_text_hint"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/txtCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Cancel"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/whitney_medium"/>
+
+                <!--<com.myCPE.view.CustomEditTextView
+                    android:id="@+id/edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_toLeftOf="@+id/relNotifications"
+                    android:background="@mipmap/search_box"
+                    android:drawableLeft="@mipmap/search_home"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:gravity="center|left"
+                    android:hint="@string/str_search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textCapWords"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColorHint="@color/home_edit_search"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
+
+                <RelativeLayout
+                    android:id="@+id/relNotifications"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:id="@+id/ivnotification1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/home_bell" />
+
+                </RelativeLayout>-->
 
             </RelativeLayout>
 
         </RelativeLayout>
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rvtitle"
+            android:background="@color/black_full" />
+
         <HorizontalScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rvtitle"
+            android:layout_below="@+id/view"
             android:paddingTop="@dimen/_9sdp"
             android:paddingBottom="@dimen/_9sdp"
             android:scrollbars="none">
@@ -122,17 +165,17 @@
 
                 <TextView
                     android:id="@+id/btn_topics"
-                    android:minWidth="@dimen/_70sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_topics"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_topics"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium"/>
+                    android:textSize="@dimen/_10sdp" />
 
 
                 <TextView
@@ -142,14 +185,14 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_live_webinar"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_live_webinar"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
 
                 <TextView
@@ -159,14 +202,14 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_self_on_demand"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_self_on_demand"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/btn_premium"
@@ -175,14 +218,14 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_premium"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_premium"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
 
                 <TextView
@@ -192,14 +235,14 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_free"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_free"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/btn_date"
@@ -208,14 +251,14 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_date"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_date"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/btn_cpd"
@@ -225,14 +268,14 @@
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/tag_unselected"
-                    android:text="@string/str_cpd"
-                    android:minWidth="@dimen/_70sdp"
+                    android:fontFamily="@font/whitney_medium"
                     android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:text="@string/str_cpd"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_medium" />
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 

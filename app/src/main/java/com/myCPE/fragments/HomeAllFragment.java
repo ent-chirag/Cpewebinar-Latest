@@ -192,6 +192,33 @@ public class HomeAllFragment extends Fragment {
 
         }
 
+        binding.ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relSection1.setVisibility(View.GONE);
+                binding.rvtitle1.setVisibility(View.VISIBLE);
+            }
+        });
+
+        binding.txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relSection1.setVisibility(View.VISIBLE);
+                binding.rvtitle1.setVisibility(View.GONE);
+
+                if(!binding.edtSearch.getText().toString().equalsIgnoreCase("")) {
+//                    binding.edtSearch.setText("");
+                    Constant.search = "";
+
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+                    } else {
+                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
         if (Constant.webinartype.equalsIgnoreCase("live")) {
 

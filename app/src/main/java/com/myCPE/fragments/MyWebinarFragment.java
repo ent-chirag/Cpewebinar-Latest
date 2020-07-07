@@ -141,6 +141,7 @@ public class MyWebinarFragment extends Fragment {
         binding.ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.relSection1.setVisibility(View.GONE);
                 binding.rvtitle1.setVisibility(View.VISIBLE);
             }
         });
@@ -148,7 +149,18 @@ public class MyWebinarFragment extends Fragment {
         binding.txtCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.relSection1.setVisibility(View.VISIBLE);
                 binding.rvtitle1.setVisibility(View.GONE);
+
+                if (!binding.edtSearch.getText().toString().equalsIgnoreCase("")) {
+//                    binding.edtSearch.setText("");
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                    } else {
+                        Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
