@@ -4,219 +4,230 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:background="@drawable/ic_bg_white_shadow"
-        android:orientation="horizontal"
+        android:layout_height="@dimen/_75sdp"
         android:layout_alignParentBottom="true"
-        android:weightSum="5">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_20sdp"
+            android:background="@drawable/shadow_trans_2"/>
 
         <LinearLayout
-            android:id="@+id/linCertificate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/White"
+            android:orientation="horizontal"
+            android:weightSum="5">
 
-            <ImageView
-                android:id="@+id/imgTabCertificate"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_tab_certificate_un"/>
+            <LinearLayout
+                android:id="@+id/linHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtCertificate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_certificate"
-                android:fontFamily="@font/whitney_medium"
-                android:textColor="@color/color_icon_gray"
-                android:textSize="@dimen/_10sdp"/>
+                <ImageView
+                    android:id="@+id/imgTabHome"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_tab_home" />
+
+                <TextView
+                    android:id="@+id/txtHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/whitney_medium"
+                    android:text="@string/tab_home"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linMyWebinars"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgTabWebinars"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_tab_my_webinar_un" />
+
+                <TextView
+                    android:id="@+id/txtMyWebinar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/whitney_medium"
+                    android:text="@string/tab_my_webinar"
+                    android:textColor="@color/color_icon_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linCertificate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgTabCertificate"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_tab_certificate_un" />
+
+                <TextView
+                    android:id="@+id/txtCertificate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/whitney_medium"
+                    android:text="@string/tab_certificate"
+                    android:textColor="@color/color_icon_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linPremium"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgTabPremium"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_tab_premium_un" />
+
+                <TextView
+                    android:id="@+id/txtPremium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/whitney_medium"
+                    android:text="@string/tab_premium"
+                    android:textColor="@color/color_icon_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linProfile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgTabProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_tab_account_un" />
+
+                <TextView
+                    android:id="@+id/txtProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/whitney_medium"
+                    android:text="@string/tab_profile"
+                    android:textColor="@color/color_icon_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:id="@+id/linMyWebinars"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:id="@+id/lv_live"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/iv_home"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
 
             <ImageView
-                android:id="@+id/imgTabWebinars"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_tab_my_webinar_un"/>
-
-            <TextView
-                android:id="@+id/txtMyWebinar"
+                android:id="@+id/iv_mycredit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_my_webinar"
-                android:fontFamily="@font/whitney_medium"
-                android:textColor="@color/color_icon_gray"
-                android:textSize="@dimen/_10sdp"/>
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:src="@mipmap/footer_certificate" />
+
+            <ImageView
+                android:id="@+id/iv_mywebinar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:src="@mipmap/footer_mywebinars" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linHome"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+
+        <ImageView
+            android:id="@+id/iv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imgTabHome"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_tab_home"/>
-
-            <TextView
-                android:id="@+id/txtHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_home"
-                android:fontFamily="@font/whitney_medium"
-                android:textColor="@color/theme_background"
-                android:textSize="@dimen/_10sdp"/>
-
-        </LinearLayout>
+            android:src="@mipmap/footer_home_orange"
+            android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/linPremium"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:id="@+id/lv_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/iv_home"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
 
             <ImageView
-                android:id="@+id/imgTabPremium"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_tab_premium_un"/>
-
-            <TextView
-                android:id="@+id/txtPremium"
+                android:id="@+id/iv_premium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_premium"
-                android:fontFamily="@font/whitney_medium"
-                android:textColor="@color/color_icon_gray"
-                android:textSize="@dimen/_10sdp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linProfile"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:src="@mipmap/footer_premium" />
 
             <ImageView
-                android:id="@+id/imgTabProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_tab_account_un" />
-
-            <TextView
-                android:id="@+id/txtProfile"
+                android:id="@+id/iv_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_profile"
-                android:fontFamily="@font/whitney_medium"
-                android:textColor="@color/color_icon_gray"
-                android:textSize="@dimen/_10sdp"/>
+                android:layout_weight="1"
+                android:paddingRight="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:src="@mipmap/footer_account" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lv_live"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/iv_home"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="2">
-
-        <ImageView
-            android:id="@+id/iv_mycredit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:src="@mipmap/footer_certificate" />
-
-        <ImageView
-            android:id="@+id/iv_mywebinar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:src="@mipmap/footer_mywebinars" />
-
-    </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/iv_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:src="@mipmap/footer_home_orange" />
-
-    <LinearLayout
-        android:id="@+id/lv_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/iv_home"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="2">
-
-        <ImageView
-            android:id="@+id/iv_premium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:src="@mipmap/footer_premium" />
-
-        <ImageView
-            android:id="@+id/iv_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:src="@mipmap/footer_account" />
-
-    </LinearLayout>
-
 
 </RelativeLayout>

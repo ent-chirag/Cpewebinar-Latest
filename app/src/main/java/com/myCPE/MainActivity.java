@@ -127,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
                     Constant.hashmap_subject_home_area.clear();
                     setselectedtab = 0;
                     selectmywebinardtab = 0;
-                    SetImageBackground(0);
+//                    SetImageBackground(0);
+                    SetImageBackground(2);
                     myCreditsFragment = new MyCreditsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, myCreditsFragment, getResources()
                             .getString(R.string.mycreditfragment)).addToBackStack(getResources().getString(R.string.add_to_back_stack)).commit();
@@ -184,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 setselectedtab = 0;
                 selectmywebinardtab = 0;
                 checkmywebinardotstatusset = false;
-                SetImageBackground(2);
+//                SetImageBackground(2);
+                SetImageBackground(0);
 
                 Constant.arrsavebooleanstate.clear();
                 Constant.arraysavefilter.clear();
@@ -348,8 +350,8 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void SetImageBackground(int position) {
 
-        if (position == 0) {
-            Log.e("*+*+*","Position 0 Selected");
+        if (position == 2) {
+            Log.e("*+*+*","Position 2 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
@@ -382,8 +384,8 @@ public class MainActivity extends AppCompatActivity {
 //            iv_mywebinar.setImageResource(R.mipmap.footer_mywebinars_select);
 //            iv_premium.setImageResource(R.mipmap.footer_premium);
 //            iv_account.setImageResource(R.mipmap.footer_account);
-        } else if (position == 2) {
-            Log.e("*+*+*","Position 2 Selected");
+        } else if (position == 0) {
+            Log.e("*+*+*","Position 0 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home);
