@@ -75,6 +75,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     private Context mContext;
     LayoutInflater mInflater;
     public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
+    public List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList;
     private APIService mAPIService;
     public Dialog dialogCertificate;
     public CertificatesListHomeMyWebinarPopUpAdapter certificatesListPopUpAdapter;
@@ -84,11 +85,12 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     //    public String certificate_link = "";
     LinearLayoutManager linearLayoutManager;
     String join_url = "";
+    ContinueWatchAdapter continueWatchAdapter;
 
-
-    public HomeALLAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
+    public HomeALLAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList, List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList) {
         this.mContext = mContext;
         this.mList = mList;
+        this.recentList = recentList;
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         dialogCertificate = new Dialog(mContext);
@@ -124,6 +126,27 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
         if (viewHolder instanceof HomeViewHolder) {
             Constant.Log("size", "" + mList.size());
+            Log.e("*+*+*","Size for RecentList : "+recentList.size());
+
+            if(position == 0) {
+                if(recentList.size() > 0) {
+                    ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
+                    ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+                    ((HomeViewHolder) viewHolder).rvContinueWatch.setLayoutManager(linearLayoutManager);
+                    ((HomeViewHolder) viewHolder).rvContinueWatch.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+                    continueWatchAdapter = new ContinueWatchAdapter(mContext, recentList);
+                    ((HomeViewHolder) viewHolder).rvContinueWatch.setAdapter(continueWatchAdapter);
+
+                } else {
+                    ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                    ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                }
+            } else {
+                ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+            }
 
             /*if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).tv_webinar_title.setText(mList.get(position).getWebinarTitle());
@@ -997,6 +1020,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         TextView tvWebinarState, tvWebinarCredit, tvWebinarPrice, txtWebinarTitle, txtWebinarAuthor, txtWebinarDate;
         TextView txtWebinarRegistrationState;
 
+        RecyclerView rvContinueWatch;
+
 
         private HomeViewHolder(View itemView) {
             super(itemView);
@@ -1046,6 +1071,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             txtWebinarDate = (TextView) itemView.findViewById(R.id.txtWebinarDate);
 
             txtWebinarRegistrationState = (TextView) itemView.findViewById(R.id.txtWebinarRegistrationState);
+            rvContinueWatch = (RecyclerView) itemView.findViewById(R.id.rvContinueWatch);
 
         }
     }

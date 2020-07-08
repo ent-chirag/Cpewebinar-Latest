@@ -43,6 +43,7 @@ import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
 import com.myCPE.databinding.FragmentAllBinding;
 import com.myCPE.databinding.FragmentAllNewBinding;
+import com.myCPE.model.homewebinarnew.RecentWebinarItem;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.model.subject_area.Subject_Area;
 import com.myCPE.model.subjects_store.Model_Subject_Area;
@@ -78,6 +79,7 @@ public class HomeAllFragment extends Fragment {
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
     private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
+    private List<com.myCPE.model.homewebinarnew.RecentWebinarItem> arrRecentlistnew = new ArrayList<RecentWebinarItem>();
 
     public ArrayList<Model_Subject_Area> arraylistModelSubjectArea = new ArrayList<>();
 
@@ -1435,7 +1437,7 @@ public class HomeAllFragment extends Fragment {
 
                         if (start == 0 && limit == 10) {
                             if (arrHomelistnew.size() > 0) {
-                                adapter = new HomeALLAdapter(context, arrHomelistnew);
+                                adapter = new HomeALLAdapter(context, arrHomelistnew, arrRecentlistnew);
                                 binding.rvhome.setAdapter(adapter);
 
                             }
@@ -1500,6 +1502,7 @@ public class HomeAllFragment extends Fragment {
 
                             if (start == 0 && limit == 10) {
                                 arrHomelistnew = webinar_home_new.getPayload().getWebinar();
+                                arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
 
                             } else {
 
@@ -1515,7 +1518,7 @@ public class HomeAllFragment extends Fragment {
                             }
 
 
-                            if (arrHomelistnew.size() > 0) {
+                            if (arrHomelistnew.size() > 0 || arrRecentlistnew.size() > 0) {
                                 binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
                                 binding.tvNodatafound.setVisibility(View.GONE);
                             } else {
@@ -1575,7 +1578,7 @@ public class HomeAllFragment extends Fragment {
 
                         if (start == 0 && limit == 10) {
                             if (arrHomelistnew.size() > 0) {
-                                adapter = new HomeALLAdapter(context, arrHomelistnew);
+                                adapter = new HomeALLAdapter(context, arrHomelistnew, arrRecentlistnew);
                                 binding.rvhome.setAdapter(adapter);
 
                             }
@@ -1640,6 +1643,7 @@ public class HomeAllFragment extends Fragment {
 
                             if (start == 0 && limit == 10) {
                                 arrHomelistnew = webinar_home_new.getPayload().getWebinar();
+                                arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
 
                             } else {
 
@@ -1655,7 +1659,7 @@ public class HomeAllFragment extends Fragment {
                             }
 
 
-                            if (arrHomelistnew.size() > 0) {
+                            if (arrHomelistnew.size() > 0 || arrRecentlistnew.size() > 0) {
                                 binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
                                 binding.tvNodatafound.setVisibility(View.GONE);
                             } else {

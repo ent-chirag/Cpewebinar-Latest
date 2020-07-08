@@ -13,6 +13,15 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:orientation="vertical">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvContinueWatch"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_minus15sdp"
+            android:scrollbars="none" />
+
         <RelativeLayout
             android:id="@+id/relBGShapeCard"
             android:layout_width="match_parent"

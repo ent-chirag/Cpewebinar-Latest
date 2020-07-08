@@ -25,6 +25,9 @@ public class Payload {
     @SerializedName("webinar")
     private List<WebinarItem> webinar;
 
+    @SerializedName("RecentWebinars")
+    private List<RecentWebinarItem> RecentWebinars;
+
     public void setIsLast(boolean isLast) {
         this.isLast = isLast;
     }
@@ -41,6 +44,14 @@ public class Payload {
         return webinar;
     }
 
+    public List<RecentWebinarItem> getRecentWebinars() {
+        return RecentWebinars;
+    }
+
+    public void setRecentWebinars(List<RecentWebinarItem> recentWebinars) {
+        RecentWebinars = recentWebinars;
+    }
+
     @Override
     public String toString() {
         return
@@ -48,6 +59,7 @@ public class Payload {
                         "is_last = '" + isLast + '\'' +
                         "is_progress = '" + isprogress + '\'' +
                         ",webinar = '" + webinar + '\'' +
+                        ",RecentWebinars = '" + RecentWebinars + '\'' +
                         "}";
     }
 }
