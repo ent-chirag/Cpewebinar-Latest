@@ -182,7 +182,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                 for (int i = 0; i < mList.size() ; i++) {
                 Log.e("*+*+*","Position is : "+position);
-                if(position % 3 == 0){
+                if(position % 3 == 1){
                     Log.e("*+*+*","Entered on position type : 0");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ((HomeViewHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_0)));
@@ -192,7 +192,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                     ((HomeViewHolder) viewHolder).txtWebinarAuthor.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
                     ((HomeViewHolder) viewHolder).txtWebinarDate.setTextColor(mContext.getResources().getColor(R.color.color_text_black));
 
-                } else if(position % 3 == 1){
+                } else if(position % 3 == 2){
                     Log.e("*+*+*","Entered on position type : 1");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ((HomeViewHolder) viewHolder).relBGShapeCard.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.color_pos_1)));
