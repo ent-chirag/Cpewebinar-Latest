@@ -123,12 +123,26 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
 
             if (!recentList.get(position).getWebinarImage().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).imgBanner.setVisibility(View.VISIBLE);
-                Picasso.with(mContext).load(recentList.get(position).getWebinarImage())
+                /*Picasso.with(mContext).load(recentList.get(position).getWebinarImage())
                         .placeholder(R.mipmap.webinar_placeholder)
-                        .into(((HomeViewHolder) viewHolder).imgBanner);
+                        .into(((HomeViewHolder) viewHolder).imgBanner);*/
             } else {
                 ((HomeViewHolder) viewHolder).imgBanner.setVisibility(View.GONE);
             }
+
+            ((HomeViewHolder) viewHolder).imgContinueWatchPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("*+*+*","Clicked on Play icon position is : "+position);
+                    Intent i = new Intent(mContext, WebinarDetailsActivity.class);
+                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), 2086);
+                    i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), "ON-DEMAND");
+                    Constant.isFromSpeakerCompanyWebinarList = false;
+                    mContext.startActivity(i);
+                    ((Activity) mContext).finish();
+                }
+            });
 
         }
     }
@@ -163,7 +177,7 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
 
         TextView txtWebinarTitle;
         RelativeLayout relBGShapeCard;
-        ImageView imgBanner;
+        ImageView imgBanner, imgContinueWatchPlay;
 
         private HomeViewHolder(View itemView) {
             super(itemView);
@@ -172,6 +186,7 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
             txtWebinarTitle = (TextView) itemView.findViewById(R.id.txtWebinarTitle);
             relBGShapeCard = (RelativeLayout) itemView.findViewById(R.id.relBGShapeCard);
             imgBanner = (ImageView) itemView.findViewById(R.id.imgBanner);
+            imgContinueWatchPlay = (ImageView) itemView.findViewById(R.id.imgContinueWatchPlay);
 
         }
     }
