@@ -13,11 +13,40 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/relConWatch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp">
+
+            <TextView
+                android:id="@+id/txtContinueWatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/whitney_semibold"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:text="@string/str_continue_watch"
+                android:textColor="@color/color_text_black"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/_16sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_right_aroow"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:tint="@color/color_text_black"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"/>
+
+        </RelativeLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvContinueWatch"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_120sdp"
             android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginRight="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_minus15sdp"
             android:scrollbars="none" />
@@ -136,7 +165,7 @@
 
             <RelativeLayout
                 android:id="@+id/relWebinarRegister"
-                android:layout_width="@dimen/_125sdp"
+                android:layout_width="@dimen/_115sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/_15sdp"

@@ -1503,11 +1503,6 @@ public class HomeAllFragment extends Fragment {
                             if (start == 0 && limit == 10) {
                                 arrHomelistnew = webinar_home_new.getPayload().getWebinar();
                                 arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
-                                if(arrRecentlistnew.size() > 0) {
-                                    binding.relConWatch.setVisibility(View.VISIBLE);
-                                } else {
-                                    binding.relConWatch.setVisibility(View.GONE);
-                                }
 
                             } else {
 
@@ -1649,11 +1644,6 @@ public class HomeAllFragment extends Fragment {
                             if (start == 0 && limit == 10) {
                                 arrHomelistnew = webinar_home_new.getPayload().getWebinar();
                                 arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
-                                if(arrRecentlistnew.size() > 0) {
-                                    binding.relConWatch.setVisibility(View.VISIBLE);
-                                } else {
-                                    binding.relConWatch.setVisibility(View.GONE);
-                                }
 
                             } else {
 

@@ -131,6 +131,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             if(position == 0) {
                 if(recentList.size() > 0) {
                     ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
+                    ((HomeViewHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
                     ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
@@ -142,10 +143,12 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 } else {
                     ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
                     ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                    ((HomeViewHolder) viewHolder).relConWatch.setVisibility(View.GONE);
                 }
             } else {
                 ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
                 ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                ((HomeViewHolder) viewHolder).relConWatch.setVisibility(View.GONE);
             }
 
             /*if (!mList.get(position).getWebinarTitle().equalsIgnoreCase("")) {
@@ -1021,6 +1024,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         TextView txtWebinarRegistrationState;
 
         RecyclerView rvContinueWatch;
+        RelativeLayout relConWatch;
 
 
         private HomeViewHolder(View itemView) {
@@ -1072,6 +1076,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
             txtWebinarRegistrationState = (TextView) itemView.findViewById(R.id.txtWebinarRegistrationState);
             rvContinueWatch = (RecyclerView) itemView.findViewById(R.id.rvContinueWatch);
+            relConWatch = (RelativeLayout) itemView.findViewById(R.id.relConWatch);
 
         }
     }
