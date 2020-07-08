@@ -49,7 +49,7 @@
                 android:layout_below="@+id/relDataCredit"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_70sdp"
+                android:layout_marginRight="@dimen/_60sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/whitney_bold"
                 android:maxLines="3"
