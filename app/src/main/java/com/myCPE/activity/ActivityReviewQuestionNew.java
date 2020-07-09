@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.ReviewQuestionAdapter;
+import com.myCPE.databinding.ActivityReviewQuestionNew1Binding;
 import com.myCPE.databinding.ActivityReviewQuestionNewBinding;
 import com.myCPE.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.myCPE.model.review_question.ReviewQuestionsItem;
@@ -40,7 +41,7 @@ import static com.myCPE.utility.Constant.arraylistselectedreviewanswerreview;
 
 public class ActivityReviewQuestionNew extends AppCompatActivity implements View.OnClickListener {
 
-    ActivityReviewQuestionNewBinding binding;
+    ActivityReviewQuestionNew1Binding binding;
     public List<ReviewQuestionsItem> reviewquestion = new ArrayList<>();
     public List<Boolean> arrayboolean = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
@@ -65,7 +66,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_review_question_new);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_review_question_new);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_review_question_new_1);
 
         context = ActivityReviewQuestionNew.this;
         mAPIService = ApiUtilsNew.getAPIService();
@@ -85,7 +86,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         watchedDuration = Constant.watchedDuration;
 
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -107,10 +108,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
         binding.lvB.setOnClickListener(this);
         binding.lvC.setOnClickListener(this);
         binding.lvD.setOnClickListener(this);
-        binding.checkboxSelectA.setOnClickListener(this);
-        binding.checkboxSelectB.setOnClickListener(this);
-        binding.checkboxSelectC.setOnClickListener(this);
-        binding.checkboxSelectD.setOnClickListener(this);
+//        binding.checkboxSelectA.setOnClickListener(this);
+//        binding.checkboxSelectB.setOnClickListener(this);
+//        binding.checkboxSelectC.setOnClickListener(this);
+//        binding.checkboxSelectD.setOnClickListener(this);
         binding.tvAnsA.setOnClickListener(this);
         binding.tvAnsB.setOnClickListener(this);
         binding.tvAnsC.setOnClickListener(this);
@@ -143,7 +144,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                             // Previously we are loading data here in adapter from here..
                             // Now we have to show the first question here..
 
-                            binding.tvNumber.setText("1");
+//                            binding.tvNumber.setText("1");
+                            binding.tvNumber.setText("Questions 1/"+reviewquestion.size());
                             binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
                             binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
                             binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
@@ -247,9 +249,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 answerA();
                 break;
 
-            case R.id.checkbox_select_a:
+            /*case R.id.checkbox_select_a:
                 answerA();
-                break;
+                break;*/
 
             case R.id.lv_a:
                 answerA();
@@ -259,9 +261,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 answerB();
                 break;
 
-            case R.id.checkbox_select_b:
+            /*case R.id.checkbox_select_b:
                 answerB();
-                break;
+                break;*/
 
             case R.id.lv_b:
                 answerB();
@@ -271,9 +273,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 answerC();
                 break;
 
-            case R.id.checkbox_select_c:
+            /*case R.id.checkbox_select_c:
                 answerC();
-                break;
+                break;*/
 
             case R.id.lv_c:
                 answerC();
@@ -283,9 +285,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 answerD();
                 break;
 
-            case R.id.checkbox_select_d:
+            /*case R.id.checkbox_select_d:
                 answerD();
-                break;
+                break;*/
 
             case R.id.lv_d:
                 answerD();
@@ -295,30 +297,41 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
     private void resetSelection() {
 
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+        Log.e("*+*+*","resetSelection is called");
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //        binding.tvResponseTag.setVisibility(View.GONE);
 //        binding.tvAnsResponse.setVisibility(View.GONE);
 
     }
 
     private void selectionA() {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //        binding.tvResponseTag.setVisibility(View.GONE);
 //        binding.tvAnsResponse.setVisibility(View.GONE);
     }
@@ -328,15 +341,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //        int aa = question_showing - 1;
         qPos = question_showing - 1;
 //        if (reviewquestion.get(qPos).isAnswerable()) {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
@@ -375,15 +393,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     }
 
     private void selectionB() {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //        binding.tvResponseTag.setVisibility(View.GONE);
 //        binding.tvAnsResponse.setVisibility(View.GONE);
     }
@@ -392,15 +415,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //        int ab = question_showing - 1;
         qPos = question_showing - 1;
 //        if (reviewquestion.get(qPos).isAnswerable()) {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
@@ -440,15 +468,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     }
 
     private void selectionC() {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //        binding.tvResponseTag.setVisibility(View.GONE);
 //        binding.tvAnsResponse.setVisibility(View.GONE);
     }
@@ -458,15 +491,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //        int ac = question_showing - 1;
         qPos = question_showing - 1;
 //        if (reviewquestion.get(qPos).isAnswerable()) {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_answer_blue);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_white_boundry);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
@@ -506,15 +544,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     }
 
     private void selectionD() {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_answer_blue);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
 //        binding.tvResponseTag.setVisibility(View.GONE);
 //        binding.tvAnsResponse.setVisibility(View.GONE);
     }
@@ -524,15 +567,20 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //        int ad = question_showing - 1;
         qPos = question_showing - 1;
 //        if (reviewquestion.get(qPos).isAnswerable()) {
-        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
-        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
+//        binding.checkboxSelectA.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectB.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectC.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_unchecked));
+//        binding.checkboxSelectD.setBackgroundDrawable(getResources().getDrawable(R.drawable.rev_checked));
 
-        binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
-        binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+        binding.lvA.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvB.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvC.setBackgroundResource(R.drawable.rounded_white_boundry);
+        binding.lvD.setBackgroundResource(R.drawable.rounded_answer_blue);
+
+        binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+        binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
 //            binding.tvResponseTag.setVisibility(View.GONE);
 //            binding.tvAnsResponse.setVisibility(View.GONE);
 
@@ -594,7 +642,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         } else {
             // Next Button Click
-            binding.tvNumber.setText("" + (lp + 1));
+//            binding.tvNumber.setText("" + (lp + 1));
+            int lp1 = lp+1;
+            binding.tvNumber.setText("Questions "+lp1+"/"+reviewquestion.size());
             binding.tvQuestion.setText(reviewquestion.get(lp).getQuestionTitle());
             binding.tvAnsA.setText(reviewquestion.get(lp).getA().getOptionTitle());
             binding.tvAnsB.setText(reviewquestion.get(lp).getB().getOptionTitle());
@@ -670,7 +720,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             question_showing = 1;
 //            isSubmit = false;
 
-            binding.tvNumber.setText("1");
+//            binding.tvNumber.setText("1");
+            binding.tvNumber.setText("Questions 1/"+reviewquestion.size());
             binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
             binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
             binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
@@ -691,7 +742,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         binding.tvNextSubmit.setText("Next");
         if (question_showing == 1) {
-            binding.tvNumber.setText("1");
+//            binding.tvNumber.setText("1");
+            binding.tvNumber.setText("Questions 1/"+reviewquestion.size());
             binding.tvQuestion.setText(reviewquestion.get(0).getQuestionTitle());
             binding.tvAnsA.setText(reviewquestion.get(0).getA().getOptionTitle());
             binding.tvAnsB.setText(reviewquestion.get(0).getB().getOptionTitle());
@@ -702,7 +754,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 
         } else {
             question_showing--;
-            binding.tvNumber.setText("" + question_showing);
+//            binding.tvNumber.setText("" + question_showing);
+            binding.tvNumber.setText("Questions "+question_showing+"/"+reviewquestion.size());
             int dv = question_showing - 1;
             binding.tvQuestion.setText(reviewquestion.get(dv).getQuestionTitle());
             binding.tvAnsA.setText(reviewquestion.get(dv).getA().getOptionTitle());
@@ -732,10 +785,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                         selectionA();
                         if (isSubmit) {
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("a")) {
-                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.correct_ans));
+                                binding.lvA.setBackgroundResource(R.drawable.rounded_answer_green);
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
                                 disableClick();
                             } else {
-                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -747,10 +802,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
 //                            disableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("b")) {
-                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.correct_ans));
+                                binding.lvB.setBackgroundResource(R.drawable.rounded_answer_green);
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
                                 disableClick();
                             } else {
-                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -762,10 +819,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
 //                            disableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("c")) {
-                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.correct_ans));
+                                binding.lvC.setBackgroundResource(R.drawable.rounded_answer_green);
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
                                 disableClick();
                             } else {
-                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -777,10 +836,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
 //                            disableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("d")) {
-                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.correct_ans));
+                                binding.lvD.setBackgroundResource(R.drawable.rounded_answer_green);
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
                                 disableClick();
                             } else {
-                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -795,10 +856,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
 //                            enableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("a")) {
-                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                binding.lvA.setBackgroundResource(R.drawable.rounded_answer_red);
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
                                 enableClick();
                             } else {
-                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsA.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -810,10 +873,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
 //                            enableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("b")) {
-                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                binding.lvB.setBackgroundResource(R.drawable.rounded_answer_red);
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
                                 enableClick();
                             } else {
-                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsB.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -825,10 +890,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
 //                            enableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("c")) {
-                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                binding.lvC.setBackgroundResource(R.drawable.rounded_answer_red);
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
                                 enableClick();
                             } else {
-                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsC.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -840,10 +907,12 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //                            binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
 //                            enableClick();
                             if (Constant.hashmap_submit_answers.get(""+reviewquestion.get(lp).getId()).equalsIgnoreCase("d")) {
-                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.wrong_ans));
+                                binding.lvD.setBackgroundResource(R.drawable.rounded_answer_red);
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
                                 enableClick();
                             } else {
-                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.subcategory_topics));
+//                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.color_text_black_oppacity));
+                                binding.tvAnsD.setTextColor(getResources().getColor(R.color.White));
                                 Constant.hashmap_submit_answers.put(""+reviewquestion.get(lp).getId(), "");
                                 enableClick();
                             }
@@ -868,10 +937,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
         binding.tvAnsC.setEnabled(false);
         binding.tvAnsD.setEnabled(false);
 
-        binding.checkboxSelectA.setEnabled(false);
-        binding.checkboxSelectB.setEnabled(false);
-        binding.checkboxSelectC.setEnabled(false);
-        binding.checkboxSelectD.setEnabled(false);
+//        binding.checkboxSelectA.setEnabled(false);
+//        binding.checkboxSelectB.setEnabled(false);
+//        binding.checkboxSelectC.setEnabled(false);
+//        binding.checkboxSelectD.setEnabled(false);
     }
 
     private void enableClick() {
@@ -885,10 +954,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
         binding.tvAnsC.setEnabled(true);
         binding.tvAnsD.setEnabled(true);
 
-        binding.checkboxSelectA.setEnabled(true);
-        binding.checkboxSelectB.setEnabled(true);
-        binding.checkboxSelectC.setEnabled(true);
-        binding.checkboxSelectD.setEnabled(true);
+//        binding.checkboxSelectA.setEnabled(true);
+//        binding.checkboxSelectB.setEnabled(true);
+//        binding.checkboxSelectC.setEnabled(true);
+//        binding.checkboxSelectD.setEnabled(true);
     }
 
     private void GetSubmitAnswer(String reviewquestion, String reviewanswer) {
@@ -912,7 +981,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, message, Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -938,7 +1007,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.ivback, submitAnswerModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relImgBack, submitAnswerModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 

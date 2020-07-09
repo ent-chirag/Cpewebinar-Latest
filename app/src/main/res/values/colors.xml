@@ -6,11 +6,15 @@
     <color name="color_rounded_grayblue">#f3f5f9</color>
     <color name="color_rounded_yellow">#fef0d5</color>
     <color name="color_text_black">#1F2227</color>
+    <color name="color_text_blue">#277DF1</color>
     <color name="color_text_black_oppacity">#501F2227</color>
     <color name="color_text_hint">#BDBFCA</color>
     <color name="color_text_green">#00A81B</color>
     <color name="color_search_gray_bg">#12767680</color>
     <color name="color_icon_gray">#777777</color>
+    <color name="color_answer_red">#EF1818</color>
+    <color name="color_answer_green">#29BD4E</color>
+    <color name="color_answer_blue">#013872</color>
 
     <color name="color_pos_0">#fec127</color>
     <color name="color_pos_1">#4163dc</color>
