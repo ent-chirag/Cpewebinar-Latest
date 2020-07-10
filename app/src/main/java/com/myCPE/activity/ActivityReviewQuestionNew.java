@@ -60,6 +60,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     private boolean isSubmit = false;
 
     private int qPos = 0;
+    private boolean isPrevClickable = false;
 
 
     @Override
@@ -152,7 +153,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                             binding.tvAnsC.setText(reviewquestion.get(0).getC().getOptionTitle());
                             binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
 
-                            binding.relPrev.setVisibility(View.INVISIBLE);
+//                            binding.relPrev.setVisibility(View.INVISIBLE);
+                            isPrevClickable = false;
 
                         }
                     }
@@ -234,7 +236,11 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 break;
 
             case R.id.relPrev:
-                btnPrev();
+                if(isPrevClickable) {
+                    btnPrev();
+                } else {
+                    Toast.makeText(context, "Oops, you are already on first question.", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.tv_next_submit:
@@ -627,7 +633,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     private void btnNext() {
 
         int lp = question_showing;
-        binding.relPrev.setVisibility(View.VISIBLE);
+//        binding.relPrev.setVisibility(View.VISIBLE);
+        isPrevClickable = true;
 
         // Submit Button Click
         if (question_showing == reviewquestion.size()) {
@@ -728,7 +735,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             binding.tvAnsC.setText(reviewquestion.get(0).getC().getOptionTitle());
             binding.tvAnsD.setText(reviewquestion.get(0).getD().getOptionTitle());
 
-            binding.relPrev.setVisibility(View.INVISIBLE);
+//            binding.relPrev.setVisibility(View.INVISIBLE);
+            isPrevClickable = false;
             binding.tvNextSubmit.setText("Next");
 
             binding.tvResponseTag.setVisibility(View.VISIBLE);
@@ -764,7 +772,8 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             binding.tvAnsD.setText(reviewquestion.get(dv).getD().getOptionTitle());
 
             if (question_showing == 1) {
-                binding.relPrev.setVisibility(View.INVISIBLE);
+//                binding.relPrev.setVisibility(View.INVISIBLE);
+                isPrevClickable = false;
             }
 
             makeAnswerSelection(dv);
