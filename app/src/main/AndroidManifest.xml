@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.myCPE">
 
@@ -23,11 +22,16 @@
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".activity.WebinarDetailsActivityNew"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".activity.ActivityReviewQuestionNew"
             android:screenOrientation="portrait"
@@ -87,7 +91,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
         <activity
             android:name=".activity.StripePaymentActivity"
             android:screenOrientation="portrait"

@@ -39,6 +39,7 @@ import com.myCPE.activity.PdfViewActivity;
 import com.myCPE.activity.SignUpActivity;
 import com.myCPE.activity.SpeakerProfileActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
+import com.myCPE.activity.WebinarDetailsActivityNew;
 import com.myCPE.model.homewebinarnew.MyCertificateLinksItem;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
@@ -578,6 +579,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if (!AppSettings.get_login_token(mContext).isEmpty()) {
                         Intent i = new Intent(mContext, WebinarDetailsActivity.class);
+//                        Intent i = new Intent(mContext, WebinarDetailsActivityNew.class);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                 .get(position).getId());
                         i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
@@ -1212,6 +1214,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             }*/
 
                             Intent i = new Intent(mContext, WebinarDetailsActivity.class);
+//                            Intent i = new Intent(mContext, WebinarDetailsActivityNew.class);
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                     .get(position).getId());
                             i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);

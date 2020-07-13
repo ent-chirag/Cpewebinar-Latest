@@ -63,6 +63,7 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
 import com.myCPE.databinding.ActivityWebinardetailsBinding;
+import com.myCPE.databinding.ActivityWebinardetailsNewBinding;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.review_answer.AddReview;
 import com.myCPE.model.timezones;
@@ -136,7 +137,8 @@ import rx.schedulers.Schedulers;
 
 public class WebinarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     public Context context;
-    ActivityWebinardetailsBinding binding;
+//    ActivityWebinardetailsBinding binding;
+    ActivityWebinardetailsNewBinding binding;
     private APIService mAPIService;
     ProgressDialog progressDialog;
     private static final String TAG = WebinarDetailsActivity.class.getName();
@@ -320,7 +322,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_webinardetails);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_webinardetails);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_webinardetails_new);
         context = WebinarDetailsActivity.this;
         instance = WebinarDetailsActivity.this;
         dialogCertificate = new Dialog(context);
@@ -372,6 +375,23 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             } else {
                 Snackbar.make(binding.relView, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
             }
+        }
+
+        if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+            // This is for the Live Webinars..
+            binding.relLiveWebinar.setVisibility(View.VISIBLE);
+            binding.relView.setVisibility(View.GONE);
+            binding.ivthumbhelDummy.setVisibility(View.GONE);
+            binding.rvwebinartitle.setVisibility(View.GONE);
+
+            // Set Data for the Live Webinars..
+//            binding.txtLiveWebinarTitle.setText("" + webinar_details);
+        } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+            // This is for the Self-Study Webinars..
+            binding.relLiveWebinar.setVisibility(View.GONE);
+            binding.relView.setVisibility(View.VISIBLE);
+//            binding.ivthumbhelDummy.setVisibility(View.VISIBLE);
+//            binding.rvwebinartitle.setVisibility(View.VISIBLE);
         }
 
         binding.relWebinarStatus.setOnClickListener(new View.OnClickListener() {
@@ -491,14 +511,6 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
             }
         });
-
-        binding.ivback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -2323,6 +2335,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 Constant.isWebinarCPD = false;
                             }
 
+                            if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+                                binding.txtLiveWebinarTitle.setText(webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
+                                binding.txtLiveWebinarAuthor.setText(webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getName());
+                            }
+
                             webinar_type_details = webinar_details.getPayload().getWebinarDetail().getWebinarType();
 
                             if (!webinar_details.getPayload().getWebinarDetail().getKeyterms().equalsIgnoreCase("")) {
@@ -2606,6 +2623,9 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                         " | " + webinar_details.getPayload().getWebinarDetail().getStartTime()
 
                                 );
+
+                                binding.txtWebinarDate.setText(month + " " + day + ", " + year +
+                                        " | " + webinar_details.getPayload().getWebinarDetail().getStartTime());
 
                             }
 
