@@ -14,6 +14,10 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg">
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/lv_skip"
@@ -48,11 +52,6 @@
                 android:tint="@color/black_full" />
 
         </LinearLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <FrameLayout
             android:layout_width="match_parent"

@@ -439,7 +439,7 @@
                     android:textColor="@color/White"
                     app:font_button="SFUIDisplay-Bold.ttf" />-->
 
-                <com.myCPE.view.CustomTextView
+                <TextView
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -447,8 +447,7 @@
                     android:text="@string/str_signin_ul"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-                    app:font_text="Montserrat-Bold.ttf" />
+                    android:fontFamily="@font/whitney_bold" />
 
                 <!--<RelativeLayout
                     android:id="@+id/relbottom"

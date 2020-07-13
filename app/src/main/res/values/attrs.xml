@@ -26,6 +26,13 @@
         <attr name="placeholder" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="MyTextViewCustom">
+        <attr name="myfont" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="EdittextViewCustom">
+        <attr name="edit_font" format="string" />
+    </declare-styleable>
 
 
 

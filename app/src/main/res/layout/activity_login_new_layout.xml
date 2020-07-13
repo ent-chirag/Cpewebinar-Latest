@@ -93,6 +93,7 @@
                 android:layout_marginTop="@dimen/_45sdp"
                 android:background="@drawable/underline_bg"
                 android:drawableRight="@mipmap/password_eys"
+                android:inputType="textPassword"
                 android:hint="@string/str_password"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
@@ -157,17 +158,24 @@
                 android:layout_below="@+id/relRawLogin"
                 android:layout_marginTop="@dimen/_50sdp">
 
-                <com.myCPE.view.CustomTextView
+                <!--<com.myCPE.view.UnderlineTextView
+                    android:id="@+id/txtSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_signup"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_12sdp"/>-->
+
+                <TextView
                     android:id="@+id/txtSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_signup_ul"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-                    app:font_text="Whitney-Bold.ttf" />
+                    android:fontFamily="@font/whitney_bold" />
 
-                <com.myCPE.view.CustomTextView
+                <TextView
                     android:id="@+id/txtForgetPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,8 +183,7 @@
                     android:text="@string/str_fp_ul"
                     android:textColor="@color/color_my_cretificate_menu_divider"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-                    app:font_text="Whitney-Bold.ttf" />
+                    android:fontFamily="@font/whitney_bold" />
 
             </RelativeLayout>
 
