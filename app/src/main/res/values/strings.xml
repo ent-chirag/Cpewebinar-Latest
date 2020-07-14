@@ -409,15 +409,15 @@
 
     /table form
     <string name="str_cost">Cost</string>
-    <string name="str_cpe_credit">Cpe Credits</string>
-    <string name="str_cpd_credit">Cpd Credits</string>
-    <string name="str_ce_credit">Ce Credits</string>
+    <string name="str_cpe_credit">CPE Credits</string>
+    <string name="str_cpd_credit">CPD Credits</string>
+    <string name="str_ce_credit">CE Credits</string>
     <string name="str_duration">Duration</string>
     <string name="str_ctec">CTEC COURSE ID</string>
     <string name="str_subject_area">Subject Area</string>
     <string name="str_course_level">Course Level</string>
     <string name="str_instructionalmethod">Instructional Method</string>
-    <string name="str_prerequisite">PREREQUISITES</string>
+    <string name="str_prerequisite">Prerequisites</string>
     <string name="str_handout">Presentation Handouts</string>
     <string name="str_key_terms">Key Terms</string>
     <string name="str_instructions">Instructional Document</string>
@@ -425,8 +425,8 @@
     <string name="str_who_should_attend">Who should attend?</string>
 
 
-    <string name="str_recorded_date">RECORDED DATE</string>
-    <string name="str_published_date">PUBLISHED DATE</string>
+    <string name="str_recorded_date">Recorded Date</string>
+    <string name="str_published_date">Published Date</string>
 
 
     /table form value
@@ -438,7 +438,7 @@
     <string name="pass_webinar_type">Webinartype</string>
     <string name="str_course_id">IRS Course Id</string>
     <string name="str_is_notification">isnoti</string>
-    <string name="str_ctec_course_id">CTEC COURSE ID</string>
+    <string name="str_ctec_course_id">CTEC Course Id</string>
 
 
     //account screen
@@ -606,7 +606,13 @@
     <string name="str_detail_company">COMPANY</string>
     <string name="str_testimonials">TESTIMONIALS</string>
     <string name="str_others">OTHERS</string>
-    +++
+
+    <string name="str_details_ca">Details</string>
+    <string name="str_description_ca">Description</string>
+    <string name="str_presenter_ca">Presenter</string>
+    <string name="str_company_ca">Company</string>
+    <string name="str_testimonials_ca">Testimpnials</string>
+    <string name="str_others_ca">Others</string>
 
     //pass payment link
     <string name="str_payment_link">paymentlink</string>

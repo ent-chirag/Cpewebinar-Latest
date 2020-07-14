@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
 //        int width = displayMetrics.widthPixels;
 
         Constant.progWidth = displayMetrics.widthPixels;
-        Constant.progHeigth = (float) (Constant.progWidth/1.69);
+//        Constant.progHeigth = (float) (Constant.progWidth/1.69);
+        Constant.progHeigth = (float) (Constant.progWidth/2);
 
 //        iv_mywebinar.setOnClickListener(new View.OnClickListener() {
 //        imgTabWebinars.setOnClickListener(new View.OnClickListener() {

@@ -167,6 +167,13 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     LinearLayoutManager linearLayoutManager;
 
     private String VIDEO_URL = "";
+//    private boolean isexpandContentOpen = false;
+    private boolean isExpandDetails = false;
+    private boolean isExpandDescription = false;
+    private boolean isExpandPresenter = false;
+    private boolean isExpandCompany = false;
+    private boolean isExpandTestimonials = false;
+    private boolean isExpandOthers = false;
 
 
     // Testing lines for the commit changes issue..
@@ -318,6 +325,12 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
     private boolean isFromSpeakerCompanyProfile = false;
 
+    // Details Components..
+    private TextView tv_cost, tv_credit, tv_couse_id, tv_ctec_course_id, tv_duration, tv_subjectarea, tv_course_level, tv_instructionalmethod;
+    private TextView tv_prerequisite, tv_advance_preparation, tv_recorded_date, tv_published_date;
+    private LinearLayout lv_course_id, lv_ctec_course_id, lv_recorded_date, lv_published_date;
+    private View view_irs_course_id, view_ctec, view_recorded_date, view_published_date;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -377,6 +390,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             }
         }
 
+        init();
+
         if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
             // This is for the Live Webinars..
             binding.relLiveWebinar.setVisibility(View.VISIBLE);
@@ -399,6 +414,13 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             // As of now we have no option to show the rvWebinarTitle section which contains timezones, add to calancer feature, and progress alert option..
             binding.rvwebinartitle.setVisibility(View.GONE);
         }
+
+        binding.relDetails.setOnClickListener(this);
+        binding.relDescription.setOnClickListener(this);
+        binding.relPresenter.setOnClickListener(this);
+        binding.relCompany.setOnClickListener(this);
+        binding.relTestimonials.setOnClickListener(this);
+        binding.relOthers.setOnClickListener(this);
 
         binding.relWebinarStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -722,6 +744,34 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             binding.tabs.setupWithViewPager(binding.viewpager);
 
         }
+
+    }
+
+    private void init() {
+
+        //DetailsComponents..
+        tv_cost = (TextView) findViewById(R.id.tv_cost);
+        tv_credit = (TextView) findViewById(R.id.tv_credit);
+        tv_couse_id = (TextView) findViewById(R.id.tv_couse_id);
+        tv_ctec_course_id = (TextView) findViewById(R.id.tv_ctec_course_id);
+        tv_duration = (TextView) findViewById(R.id.tv_duration);
+        tv_subjectarea = (TextView) findViewById(R.id.tv_subjectarea);
+        tv_course_level = (TextView) findViewById(R.id.tv_course_level);
+        tv_instructionalmethod = (TextView) findViewById(R.id.tv_instructionalmethod);
+        tv_prerequisite = (TextView) findViewById(R.id.tv_prerequisite);
+        tv_advance_preparation = (TextView) findViewById(R.id.tv_advance_preparation);
+        tv_recorded_date = (TextView) findViewById(R.id.tv_recorded_date);
+        tv_published_date = (TextView) findViewById(R.id.tv_published_date);
+
+        lv_course_id = (LinearLayout) findViewById(R.id.lv_course_id);
+        lv_ctec_course_id = (LinearLayout) findViewById(R.id.lv_ctec_course_id);
+        lv_recorded_date = (LinearLayout) findViewById(R.id.lv_recorded_date);
+        lv_published_date = (LinearLayout) findViewById(R.id.lv_published_date);
+
+        view_irs_course_id = (View) findViewById(R.id.view_irs_course_id);
+        view_ctec = (View) findViewById(R.id.view_ctec);
+        view_recorded_date = (View) findViewById(R.id.view_recorded_date);
+        view_published_date = (View) findViewById(R.id.view_published_date);
 
     }
 
@@ -2967,18 +3017,120 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                             }
 
+                            loadDataDetailComponents();
 
                         } else {
                             Snackbar.make(binding.relView, webinar_details.getMessage(), Snackbar.LENGTH_SHORT).show();
 
 
                         }
-
-
                     }
 
                 });
 
+    }
+
+    private void loadDataDetailComponents() {
+
+        if (!Cost.equalsIgnoreCase("")) {
+            tv_cost.setText("$" + Cost);
+        } else {
+            tv_cost.setText("Free");
+        }
+
+        if (!credit.equalsIgnoreCase("")) {
+            tv_credit.setText("" + credit);
+        }
+
+        if (!course_id.equalsIgnoreCase("")) {
+            lv_course_id.setVisibility(View.VISIBLE);
+            view_irs_course_id.setVisibility(View.VISIBLE);
+            tv_couse_id.setText(WebinarDetailsActivity.getInstance().course_id);
+        } else {
+            lv_course_id.setVisibility(View.GONE);
+            view_irs_course_id.setVisibility(View.GONE);
+        }
+
+        if (!ctec_course_id.equalsIgnoreCase("")) {
+            lv_ctec_course_id.setVisibility(View.VISIBLE);
+            view_ctec.setVisibility(View.VISIBLE);
+            tv_ctec_course_id.setText(WebinarDetailsActivity.getInstance().ctec_course_id);
+        } else {
+            lv_ctec_course_id.setVisibility(View.GONE);
+            view_ctec.setVisibility(View.GONE);
+        }
+
+        if (duration != 0) {
+
+            String result = formatHoursAndMinutes(duration);
+
+            StringTokenizer tokens = new StringTokenizer(result, ":");
+            String hour = tokens.nextToken();// this will contain year
+            String min = tokens.nextToken();//this will contain month
+            Constant.Log("hour", "hour" + hour);
+            if (min.equalsIgnoreCase("00")) {
+                if (Integer.parseInt(hour) > 1) {
+                    tv_duration.setText(hour + " " + getResources().getString(R.string.str_hours));
+                } else {
+                    tv_duration.setText(hour + " " + getResources().getString(R.string.str_hour));
+                }
+            } else {
+                if (hour.equalsIgnoreCase("0")) {
+                    tv_duration.setText(min +
+                            " " + getResources().getString(R.string.str_min));
+                } else {
+                    if (Integer.parseInt(hour) > 1) {
+                        tv_duration.setText(hour + " " + getResources().getString(R.string.str_hours) + " " + min +
+                                " " + getResources().getString(R.string.str_min));
+                    } else {
+                        tv_duration.setText(hour + " " + getResources().getString(R.string.str_hour) + " " + min +
+                                " " + getResources().getString(R.string.str_min));
+                    }
+                }
+            }
+        }
+
+        if (!subject_area.equalsIgnoreCase("")) {
+            tv_subjectarea.setText("" + subject_area);
+        }
+
+        if (!WebinarDetailsActivity.getInstance().course_level.equalsIgnoreCase("")) {
+            tv_course_level.setText("" + course_level);
+        }
+
+        if (!instructional_method.equalsIgnoreCase("")) {
+            tv_instructionalmethod.setText("" + instructional_method);
+        }
+
+        if (!prerequisite.equalsIgnoreCase("")) {
+            tv_prerequisite.setText("" + prerequisite);
+        } else {
+            tv_prerequisite.setText("None");
+        }
+
+        if (!advancePreparation.equalsIgnoreCase("")) {
+            tv_advance_preparation.setText("" + advancePreparation);
+        } else {
+            tv_advance_preparation.setText("None");
+        }
+
+        if (!recorded_date.equalsIgnoreCase("")) {
+            lv_recorded_date.setVisibility(View.VISIBLE);
+            view_recorded_date.setVisibility(View.VISIBLE);
+            tv_recorded_date.setText(recorded_date);
+        } else {
+            lv_recorded_date.setVisibility(View.GONE);
+            view_recorded_date.setVisibility(View.GONE);
+        }
+
+        if (!published_date.equalsIgnoreCase("")) {
+            lv_published_date.setVisibility(View.VISIBLE);
+            view_published_date.setVisibility(View.VISIBLE);
+            tv_published_date.setText(published_date);
+        } else {
+            lv_published_date.setVisibility(View.GONE);
+            view_published_date.setVisibility(View.GONE);
+        }
     }
 
     public void ShowAdapter() {
@@ -3066,7 +3218,158 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 backpress();
                 Log.e("*+*+*", "click relImgBack");
                 break;
+
+            case R.id.relDetails:
+                Log.e("*+*+*","Clicked On relDetails");
+                if(isExpandDetails) {
+                    collapseAllComponents();
+                } else {
+                    isExpandDetails = true;
+                    binding.relDetailsContent.setVisibility(View.VISIBLE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+            case R.id.relDescription:
+                Log.e("*+*+*","Clicked On relDescription");
+                if(isExpandDescription) {
+                    collapseAllComponents();
+                } else {
+                    isExpandDescription = true;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.VISIBLE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+            case R.id.relPresenter:
+                Log.e("*+*+*","Clicked On relPresenter");
+                if(isExpandPresenter) {
+                    collapseAllComponents();
+                } else {
+                    isExpandPresenter = true;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.VISIBLE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+            case R.id.relCompany:
+                Log.e("*+*+*","Clicked On relCompany");
+                if(isExpandCompany) {
+                    collapseAllComponents();
+                } else {
+                    isExpandCompany = true;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.VISIBLE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+            case R.id.relTestimonials:
+                Log.e("*+*+*","Clicked On relTestimonials");
+                if(isExpandTestimonials) {
+                    collapseAllComponents();
+                } else {
+                    isExpandTestimonials = true;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.VISIBLE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+            case R.id.relOthers:
+                Log.e("*+*+*","Clicked On relOthers");
+                if(isExpandOthers) {
+                    collapseAllComponents();
+                } else {
+                    isExpandOthers = true;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.VISIBLE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                }
+                break;
         }
+    }
+
+    private void collapseAllComponents() {
+//        isexpandContentOpen = false;
+        isExpandDetails = false;
+        isExpandDescription = false;
+        isExpandPresenter = false;
+        isExpandCompany = false;
+        isExpandTestimonials = false;
+        isExpandOthers = false;
+
+        binding.relDetailsContent.setVisibility(View.GONE);
+        binding.relDescriptionContent.setVisibility(View.GONE);
+        binding.relPresenterContent.setVisibility(View.GONE);
+        binding.relCompanyContent.setVisibility(View.GONE);
+        binding.relTestimonialsContent.setVisibility(View.GONE);
+        binding.relOthersContent.setVisibility(View.GONE);
+
+        binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
     }
 
     private void backpress() {
