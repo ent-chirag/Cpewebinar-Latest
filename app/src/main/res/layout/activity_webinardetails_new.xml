@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="activity"
             type="com.myCPE.activity.WebinarDetailsActivity" />
@@ -49,9 +50,9 @@
                 android:id="@+id/ivshare"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_svg"
+                android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/ivnotification"
-                android:layout_centerVertical="true"/>
+                android:src="@drawable/ic_share_svg" />
 
             <ImageView
                 android:id="@+id/ivnotification"
@@ -68,9 +69,9 @@
             android:id="@+id/linMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_above="@+id/rvbottom"
             android:layout_below="@+id/rvtitle"
-            android:layout_above="@+id/rvbottom">
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/relLiveWebinar"
@@ -134,61 +135,92 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relSelfStudy"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/White">
 
-            <RelativeLayout
-                android:id="@+id/rel_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/rel_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivthumbhel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_150sdp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/webinar_placeholder"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/iv_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/play_icon" />
+
+                    <FrameLayout
+                        android:id="@+id/video_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="200dp"
+                        android:background="@android:color/black"
+                        android:visibility="gone">
+
+                        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                            android:id="@+id/exoplayer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            app:use_controller="true" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                </RelativeLayout>
 
                 <ImageView
-                    android:id="@+id/ivthumbhel"
+                    android:id="@+id/ivthumbhelDummy"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/webinar_placeholder"
-                    android:visibility="visible" />
+                    android:visibility="invisible" />
 
-                <ImageView
-                    android:id="@+id/iv_play"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtSelfStudyWebinarTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/play_icon" />
+                    android:layout_below="@+id/rel_view"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_25sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/whitney_bold"
+                    android:maxLines="3"
+                    android:text="Ethics for Tax professionals (Latest 2020)"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_18sdp" />
 
-                <FrameLayout
-                    android:id="@+id/video_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="200dp"
-                    android:background="@android:color/black"
-                    android:visibility="gone">
-
-                    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-                        android:id="@+id/exoplayer"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        app:use_controller="true" />
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:visibility="gone" />
-
-                </FrameLayout>
-
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/ivthumbhelDummy"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/webinar_placeholder"
-                android:visibility="invisible" />
+                <TextView
+                    android:id="@+id/txtSelfStudyWebinarAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSelfStudyWebinarTitle"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_110sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:maxLines="2"
+                    android:text="Josh Malancuk, CPA"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_12sdp" />
 
             </RelativeLayout>
 

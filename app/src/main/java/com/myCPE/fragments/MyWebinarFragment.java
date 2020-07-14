@@ -88,8 +88,8 @@ public class MyWebinarFragment extends Fragment {
 
         //for animation
 
-        final Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
-                R.anim.slide_up);
+//        final Animation slide_up = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
+//                R.anim.slide_up);
 
         final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.slide_down);
@@ -227,7 +227,7 @@ public class MyWebinarFragment extends Fragment {
             }
         });
 
-        binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -246,18 +246,18 @@ public class MyWebinarFragment extends Fragment {
                 } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
 //                    MainActivity.getInstance().rel_top_bottom.startAnimation(slide_down);
                     MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
-                    /*Handler handler = new Handler();
+                    *//*Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
                         }
-                    }, 500);*/
+                    }, 500);*//*
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
             }
-        });
+        });*/
 
 
 
@@ -337,23 +337,23 @@ public class MyWebinarFragment extends Fragment {
         });
 
 
-        binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*binding.rvhomewebinar.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0 || dy < 0 && MainActivity.getInstance().rel_top_bottom.isShown()) {
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
+//                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
+//                    MainActivity.getInstance().rel_top_bottom.setVisibility(View.VISIBLE);
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
             }
-        });
+        });*/
 
 
         binding.btnLive.setOnClickListener(new View.OnClickListener() {

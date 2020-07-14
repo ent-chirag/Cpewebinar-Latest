@@ -383,6 +383,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             binding.relView.setVisibility(View.GONE);
             binding.ivthumbhelDummy.setVisibility(View.GONE);
             binding.rvwebinartitle.setVisibility(View.GONE);
+            binding.txtSelfStudyWebinarTitle.setVisibility(View.GONE);
+            binding.txtSelfStudyWebinarAuthor.setVisibility(View.GONE);
 
             // Set Data for the Live Webinars..
 //            binding.txtLiveWebinarTitle.setText("" + webinar_details);
@@ -390,8 +392,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             // This is for the Self-Study Webinars..
             binding.relLiveWebinar.setVisibility(View.GONE);
             binding.relView.setVisibility(View.VISIBLE);
+            binding.txtSelfStudyWebinarTitle.setVisibility(View.VISIBLE);
+            binding.txtSelfStudyWebinarAuthor.setVisibility(View.VISIBLE);
 //            binding.ivthumbhelDummy.setVisibility(View.VISIBLE);
-//            binding.rvwebinartitle.setVisibility(View.VISIBLE);
+            // As of now we have no option to show the rvWebinarTitle section which contains timezones, add to calancer feature, and progress alert option..
+            binding.rvwebinartitle.setVisibility(View.GONE);
         }
 
         binding.relWebinarStatus.setOnClickListener(new View.OnClickListener() {
@@ -2338,6 +2343,9 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
                                 binding.txtLiveWebinarTitle.setText(webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
                                 binding.txtLiveWebinarAuthor.setText(webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getName());
+                            } else if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+                                binding.txtSelfStudyWebinarTitle.setText(webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
+                                binding.txtSelfStudyWebinarAuthor.setText(webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getName());
                             }
 
                             webinar_type_details = webinar_details.getPayload().getWebinarDetail().getWebinarType();

@@ -182,6 +182,9 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 //            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
             ((MyWebinarHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
 
+            ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+            ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+
             for (int i = 0; i < mList.size() ; i++) {
                 Log.e("*+*+*","Position is : "+position);
                 if(position % 3 == 0){
@@ -767,6 +770,9 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         TextView tvWebinarState, tvWebinarCredit, tvWebinarPrice, txtWebinarTitle, txtWebinarAuthor, txtWebinarDate;
         TextView txtWebinarRegistrationState;
 
+        RelativeLayout relConWatch;
+        RecyclerView rvContinueWatch;
+
 
         private MyWebinarHolder(View itemView) {
             super(itemView);
@@ -810,6 +816,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
             txtWebinarRegistrationState = (TextView) itemView.findViewById(R.id.txtWebinarRegistrationState);
 
+            relConWatch = (RelativeLayout) itemView.findViewById(R.id.relConWatch);
+            rvContinueWatch = (RecyclerView) itemView.findViewById(R.id.rvContinueWatch);
 
         }
     }
