@@ -77,7 +77,8 @@
                 android:id="@+id/relLiveWebinar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_180sdp"
-                android:background="@color/color_rounded_btn_orange">
+                android:background="@color/color_rounded_btn_orange"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtLiveWebinarTitle"
@@ -138,7 +139,8 @@
                 android:id="@+id/relSelfStudy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/White">
+                android:background="@color/White"
+                android:visibility="visible">
 
                 <RelativeLayout
                     android:id="@+id/rel_view"
@@ -148,7 +150,7 @@
                     <ImageView
                         android:id="@+id/ivthumbhel"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_150sdp"
+                        android:layout_height="@dimen/_140sdp"
                         android:scaleType="fitXY"
                         android:src="@mipmap/webinar_placeholder"
                         android:visibility="visible" />
@@ -188,7 +190,7 @@
                 <ImageView
                     android:id="@+id/ivthumbhelDummy"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp"
+                    android:layout_height="@dimen/_140sdp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/webinar_placeholder"
                     android:visibility="invisible" />
@@ -199,14 +201,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rel_view"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:ellipsize="end"
                     android:fontFamily="@font/whitney_bold"
-                    android:maxLines="3"
+                    android:maxLines="2"
                     android:text="Ethics for Tax professionals (Latest 2020)"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_18sdp" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <TextView
                     android:id="@+id/txtSelfStudyWebinarAuthor"
@@ -220,7 +222,7 @@
                     android:maxLines="2"
                     android:text="Josh Malancuk, CPA"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
 
             </RelativeLayout>
 
@@ -230,7 +232,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rel_view"
                 android:layout_marginBottom="@dimen/_2sdp"
-                android:background="@color/detail_heading">
+                android:background="@color/detail_heading"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/rel_timezone"

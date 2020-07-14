@@ -392,6 +392,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             // This is for the Self-Study Webinars..
             binding.relLiveWebinar.setVisibility(View.GONE);
             binding.relView.setVisibility(View.VISIBLE);
+            binding.relSelfStudy.setVisibility(View.VISIBLE);
             binding.txtSelfStudyWebinarTitle.setVisibility(View.VISIBLE);
             binding.txtSelfStudyWebinarAuthor.setVisibility(View.VISIBLE);
 //            binding.ivthumbhelDummy.setVisibility(View.VISIBLE);
