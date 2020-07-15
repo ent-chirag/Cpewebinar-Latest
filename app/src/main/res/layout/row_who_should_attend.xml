@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.myCPE.view.CustomTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tv_who_attend"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_20sdp"
     android:layout_marginBottom="@dimen/_5sdp"
     android:paddingLeft="@dimen/_10sdp"
     android:paddingRight="@dimen/_10sdp"
     android:paddingTop="@dimen/_1sdp"
     android:paddingBottom="@dimen/_1sdp"
     android:gravity="center_horizontal"
-    android:background="@drawable/download_button_webinar_detail"
-    android:textAllCaps="true"
+    android:background="@drawable/rounded_login"
     android:textColor="@color/White"
-    android:textSize="@dimen/_10sdp"
-    android:letterSpacing="0.08"
-    app:font_text="OpenSans-SemiBold.ttf" />
+    android:textSize="@dimen/_12sdp"
+    android:fontFamily="@font/whitney_medium" />

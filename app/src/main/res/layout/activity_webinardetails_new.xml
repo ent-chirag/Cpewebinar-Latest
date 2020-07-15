@@ -395,7 +395,7 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="gone">
 
-                                <include layout="@layout/content_webinar_details_new"/>
+                                <include layout="@layout/content_webinar_details_new" />
 
                             </RelativeLayout>
 
@@ -442,8 +442,12 @@
                             <RelativeLayout
                                 android:id="@+id/relDescriptionContent"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:visibility="gone"/>
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_description" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -488,8 +492,12 @@
                             <RelativeLayout
                                 android:id="@+id/relPresenterContent"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:visibility="gone"/>
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_presenter" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -534,8 +542,12 @@
                             <RelativeLayout
                                 android:id="@+id/relCompanyContent"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:visibility="gone"/>
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_company" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -580,8 +592,12 @@
                             <RelativeLayout
                                 android:id="@+id/relTestimonialsContent"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:visibility="gone"/>
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_testimonials" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -592,6 +608,7 @@
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
                             android:background="@drawable/rounded_bg_gray_blue"
                             android:minHeight="@dimen/_40sdp"
                             android:orientation="vertical">
@@ -626,8 +643,12 @@
                             <RelativeLayout
                                 android:id="@+id/relOthersContent"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:visibility="gone"/>
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_others" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -656,7 +677,7 @@
                 android:visibility="gone"
                 android:weightSum="2">
 
-                <com.myCPE.view.CustomButtonView
+                <TextView
                     android:id="@+id/tv_rv_questions"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -664,12 +685,12 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_toLeftOf="@+id/tv_webinar_status"
                     android:layout_weight="1"
-                    android:background="@drawable/squrebutton_webinar_status"
-                    android:letterSpacing="0.05"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_login"
                     android:text="@string/str_review_question_lable"
                     android:textColor="@color/White"
-                    android:textSize="@dimen/_8sdp"
-                    app:font_button="Montserrat-Bold.ttf" />
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <LinearLayout
                     android:id="@+id/rel_webinar_status_new"
@@ -678,7 +699,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/squrebutton_webinar_status"
+                    android:background="@drawable/rounded_signup"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -690,20 +711,18 @@
                         android:layout_marginRight="@dimen/_4sdp"
                         android:background="@drawable/ic_play"
                         android:backgroundTint="@android:color/white"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
 
                     <!--                    <com.entigrity.view.CustomButtonView-->
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_webinar_status_new"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/squrebutton_webinar_status"
-                        android:letterSpacing="0.05"
-                        android:text="WATCH NOW"
+                        android:text="Watch Now"
                         android:textColor="@color/White"
-                        android:textSize="@dimen/_8sdp"
-                        app:font_text="Montserrat-Bold.ttf" />
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/whitney_semibold" />
 
                 </LinearLayout>
 
@@ -717,7 +736,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:background="@drawable/squrebutton_webinar_status"
+                android:background="@drawable/rounded_login"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:textColor="@color/White"
@@ -734,7 +753,7 @@
                     android:backgroundTint="@android:color/white"
                     android:visibility="gone" />
 
-                <com.myCPE.view.CustomTextView
+                <TextView
                     android:id="@+id/tv_webinar_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -743,7 +762,7 @@
                     android:text=""
                     android:textColor="@color/White"
                     android:textSize="@dimen/_12sdp"
-                    app:font_text="Montserrat-Bold.ttf" />
+                    android:fontFamily="@font/whitney_semibold" />
 
             </LinearLayout>
 

@@ -59,6 +59,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.util.LibraryLoader;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
@@ -130,14 +131,17 @@ import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
+
 public class WebinarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     public Context context;
-//    ActivityWebinardetailsBinding binding;
+    //    ActivityWebinardetailsBinding binding;
     ActivityWebinardetailsNewBinding binding;
     private APIService mAPIService;
     ProgressDialog progressDialog;
@@ -167,7 +171,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     LinearLayoutManager linearLayoutManager;
 
     private String VIDEO_URL = "";
-//    private boolean isexpandContentOpen = false;
+    //    private boolean isexpandContentOpen = false;
     private boolean isExpandDetails = false;
     private boolean isExpandDescription = false;
     private boolean isExpandPresenter = false;
@@ -328,8 +332,30 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     // Details Components..
     private TextView tv_cost, tv_credit, tv_couse_id, tv_ctec_course_id, tv_duration, tv_subjectarea, tv_course_level, tv_instructionalmethod;
     private TextView tv_prerequisite, tv_advance_preparation, tv_recorded_date, tv_published_date;
-    private LinearLayout lv_course_id, lv_ctec_course_id, lv_recorded_date, lv_published_date;
+    private TextView tv_download, tv_download_key_terms, tv_download_instructions;
+    private LinearLayout lv_course_id, lv_ctec_course_id, lv_recorded_date, lv_published_date, lv_who_attend;
     private View view_irs_course_id, view_ctec, view_recorded_date, view_published_date;
+
+    // Description Components..
+    private TextView tv_description, tv_learning_objective;
+
+    // Presenter Components..
+    private TextView tv_presenter_name, tv_designation_company, tv_about_presenter;
+    private ImageView ivprofilepicture;
+
+    // Company Components..
+    private TextView tv_company_name, tv_company_website, tv_company_description;
+    private ImageView ivprofilepictureCompany;
+
+    // Testimonials Components..
+    private TextView tv_view_more_testimonial;
+    private LinearLayout lv_testimonial_set;
+
+    // Others Components..
+    private TextView tv_faq, tv_refund_cancelation_policy, txt_nasba_address, txt_nasba_description, txt_ea_address, txt_ea_description, txt_irs_address, txt_irs_description, txt_ctec_address, txt_ctec_description;
+    private RelativeLayout rel_nasba, rel_nasba_desc, rel_ea, rel_ea_desc, rel_irs, rel_irs_desc, rel_ctec, rel_ctec_desc;
+    private ImageView iv_nasba_profile, iv_nasba_profile_qas, iv_ea_profile, iv_irs_profile, iv_ctec_profile;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -392,7 +418,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         init();
 
-        if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+        if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
             // This is for the Live Webinars..
             binding.relLiveWebinar.setVisibility(View.VISIBLE);
             binding.relView.setVisibility(View.GONE);
@@ -749,7 +775,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
     private void init() {
 
-        //DetailsComponents..
+        //Details Components..
         tv_cost = (TextView) findViewById(R.id.tv_cost);
         tv_credit = (TextView) findViewById(R.id.tv_credit);
         tv_couse_id = (TextView) findViewById(R.id.tv_couse_id);
@@ -762,16 +788,69 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         tv_advance_preparation = (TextView) findViewById(R.id.tv_advance_preparation);
         tv_recorded_date = (TextView) findViewById(R.id.tv_recorded_date);
         tv_published_date = (TextView) findViewById(R.id.tv_published_date);
+        tv_download = (TextView) findViewById(R.id.tv_download);
+        tv_download_key_terms = (TextView) findViewById(R.id.tv_download_key_terms);
+        tv_download_instructions = (TextView) findViewById(R.id.tv_download_instructions);
 
         lv_course_id = (LinearLayout) findViewById(R.id.lv_course_id);
         lv_ctec_course_id = (LinearLayout) findViewById(R.id.lv_ctec_course_id);
         lv_recorded_date = (LinearLayout) findViewById(R.id.lv_recorded_date);
         lv_published_date = (LinearLayout) findViewById(R.id.lv_published_date);
+        lv_who_attend = (LinearLayout) findViewById(R.id.lv_who_attend);
 
         view_irs_course_id = (View) findViewById(R.id.view_irs_course_id);
         view_ctec = (View) findViewById(R.id.view_ctec);
         view_recorded_date = (View) findViewById(R.id.view_recorded_date);
         view_published_date = (View) findViewById(R.id.view_published_date);
+
+        // Description Components..
+        tv_description = (TextView) findViewById(R.id.tv_description);
+        tv_learning_objective = (TextView) findViewById(R.id.tv_learning_objective);
+
+        // Presenter Components..
+        tv_presenter_name = (TextView) findViewById(R.id.tv_presenter_name);
+        tv_designation_company = (TextView) findViewById(R.id.tv_designation_company);
+        tv_about_presenter = (TextView) findViewById(R.id.tv_about_presenter);
+
+        ivprofilepicture = (ImageView) findViewById(R.id.ivprofilepicture);
+
+        // Company Components..
+        tv_company_name = (TextView) findViewById(R.id.tv_company_name);
+        tv_company_website = (TextView) findViewById(R.id.tv_company_website);
+        tv_company_description = (TextView) findViewById(R.id.tv_company_description);
+
+        ivprofilepictureCompany = (ImageView) findViewById(R.id.ivprofilepictureCompany);
+
+        // Testimonials Components..
+        tv_view_more_testimonial = (TextView) findViewById(R.id.tv_view_more_testimonial);
+        lv_testimonial_set = (LinearLayout) findViewById(R.id.lv_testimonial_set);
+
+        // Others Components..
+        tv_faq = (TextView) findViewById(R.id.tv_faq);
+        tv_refund_cancelation_policy = (TextView) findViewById(R.id.tv_refund_cancelation_policy);
+        txt_nasba_address = (TextView) findViewById(R.id.txt_nasba_address);
+        txt_nasba_description = (TextView) findViewById(R.id.txt_nasba_description);
+        txt_ea_address = (TextView) findViewById(R.id.txt_ea_address);
+        txt_ea_description = (TextView) findViewById(R.id.txt_ea_description);
+        txt_irs_address = (TextView) findViewById(R.id.txt_irs_address);
+        txt_irs_description = (TextView) findViewById(R.id.txt_irs_description);
+        txt_ctec_address = (TextView) findViewById(R.id.txt_ctec_address);
+        txt_ctec_description = (TextView) findViewById(R.id.txt_ctec_description);
+
+        rel_nasba = (RelativeLayout) findViewById(R.id.rel_nasba);
+        rel_nasba_desc = (RelativeLayout) findViewById(R.id.rel_nasba_desc);
+        rel_ea = (RelativeLayout) findViewById(R.id.rel_ea);
+        rel_ea_desc = (RelativeLayout) findViewById(R.id.rel_ea_desc);
+        rel_irs = (RelativeLayout) findViewById(R.id.rel_irs);
+        rel_irs_desc = (RelativeLayout) findViewById(R.id.rel_irs_desc);
+        rel_ctec = (RelativeLayout) findViewById(R.id.rel_ctec);
+        rel_ctec_desc = (RelativeLayout) findViewById(R.id.rel_ctec_desc);
+
+        iv_nasba_profile = (ImageView) findViewById(R.id.iv_nasba_profile);
+        iv_nasba_profile_qas = (ImageView) findViewById(R.id.iv_nasba_profile_qas);
+        iv_ea_profile = (ImageView) findViewById(R.id.iv_ea_profile);
+        iv_irs_profile = (ImageView) findViewById(R.id.iv_irs_profile);
+        iv_ctec_profile = (ImageView) findViewById(R.id.iv_ctec_profile);
 
     }
 
@@ -884,7 +963,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
                 // Load review Popup here..
-                if(!Constant.isFromCSPast) {
+                if (!Constant.isFromCSPast) {
                     showAddReviewPopUp();
                 }
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
@@ -1879,7 +1958,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
                                 webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
-                                binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_status);
+                                binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_login);
                                 Constant.Log("joinurl", "joinurl" + join_url);
                             } else {
                                 binding.relWebinarStatus.setVisibility(View.GONE);
@@ -1913,7 +1992,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         String videoStatus = "" + binding.tvWebinarStatusNew.getText();
         if (videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                 videoStatus.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
-            binding.tvPlayIconNew.setVisibility(View.VISIBLE);
+//            binding.tvPlayIconNew.setVisibility(View.VISIBLE);
+            binding.tvPlayIconNew.setVisibility(View.GONE);
         } else {
             binding.tvPlayIconNew.setVisibility(View.GONE);
         }
@@ -2391,10 +2471,10 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 Constant.isWebinarCPD = false;
                             }
 
-                            if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+                            if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
                                 binding.txtLiveWebinarTitle.setText(webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
                                 binding.txtLiveWebinarAuthor.setText(webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getName());
-                            } else if(webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))){
+                            } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
                                 binding.txtSelfStudyWebinarTitle.setText(webinar_details.getPayload().getWebinarDetail().getWebinarTitle());
                                 binding.txtSelfStudyWebinarAuthor.setText(webinar_details.getPayload().getWebinarDetail().getAboutPresententer().getName());
                             }
@@ -2791,10 +2871,10 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 if (webinar_details.getPayload().getWebinarDetail().getStatus().equalsIgnoreCase(getResources()
                                         .getString(R.string.str_webinar_status_register))) {
                                     // binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
-                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_webinar_home);
+                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_signup);
                                 } else {
                                     //binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
-                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
+                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_login);
                                 }
 
 
@@ -2956,7 +3036,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                                     if (webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_watchnow)) ||
                                             webinar_status.equalsIgnoreCase(getResources().getString(R.string.str_webinar_status_resume_watching))) {
-                                        binding.tvPlayIcon.setVisibility(View.VISIBLE);
+//                                        binding.tvPlayIcon.setVisibility(View.VISIBLE);
+                                        binding.tvPlayIcon.setVisibility(View.GONE);
                                         if (isAnswered) {
                                             binding.linTags.setVisibility(View.GONE);
                                             binding.relWebinarStatus.setVisibility(View.VISIBLE);
@@ -3002,7 +3083,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                             if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                                     .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
-                                if(!Constant.isFromCSPast) {
+                                if (!Constant.isFromCSPast) {
                                     showAddReviewPopUp();
                                 }
                             }
@@ -3018,6 +3099,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             }
 
                             loadDataDetailComponents();
+                            loadDataDescriptionComponents();
+                            loadDataPresenterComponents();
+                            loadDataCompanyComponents();
+                            loadDataTestimonialsComponents();
+                            loadDataOthersComponents();
 
                         } else {
                             Snackbar.make(binding.relView, webinar_details.getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -3028,6 +3114,382 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                 });
 
+    }
+
+    private void loadDataOthersComponents() {
+        if (!faq.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_faq.setText(Html.fromHtml(faq, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_faq.setText(Html.fromHtml(faq));
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            tv_faq.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        }
+
+        if (!refund_and_cancelation.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_refund_cancelation_policy.setText(Html.fromHtml(refund_and_cancelation, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_refund_cancelation_policy.setText(Html.fromHtml(refund_and_cancelation));
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            tv_refund_cancelation_policy.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        }
+
+        Log.e("*+*+*","");
+        if (getwebinar_type.equalsIgnoreCase("CPE/CE")) {
+
+            rel_nasba.setVisibility(View.VISIBLE);
+            rel_nasba_desc.setVisibility(View.VISIBLE);
+
+            // Previously we are showing the ea approved data there in CPE/CE and only CE conditions and not showing this in CPE type only
+            // Now instead of showing data for EA Approved we have to show IRS Data there only.. So have to Hide EA Approved Data
+            rel_ea.setVisibility(View.GONE);
+            rel_ea_desc.setVisibility(View.GONE);
+            rel_irs.setVisibility(View.VISIBLE);
+            rel_irs_desc.setVisibility(View.VISIBLE);
+
+
+            if (!nasba_address.equalsIgnoreCase("")) {
+                txt_nasba_address.setText(nasba_address);
+            }
+
+            if (!nasba_description.equalsIgnoreCase("")) {
+                txt_nasba_description.setText(nasba_description);
+            }
+
+            if (!ea_address.equalsIgnoreCase("")) {
+                txt_ea_address.setText(ea_address);
+            }
+
+            if (!ea_description.equalsIgnoreCase("")) {
+                txt_ea_description.setText(ea_description);
+            }
+
+            if (!nasba_profile_pic.equalsIgnoreCase("")) {
+                Picasso.with(WebinarDetailsActivity.this).load(nasba_profile_pic)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_nasba_profile));
+            }
+
+            if (!nasba_profile_pic_qas.equalsIgnoreCase("")) {
+                iv_nasba_profile_qas.setVisibility(View.VISIBLE);
+                Picasso.with(WebinarDetailsActivity.this).load(nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_nasba_profile_qas));
+            } else {
+                iv_nasba_profile_qas.setVisibility(View.GONE);
+            }
+
+            if (!ea_profile_pic.equalsIgnoreCase("")) {
+                Picasso.with(WebinarDetailsActivity.this).load(ea_profile_pic)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_ea_profile));
+            }
+
+            ShowCtecApproved();
+            showIrsApproved();
+
+        } else if (getwebinar_type.equalsIgnoreCase("CPE")) {
+
+            rel_nasba.setVisibility(View.VISIBLE);
+            rel_nasba_desc.setVisibility(View.VISIBLE);
+
+            rel_ea.setVisibility(View.GONE);
+            rel_ea_desc.setVisibility(View.GONE);
+            rel_irs.setVisibility(View.GONE);
+            rel_irs_desc.setVisibility(View.GONE);
+
+            if (!nasba_address.equalsIgnoreCase("")) {
+                txt_nasba_address.setText(nasba_address);
+            }
+
+            if (!nasba_description.equalsIgnoreCase("")) {
+                txt_nasba_description.setText(nasba_description);
+            }
+
+            if (!nasba_profile_pic.equalsIgnoreCase("")) {
+                Picasso.with(WebinarDetailsActivity.this).load(nasba_profile_pic)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_nasba_profile));
+            }
+
+            if (!nasba_profile_pic_qas.equalsIgnoreCase("")) {
+                iv_nasba_profile_qas.setVisibility(View.VISIBLE);
+                Picasso.with(WebinarDetailsActivity.this).load(nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_nasba_profile_qas));
+            } else {
+                iv_nasba_profile_qas.setVisibility(View.GONE);
+            }
+
+            ShowCtecApproved();
+            showIrsApproved();
+
+        } else if (getwebinar_type.equalsIgnoreCase("CE")) {
+
+            rel_nasba.setVisibility(View.GONE);
+            rel_nasba_desc.setVisibility(View.GONE);
+
+            // Previously we are showing the ea approved data there in CPE/CE and only CE conditions and not showing this in CPE type only
+            // Now instead of showing data for EA Approved we have to show IRS Data there only.. So have to Hide EA Approved Data
+            rel_ea.setVisibility(View.GONE);
+            rel_ea_desc.setVisibility(View.GONE);
+            rel_irs.setVisibility(View.VISIBLE);
+            rel_irs_desc.setVisibility(View.VISIBLE);
+
+            if (!ea_address.equalsIgnoreCase("")) {
+                txt_ea_address.setText(ea_address);
+            }
+
+            if (!ea_description.equalsIgnoreCase("")) {
+                txt_ea_description.setText(ea_description);
+            }
+
+            if (!ea_profile_pic.equalsIgnoreCase("")) {
+                Picasso.with(WebinarDetailsActivity.this).load(ea_profile_pic)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_ea_profile));
+            }
+
+            if (!nasba_profile_pic_qas.equalsIgnoreCase("")) {
+                iv_nasba_profile_qas.setVisibility(View.VISIBLE);
+                Picasso.with(WebinarDetailsActivity.this).load(nasba_profile_pic_qas)
+                        .placeholder(R.mipmap.webinar_placeholder)
+                        .into((iv_nasba_profile_qas));
+            } else {
+                iv_nasba_profile_qas.setVisibility(View.GONE);
+            }
+
+            ShowCtecApproved();
+            showIrsApproved();
+        }
+    }
+
+    private void showIrsApproved() {
+        if (!irs_address.equalsIgnoreCase("")) {
+            txt_irs_address.setText(irs_address);
+        }
+
+        if (!irs_description.equalsIgnoreCase("")) {
+            txt_irs_description.setText(irs_description);
+        }
+
+        if (!irs_profile_pic.equalsIgnoreCase("")) {
+            Picasso.with(WebinarDetailsActivity.this).load(irs_profile_pic)
+                    .placeholder(R.mipmap.webinar_placeholder)
+                    .into((iv_irs_profile));
+        }
+    }
+
+    private void ShowCtecApproved() {
+        if (!ctec_course_id.equalsIgnoreCase("")) {
+            rel_ctec.setVisibility(View.VISIBLE);
+            rel_ctec_desc.setVisibility(View.VISIBLE);
+        } else {
+            rel_ctec.setVisibility(View.GONE);
+            rel_ctec_desc.setVisibility(View.GONE);
+        }
+
+
+        if (!ctec_address.equalsIgnoreCase("")) {
+            txt_ctec_address.setText(ctec_address);
+        }
+
+        if (!ctec_description.equalsIgnoreCase("")) {
+            txt_ctec_description.setText(ctec_description);
+        }
+        if (!ctec_profile_pic.equalsIgnoreCase("")) {
+            Picasso.with(WebinarDetailsActivity.this).load(ctec_profile_pic)
+                    .placeholder(R.mipmap.webinar_placeholder)
+                    .into((iv_ctec_profile));
+        }
+    }
+
+    private void loadDataTestimonialsComponents() {
+
+        if (webinartestimonial.size() > 0) {
+
+            if (webinartestimonial.size() >= 2) {
+                tv_view_more_testimonial.setVisibility(View.VISIBLE);
+            } else {
+                tv_view_more_testimonial.setVisibility(View.GONE);
+            }
+
+            lv_testimonial_set.setVisibility(View.VISIBLE);
+
+            for (int i = 0; i < webinartestimonial.size(); i++) {
+
+                LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View _itemRow = inflate.inflate(R.layout.row_tetimonial, null);
+
+                final TextView tv_username_name = (TextView) _itemRow.findViewById(R.id.tv_username_name);
+                final ImageView iv_testimonial_star = (ImageView) _itemRow.findViewById(R.id.iv_testimonial_star);
+                final TextView tv_review_decription = (TextView) _itemRow.findViewById(R.id.tv_review_decription);
+                final TextView tv_date = (TextView) _itemRow.findViewById(R.id.tv_date);
+                final View viewBlack = (View) _itemRow.findViewById(R.id.viewBlack);
+
+                if (i == 0) {
+                    if (webinartestimonial.size() > 1) {
+                        viewBlack.setVisibility(View.VISIBLE);
+                    } else {
+                        viewBlack.setVisibility(View.GONE);
+                    }
+                } else {
+                    viewBlack.setVisibility(View.GONE);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    tv_username_name.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    tv_review_decription.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+                }
+
+                if (!webinartestimonial.get(i).getFirstName().equalsIgnoreCase("")) {
+
+                    tv_username_name.setText(webinartestimonial.get(i).getFirstName()
+                            + " " + webinartestimonial.get(i).getLastName()
+                            + " " + webinartestimonial.get(i).getDesignation());
+                }
+
+                if (!webinartestimonial.get(i).getDate().equalsIgnoreCase("")) {
+                    tv_date.setText(webinartestimonial.get(i).getDate());
+                }
+
+                if (!webinartestimonial.get(i).getReview().equalsIgnoreCase("")) {
+                    tv_review_decription.setText(webinartestimonial.get(i).getReview());
+                }
+                if (!webinartestimonial.get(i).getRate()
+                        .equalsIgnoreCase("")) {
+
+                    if (webinartestimonial.get(i).getRate().equalsIgnoreCase("0")) {
+
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_zero);
+
+                    } else if (webinartestimonial.get(i).getRate().equalsIgnoreCase("1")) {
+
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_one);
+                    } else if (webinartestimonial.get(i).getRate().equalsIgnoreCase("2")) {
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_two);
+
+                    } else if (webinartestimonial.get(i).getRate().equalsIgnoreCase("3")) {
+
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_three);
+
+                    } else if (webinartestimonial.get(i).getRate().equalsIgnoreCase("4")) {
+
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_four);
+
+                    } else if (webinartestimonial.get(i).getRate().equalsIgnoreCase("5")) {
+
+                        iv_testimonial_star.setImageResource(R.mipmap.rev_star_five);
+                    }
+                }
+                lv_testimonial_set.addView(_itemRow);
+            }
+        } else {
+            lv_testimonial_set.setVisibility(View.GONE);
+        }
+
+        tv_view_more_testimonial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(WebinarDetailsActivity.this, TestimonialActivity.class);
+                i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();
+
+            }
+        });
+    }
+
+    private void loadDataCompanyComponents() {
+        if (!company_logo.equalsIgnoreCase("")) {
+            Picasso.with(WebinarDetailsActivity.this).load(company_logo)
+                    .placeholder(R.drawable.profile_place_holder)
+                    .fit()
+                    .into((ivprofilepictureCompany));
+        } else {
+            ivprofilepictureCompany.setImageResource(R.drawable.profile_place_holder);
+        }
+
+        if (!aboutpresenterCompanyName.equalsIgnoreCase("")) {
+            tv_company_name.setText(aboutpresenterCompanyName);
+        }
+
+        if (!aboutpresenterCompanyWebsite.equalsIgnoreCase("")) {
+            tv_company_website.setText(aboutpresenterCompanyWebsite);
+        }
+
+        if (!aboutpresenterCompanyDesc.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_company_description.setText(Html.fromHtml(aboutpresenterCompanyDesc, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_company_description.setText(Html.fromHtml(aboutpresenterCompanyDesc));
+            }
+        }
+    }
+
+    private void loadDataPresenterComponents() {
+        if (!presenter_image.equalsIgnoreCase("")) {
+            Picasso.with(WebinarDetailsActivity.this).load(presenter_image)
+                    .placeholder(R.drawable.profile_place_holder)
+                    .fit()
+                    .into((ivprofilepicture));
+        } else {
+            ivprofilepicture.setImageResource(R.drawable.profile_place_holder);
+        }
+
+        if (!aboutpresentername.equalsIgnoreCase("")) {
+            tv_presenter_name.setText(aboutpresentername + " " + aboutpresenternameQualification);
+        }
+
+        if (!aboutpresenterDesgnination.equalsIgnoreCase("")) {
+            tv_designation_company.setText(aboutpresenterDesgnination + ", " + aboutpresenterCompanyName);
+        }
+
+        if (!aboutpresenternameSpeakerDesc.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv_about_presenter.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_about_presenter.setText(Html.fromHtml(aboutpresenternameSpeakerDesc, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_about_presenter.setText(Html.fromHtml(aboutpresenternameSpeakerDesc));
+            }
+        }
+    }
+
+    private void loadDataDescriptionComponents() {
+        if (!programDescription.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv_description.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_description.setText(Html.fromHtml(programDescription, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_description.setText(Html.fromHtml(programDescription));
+            }
+        }
+
+        if (!learningObjective.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv_learning_objective.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_learning_objective.setText(Html.fromHtml(learningObjective, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_learning_objective.setText(Html.fromHtml(learningObjective));
+            }
+        }
     }
 
     private void loadDataDetailComponents() {
@@ -3045,7 +3507,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         if (!course_id.equalsIgnoreCase("")) {
             lv_course_id.setVisibility(View.VISIBLE);
             view_irs_course_id.setVisibility(View.VISIBLE);
-            tv_couse_id.setText(WebinarDetailsActivity.getInstance().course_id);
+            tv_couse_id.setText(course_id);
         } else {
             lv_course_id.setVisibility(View.GONE);
             view_irs_course_id.setVisibility(View.GONE);
@@ -3054,7 +3516,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         if (!ctec_course_id.equalsIgnoreCase("")) {
             lv_ctec_course_id.setVisibility(View.VISIBLE);
             view_ctec.setVisibility(View.VISIBLE);
-            tv_ctec_course_id.setText(WebinarDetailsActivity.getInstance().ctec_course_id);
+            tv_ctec_course_id.setText(ctec_course_id);
         } else {
             lv_ctec_course_id.setVisibility(View.GONE);
             view_ctec.setVisibility(View.GONE);
@@ -3094,7 +3556,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             tv_subjectarea.setText("" + subject_area);
         }
 
-        if (!WebinarDetailsActivity.getInstance().course_level.equalsIgnoreCase("")) {
+        if (!course_level.equalsIgnoreCase("")) {
             tv_course_level.setText("" + course_level);
         }
 
@@ -3131,6 +3593,162 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             lv_published_date.setVisibility(View.GONE);
             view_published_date.setVisibility(View.GONE);
         }
+
+        tv_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAndroidVersion();
+            }
+        });
+
+//        tv_download_key_terms
+        tv_download_key_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                checkAndroidVersion_keyterms();
+                if (!keyterms.equalsIgnoreCase("")) {
+                    Intent i = new Intent(WebinarDetailsActivity.this, PdfViewActivity.class);
+                    i.putExtra(getResources().getString(R.string.str_document_link), keyterms);
+                    i.putExtra(getResources().getString(R.string.str_pdf_view_titile), getString(R.string.str_keyterms));
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Constant.toast(WebinarDetailsActivity.this, getResources().getString(R.string.str_key_terms_link_not_found));
+                }
+            }
+        });
+
+        tv_download_instructions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!instructional_document.equalsIgnoreCase("")) {
+                    Intent i = new Intent(WebinarDetailsActivity.this, PdfViewActivity.class);
+                    i.putExtra(getResources().getString(R.string.str_document_link), instructional_document);
+                    i.putExtra(getResources().getString(R.string.str_pdf_view_titile), getString(R.string.str_instructional_document));
+                    i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), WebinarDetailsActivity.getInstance()
+                            .webinar_type);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Constant.toast(WebinarDetailsActivity.this, getResources().getString(R.string.str_instruction_doc_not_found));
+                }
+            }
+        });
+
+        if (whoshouldattend.size() > 0) {
+            final LinearLayout[] myview = new LinearLayout[whoshouldattend.size()];
+
+            final TextView[] myTextViews = new TextView[whoshouldattend.size()]; // create an empty array;
+
+            if (whoshouldattend.size() == 1) {
+                final View myView_inflat = inflater_new.inflate(R.layout.row_who_should_attend, null);
+                tv_who_attend = (TextView) myView_inflat.findViewById(R.id.tv_who_attend);
+                tv_who_attend.setText(whoshouldattend.get(0));
+                lv_who_attend.addView(tv_who_attend);
+            } else if (whoshouldattend.size() == 2) {
+                for (int i = 0; i < 2; i++) {
+                    final View myView_inflat = inflater_new.inflate(R.layout.row_who_should_attend, null);
+                    tv_who_attend = (TextView) myView_inflat.findViewById(R.id.tv_who_attend);
+
+                    if (i == 0) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else {
+                        int count = whoshouldattend.size() - 1;
+                        tv_who_attend.setText("+" + count
+                                + " more");
+                    }
+
+                    lv_who_attend.addView(tv_who_attend);
+                    LinearLayout.LayoutParams tvlp = (LinearLayout.LayoutParams) tv_who_attend.getLayoutParams();
+                    tvlp.topMargin = 5;
+                    tvlp.bottomMargin = 5;
+                    tvlp.leftMargin = 20;
+                    tv_who_attend.setLayoutParams(tvlp);
+                    myTextViews[i] = tv_who_attend;
+                }
+
+            } else if (whoshouldattend.size() == 3) {
+
+                for (int i = 0; i < 3; i++) {
+                    final View myView_inflat = inflater_new.inflate(R.layout.row_who_should_attend, null);
+                    tv_who_attend = (TextView) myView_inflat.findViewById(R.id.tv_who_attend);
+
+                    if (i == 0) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else if (i == 1) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else {
+                        int count = whoshouldattend.size() - 2;
+                        tv_who_attend.setText("+" + count
+                                + " more");
+                    }
+
+                    lv_who_attend.addView(tv_who_attend);
+                    LinearLayout.LayoutParams tvlp = (LinearLayout.LayoutParams) tv_who_attend.getLayoutParams();
+                    tvlp.topMargin = 5;
+                    tvlp.bottomMargin = 5;
+                    tvlp.leftMargin = 20;
+                    tv_who_attend.setLayoutParams(tvlp);
+                    myTextViews[i] = tv_who_attend;
+                }
+            } else {
+                for (int i = 0; i < 4; i++) {
+                    final View myView_inflat = inflater_new.inflate(R.layout.row_who_should_attend, null);
+                    tv_who_attend = (TextView) myView_inflat.findViewById(R.id.tv_who_attend);
+
+                    if (i == 0) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else if (i == 1) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else if (i == 2) {
+                        tv_who_attend.setText(whoshouldattend.get(i));
+                    } else {
+                        int count = whoshouldattend.size() - 3;
+                        tv_who_attend.setText("+" + count
+                                + " more");
+                    }
+
+                    lv_who_attend.addView(tv_who_attend);
+                    LinearLayout.LayoutParams tvlp = (LinearLayout.LayoutParams) tv_who_attend.getLayoutParams();
+                    tvlp.topMargin = 5;
+                    tvlp.bottomMargin = 5;
+                    tvlp.leftMargin = 20;
+                    tv_who_attend.setLayoutParams(tvlp);
+                    myTextViews[i] = tv_who_attend;
+
+                }
+            }
+        }
+
+        lv_who_attend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(WebinarDetailsActivity.this, ActivityWhoYouAre.class);
+                i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                i.putStringArrayListExtra(getResources().getString(R.string.pass_who_you_are_list), whoshouldattend);
+                startActivity(i);
+                finish();
+
+            }
+        });
+    }
+
+    private void checkAndroidVersion() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkPermission();
+        } else {
+            if (arrayListhandout.size() > 0) {
+                DownloadHandouts(arrayListhandout);
+            } else {
+                Constant.toast(this, getResources().getString(R.string.str_download_link_not_found));
+            }
+        }
+
     }
 
     public void ShowAdapter() {
@@ -3220,11 +3838,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.relDetails:
-                Log.e("*+*+*","Clicked On relDetails");
-                if(isExpandDetails) {
+                Log.e("*+*+*", "Clicked On relDetails");
+                if (isExpandDetails) {
                     collapseAllComponents();
                 } else {
                     isExpandDetails = true;
+                    isExpandDescription = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.VISIBLE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
@@ -3241,11 +3864,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.relDescription:
-                Log.e("*+*+*","Clicked On relDescription");
-                if(isExpandDescription) {
+                Log.e("*+*+*", "Clicked On relDescription");
+                if (isExpandDescription) {
                     collapseAllComponents();
                 } else {
                     isExpandDescription = true;
+                    isExpandDetails = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.VISIBLE);
                     binding.relPresenterContent.setVisibility(View.GONE);
@@ -3262,11 +3890,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.relPresenter:
-                Log.e("*+*+*","Clicked On relPresenter");
-                if(isExpandPresenter) {
+                Log.e("*+*+*", "Clicked On relPresenter");
+                if (isExpandPresenter) {
                     collapseAllComponents();
                 } else {
                     isExpandPresenter = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.VISIBLE);
@@ -3283,11 +3916,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.relCompany:
-                Log.e("*+*+*","Clicked On relCompany");
-                if(isExpandCompany) {
+                Log.e("*+*+*", "Clicked On relCompany");
+                if (isExpandCompany) {
                     collapseAllComponents();
                 } else {
                     isExpandCompany = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandPresenter = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
@@ -3304,11 +3942,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.relTestimonials:
-                Log.e("*+*+*","Clicked On relTestimonials");
-                if(isExpandTestimonials) {
+                Log.e("*+*+*", "Clicked On relTestimonials");
+                if (isExpandTestimonials) {
                     collapseAllComponents();
                 } else {
                     isExpandTestimonials = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
@@ -3325,11 +3968,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.relOthers:
-                Log.e("*+*+*","Clicked On relOthers");
-                if(isExpandOthers) {
+                Log.e("*+*+*", "Clicked On relOthers");
+                if (isExpandOthers) {
                     collapseAllComponents();
                 } else {
                     isExpandOthers = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
