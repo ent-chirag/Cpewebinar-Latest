@@ -452,6 +452,108 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linOverOfTopics"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:background="@drawable/rounded_bg_gray_blue"
+                            android:minHeight="@dimen/_40sdp"
+                            android:orientation="vertical"
+                            android:visibility="gone" >
+
+                            <RelativeLayout
+                                android:id="@+id/relOverviewOfTopics"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp">
+
+                                <TextView
+                                    android:id="@+id/txtOverviewOfTopics"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/whitney_semibold"
+                                    android:paddingLeft="@dimen/_12sdp"
+                                    android:text="@string/str_overview_of_topics_ca"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <ImageView
+                                    android:id="@+id/imgArrowOverviewOfTopics"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/_12sdp"
+                                    android:background="@drawable/ic_arrow_down_svg" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/relOverviewOfTopicsContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_overview_of_content" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linWhoShouldAttend"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:background="@drawable/rounded_bg_gray_blue"
+                            android:minHeight="@dimen/_40sdp"
+                            android:orientation="vertical"
+                            android:visibility="gone" >
+
+                            <RelativeLayout
+                                android:id="@+id/relWhoShouldAttend"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp">
+
+                                <TextView
+                                    android:id="@+id/txtWhoShouldAttend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/whitney_semibold"
+                                    android:paddingLeft="@dimen/_12sdp"
+                                    android:text="@string/str_why_you_should_attend_ca"
+                                    android:textColor="@color/color_text_black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <ImageView
+                                    android:id="@+id/imgArrowWhoShouldAttend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/_12sdp"
+                                    android:background="@drawable/ic_arrow_down_svg" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/relWhoShouldAttendContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <include layout="@layout/content_webinar_why_should_attend" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/linPresenter"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -677,21 +779,6 @@
                 android:visibility="gone"
                 android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_rv_questions"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_toLeftOf="@+id/tv_webinar_status"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="@drawable/rounded_login"
-                    android:text="@string/str_review_question_lable"
-                    android:textColor="@color/White"
-                    android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/whitney_semibold" />
-
                 <LinearLayout
                     android:id="@+id/rel_webinar_status_new"
                     android:layout_width="0dp"
@@ -699,7 +786,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_signup"
+                    android:background="@drawable/rounded_login"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -725,6 +812,21 @@
                         android:fontFamily="@font/whitney_semibold" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_rv_questions"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/tv_webinar_status"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_signup"
+                    android:text="@string/str_review_question_lable"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/whitney_semibold" />
 
             </LinearLayout>
 

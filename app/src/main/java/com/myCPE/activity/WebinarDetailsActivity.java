@@ -174,6 +174,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     //    private boolean isexpandContentOpen = false;
     private boolean isExpandDetails = false;
     private boolean isExpandDescription = false;
+    private boolean isExpandOverviewOfTopics = false;
+    private boolean isExpandWhoShouldAttend = false;
     private boolean isExpandPresenter = false;
     private boolean isExpandCompany = false;
     private boolean isExpandTestimonials = false;
@@ -356,6 +358,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     private RelativeLayout rel_nasba, rel_nasba_desc, rel_ea, rel_ea_desc, rel_irs, rel_irs_desc, rel_ctec, rel_ctec_desc;
     private ImageView iv_nasba_profile, iv_nasba_profile_qas, iv_ea_profile, iv_irs_profile, iv_ctec_profile;
 
+    // Overview of topics Components..
+    private TextView tv_overview_of_topics;
+
+    // Why should attend..
+    private TextView tv_why_you_should_attend;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -447,6 +454,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         binding.relCompany.setOnClickListener(this);
         binding.relTestimonials.setOnClickListener(this);
         binding.relOthers.setOnClickListener(this);
+        binding.relOverviewOfTopics.setOnClickListener(this);
+        binding.relWhoShouldAttend.setOnClickListener(this);
 
         binding.relWebinarStatus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -851,6 +860,12 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         iv_ea_profile = (ImageView) findViewById(R.id.iv_ea_profile);
         iv_irs_profile = (ImageView) findViewById(R.id.iv_irs_profile);
         iv_ctec_profile = (ImageView) findViewById(R.id.iv_ctec_profile);
+
+        // Overview of topics components..
+        tv_overview_of_topics = (TextView) findViewById(R.id.tv_overview_of_topics);
+
+        // Why should attend components..
+        tv_why_you_should_attend = (TextView) findViewById(R.id.tv_why_you_should_attend);
 
     }
 
@@ -1965,7 +1980,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 binding.tvWebinarStatus.setVisibility(View.GONE);
                                 binding.linTags.setVisibility(View.VISIBLE);
                                 webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
-                                binding.tvWebinarStatusNew.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
+                                binding.tvWebinarStatusNew.setText(Constant.toTitleCase(modelRegisterWebinar.getPayload().getRegisterStatus()));
                                 showHidePlayButton();
                             }
 
@@ -2871,7 +2886,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 if (webinar_details.getPayload().getWebinarDetail().getStatus().equalsIgnoreCase(getResources()
                                         .getString(R.string.str_webinar_status_register))) {
                                     // binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
-                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_signup);
+//                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_signup);
+                                    binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_login);
                                 } else {
                                     //binding.tvWebinarStatus.setBackgroundResource(R.drawable.squrebutton_webinar_status);
                                     binding.relWebinarStatus.setBackgroundResource(R.drawable.rounded_login);
@@ -2881,8 +2897,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                                 webinar_status = webinar_details.getPayload().getWebinarDetail().getStatus();
 
 
-                                binding.tvWebinarStatus.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
-                                binding.tvWebinarStatusNew.setText("" + webinar_details.getPayload().getWebinarDetail().getStatus());
+                                binding.tvWebinarStatus.setText("" + Constant.toTitleCase(webinar_details.getPayload().getWebinarDetail().getStatus()));
+                                binding.tvWebinarStatusNew.setText("" + Constant.toTitleCase(webinar_details.getPayload().getWebinarDetail().getStatus()));
                                 showHidePlayButton();
                             }
 
@@ -3010,7 +3026,23 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             }
 
                             //Constant.Log("certificate_array","certificate_array"+arraylistmycertificate.size());
-
+//                            binding.linWhoShouldAttend.setVisibility(View.VISIBLE);
+//                            binding.linOverOfTopics.setVisibility(View.GONE);
+                            if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
+                                if (!whyshouldattend.equalsIgnoreCase("")) {
+//                                    adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+                                    binding.linWhoShouldAttend.setVisibility(View.VISIBLE);
+                                }
+                            } else if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
+                                if (!overviewoftopic.equalsIgnoreCase("")) {
+//                                    adapter.addFragment(new OverviewOfTopicsFragment(), getResources().getString(R.string.str_overview_of_topics));
+                                    binding.linOverOfTopics.setVisibility(View.VISIBLE);
+                                }
+                                if (!whyshouldattend.equalsIgnoreCase("")) {
+//                                    adapter.addFragment(new WhyYouShouldAttend(), getResources().getString(R.string.str_why_you_should_attend));
+                                    binding.linWhoShouldAttend.setVisibility(View.VISIBLE);
+                                }
+                            }
 
                             if (webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_filter_live))) {
                                 binding.relTimezone.setVisibility(View.VISIBLE);
@@ -3104,16 +3136,43 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             loadDataCompanyComponents();
                             loadDataTestimonialsComponents();
                             loadDataOthersComponents();
+                            loadDataOverviewOfTopics();
+                            loadDataWhyShouldAttend();
 
                         } else {
                             Snackbar.make(binding.relView, webinar_details.getMessage(), Snackbar.LENGTH_SHORT).show();
-
-
                         }
                     }
 
                 });
 
+    }
+
+    private void loadDataWhyShouldAttend() {
+        if (!whyshouldattend.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv_why_you_should_attend.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_why_you_should_attend.setText(Html.fromHtml(whyshouldattend, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_why_you_should_attend.setText(Html.fromHtml(whyshouldattend));
+            }
+
+        }
+    }
+
+    private void loadDataOverviewOfTopics() {
+        if (!overviewoftopic.equalsIgnoreCase("")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                tv_overview_of_topics.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tv_overview_of_topics.setText(Html.fromHtml(overviewoftopic, Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                tv_overview_of_topics.setText(Html.fromHtml(overviewoftopic));
+            }
+        }
     }
 
     private void loadDataOthersComponents() {
@@ -3141,7 +3200,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             tv_refund_cancelation_policy.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
         }
 
-        Log.e("*+*+*","");
+        Log.e("*+*+*", "");
         if (getwebinar_type.equalsIgnoreCase("CPE/CE")) {
 
             rel_nasba.setVisibility(View.VISIBLE);
@@ -3844,12 +3903,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 } else {
                     isExpandDetails = true;
                     isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandPresenter = false;
                     isExpandCompany = false;
                     isExpandTestimonials = false;
                     isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.VISIBLE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
                     binding.relCompanyContent.setVisibility(View.GONE);
                     binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -3857,12 +3920,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                 }
                 break;
+
             case R.id.relDescription:
                 Log.e("*+*+*", "Clicked On relDescription");
                 if (isExpandDescription) {
@@ -3870,12 +3936,16 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 } else {
                     isExpandDescription = true;
                     isExpandDetails = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandPresenter = false;
                     isExpandCompany = false;
                     isExpandTestimonials = false;
                     isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.VISIBLE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
                     binding.relCompanyContent.setVisibility(View.GONE);
                     binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -3883,12 +3953,79 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                 }
                 break;
+
+            case R.id.relOverviewOfTopics:
+                if (isExpandOverviewOfTopics) {
+                    collapseAllComponents();
+                } else {
+                    isExpandOverviewOfTopics = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandWhoShouldAttend = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.VISIBLE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+
+            case R.id.relWhoShouldAttend:
+                if (isExpandWhoShouldAttend) {
+                    collapseAllComponents();
+                } else {
+                    isExpandWhoShouldAttend = true;
+                    isExpandDetails = false;
+                    isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandPresenter = false;
+                    isExpandCompany = false;
+                    isExpandTestimonials = false;
+                    isExpandOthers = false;
+                    binding.relDetailsContent.setVisibility(View.GONE);
+                    binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.VISIBLE);
+                    binding.relPresenterContent.setVisibility(View.GONE);
+                    binding.relCompanyContent.setVisibility(View.GONE);
+                    binding.relTestimonialsContent.setVisibility(View.GONE);
+                    binding.relOthersContent.setVisibility(View.GONE);
+
+                    binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+                    binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                }
+                break;
+
             case R.id.relPresenter:
                 Log.e("*+*+*", "Clicked On relPresenter");
                 if (isExpandPresenter) {
@@ -3897,11 +4034,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     isExpandPresenter = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandCompany = false;
                     isExpandTestimonials = false;
                     isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.VISIBLE);
                     binding.relCompanyContent.setVisibility(View.GONE);
                     binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -3909,12 +4050,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                 }
                 break;
+
             case R.id.relCompany:
                 Log.e("*+*+*", "Clicked On relCompany");
                 if (isExpandCompany) {
@@ -3923,11 +4067,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     isExpandCompany = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandPresenter = false;
                     isExpandTestimonials = false;
                     isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
                     binding.relCompanyContent.setVisibility(View.VISIBLE);
                     binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -3935,12 +4083,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                 }
                 break;
+
             case R.id.relTestimonials:
                 Log.e("*+*+*", "Clicked On relTestimonials");
                 if (isExpandTestimonials) {
@@ -3949,11 +4100,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     isExpandTestimonials = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandPresenter = false;
                     isExpandCompany = false;
                     isExpandOthers = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
                     binding.relCompanyContent.setVisibility(View.GONE);
                     binding.relTestimonialsContent.setVisibility(View.VISIBLE);
@@ -3961,12 +4116,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                 }
                 break;
+
             case R.id.relOthers:
                 Log.e("*+*+*", "Clicked On relOthers");
                 if (isExpandOthers) {
@@ -3975,11 +4133,15 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     isExpandOthers = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
+                    isExpandOverviewOfTopics = false;
+                    isExpandWhoShouldAttend = false;
                     isExpandPresenter = false;
                     isExpandCompany = false;
                     isExpandTestimonials = false;
                     binding.relDetailsContent.setVisibility(View.GONE);
                     binding.relDescriptionContent.setVisibility(View.GONE);
+                    binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+                    binding.relWhoShouldAttendContent.setVisibility(View.GONE);
                     binding.relPresenterContent.setVisibility(View.GONE);
                     binding.relCompanyContent.setVisibility(View.GONE);
                     binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -3987,6 +4149,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                     binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+                    binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
@@ -4000,6 +4164,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 //        isexpandContentOpen = false;
         isExpandDetails = false;
         isExpandDescription = false;
+        isExpandOverviewOfTopics = false;
+        isExpandWhoShouldAttend = false;
         isExpandPresenter = false;
         isExpandCompany = false;
         isExpandTestimonials = false;
@@ -4007,6 +4173,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         binding.relDetailsContent.setVisibility(View.GONE);
         binding.relDescriptionContent.setVisibility(View.GONE);
+        binding.relOverviewOfTopicsContent.setVisibility(View.GONE);
+        binding.relWhoShouldAttendContent.setVisibility(View.GONE);
         binding.relPresenterContent.setVisibility(View.GONE);
         binding.relCompanyContent.setVisibility(View.GONE);
         binding.relTestimonialsContent.setVisibility(View.GONE);
@@ -4014,6 +4182,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         binding.imgArrowDetails.setBackgroundResource(R.drawable.ic_arrow_down_svg);
         binding.imgArrowDescription.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowOverviewOfTopics.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+        binding.imgArrowWhoShouldAttend.setBackgroundResource(R.drawable.ic_arrow_down_svg);
         binding.imgArrowPresenter.setBackgroundResource(R.drawable.ic_arrow_down_svg);
         binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
         binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);

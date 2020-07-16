@@ -609,6 +609,8 @@
 
     <string name="str_details_ca">Details</string>
     <string name="str_description_ca">Description</string>
+    <string name="str_why_you_should_attend_ca">Why you should attend</string>
+    <string name="str_overview_of_topics_ca">Overview of topics</string>
     <string name="str_presenter_ca">Presenter</string>
     <string name="str_company_ca">Company</string>
     <string name="str_testimonials_ca">Testimonials</string>
