@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -430,7 +431,10 @@ public class AccountFragment extends Fragment {
 
 
     public void ShowFeedBackPopUp() {
-        myDialog = new Dialog(context);
+
+        MainActivity.getInstance().showPopupFeedback();
+
+        /*myDialog = new Dialog(context);
         myDialog.setContentView(R.layout.feedback_popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -476,7 +480,7 @@ public class AccountFragment extends Fragment {
         });
 
 
-        myDialog.show();
+        myDialog.show();*/
 
 
     }
@@ -600,6 +604,7 @@ public class AccountFragment extends Fragment {
 
 
         binding.rvCredit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 

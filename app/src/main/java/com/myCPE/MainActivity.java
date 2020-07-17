@@ -2,6 +2,7 @@ package com.myCPE;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,12 +33,20 @@ import com.myCPE.fragments.AccountFragment;
 import com.myCPE.fragments.HomeAllFragment;
 import com.myCPE.fragments.MyCreditsFragment;
 import com.myCPE.fragments.MyWebinarFragment;
+import com.myCPE.model.postfeedback.PostFeedback;
 import com.myCPE.model.subjects_store.Model_Subject_Area;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
+import com.myCPE.view.DialogsUtils;
+import com.myCPE.webservice.APIService;
+import com.myCPE.webservice.ApiUtilsNew;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
@@ -68,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
 
+    private RelativeLayout relPopupFeedback, relPopupSubmitFeedback;
+    private LinearLayout linPopupFeedback;
+    private TextView txtPopupFeedbackCancel;
+    private EditText edtSubject, edtFeedback;
+
+    ProgressDialog progressDialog;
+    private APIService mAPIService_new;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         instance = MainActivity.this;
         intent = getIntent();
 
+        mAPIService_new = ApiUtilsNew.getAPIService();
 
         rel_top_bottom = (RelativeLayout) findViewById(R.id.rel_top_bottom);
         iv_mycredit = (ImageView) findViewById(R.id.iv_mycredit);
@@ -110,6 +130,14 @@ public class MainActivity extends AppCompatActivity {
         txtPopupTitle = (TextView) findViewById(R.id.txtPopupTitle);
         rvPopupList = (RecyclerView) findViewById(R.id.rvPopupList);
 
+        relPopupFeedback = (RelativeLayout) findViewById(R.id.relPopupFeedback);
+        relPopupSubmitFeedback = (RelativeLayout) findViewById(R.id.relPopupFeedback);
+        linPopupFeedback = (LinearLayout) findViewById(R.id.linPopupFeedback);
+
+        txtPopupFeedbackCancel = (TextView) findViewById(R.id.txtPopupFeedbackCancel);
+
+        edtSubject = (EditText) findViewById(R.id.edtSubject);
+        edtFeedback = (EditText) findViewById(R.id.edtFeedback);
 
         context = MainActivity.this;
         Constant.setLightStatusBar(MainActivity.this);
@@ -147,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
         Constant.progWidth = displayMetrics.widthPixels;
 //        Constant.progHeigth = (float) (Constant.progWidth/1.69);
-        Constant.progHeigth = (float) (Constant.progWidth/2);
+        Constant.progHeigth = (float) (Constant.progWidth / 2);
 
 //        iv_mywebinar.setOnClickListener(new View.OnClickListener() {
 //        imgTabWebinars.setOnClickListener(new View.OnClickListener() {
@@ -248,6 +276,43 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        relPopupSubmitFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strSubject = edtSubject.getText().toString();
+                String strFeedback = edtFeedback.getText().toString();
+
+                if (strSubject.equalsIgnoreCase("")) {
+                    Constant.toast(context, getResources().getString(R.string.val_subject));
+                } else if (strFeedback.equalsIgnoreCase("")) {
+                    Constant.toast(context, getResources().getString(R.string.val_review));
+                } else {
+                    if (Constant.isNetworkAvailable(context)) {
+                        Log.e("*+*+*","API for sending feedback is called subject : "+strSubject+"  ::  \nFeedback : "+strFeedback);
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                        PostFeedback(getResources().getString(R.string.accept), AppSettings.get_login_token(context),
+                                strSubject, strFeedback);
+                    } else {
+                        Snackbar.make(relPopupFeedback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        txtPopupFeedbackCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relPopupFeedback.setVisibility(View.GONE);
+            }
+        });
+
+       /* relPopupFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relPopupFeedback.setVisibility(View.GONE);
+            }
+        });*/
 
         txtPopupCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
     public void SetImageBackground(int position) {
 
         if (position == 2) {
-            Log.e("*+*+*","Position 2 Selected");
+            Log.e("*+*+*", "Position 2 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
@@ -369,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
 //            iv_premium.setImageResource(R.mipmap.footer_premium);
 //            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 1) {
-            Log.e("*+*+*","Position 1 Selected");
+            Log.e("*+*+*", "Position 1 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar);
             imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
@@ -386,7 +451,7 @@ public class MainActivity extends AppCompatActivity {
 //            iv_premium.setImageResource(R.mipmap.footer_premium);
 //            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 0) {
-            Log.e("*+*+*","Position 0 Selected");
+            Log.e("*+*+*", "Position 0 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home);
@@ -403,7 +468,7 @@ public class MainActivity extends AppCompatActivity {
 //            iv_premium.setImageResource(R.mipmap.footer_premium);
 //            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 3) {
-            Log.e("*+*+*","Position 3 Selected");
+            Log.e("*+*+*", "Position 3 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
@@ -420,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
 //            iv_premium.setImageResource(R.mipmap.footer_premium_select_orange);
 //            iv_account.setImageResource(R.mipmap.footer_account);
         } else if (position == 4) {
-            Log.e("*+*+*","Position 4 Selected");
+            Log.e("*+*+*", "Position 4 Selected");
             imgTabCertificate.setImageResource(R.drawable.ic_tab_certificate_un);
             imgTabWebinars.setImageResource(R.drawable.ic_tab_my_webinar_un);
             imgTabHome.setImageResource(R.drawable.ic_tab_home_un);
@@ -582,6 +647,65 @@ public class MainActivity extends AppCompatActivity {
                     arraylistModelSubjectArea);
             rvPopupList.setAdapter(topicsFilterHomePopUpAdapter);
         }
+    }
+
+    public void showPopupFeedback() {
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        relPopupFeedback.setVisibility(View.VISIBLE);
+        linPopupFeedback.startAnimation(slide_up);
+
+        edtFeedback.setText("");
+        edtSubject.setText("");
+//        layoutManager = new LinearLayoutManager(this);
+//        relPopupFeedback.setLayoutManager(layoutManager);
+    }
+
+    public void PostFeedback(String accept, String authorization, String message, String subject) {
+
+        mAPIService_new.PostContactUsFeedback(accept, getResources().getString(R.string.bearer) + " " + authorization, message,
+                subject).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<PostFeedback>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(relPopupFeedback, message, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(PostFeedback postFeedback) {
+
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+                        /*if (myDialog.isShowing()) {
+                            myDialog.dismiss();
+                        }*/
+
+                        if (postFeedback.isSuccess()) {
+                            Snackbar.make(relPopupFeedback, postFeedback.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(relPopupFeedback, postFeedback.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                        edtFeedback.setText("");
+                        edtSubject.setText("");
+                        relPopupFeedback.setVisibility(View.GONE);
+                    }
+                });
     }
 
 }
