@@ -181,7 +181,11 @@
         <activity
             android:name=".activity.TestimonialActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
+        <!--<activity
+            android:name=".activity.TestimonialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".activity.ActivityWhoYouAre"
             android:screenOrientation="portrait"

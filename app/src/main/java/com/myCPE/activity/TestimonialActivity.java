@@ -67,6 +67,16 @@ public class TestimonialActivity extends AppCompatActivity {
         binding.rvTestimonialList.addItemDecoration(new SimpleDividerItemDecoration(context));
         binding.rvTestimonialList.setItemAnimator(new DefaultItemAnimator());
 
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, WebinarDetailsActivity.class);
+                i.putExtra(getResources().getString(R.string.pass_webinar_id), webinarid);
+                i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                startActivity(i);
+                finish();
+            }
+        });
 
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +89,6 @@ public class TestimonialActivity extends AppCompatActivity {
             }
         });
 
-
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetTestimonialList();
@@ -87,31 +96,12 @@ public class TestimonialActivity extends AppCompatActivity {
             Snackbar.make(binding.rvTestimonialList, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
 
-
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshItems();
             }
         });
-
-
-       /* binding.rvTestimonialList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (loading) {
-                    if (!islast) {
-                        if (isLastVisible()) {
-                            loading = false;
-                            loadNextPage();
-                        }
-                    }
-                }
-
-
-            }
-        });*/
-
 
     }
 
@@ -125,11 +115,9 @@ public class TestimonialActivity extends AppCompatActivity {
         startActivity(i);
         finish();
 
-
     }
 
     private void refreshItems() {
-
         onItemsLoadComplete();
     }
 
@@ -164,8 +152,6 @@ public class TestimonialActivity extends AppCompatActivity {
                             adapter = new TestimonialAdapter(context, mListtestimonial);
                             binding.rvTestimonialList.setAdapter(adapter);
                         }
-
-
                     }
 
                     @Override
@@ -182,8 +168,6 @@ public class TestimonialActivity extends AppCompatActivity {
                         } else {
                             Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
                         }
-
-
                     }
 
                     @Override
@@ -198,25 +182,9 @@ public class TestimonialActivity extends AppCompatActivity {
                                 }
                             }
 
-
                             islast = model_testimonial.getPayload().isIsLast();
 
                             mListtestimonial = model_testimonial.getPayload().getWebinarTestimonial();
-
-
-                           /* if (start == 0 && limit == 10) {
-
-
-                            } else {
-                                if (mListtestimonial.size() > 20) {
-                                    mListtestimonial.remove(mListtestimonial.size() - 1);
-                                }
-
-
-                                List<WebinarTestimonialItem> webinaritems = model_testimonial.getPayload().getWebinarTestimonial();
-                                adapter.addAll(webinaritems);
-                            }
-*/
 
                             if (mListtestimonial.size() > 0) {
                                 binding.swipeRefreshLayout.setVisibility(View.VISIBLE);
@@ -225,7 +193,6 @@ public class TestimonialActivity extends AppCompatActivity {
                                 binding.tvNodatafound.setVisibility(View.VISIBLE);
                                 binding.swipeRefreshLayout.setVisibility(View.GONE);
                             }
-
 
                         } else {
                             if (progressDialog.isShowing()) {
@@ -238,11 +205,7 @@ public class TestimonialActivity extends AppCompatActivity {
                             Snackbar.make(binding.ivback, model_testimonial.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
-
-
                 });
-
-
     }
 
     boolean isLastVisible() {
@@ -251,5 +214,4 @@ public class TestimonialActivity extends AppCompatActivity {
         int numItems = binding.rvTestimonialList.getAdapter().getItemCount() - 1;
         return (pos >= numItems);
     }
-
 }
