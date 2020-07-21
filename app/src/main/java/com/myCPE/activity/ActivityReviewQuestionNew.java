@@ -248,7 +248,11 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
                 break;
 
             case R.id.tv_prev:
-                btnPrev();
+                if(isPrevClickable) {
+                    btnPrev();
+                } else {
+                    Toast.makeText(context, "Oops, you are already on first question.", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.tv_ans_a:

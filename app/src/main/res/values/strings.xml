@@ -654,7 +654,7 @@
 
     // Strings for the Final quiz popup
     <string name="str_fail_msg">Sorry, you have not answered 70% of the questions correctly. Please retake the final quiz.</string>
-    <string name="str_final_ok">ok</string>
+    <string name="str_final_ok">Ok</string>
 
     // TTF icons
     <!--    <string name="play_ttf">&#xea15;</string>-->

@@ -79,6 +79,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activity.ActivityFinalQuizOld"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.WebinarDetailsActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
