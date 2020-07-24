@@ -17,6 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +74,7 @@ public class AccountFragment extends Fragment {
     public EditText edt_subject, edt_review;
     public Button btn_submit;
     public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", country = "", ptin_number = "", phone_number = "",
-            ctec_id = "";
+            ctec_id = "", profile_pic_url = "";
     public int country_id = 0, state_id = 0, city_id = 0, jobtitle_id = 0, industry_id = 0;
     public String job_titile = "", industry = "";
     public ArrayList<modelViewProfileProfesional> professionalcredential = new
@@ -248,6 +249,11 @@ public class AccountFragment extends Fragment {
 
                         if (viewProfileModel.isSuccess() == true) {
 
+//                            if(viewProfileModel.getPayload().getData().getProfilePicture() != null
+//                                    && viewProfileModel.getPayload().getData().getProfilePicture().equalsIgnoreCase("")) {
+                                profile_pic_url = viewProfileModel.getPayload().getData().getProfilePicture();
+//                            }
+
                             if (viewProfileModel.getPayload().getData().getFirstName() != null
                                     && !viewProfileModel.getPayload().getData().getFirstName().equalsIgnoreCase("")) {
                                 firstname = viewProfileModel.getPayload().getData().getFirstName();
@@ -264,7 +270,6 @@ public class AccountFragment extends Fragment {
                                         .placeholder(R.drawable.profile_place_holder)
                                         .into(binding.ivprofilepicture);
                             } else {
-
                                 binding.ivprofilepicture.setImageResource(R.drawable.profile_place_holder);
                             }
 
@@ -656,6 +661,8 @@ public class AccountFragment extends Fragment {
 
     public void navigateeditprofile() {
         Intent i = new Intent(context, EditProfileActivity.class);
+        i.putExtra("profile_pic", profile_pic_url);
+        Log.e("*+*+*","Profile pic while sending is : "+profile_pic_url);
         i.putExtra(getResources().getString(R.string.pass_fname), firstname);
         i.putExtra(getResources().getString(R.string.pass_ctek_number), ctec_id);
         i.putExtra(getResources().getString(R.string.pass_lname), lastname);

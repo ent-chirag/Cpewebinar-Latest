@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.myCPE.activity.EditProfileActivity" />
@@ -15,62 +14,14 @@
         android:background="@color/White">
 
         <RelativeLayout
-            android:id="@+id/rvtitle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@color/color_rounded_grayblue">
-
-            <RelativeLayout
-                android:id="@+id/relImgBack"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/iv_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/back"
-                    android:tint="@color/color_text_black" />
-
-            </RelativeLayout>
-
-            <com.myCPE.view.CustomTextView
-                android:id="@+id/tv_edit_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/edit_profile_header"
-                android:textColor="@color/color_text_black"
-                android:textSize="@dimen/_15sdp"
-                app:font_text="Whitney-Semibold.ttf" />
-
-            <ImageView
-                android:id="@+id/ivedit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:src="@drawable/ic_edit" />
-
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/rvtitle"
-            android:background="@color/color_text_black" />
-
-        <!--<RelativeLayout
+            android:id="@+id/relheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/webinar_status"
-            android:padding="@dimen/_10sdp"
-            android:visibility="gone">
+            android:padding="@dimen/_10sdp">
 
             <com.myCPE.view.CustomTextView
+                android:id="@+id/tv_edit_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -82,6 +33,7 @@
 
 
             <ImageView
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -90,6 +42,7 @@
                 android:src="@mipmap/back" />
 
             <ImageView
+                android:id="@+id/ivedit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -97,13 +50,15 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:src="@mipmap/edit" />
 
-        </RelativeLayout>-->
+
+        </RelativeLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/relbottom"
-            android:layout_below="@+id/rvtitle"
+            android:layout_below="@+id/relheader"
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@color/White">
 
@@ -111,55 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/relheader"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:orientation="vertical">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivprofilepicture"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_75sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:scaleType="centerCrop" />
-
-                <EditText
-                    android:id="@+id/edt_firstname"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_firstname"
-                    android:imeOptions="actionNext"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:singleLine="true"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
-
-                <EditText
-                    android:id="@+id/edt_lastname"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_lastname"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="gone"
                     android:weightSum="2">
 
                     <android.support.design.widget.TextInputLayout
@@ -168,7 +83,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
+
                         <com.myCPE.view.CustomEditTextView
+                            android:id="@+id/edt_firstname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -180,7 +97,9 @@
                             android:textSize="@dimen/_10sdp"
                             app:font_edit="SFUIDisplay-Medium.ttf" />
 
+
                     </android.support.design.widget.TextInputLayout>
+
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_last_name"
@@ -190,6 +109,7 @@
 
 
                         <com.myCPE.view.CustomEditTextView
+                            android:id="@+id/edt_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -208,134 +128,90 @@
                 </LinearLayout>
 
 
-                <!--<android.support.design.widget.TextInputLayout
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_email_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/_2sdp">-->
+                    android:layout_marginTop="@dimen/_2sdp">
 
 
-                <!--<com.myCPE.view.CustomEditTextView
-                    android:id="@+id/edt_emailname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="@string/view_profile_email"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:singleLine="true"
-                    android:textColor="@color/grid_topics"
-                    android:textSize="@dimen/_10sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />-->
+                    <com.myCPE.view.CustomEditTextView
+                        android:id="@+id/edt_emailname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/view_profile_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="@color/grid_topics"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
 
-                <EditText
-                    android:id="@+id/edt_emailname"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_email"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
 
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
-                <!--<android.support.design.widget.TextInputLayout
+
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/_2sdp">-->
+                    android:layout_marginTop="@dimen/_2sdp">
 
-                <!--<com.myCPE.view.CustomEditTextView
-                    android:id="@+id/edt_mobile_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="@string/view_profile_mobile_number"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="14"
-                    android:singleLine="true"
-                    android:textColor="@color/grid_topics"
-                    android:textSize="@dimen/_10sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />-->
 
-                <EditText
-                    android:id="@+id/edt_mobile_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_mobile_number"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:inputType="phone"
-                    android:maxLength="14"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
+                    <com.myCPE.view.CustomEditTextView
+                        android:id="@+id/edt_mobile_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/view_profile_mobile_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="14"
+                        android:singleLine="true"
+                        android:textColor="@color/grid_topics"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
 
-                <!--</android.support.design.widget.TextInputLayout>-->
 
-                <!--<android.support.design.widget.TextInputLayout
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/_2sdp">-->
+                    android:layout_marginTop="@dimen/_2sdp">
 
 
-                <!--<com.myCPE.view.CustomEditTextView
-                    android:id="@+id/edt_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="@string/view_profile_phone_number"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="14"
-                    android:singleLine="true"
-                    android:textColor="@color/grid_topics"
-                    android:textSize="@dimen/_10sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />-->
+                    <com.myCPE.view.CustomEditTextView
+                        android:id="@+id/edt_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/view_profile_phone_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="14"
+                        android:singleLine="true"
+                        android:textColor="@color/grid_topics"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
 
-                <EditText
-                    android:id="@+id/edt_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_phone_number"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:inputType="phone"
-                    android:maxLength="14"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
 
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
-                <!--<android.support.design.widget.TextInputLayout
+
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_ptin_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true">-->
+                    android:layout_alignParentLeft="true">
 
 
-                    <!--<com.myCPE.view.CustomEditTextView
+                    <com.myCPE.view.CustomEditTextView
                         android:id="@+id/edt_ptin_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -347,34 +223,19 @@
                         android:singleLine="true"
                         android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
-                        app:font_edit="SFUIDisplay-Medium.ttf" />-->
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
 
-                <EditText
-                    android:id="@+id/edt_ptin_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_ptin_number"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    android:maxLength="9"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
 
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
-                <!--<android.support.design.widget.TextInputLayout
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true">-->
+                    android:layout_alignParentLeft="true">
 
 
-                    <!--<com.myCPE.view.CustomEditTextView
+                    <com.myCPE.view.CustomEditTextView
                         android:id="@+id/edt_CTEC_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -386,73 +247,26 @@
                         android:singleLine="true"
                         android:textColor="@color/grid_topics"
                         android:textSize="@dimen/_10sdp"
-                        app:font_edit="SFUIDisplay-Medium.ttf" />-->
-
-                <EditText
-                    android:id="@+id/edt_CTEC_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:background="@drawable/underline_bg_white"
-                    android:enabled="false"
-                    android:fontFamily="@font/whitney_semibold"
-                    android:hint="@string/view_profile_ctec_id"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    android:maxLength="7"
-                    android:textColor="@color/color_text_black"
-                    android:textColorHint="@color/color_text_black_70"
-                    android:textSize="@dimen/_14sdp" />
+                        app:font_edit="SFUIDisplay-Medium.ttf" />
 
 
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
 
-                <!--<com.myCPE.view.CustomTextView
+                <com.myCPE.view.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Country"
                     android:textSize="@dimen/_10sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />-->
+                    app:font_edit="SFUIDisplay-Medium.ttf" />
 
-                <!--<RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp">-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:background="@drawable/underline_bg">
-
-                    <TextView
-                        android:id="@+id/txtCountryName"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:background="@drawable/underline_bg"
-                        android:fontFamily="@font/whitney_semibold"
-                        android:text="@string/view_profile_country"
-                        android:imeOptions="actionNext"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_vertical"
-                        android:singleLine="true"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:textColorHint="@color/edit_field_hint"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:src="@mipmap/drop_down_arrow" />
-
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp">
 
                     <Spinner
                         android:id="@+id/spinner_country"
@@ -474,15 +288,15 @@
                         android:layout_marginRight="@dimen/_8sdp"
                         android:src="@mipmap/drop_down_arrow" />
 
-                <!--</RelativeLayout>-->
+                </RelativeLayout>
 
-                <!--<View
+                <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
-                    android:background="@color/view_edit_profile" />-->
+                    android:background="@color/view_edit_profile" />
 
 
                 <com.myCPE.view.CustomTextView

@@ -57,6 +57,7 @@ import com.myCPE.view.SimpleDividerItemDecoration;
 import com.myCPE.view.UsPhoneNumberFormatter;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
+import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private int state_pos = 0;
     private int city_pos = 0;
     public String firstname = "", lastname = "", email = "", firmname = "", mobilenumber = "", zipcode = "", ptin_number = "",
-            ctek = "";
+            ctek = "", profile_pic_url = "";
     private int who_you_are_pos = 0;
     private int jobtitle_id_pos = 0;
     private int industry_id_pos = 0;
@@ -181,6 +182,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null) {
+            profile_pic_url = intent.getStringExtra("profile_pic");
+            Log.e("*+*+*","Profile pic while receiving is : "+profile_pic_url);
             firstname = intent.getStringExtra(getResources().getString(R.string.pass_fname));
             ctek = intent.getStringExtra(getResources().getString(R.string.pass_ctek_number));
             lastname = intent.getStringExtra(getResources().getString(R.string.pass_lname));
@@ -1156,6 +1159,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     public void SetData() {
+
+        if(!profile_pic_url.equalsIgnoreCase("") && profile_pic_url != null) {
+            Picasso.with(context).load(profile_pic_url)
+                    .placeholder(R.drawable.profile_place_holder)
+                    .into(binding.ivprofilepicture);
+        } else {
+            binding.ivprofilepicture.setImageResource(R.drawable.profile_place_holder);
+        }
 
         if (!firstname.equalsIgnoreCase("") && firstname != null) {
             binding.edtFirstname.setText(firstname);
