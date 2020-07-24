@@ -175,7 +175,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 //            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
             ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
 
-                for (int i = 0; i < mList.size() ; i++) {
+            for (int i = 0; i < mList.size() ; i++) {
                 Log.e("*+*+*","Position is : "+position);
                 if(position % 3 == 1){
                     Log.e("*+*+*","Entered on position type : 0");
@@ -399,10 +399,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(new File(uri.getPath()).getAbsolutePath(), options);
-
             int imageHeight = options.outHeight;
             int imageWidth = options.outWidth;
-
             Log.e("*+*+*","URL image size height is URL : " + mList.get(position).getWebinarThumbnailImage());
             Log.e("*+*+*","URL image size height is URI : " + uri);
             Log.e("*+*+*","URL image size height is : "+imageHeight + " width : "+imageWidth);*/
@@ -411,7 +409,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             try {
                 url = new URL(""+mList.get(position).getWebinarThumbnailImage());
                 Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
                 Log.e("*+*+*","New URL : "+url+" new height : "+bmp.getHeight() + " new width : "+bmp.getWidth());
             }  catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -907,55 +904,39 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         /*myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.guest_user_popup);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         tv_login = (TextView) myDialog.findViewById(R.id.tv_login_guest);
         tv_cancel = (TextView) myDialog.findViewById(R.id.tv_cancel_guest);
         tv_create_account = (TextView) myDialog.findViewById(R.id.tv_create_account);
-
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (myDialog.isShowing()) {
                     myDialog.dismiss();
                 }
-
                 Intent i = new Intent(mContext, LoginActivity.class);
                 mContext.startActivity(i);
                 ((Activity) mContext).finish();
-
-
             }
         });
-
-
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (myDialog.isShowing()) {
                     myDialog.dismiss();
                 }
-
             }
         });
-
         tv_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (myDialog.isShowing()) {
                     myDialog.dismiss();
                 }
-
                 Intent i = new Intent(mContext, SignUpActivity.class);
                 mContext.startActivity(i);
                 ((Activity) mContext).finish();
-
-
             }
         });
-
-
         myDialog.show();*/
 
 
@@ -1195,13 +1176,11 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         }
                         if (modelRegisterWebinar.isSuccess() == true) {
                           /*  Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
-
                             button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
                             button.setBackgroundResource(R.drawable.rounded_webinar_status);
                             mList.get(position).setStatus(modelRegisterWebinar.getPayload().getRegisterStatus());
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
-
                             }*/
 
                             Intent i = new Intent(mContext, WebinarDetailsActivity.class);

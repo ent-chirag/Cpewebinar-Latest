@@ -4,17 +4,23 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,6 +85,7 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
 
     private int qPos = 0;
     private boolean isPrevClickable = false;
+    private String successResponseString = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +127,19 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
         binding.tvAnsB.setOnClickListener(this);
         binding.tvAnsC.setOnClickListener(this);
         binding.tvAnsD.setOnClickListener(this);
+
+        binding.relPopupSubmitReview.setOnClickListener(this);
+        binding.relCheckedYes.setOnClickListener(this);
+        binding.relCheckedNo.setOnClickListener(this);
+        binding.linPopupReview.setOnClickListener(this);
+        binding.txtPopupReviewCancel.setOnClickListener(this);
+        binding.tvYes.setOnClickListener(this);
+        binding.tvNo.setOnClickListener(this);
+        binding.ivOne.setOnClickListener(this);
+        binding.ivTwo.setOnClickListener(this);
+        binding.ivThree.setOnClickListener(this);
+        binding.ivFour.setOnClickListener(this);
+        binding.ivFive.setOnClickListener(this);
 
         binding.relImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,6 +290,16 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
 
     }
 
+    private void showPopupReview(final String successmessage) {
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        Log.e("*+*+*", "Called method for showing popup from the MainAvtivity..");
+        binding.relPopupReview.setVisibility(View.VISIBLE);
+        binding.linPopupReview.startAnimation(slide_up);
+
+        binding.txtReviewQuestion.setText(getResources().getString(R.string.str_title_question_rating_popup) + " " + WebinarDetailsActivity.getInstance().aboutpresenterCompanyName + "?");
+    }
 
     private void showAddReviewPopUp(final String sucessmessage) {
         myDialogaddreview = new Dialog(context);
@@ -489,7 +519,8 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.relPopupReview, message, Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(binding.relPopupReview, Constant.GetReturnResponse(context, e), Snackbar.LENGTH_SHORT).show();
                         }
                     }
 
@@ -504,7 +535,15 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
                                 myDialogaddreview.dismiss();
                             }
 
-                            showPopUp(sucessmessage, true);
+                            binding.relPopupReview.setVisibility(View.GONE);
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showPopUp(sucessmessage, true);
+                                }
+                            },200);
 
 
                         } else {
@@ -551,7 +590,10 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
                             arraylistselectedquestionfinal.clear();
                             arraylistselectedanswerfinal.clear();
 
-                            showAddReviewPopUp(finalQuizAnswer.getMessage());
+//                            showAddReviewPopUp(finalQuizAnswer.getMessage());
+//                            MainActivity.getInstance().showPopupReview(finalQuizAnswer.getMessage());
+                            successResponseString = finalQuizAnswer.getMessage();
+                            showPopupReview(finalQuizAnswer.getMessage());
 
                         } else {
                             if (progressDialog.isShowing()) {
@@ -689,6 +731,7 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -746,6 +789,142 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
 
             case R.id.lv_d:
                 answerD();
+                break;
+
+            case R.id.linPopupReview:
+                // Do nothing..
+                break;
+
+            case R.id.relPopupSubmitReview:
+                strReview = binding.edtReview.getText().toString();
+
+                if (!isLikeToKnowMore) {
+                    Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.str_validation_like_know_more), Snackbar.LENGTH_SHORT).show();
+                } else if (rating == 0) {
+                    Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.str_validation_rating), Snackbar.LENGTH_SHORT).show();
+                } else {
+                    // Take the API calls here..
+                    if (Constant.isNetworkAvailable(context)) {
+                        progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+//                        GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
+                        GetSubmitReviewAnswer(is_like, rating, strReview, successResponseString);
+                    } else {
+                        Snackbar.make(binding.recyclerviewFinalQuiz, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+
+                break;
+
+            case R.id.relChecked_yes:
+                binding.relCheckedYes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                binding.relCheckedNo.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 1;
+                break;
+
+            case R.id.relChecked_no:
+                binding.relCheckedNo.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                binding.relCheckedYes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 0;
+                break;
+
+            case R.id.tv_yes:
+                binding.relCheckedYes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                binding.relCheckedNo.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 1;
+                break;
+
+            case R.id.tv_no:
+                binding.relCheckedNo.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                binding.relCheckedYes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 0;
+                break;
+
+            case R.id.txtPopupReviewCancel:
+                binding.relPopupReview.setVisibility(View.GONE);
+                break;
+
+            case R.id.iv_one:
+                binding.ivOne.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivTwo.setImageResource(R.mipmap.add_review_star);
+                binding.ivThree.setImageResource(R.mipmap.add_review_star);
+                binding.ivFour.setImageResource(R.mipmap.add_review_star);
+                binding.ivFive.setImageResource(R.mipmap.add_review_star);
+
+                binding.ivOne.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivTwo.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivThree.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFour.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFive.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 1;
+                break;
+
+            case R.id.iv_two:
+                binding.ivOne.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivTwo.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivThree.setImageResource(R.mipmap.add_review_star);
+                binding.ivFour.setImageResource(R.mipmap.add_review_star);
+                binding.ivFive.setImageResource(R.mipmap.add_review_star);
+
+                binding.ivOne.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivTwo.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivThree.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFour.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFive.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 2;
+                break;
+
+            case R.id.iv_three:
+                binding.ivOne.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivTwo.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivThree.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivFour.setImageResource(R.mipmap.add_review_star);
+                binding.ivFive.setImageResource(R.mipmap.add_review_star);
+
+                binding.ivOne.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivTwo.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivThree.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFour.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFive.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 3;
+                break;
+
+            case R.id.iv_four:
+                binding.ivOne.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivTwo.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivThree.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivFour.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivFive.setImageResource(R.mipmap.add_review_star);
+
+                binding.ivOne.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivTwo.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivThree.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFour.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFive.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 4;
+                break;
+
+            case R.id.iv_five:
+                binding.ivOne.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivTwo.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivThree.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivFour.setImageResource(R.mipmap.add_review_star_hover);
+                binding.ivFive.setImageResource(R.mipmap.add_review_star_hover);
+
+                binding.ivOne.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivTwo.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivThree.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFour.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                binding.ivFive.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 5;
                 break;
 
         }

@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.myCPE.activity.LoginActivity;
 import com.myCPE.activity.PreLoginActivity;
 import com.myCPE.activity.SignUpActivity;
+import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
 import com.myCPE.fragments.AccountFragment;
 import com.myCPE.fragments.HomeAllFragment;
@@ -50,7 +51,7 @@ import rx.schedulers.Schedulers;
 
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     AccountFragment accountFragment;
@@ -83,6 +84,17 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linPopupFeedback;
     private TextView txtPopupFeedbackCancel;
     private EditText edtSubject, edtFeedback;
+
+    private RelativeLayout relPopupReview, relPopupSubmitReview, relChecked_yes, relChecked_no;
+    private LinearLayout linPopupReview;
+    private TextView tv_yes, tv_no, txtPopupReviewCancel;
+    private ImageView iv_one, iv_two,iv_three, iv_four, iv_five;
+    private EditText edtReview;
+
+    private int rating = 0;
+    private boolean isLikeToKnowMore = false;
+    private int is_like = 0;
+    private String strReview = "";
 
     ProgressDialog progressDialog;
     private APIService mAPIService_new;
@@ -139,9 +151,40 @@ public class MainActivity extends AppCompatActivity {
         edtSubject = (EditText) findViewById(R.id.edtSubject);
         edtFeedback = (EditText) findViewById(R.id.edtFeedback);
 
+        relPopupReview = (RelativeLayout) findViewById(R.id.relPopupReview);
+        relChecked_yes = (RelativeLayout) findViewById(R.id.relChecked_yes);
+        relChecked_no = (RelativeLayout) findViewById(R.id.relChecked_no);
+        relPopupSubmitReview = (RelativeLayout) findViewById(R.id.relPopupSubmitReview);
+
+        linPopupReview = (LinearLayout) findViewById(R.id.linPopupReview);
+
+        tv_yes = (TextView) findViewById(R.id.tv_yes);
+        tv_no = (TextView) findViewById(R.id.tv_no);
+        txtPopupReviewCancel = (TextView) findViewById(R.id.txtPopupReviewCancel);
+
+        iv_one = (ImageView) findViewById(R.id.iv_one);
+        iv_two = (ImageView) findViewById(R.id.iv_two);
+        iv_three = (ImageView) findViewById(R.id.iv_three);
+        iv_four = (ImageView) findViewById(R.id.iv_four);
+        iv_five = (ImageView) findViewById(R.id.iv_five);
+
+        edtReview = (EditText) findViewById(R.id.edtReview);
+
+        relPopupSubmitReview.setOnClickListener(this);
+        relChecked_yes.setOnClickListener(this);
+        relChecked_no.setOnClickListener(this);
+        linPopupReview.setOnClickListener(this);
+        txtPopupReviewCancel.setOnClickListener(this);
+        tv_yes.setOnClickListener(this);
+        tv_no.setOnClickListener(this);
+        iv_one.setOnClickListener(this);
+        iv_two.setOnClickListener(this);
+        iv_three.setOnClickListener(this);
+        iv_four.setOnClickListener(this);
+        iv_five.setOnClickListener(this);
+
         context = MainActivity.this;
         Constant.setLightStatusBar(MainActivity.this);
-
 
 //        iv_mycredit.setOnClickListener(new View.OnClickListener() {
 //        imgTabCertificate.setOnClickListener(new View.OnClickListener() {
@@ -649,6 +692,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showPopupReview(String message) {
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
+        Log.e("*+*+*","Called method for showing popup from the MainAvtivity..");
+        relPopupReview.setVisibility(View.VISIBLE);
+        linPopupReview.startAnimation(slide_up);
+    }
+
     public void showPopupFeedback() {
         Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_up_new);
@@ -658,8 +710,6 @@ public class MainActivity extends AppCompatActivity {
 
         edtFeedback.setText("");
         edtSubject.setText("");
-//        layoutManager = new LinearLayoutManager(this);
-//        relPopupFeedback.setLayoutManager(layoutManager);
     }
 
     public void PostFeedback(String accept, String authorization, String message, String subject) {
@@ -708,4 +758,128 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.linPopupReview:
+                // Do nothing..
+                break;
+
+            case R.id.relPopupSubmitReview:
+                break;
+
+            case R.id.relChecked_yes:
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 1;
+                break;
+
+            case R.id.relChecked_no:
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 0;
+                break;
+
+            case R.id.tv_yes:
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 1;
+                break;
+
+            case R.id.tv_no:
+                relChecked_no.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_checked));
+                relChecked_yes.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_checkbox_unchecked));
+                isLikeToKnowMore = true;
+                is_like = 0;
+                break;
+
+            case R.id.txtPopupReviewCancel:
+                relPopupReview.setVisibility(View.GONE);
+                break;
+
+            case R.id.iv_one:
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                iv_one.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_two.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_three.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_four.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_five.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 1;
+                break;
+
+            case R.id.iv_two:
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                iv_one.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_two.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_three.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_four.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_five.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 2;
+                break;
+
+            case R.id.iv_three:
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                iv_one.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_two.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_three.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_four.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_five.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 3;
+                break;
+
+            case R.id.iv_four:
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star);
+
+                iv_one.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_two.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_three.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_four.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_five.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 4;
+                break;
+
+            case R.id.iv_five:
+                iv_one.setImageResource(R.mipmap.add_review_star_hover);
+                iv_two.setImageResource(R.mipmap.add_review_star_hover);
+                iv_three.setImageResource(R.mipmap.add_review_star_hover);
+                iv_four.setImageResource(R.mipmap.add_review_star_hover);
+                iv_five.setImageResource(R.mipmap.add_review_star_hover);
+
+                iv_one.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_two.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_three.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_four.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+                iv_five.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_rounded_btn_orange)));
+
+                rating = 5;
+                break;
+        }
+    }
 }

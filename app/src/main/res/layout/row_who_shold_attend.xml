@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/White"
-    android:padding="@dimen/_5sdp">
+    android:padding="@dimen/_12sdp">
 
 
-    <com.myCPE.view.CustomTextView
+    <TextView
         android:id="@+id/tv_who_attend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:textColor="@color/black"
+        android:textColor="@color/color_text_black"
         android:textSize="@dimen/_12sdp"
-        app:font_text="Montserrat-Regular.ttf" />
+        android:fontFamily="@font/whitney_medium" />
 
 
 </RelativeLayout>

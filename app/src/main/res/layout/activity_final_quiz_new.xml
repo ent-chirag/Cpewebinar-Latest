@@ -56,311 +56,528 @@
 
         </RelativeLayout>
 
-        <!--<RelativeLayout
-            android:id="@+id/rvtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/webinar_status"
-            android:padding="@dimen/_10sdp">
-
-            <ImageView
-                android:id="@+id/ivback"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/_5sdp"
-                android:src="@mipmap/back" />
-
-            <com.myCPE.view.CustomTextView
-                android:id="@+id/screentitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/str_final_quiz"
-                android:textColor="@color/White"
-                android:textSize="@dimen/_18sdp"
-                app:font_text="Montserrat-Bold.ttf" />
-
-        </RelativeLayout>-->
-
-        <TextView
-            android:id="@+id/tv_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rvtitle"
-            android:text="Questions 8/10"
-            android:textColor="@color/color_text_blue"
-            android:textSize="@dimen/_13sdp"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:fontFamily="@font/whitney_semibold"/>
-
-        <android.support.v7.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tv_number"
-            android:layout_marginBottom="@dimen/_60sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginRight="@dimen/_12sdp"
-            app:cardCornerRadius="@dimen/_12sdp"
-            android:elevation="@dimen/_15sdp">
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_below="@+id/rvtitle">
 
-            <ScrollView
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Questions 8/10"
+                android:textColor="@color/color_text_blue"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+
+                android:fontFamily="@font/whitney_semibold"/>
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/_55sdp"
-                android:paddingTop="@dimen/_15sdp">
+                android:layout_below="@+id/tv_number"
+                android:layout_marginBottom="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_12sdp"
+                android:elevation="@dimen/_15sdp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/_55sdp"
+                    android:paddingTop="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp">
+
+                        <TextView
+                            android:id="@+id/tv_question"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_70sdp"
+                            android:layout_centerVertical="true"
+                            android:maxLines="3"
+                            android:text="The ERC is what percentage of qualifying wages:"
+                            android:textColor="@color/black_full"
+                            android:textSize="@dimen/_14sdp"
+                            android:fontFamily="@font/whitney_semibold"/>
+
+                        <LinearLayout
+                            android:id="@+id/lv_a"
+                            android:layout_width="match_parent"
+                            android:minHeight="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_white_boundry"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal" >
+
+                            <!--<RelativeLayout
+                                android:id="@+id/checkbox_select_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:background="@drawable/rev_unchecked" />-->
+
+                            <TextView
+                                android:id="@+id/tv_ans_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:layout_marginRight="@dimen/_12sdp"
+                                android:ems="20"
+                                android:maxLines="2"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:textColor="@color/color_text_black_oppacity"
+                                android:textSize="@dimen/_11sdp"
+                                android:fontFamily="@font/whitney_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lv_b"
+                            android:layout_width="match_parent"
+                            android:minHeight="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_white_boundry"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <!--<RelativeLayout
+                                android:id="@+id/checkbox_select_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:background="@drawable/rev_unchecked" />-->
+
+                            <TextView
+                                android:id="@+id/tv_ans_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:layout_marginRight="@dimen/_12sdp"
+                                android:ems="20"
+                                android:maxLines="2"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:textColor="@color/color_text_black_oppacity"
+                                android:textSize="@dimen/_11sdp"
+                                android:fontFamily="@font/whitney_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lv_c"
+                            android:layout_width="match_parent"
+                            android:minHeight="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_white_boundry"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <!--<RelativeLayout
+                                android:id="@+id/checkbox_select_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:background="@drawable/rev_unchecked" />-->
+
+                            <TextView
+                                android:id="@+id/tv_ans_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:layout_marginRight="@dimen/_12sdp"
+                                android:ems="20"
+                                android:maxLines="2"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:textColor="@color/color_text_black_oppacity"
+                                android:textSize="@dimen/_11sdp"
+                                android:fontFamily="@font/whitney_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lv_d"
+                            android:layout_width="match_parent"
+                            android:minHeight="@dimen/_35sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_white_boundry"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <!--<RelativeLayout
+                                android:id="@+id/checkbox_select_d"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:background="@drawable/rev_unchecked" />-->
+
+                            <TextView
+                                android:id="@+id/tv_ans_d"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/_12sdp"
+                                android:layout_marginRight="@dimen/_12sdp"
+                                android:ems="20"
+                                android:maxLines="2"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:inputType="textMultiLine|textNoSuggestions"
+                                android:textColor="@color/color_text_black_oppacity"
+                                android:textSize="@dimen/_11sdp"
+                                android:fontFamily="@font/whitney_medium" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_response_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:ems="20"
+                            android:text="@string/why_correct"
+                            android:inputType="textMultiLine|textNoSuggestions"
+                            android:singleLine="true"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/_13sdp"
+                            android:visibility="gone"
+                            android:fontFamily="@font/whitney_semibold"/>
+
+                        <TextView
+                            android:id="@+id/tv_ans_response"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:ems="20"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:inputType="textMultiLine|textNoSuggestions"
+                            android:singleLine="true"
+                            android:textColor="@color/color_text_black_oppacity"
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="gone"
+                            android:fontFamily="@font/whitney_medium" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+                <LinearLayout
+                    android:id="@+id/linBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_34sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:id="@+id/relPrev"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_login">
+
+                        <TextView
+                            android:id="@+id/tv_prev"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Previous"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/whitney_semibold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relNextSubmit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_signup">
+
+                        <TextView
+                            android:id="@+id/tv_next_submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Next"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/whitney_semibold"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relPopupReview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/linPopupReview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/relSubmitReviewBottom"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:background="@drawable/rounded_top_white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/rounded_top_bluegray">
+
+                    <TextView
+                        android:id="@+id/txtPopupReviewCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:fontFamily="@font/whitney_bold"
+                        android:text="@string/str_cancel_guest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/txtPopupReviewTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:fontFamily="@font/whitney_bold"
+                        android:text="@string/str_review_title"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_14sdp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black_full" />
+
+                <!--<EditText
+                    android:id="@+id/edtSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:hint="@string/str_subject"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/color_text_hint"
+                    android:textSize="@dimen/_14sdp" />-->
+
+                <TextView
+                    android:id="@+id/txtReviewQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:text="@string/str_title_question_rating_popup"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_15sdp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_question"
+                    <RelativeLayout
+                        android:id="@+id/relChecked_yes"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:maxLines="3"
-                        android:text="The ERC is what percentage of qualifying wages:"
-                        android:textColor="@color/black_full"
-                        android:textSize="@dimen/_14sdp"
-                        android:fontFamily="@font/whitney_semibold"/>
-
-                    <LinearLayout
-                        android:id="@+id/lv_a"
-                        android:layout_width="match_parent"
-                        android:minHeight="@dimen/_35sdp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_white_boundry"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:orientation="horizontal" >
-
-                        <!--<RelativeLayout
-                            android:id="@+id/checkbox_select_a"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_8sdp"
-                            android:background="@drawable/rev_unchecked" />-->
-
-                        <TextView
-                            android:id="@+id/tv_ans_a"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_12sdp"
-                            android:layout_marginRight="@dimen/_12sdp"
-                            android:ems="20"
-                            android:maxLines="2"
-                            android:paddingTop="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:inputType="textMultiLine|textNoSuggestions"
-                            android:textColor="@color/color_text_black_oppacity"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/whitney_medium" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lv_b"
-                        android:layout_width="match_parent"
-                        android:minHeight="@dimen/_35sdp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_white_boundry"
-                        android:layout_marginTop="@dimen/_10sdp">
-
-                        <!--<RelativeLayout
-                            android:id="@+id/checkbox_select_b"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_8sdp"
-                            android:background="@drawable/rev_unchecked" />-->
-
-                        <TextView
-                            android:id="@+id/tv_ans_b"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_12sdp"
-                            android:layout_marginRight="@dimen/_12sdp"
-                            android:ems="20"
-                            android:maxLines="2"
-                            android:paddingTop="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:inputType="textMultiLine|textNoSuggestions"
-                            android:textColor="@color/color_text_black_oppacity"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/whitney_medium" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lv_c"
-                        android:layout_width="match_parent"
-                        android:minHeight="@dimen/_35sdp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_white_boundry"
-                        android:layout_marginTop="@dimen/_10sdp">
-
-                        <!--<RelativeLayout
-                            android:id="@+id/checkbox_select_c"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_8sdp"
-                            android:background="@drawable/rev_unchecked" />-->
-
-                        <TextView
-                            android:id="@+id/tv_ans_c"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_12sdp"
-                            android:layout_marginRight="@dimen/_12sdp"
-                            android:ems="20"
-                            android:maxLines="2"
-                            android:paddingTop="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:inputType="textMultiLine|textNoSuggestions"
-                            android:textColor="@color/color_text_black_oppacity"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/whitney_medium" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lv_d"
-                        android:layout_width="match_parent"
-                        android:minHeight="@dimen/_35sdp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_white_boundry"
-                        android:layout_marginTop="@dimen/_10sdp">
-
-                        <!--<RelativeLayout
-                            android:id="@+id/checkbox_select_d"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_8sdp"
-                            android:background="@drawable/rev_unchecked" />-->
-
-                        <TextView
-                            android:id="@+id/tv_ans_d"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_12sdp"
-                            android:layout_marginRight="@dimen/_12sdp"
-                            android:ems="20"
-                            android:maxLines="2"
-                            android:paddingTop="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:inputType="textMultiLine|textNoSuggestions"
-                            android:textColor="@color/color_text_black_oppacity"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/whitney_medium" />
-
-                    </LinearLayout>
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_checkbox_unchecked" />
 
                     <TextView
-                        android:id="@+id/tv_response_tag"
+                        android:id="@+id/tv_yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:ems="20"
-                        android:text="@string/why_correct"
-                        android:inputType="textMultiLine|textNoSuggestions"
-                        android:singleLine="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Yes"
                         android:textColor="@color/color_text_black"
-                        android:textSize="@dimen/_13sdp"
-                        android:visibility="gone"
-                        android:fontFamily="@font/whitney_semibold"/>
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/whitney_medium" />
+
+                    <RelativeLayout
+                        android:id="@+id/relChecked_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:background="@drawable/ic_checkbox_unchecked" />
 
                     <TextView
-                        android:id="@+id/tv_ans_response"
+                        android:id="@+id/tv_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:ems="20"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        android:inputType="textMultiLine|textNoSuggestions"
-                        android:singleLine="true"
-                        android:textColor="@color/color_text_black_oppacity"
-                        android:textSize="@dimen/_11sdp"
-                        android:visibility="gone"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="No"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/_14sdp"
                         android:fontFamily="@font/whitney_medium" />
 
                 </LinearLayout>
 
-            </ScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:text="@string/str_rating_text"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_14sdp" />
 
-            <LinearLayout
-                android:id="@+id/linBottom"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_34sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="bottom"
-                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp">
 
-                <RelativeLayout
-                    android:id="@+id/relPrev"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_7sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_login">
-
-                    <TextView
-                        android:id="@+id/tv_prev"
+                    <ImageView
+                        android:id="@+id/iv_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="Previous"
-                        android:textColor="@color/White"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/whitney_semibold" />
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
 
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/relNextSubmit"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_7sdp"
-                    android:layout_marginRight="@dimen/_15sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_signup">
-
-                    <TextView
-                        android:id="@+id/tv_next_submit"
+                    <ImageView
+                        android:id="@+id/iv_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="Next"
-                        android:textColor="@color/White"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/whitney_semibold"/>
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
 
-                </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/iv_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_four"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_five"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edtReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:gravity="top"
+                    android:hint="@string/str_write_your_review"
+                    android:imeOptions="actionDone"
+                    android:maxLines="5"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/color_text_hint"
+                    android:textSize="@dimen/_14sdp" />
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+            <RelativeLayout
+                android:id="@+id/relSubmitReviewBottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_bg">
+
+                <RelativeLayout
+                    android:id="@+id/relPopupSubmitReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/rounded_background_yellow_theme">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_submit_lower"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_final_quiz"

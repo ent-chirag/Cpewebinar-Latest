@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.myCPE.activity.WebinarDetailsActivity" />
@@ -886,6 +885,226 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:src="@mipmap/round_like_icon_one"
                 android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relPopupReview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/linPopupReview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/relSubmitReviewBottom"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:background="@drawable/rounded_top_white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/rounded_top_bluegray">
+
+                    <TextView
+                        android:id="@+id/txtPopupReviewCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:fontFamily="@font/whitney_bold"
+                        android:text="@string/str_cancel_guest"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/txtPopupReviewTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:fontFamily="@font/whitney_bold"
+                        android:text="@string/str_review_title"
+                        android:textColor="@color/black_full"
+                        android:textSize="@dimen/_14sdp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black_full" />
+
+                <TextView
+                    android:id="@+id/txtReviewQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:text="@string/str_title_question_rating_popup"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_14sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/relChecked_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_checkbox_unchecked" />
+
+                    <TextView
+                        android:id="@+id/tv_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Yes"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/whitney_medium" />
+
+                    <RelativeLayout
+                        android:id="@+id/relChecked_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:background="@drawable/ic_checkbox_unchecked" />
+
+                    <TextView
+                        android:id="@+id/tv_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="No"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/whitney_medium" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:text="@string/str_rating_text"
+                    android:textColor="@color/black_full"
+                    android:textSize="@dimen/_14sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/iv_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_four"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                    <ImageView
+                        android:id="@+id/iv_five"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@mipmap/add_review_star"
+                        android:tint="@color/color_rounded_btn_orange" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edtReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/underline_bg_white"
+                    android:fontFamily="@font/whitney_semibold"
+                    android:gravity="top"
+                    android:hint="@string/str_write_your_review"
+                    android:imeOptions="actionDone"
+                    android:maxLines="5"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/color_text_hint"
+                    android:textSize="@dimen/_14sdp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relSubmitReviewBottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_bg">
+
+                <RelativeLayout
+                    android:id="@+id/relPopupSubmitReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/rounded_background_yellow_theme">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_submit_lower"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

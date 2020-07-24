@@ -56,6 +56,21 @@ public class ActivityWhoYouAre extends AppCompatActivity {
 
         }
 
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!webinar_type.equalsIgnoreCase("")) {
+                    Intent i = new Intent(context, WebinarDetailsActivity.class);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    startActivity(i);
+                    finish();
+                } else {
+                    finish();
+                }
+            }
+        });
+
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

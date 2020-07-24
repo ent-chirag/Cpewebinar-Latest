@@ -30,6 +30,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:statusBarColor">@color/webinar_statusbar_color</item>
+        <!--<item name="android:statusBarColor">@color/color_rounded_grayblue</item>-->
 
     </style>
 
