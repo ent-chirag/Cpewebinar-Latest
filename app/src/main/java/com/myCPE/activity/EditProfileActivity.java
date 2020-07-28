@@ -1278,7 +1278,7 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.relCountryView.setVisibility(View.VISIBLE);
         binding.rvPopupProfCred.setVisibility(View.GONE);
         binding.rvPopupAdditionalQualification.setVisibility(View.VISIBLE);
-        binding.txtPopupCName.setText(getResources().getString(R.string.str_profestional_credential));
+        binding.txtPopupCName.setText(getResources().getString(R.string.str_additional_qualification));
         binding.relBottomPopupSubmit.setVisibility(View.VISIBLE);
 
         binding.rvPopupAdditionalQualification.setHasFixedSize(true);
