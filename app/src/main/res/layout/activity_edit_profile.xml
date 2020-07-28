@@ -1030,7 +1030,7 @@
                     android:layout_marginTop="@dimen/_7sdp"
                     android:background="@drawable/underline_bg_white"
                     android:editable="false"
-                    android:hint="@string/str_profestional_credential"
+                    android:hint="@string/str_additional_qualification"
                     android:minHeight="@dimen/_50sdp"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_14sdp"
@@ -1068,6 +1068,7 @@
                         android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_2sdp"
                         android:singleLine="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         app:font_text="SFUIDisplay-Medium.ttf"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
@@ -1120,6 +1121,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_100sdp"
                 android:background="@drawable/rounded_top_bluegray"
+                android:layout_above="@+id/relBottomPopupSubmit"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -1195,7 +1197,52 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:visibility="gone" />
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupProfCred"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_bg"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupAdditionalQualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_bg"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
+
             </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relBottomPopupSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_bg"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/relPopupSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/rounded_background_yellow_theme">
+
+                    <com.myCPE.view.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/str_submit_lower"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_14sdp"
+                        app:font_text="Whitney-Bold.ttf" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
