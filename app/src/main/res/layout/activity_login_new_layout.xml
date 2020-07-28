@@ -166,16 +166,22 @@
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"/>-->
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/txtSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_signup_ul"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/whitney_bold" />
+                    android:fontFamily="@font/whitney_bold" />-->
 
                 <TextView
+                    android:id="@+id/txtSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_sign_up_txt_svg"/>
+
+                <!--<TextView
                     android:id="@+id/txtForgetPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,7 +189,14 @@
                     android:text="@string/str_fp_ul"
                     android:textColor="@color/color_my_cretificate_menu_divider"
                     android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/whitney_bold" />
+                    android:fontFamily="@font/whitney_bold" />-->
+
+                <TextView
+                    android:id="@+id/txtForgetPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_fp_txt_svg"/>
 
             </RelativeLayout>
 

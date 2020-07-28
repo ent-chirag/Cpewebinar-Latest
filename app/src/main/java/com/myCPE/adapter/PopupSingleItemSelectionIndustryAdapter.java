@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.myCPE.R;
 import com.myCPE.activity.EditProfileActivity;
-import com.myCPE.model.Job_title.JobTitleItem;
+import com.myCPE.activity.SignUpNextActivity;
 import com.myCPE.model.industry.IndustriesListItem;
 import com.myCPE.utility.Constant;
 
@@ -22,7 +22,7 @@ import java.util.List;
 
 //import com.myCPE.activity.SignUpActivity;
 
-public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Adapter {
+public class PopupSingleItemSelectionIndustryAdapter extends RecyclerView.Adapter {
 
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -42,7 +42,7 @@ public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Ad
 //    public PopupSingleItemSelectionAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
 //    public PopupSingleItemSelectionJobTitleEditAdapter(Context mContext, List<CityItem> mListNew) {
 //    public PopupSingleItemSelectionIndustryEditAdapter(Context mContext, List<JobTitleItem> mListNew) {
-    public PopupSingleItemSelectionIndustryEditAdapter(Context mContext, List<IndustriesListItem> mListNew) {
+    public PopupSingleItemSelectionIndustryAdapter(Context mContext, List<IndustriesListItem> mListNew) {
         this.mContext = mContext;
         this.mListNew = mListNew;
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -98,7 +98,8 @@ public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Ad
 //                    SignUpActivity.getInstance().selectCity();
 //                    EditProfileActivity.getInstance().selectCityEdit();
 //                    EditProfileActivity.getInstance().selectJobTitleEdit();
-                    EditProfileActivity.getInstance().selectIndustryEdit();
+//                    SignUpNextActivity.getInstance().selectJobTitle();
+                    SignUpNextActivity.getInstance().selectIndustry();
                 }
             });
         }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="activity"
             type="com.myCPE.activity.SignUpNextActivity" />
@@ -34,16 +35,16 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent" />
 
-            <com.myCPE.view.CustomTextView
+            <TextView
                 android:id="@+id/str_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/str_signup_n"
-                android:textColor="@color/sign_up_heading"
+                android:textColor="@color/black_full"
                 android:textSize="@dimen/_12sdp"
-                app:font_text="Montserrat-Bold.ttf" />
+                android:fontFamily="@font/whitney_semibold" />
 
         </RelativeLayout>
 
@@ -58,8 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_22sdp"
-                android:layout_marginRight="@dimen/_22sdp"
                 android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginRight="@dimen/_22sdp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
@@ -74,14 +75,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/view_profile_zipcode"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="6"
                     android:singleLine="true"
+                    android:textColor="@color/color_text_black"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -96,14 +98,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_mobil_number"
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     android:maxLength="14"
                     android:singleLine="true"
+                    android:textColor="@color/color_text_black"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -118,13 +121,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/str_firm_name"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:singleLine="true"
+                    android:textColor="@color/color_text_black"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -140,13 +144,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/view_profile_ptin_number"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="9"
+                    android:textColor="@color/color_text_black"
                     android:textColorHint="@color/edit_field_hint"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -160,14 +165,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg"
+                    android:fontFamily="@font/whitney_semibold"
                     android:hint="@string/view_profile_ctec_id"
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="7"
                     android:singleLine="true"
-                    android:textColor="@color/grid_topics"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:textColor="@color/color_text_black"
+                    android:textColorHint="@color/edit_field_hint"
+                    android:textSize="@dimen/_13sdp" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -185,7 +191,24 @@
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/txtJobTitleName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/underline_bg_white"
+                        android:fontFamily="@font/whitney_semibold"
+                        android:gravity="center_vertical"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapWords"
+                        android:singleLine="true"
+                        android:text="Job Title"
+                        android:textColor="@color/color_text_black"
+                        android:textColorHint="@color/edit_field_hint"
+                        android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -220,7 +243,23 @@
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/txtIndustryName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/underline_bg_white"
+                        android:fontFamily="@font/whitney_semibold"
+                        android:gravity="center_vertical"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:text="Industry"
+                        android:textColor="@color/color_text_black"
+                        android:textColorHint="@color/edit_field_hint"
+                        android:textSize="@dimen/_14sdp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -242,99 +281,112 @@
                     android:background="@color/view_edit_profile" />-->
 
 
-                <com.myCPE.view.CustomEditTextView
+                <TextView
                     android:id="@+id/professional_credential"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/underline_bg"
-                    android:editable="false"
+                    android:background="@drawable/underline_bg_white"
                     android:hint="@string/str_profestional_credential"
                     android:minHeight="@dimen/_50sdp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/color_text_black"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <LinearLayout
                     android:id="@+id/lv_professional_credential"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/underline_bg_white"
                     android:orientation="horizontal"
-                    android:background="@drawable/underline_bg"
                     android:visibility="gone">
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_professional_credential"
+                        android:minWidth="@dimen/_80sdp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:background="@drawable/signup_multiple_chipset"
-                        android:ems="11"
-                        android:gravity="center_horizontal"
+                        android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_2sdp"
                         android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        app:font_text="SFUIDisplay-Medium.ttf"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_login"
+                        android:text="@string/str_handout_value"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/whitney_medium" />
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_professional_credential_more"
+                        android:minWidth="@dimen/_80sdp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:background="@drawable/signup_multiple_chipset"
-                        android:gravity="center_horizontal"
+                        android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_2sdp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        android:singleLine="true"
+                        app:font_text="SFUIDisplay-Medium.ttf"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_login"
+                        android:text="@string/str_handout_value"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/whitney_medium" />
 
                 </LinearLayout>
 
-                <com.myCPE.view.CustomEditTextView
+                <TextView
                     android:id="@+id/additional_qualification"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:background="@drawable/underline_bg"
-                    android:editable="false"
+                    android:background="@drawable/underline_bg_white"
+                    android:gravity="center_vertical"
                     android:hint="@string/str_additional_qualification"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <LinearLayout
                     android:id="@+id/lv_additional_qualification"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_additional_qualification"
+                        android:minWidth="@dimen/_80sdp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:background="@drawable/signup_multiple_chipset"
-                        android:ems="11"
-                        android:gravity="center_horizontal"
+                        android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_2sdp"
                         android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        app:font_text="SFUIDisplay-Medium.ttf"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_login"
+                        android:text="@string/str_handout_value"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/whitney_medium" />
 
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_additional_qualification_more"
+                        android:minWidth="@dimen/_80sdp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:background="@drawable/signup_multiple_chipset"
-                        android:gravity="center_horizontal"
+                        android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_2sdp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        android:singleLine="true"
+                        app:font_text="SFUIDisplay-Medium.ttf"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_login"
+                        android:text="@string/str_handout_value"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/whitney_medium" />
 
                 </LinearLayout>
 
@@ -360,10 +412,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:fontFamily="@font/whitney_semibold"
                         android:text="@string/str_accepted"
                         android:textColor="@color/edit_field_hint"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/whitney_semibold" />
+                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         android:id="@+id/tvterms_and_condtion"
@@ -371,10 +423,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_3sdp"
+                        android:fontFamily="@font/whitney_semibold"
                         android:text="@string/str_accepted_condition"
                         android:textColor="@color/sign_up_heading"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/whitney_semibold" />
+                        android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
 
@@ -386,7 +438,7 @@
                     android:layout_marginTop="@dimen/_50sdp"
                     android:layout_marginBottom="@dimen/_50sdp">
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/txtSignIn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -394,7 +446,7 @@
                         android:text="@string/str_signup_n"
                         android:textColor="@color/card_text_number_color"
                         android:textSize="@dimen/_22sdp"
-                        app:font_text="Montserrat-Bold.ttf" />
+                        android:fontFamily="@font/whitney_black" />
 
                     <RelativeLayout
                         android:id="@+id/btnRegister"
@@ -406,69 +458,29 @@
                         <RelativeLayout
                             android:layout_width="@dimen/_22sdp"
                             android:layout_height="@dimen/_22sdp"
-                            android:background="@drawable/ic_arrow_right_max"
-                            android:layout_centerInParent="true"/>
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/ic_arrow_right_max" />
 
                     </RelativeLayout>
 
                 </RelativeLayout>
 
-                <!--<com.myCPE.view.CustomButtonView
-                    android:id="@+id/btnRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_40sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@drawable/rounded_button"
-                    android:text="@string/str_submit"
-                    android:textColor="@color/White"
-                    app:font_button="SFUIDisplay-Bold.ttf" />-->
+                <!--<TextView
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_100sdp"
+                    android:fontFamily="@font/whitney_bold"
+                    android:text="@string/str_signin_ul"
+                    android:textColor="@color/theme_background"
+                    android:textSize="@dimen/_12sdp" />-->
 
                 <TextView
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_100sdp"
-                    android:text="@string/str_signin_ul"
-                    android:textColor="@color/theme_background"
-                    android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/whitney_bold" />
-
-                <!--<RelativeLayout
-                    android:id="@+id/relbottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10sdp">
-
-                    <com.myCPE.view.CustomTextView
-                        android:id="@+id/str_alredy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="@string/str_alredy_account"
-                        android:textColor="@color/login_do_not_have_account"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
-
-                    <com.myCPE.view.CustomTextView
-                        android:id="@+id/tv_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/str_alredy"
-                        android:text="@string/str_logi_now"
-                        android:textColor="@color/sign_up_heading"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
-
-                </RelativeLayout>-->
+                    android:background="@drawable/ic_sign_in_txt_svg"/>
 
             </LinearLayout>
 
@@ -485,9 +497,9 @@
                 android:id="@+id/linPopup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_above="@+id/relBottom"
                 android:layout_marginTop="@dimen/_100sdp"
                 android:background="@drawable/rounded_top_bluegray"
-                android:layout_above="@+id/relBottom"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -527,17 +539,33 @@
                     android:id="@+id/rvPopupList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_4sdp"
                     android:background="@color/color_bg"
-                    android:visibility="gone"/>
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvPopupAdditionalQualification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_4sdp"
                     android:background="@color/color_bg"
-                    android:visibility="gone"/>
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupJobTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_bg"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPopupIndustry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_bg"
+                    android:paddingTop="@dimen/_4sdp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -546,14 +574,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_bg">
+                android:background="@color/color_bg"
+                android:visibility="visible">
 
                 <RelativeLayout
                     android:id="@+id/relPopupSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/rounded_background_yellow_theme"
-                    android:layout_margin="@dimen/_10sdp">
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/rounded_background_yellow_theme">
 
                     <com.myCPE.view.CustomTextView
                         android:layout_width="wrap_content"

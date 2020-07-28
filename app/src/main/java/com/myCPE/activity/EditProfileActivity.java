@@ -2725,6 +2725,28 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    public void selectIndustryEdit() {
+        binding.relCountryView.setVisibility(View.GONE);
+        binding.txtIndustryName.setText(Constant.selectedIndustryNameSU);
+
+//        if (Constant.selectedCityNameSU.equalsIgnoreCase("City")) {
+//        if (Constant.selectedJobTitleNameSU.equalsIgnoreCase("Job Title")) {
+        if (Constant.selectedIndustryNameSU.equalsIgnoreCase("Industry")) {
+//            city_id = 0;
+//            jobtitle_id = 0;
+            industry_id = 0;
+        } else {
+//            city_id = getcityarray.get(position - 1).getId();
+//            city_id_pos = position;
+//            city_id = Integer.parseInt(Constant.selectedCityIdSU);
+//            jobtitle_id = Integer.parseInt(Constant.selectedJobTitleIdSU);
+            industry_id = Integer.parseInt(Constant.selectedIndustryIdSU);
+//            city_id_pos = Integer.parseInt(Constant.selectedCityPositionSU);
+//            jobtitle_id_pos = Integer.parseInt(Constant.selectedJobTitlePositionSU);
+            industry_id_pos = Integer.parseInt(Constant.selectedIndustryPositionSU);
+        }
+    }
+
     public void selectJobTitleEdit() {
 
         binding.relCountryView.setVisibility(View.GONE);

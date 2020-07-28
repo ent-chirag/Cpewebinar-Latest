@@ -14,15 +14,15 @@ import android.widget.TextView;
 
 import com.myCPE.R;
 import com.myCPE.activity.EditProfileActivity;
+import com.myCPE.activity.SignUpNextActivity;
 import com.myCPE.model.Job_title.JobTitleItem;
-import com.myCPE.model.industry.IndustriesListItem;
 import com.myCPE.utility.Constant;
 
 import java.util.List;
 
 //import com.myCPE.activity.SignUpActivity;
 
-public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Adapter {
+public class PopupSingleItemSelectionJobTitleAdapter extends RecyclerView.Adapter {
 
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -35,14 +35,12 @@ public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Ad
 //    public List<CountryItem> mListNew;
 //    public List<StateItem> mListNew;
 //    public List<CityItem> mListNew;
-//    public List<JobTitleItem> mListNew;
-    public List<IndustriesListItem> mListNew;
+    public List<JobTitleItem> mListNew;
     public Dialog dialogCertificate;
 
 //    public PopupSingleItemSelectionAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
 //    public PopupSingleItemSelectionJobTitleEditAdapter(Context mContext, List<CityItem> mListNew) {
-//    public PopupSingleItemSelectionIndustryEditAdapter(Context mContext, List<JobTitleItem> mListNew) {
-    public PopupSingleItemSelectionIndustryEditAdapter(Context mContext, List<IndustriesListItem> mListNew) {
+    public PopupSingleItemSelectionJobTitleAdapter(Context mContext, List<JobTitleItem> mListNew) {
         this.mContext = mContext;
         this.mListNew = mListNew;
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -70,11 +68,9 @@ public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Ad
 
 //            if(!Constant.selectedCityIdSU.equalsIgnoreCase("0")) {
             Log.e("*+*+*","Job Title SU");
-//            if(!Constant.selectedJobTitleIdSU.equalsIgnoreCase("0")) {
-            if(!Constant.selectedIndustryIdSU.equalsIgnoreCase("0")) {
+            if(!Constant.selectedJobTitleIdSU.equalsIgnoreCase("0")) {
 //                if(Integer.parseInt(Constant.selectedCityIdSU) == mListNew.get(position).getId()) {
-//                if(Integer.parseInt(Constant.selectedJobTitleIdSU) == mListNew.get(position).getId()) {
-                if(Integer.parseInt(Constant.selectedIndustryIdSU) == mListNew.get(position).getId()) {
+                if(Integer.parseInt(Constant.selectedJobTitleIdSU) == mListNew.get(position).getId()) {
                     ((HomeViewHolder) viewHolder).txtCountryName.setBackgroundResource(R.drawable.rounded_background_yellow_selected);
                 } else {
                     ((HomeViewHolder) viewHolder).txtCountryName.setBackgroundResource(R.drawable.rounded_background_blue_white);
@@ -88,17 +84,16 @@ public class PopupSingleItemSelectionIndustryEditAdapter extends RecyclerView.Ad
                     Log.e("*+*+*","Selected Company id is : "+mListNew.get(position).getId());
 
 //                    Constant.selectedCityIdSU = "" + mListNew.get(position).getId();
-//                    Constant.selectedJobTitleIdSU = "" + mListNew.get(position).getId();
-                    Constant.selectedIndustryIdSU = "" + mListNew.get(position).getId();
+                    Constant.selectedJobTitleIdSU = "" + mListNew.get(position).getId();
 //                    Constant.selectedCityNameSU = "" + mListNew.get(position).getName();
-                    Constant.selectedIndustryNameSU = "" + mListNew.get(position).getName();
+                    Constant.selectedJobTitleNameSU = "" + mListNew.get(position).getName();
 //                    Constant.selectedCityPositionSU = "" + position;
-                    Constant.selectedIndustryPositionSU = "" + position;
+                    Constant.selectedJobTitlePositionSU = "" + position;
 
 //                    SignUpActivity.getInstance().selectCity();
 //                    EditProfileActivity.getInstance().selectCityEdit();
 //                    EditProfileActivity.getInstance().selectJobTitleEdit();
-                    EditProfileActivity.getInstance().selectIndustryEdit();
+                    SignUpNextActivity.getInstance().selectJobTitle();
                 }
             });
         }

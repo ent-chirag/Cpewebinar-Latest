@@ -39,13 +39,18 @@ import android.widget.Toast;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.AdditionalQualificationPopUpAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionIndustryAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionJobTitleAdapter;
 import com.myCPE.adapter.ProffesionalCredentialPopUpAdapter;
 import com.myCPE.databinding.ActivitySignupNextBinding;
 import com.myCPE.databinding.ActivitySignupNextNewLayoutBinding;
+import com.myCPE.model.Job_title.JobTitleItem;
 import com.myCPE.model.Job_title.ModelJobTitle;
 import com.myCPE.model.Proffesional_Credential.Model_proffesional_Credential;
 import com.myCPE.model.additional_qualification.Model_additional_qualification;
 import com.myCPE.model.educationlist.education_list_Model;
+import com.myCPE.model.industry.IndustriesListItem;
 import com.myCPE.model.industry.Model_Industry;
 import com.myCPE.model.registration.RegistrationModel;
 import com.myCPE.model.usertype.UserTypeModel;
@@ -60,6 +65,7 @@ import com.myCPE.webservice.ApiUtilsNew;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -104,6 +110,9 @@ public class SignUpNextActivity extends AppCompatActivity {
 
     public AdditionalQualificationPopUpAdapter additionalQualificationPopUpAdapter;
 
+    PopupSingleItemSelectionJobTitleAdapter jobTitleAdapter;
+    PopupSingleItemSelectionIndustryAdapter industryAdapter;
+
     public Dialog myDialog_proffesionl_credential;
     public Dialog myDialog_additional_qualification;
 
@@ -124,12 +133,18 @@ public class SignUpNextActivity extends AppCompatActivity {
     // For Additional qualification : 2
     private int intPopupNumber = 0;
 
+    private List<JobTitleItem> arrJobTitleList = new ArrayList<JobTitleItem>();
+    private List<IndustriesListItem> arrIndustryList = new ArrayList<IndustriesListItem>();
+
+    private static SignUpNextActivity instance;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_next);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup_next_new_layout);
         context = SignUpNextActivity.this;
+        instance = SignUpNextActivity.this;
         myDialog_proffesionl_credential = new Dialog(context);
         myDialog_additional_qualification = new Dialog(context);
         mAPIService_new = ApiUtilsNew.getAPIService();
@@ -573,7 +588,7 @@ public class SignUpNextActivity extends AppCompatActivity {
             }
         });
 
-        binding.professionalCredential.setOnTouchListener(new View.OnTouchListener() {
+        /*binding.professionalCredential.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 ShowProfessionalCredsNew();
@@ -588,8 +603,21 @@ public class SignUpNextActivity extends AppCompatActivity {
                 ShowAdditionalQualificationNew();
                 return false;
             }
+        });*/
+
+        binding.professionalCredential.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowProfessionalCredsNew();
+            }
         });
 
+        binding.additionalQualification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowAdditionalQualificationNew();
+            }
+        });
 
         binding.lvProfessionalCredential.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -604,6 +632,52 @@ public class SignUpNextActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                ShowAdditionalQualification();
                 ShowAdditionalQualificationNew();
+            }
+        });
+
+        binding.txtJobTitleName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rvPopupList.setVisibility(View.GONE);
+                binding.rvPopupAdditionalQualification.setVisibility(View.GONE);
+                binding.rvPopupJobTitle.setVisibility(View.VISIBLE);
+                binding.rvPopupIndustry.setVisibility(View.GONE);
+
+                binding.linPopup.startAnimation(slide_up);
+                binding.relPopupView.setVisibility(View.VISIBLE);
+                binding.relBottom.setVisibility(View.GONE);
+
+                binding.rvPopupJobTitle.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
+                binding.rvPopupJobTitle.setLayoutManager(layoutManager);
+
+                binding.txtPopupTitle.setText("Job Title");
+
+                jobTitleAdapter = new PopupSingleItemSelectionJobTitleAdapter(context, arrJobTitleList);
+                binding.rvPopupJobTitle.setAdapter(jobTitleAdapter);
+            }
+        });
+
+        binding.txtIndustryName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rvPopupList.setVisibility(View.GONE);
+                binding.rvPopupAdditionalQualification.setVisibility(View.GONE);
+                binding.rvPopupJobTitle.setVisibility(View.GONE);
+                binding.rvPopupIndustry.setVisibility(View.VISIBLE);
+
+                binding.linPopup.startAnimation(slide_up);
+                binding.relPopupView.setVisibility(View.VISIBLE);
+                binding.relBottom.setVisibility(View.GONE);
+
+                binding.rvPopupIndustry.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
+                binding.rvPopupIndustry.setLayoutManager(layoutManager);
+
+                binding.txtPopupTitle.setText("Industry");
+
+                industryAdapter = new PopupSingleItemSelectionIndustryAdapter(context, arrIndustryList);
+                binding.rvPopupIndustry.setAdapter(industryAdapter);
             }
         });
 
@@ -649,6 +723,33 @@ public class SignUpNextActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public static  SignUpNextActivity getInstance() {
+        return instance;
+    }
+
+    public void selectIndustry() {
+        binding.relPopupView.setVisibility(View.GONE);
+        binding.txtIndustryName.setText(Constant.selectedIndustryNameSU);
+
+        if (Constant.selectedIndustryNameSU.equalsIgnoreCase("Industry")) {
+            industry_id = 0;
+        } else {
+            industry_id = Integer.parseInt(Constant.selectedIndustryIdSU);
+//            industry_id_pos = Integer.parseInt(Constant.selectedIndustryPositionSU);
+        }
+    }
+
+    public void selectJobTitle() {
+        binding.relPopupView.setVisibility(View.GONE);
+        binding.txtJobTitleName.setText(Constant.selectedJobTitleNameSU);
+
+        if (Constant.selectedJobTitleNameSU.equalsIgnoreCase("Job Title")) {
+            jobtitle_id = 0;
+        } else {
+            jobtitle_id = Integer.parseInt(Constant.selectedJobTitleIdSU);
+        }
     }
 
     private void addChip(String pItem, ChipGroup pChipGroup) {
@@ -779,6 +880,9 @@ public class SignUpNextActivity extends AppCompatActivity {
 
                             arrayListjobtitle.add("Job Title/Designation");
 
+                            if(modelJobTitle.getPayload().getJobTitle().size() > 0) {
+                                arrJobTitleList = modelJobTitle.getPayload().getJobTitle();
+                            }
 
                             for (int i = 0; i < modelJobTitle.getPayload().getJobTitle().size(); i++) {
                                 arrayListjobtitle.add(modelJobTitle.getPayload().getJobTitle().get(i).getName());
@@ -912,7 +1016,10 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.relPopupView.setVisibility(View.VISIBLE);
         binding.rvPopupList.setVisibility(View.GONE);
         binding.rvPopupAdditionalQualification.setVisibility(View.VISIBLE);
+        binding.rvPopupJobTitle.setVisibility(View.GONE);
+        binding.rvPopupIndustry.setVisibility(View.GONE);
         binding.txtPopupTitle.setText(getResources().getString(R.string.str_additional_qualification));
+        binding.relBottom.setVisibility(View.VISIBLE);
 
         binding.rvPopupAdditionalQualification.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
@@ -939,7 +1046,10 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.relPopupView.setVisibility(View.VISIBLE);
         binding.rvPopupList.setVisibility(View.VISIBLE);
         binding.rvPopupAdditionalQualification.setVisibility(View.GONE);
+        binding.rvPopupJobTitle.setVisibility(View.GONE);
+        binding.rvPopupIndustry.setVisibility(View.GONE);
         binding.txtPopupTitle.setText(getResources().getString(R.string.str_profestional_credential));
+        binding.relBottom.setVisibility(View.VISIBLE);
 
         binding.rvPopupList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(SignUpNextActivity.this);
@@ -1329,6 +1439,9 @@ public class SignUpNextActivity extends AppCompatActivity {
                             arrayListindustry.clear();
                             arrayListindustry.add("Industry");
 
+                            if(model_industry.getPayload().getIndustriesList().size() > 0) {
+                                arrIndustryList = model_industry.getPayload().getIndustriesList();
+                            }
 
                             for (int i = 0; i < model_industry.getPayload().getIndustriesList().size(); i++) {
                                 arrayListindustry.add(model_industry.getPayload().getIndustriesList().get(i).getName());
