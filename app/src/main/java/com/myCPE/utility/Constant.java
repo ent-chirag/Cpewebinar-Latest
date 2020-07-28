@@ -48,6 +48,14 @@ public class Constant {
     public static String selectedCityNameSU = "City";
     public static String selectedCityPositionSU = "0";
 
+    public static String selectedJobTitleIdSU = "0";
+    public static String selectedJobTitleNameSU = "Job Title";
+    public static String selectedJobTitlePositionSU = "0";
+
+    public static String selectedIndustryIdSU = "0";
+    public static String selectedIndustryNameSU = "Job Title";
+    public static String selectedIndustryPositionSU = "0";
+
     public static List<Boolean> arrsavebooleanstate = new ArrayList();
     public  static List<String> arraysavefilter = new ArrayList<String>();
     public static  List<String> arraypricefilter = new ArrayList<String>();

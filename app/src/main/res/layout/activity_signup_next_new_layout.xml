@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.myCPE.activity.SignUpNextActivity" />
@@ -70,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">-->
 
-                <com.myCPE.view.CustomEditTextView
+                <EditText
                     android:id="@+id/edt_zipcode"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -82,8 +81,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
-
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -93,8 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp">-->
 
-
-                <com.myCPE.view.CustomEditTextView
+                <EditText
                     android:id="@+id/edt_mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -106,11 +103,9 @@
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
-
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
-
 
                 <!--<android.support.design.widget.TextInputLayout
                     android:id="@+id/input_company_name"
@@ -118,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp">-->
 
-                <com.myCPE.view.CustomEditTextView
+                <EditText
                     android:id="@+id/edt_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -129,10 +124,9 @@
                     android:singleLine="true"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
-
 
                 <!--<android.support.design.widget.TextInputLayout
                     android:id="@+id/input_ptin_number"
@@ -141,8 +135,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="@dimen/_2sdp">-->
 
-
-                <com.myCPE.view.CustomEditTextView
+                <EditText
                     android:id="@+id/edt_ptin_number"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -153,8 +146,7 @@
                     android:maxLength="9"
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
-
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -163,8 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true">-->
 
-
-                <com.myCPE.view.CustomEditTextView
+                <EditText
                     android:id="@+id/edt_CTEC_number"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -176,11 +167,9 @@
                     android:singleLine="true"
                     android:textColor="@color/grid_topics"
                     android:textSize="@dimen/_13sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
-
+                    android:fontFamily="@font/whitney_semibold" />
 
                 <!--</android.support.design.widget.TextInputLayout>-->
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -365,7 +354,7 @@
                         android:layout_gravity="center_vertical"
                         android:src="@mipmap/check_box_click" />
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tv_terms_accept"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -374,10 +363,9 @@
                         android:text="@string/str_accepted"
                         android:textColor="@color/edit_field_hint"
                         android:textSize="@dimen/_12sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        android:fontFamily="@font/whitney_semibold" />
 
-
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/tvterms_and_condtion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -386,7 +374,7 @@
                         android:text="@string/str_accepted_condition"
                         android:textColor="@color/sign_up_heading"
                         android:textSize="@dimen/_12sdp"
-                        app:font_text="SFUIDisplay-Medium.ttf" />
+                        android:fontFamily="@font/whitney_semibold" />
 
                 </LinearLayout>
 

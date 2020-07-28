@@ -27,6 +27,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -36,7 +38,16 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.EditAdditionalQualificationPopUpAdapter;
 import com.myCPE.adapter.EditProffesionalCredentialPopUpAdapter;
+//import com.myCPE.adapter.PopupSingleItemSelectionAdapter;
+//import com.myCPE.adapter.PopupSingleItemSelectionCityAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionCityEditAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionEditAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionIndustryEditAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionJobTitleEditAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionStateAdapter;
+import com.myCPE.adapter.PopupSingleItemSelectionStateEditAdapter;
 import com.myCPE.databinding.ActivityEditProfileBinding;
+import com.myCPE.model.Job_title.JobTitleItem;
 import com.myCPE.model.Job_title.ModelJobTitle;
 import com.myCPE.model.Proffesional_Credential.Model_proffesional_Credential;
 import com.myCPE.model.additional_qualification.Model_additional_qualification;
@@ -46,6 +57,7 @@ import com.myCPE.model.country.CountryItem;
 import com.myCPE.model.country.CountryModel;
 import com.myCPE.model.editProfile.EditProfileModel;
 import com.myCPE.model.educationlist.education_list_Model;
+import com.myCPE.model.industry.IndustriesListItem;
 import com.myCPE.model.industry.Model_Industry;
 import com.myCPE.model.state.StateItem;
 import com.myCPE.model.state.StateModel;
@@ -62,6 +74,7 @@ import com.squareup.picasso.Picasso;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -112,14 +125,12 @@ public class EditProfileActivity extends AppCompatActivity {
     public ArrayList<Model_proffesional_Credential> arraylistModelProffesioanlCredential = new ArrayList<>();
     public ArrayList<Model_additional_qualification> arraylistModeladditionalcredential = new ArrayList<>();
 
-
     private int country_id = 0;
     private int state_id = 0;
     private int city_id = 0;
     // private int who_you_are_id = 0;
     private int jobtitle_id = 0;
     private int industry_id = 0;
-
 
     public String phone_number = "";
 
@@ -132,15 +143,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private int jobtitle_id_pos = 0;
     private int industry_id_pos = 0;
 
-
     ProgressDialog progressDialog;
-
 
     public boolean boolean_country_spinner = true;
     public boolean boolean_state_spinner = true;
     public boolean boolean_city_spinner = true;
     public boolean boolean_usertype_spinner = true;
-
 
     public boolean boolean_jobtitle_spinner = true;
     public boolean boolean_industry_spinner = true;
@@ -151,7 +159,6 @@ public class EditProfileActivity extends AppCompatActivity {
     public int subcategoryremains = 0;
     public String subcategory = "";
 
-
     private String State, City;
     private String prefix = "P";
 
@@ -160,15 +167,36 @@ public class EditProfileActivity extends AppCompatActivity {
     public String selected_proffesional_credential = "";
     public String selected_additional_qualification = "";
 
-
     private int country_set = 0, state_set = 0, city_set = 0, whoyouare_set = 0, job_title_set = 0, industry_set = 0;
     public boolean checkflagset = false;
-
 
     private static final String TAG = EditProfileActivity.class.getName();
     //int count = 0;
 
     private boolean isDetailsEditable = false;
+
+    private RecyclerView.LayoutManager layoutManager;
+    //    PopupSingleItemSelectionAdapter mAdapter;
+    PopupSingleItemSelectionEditAdapter mAdapter;
+    //    PopupSingleItemSelectionStateAdapter mAdapterState;
+    PopupSingleItemSelectionStateEditAdapter mAdapterState;
+    //    PopupSingleItemSelectionCityAdapter mAdapterCity;
+    PopupSingleItemSelectionCityEditAdapter mAdapterCity;
+    PopupSingleItemSelectionJobTitleEditAdapter mAdapterJobTitle;
+    PopupSingleItemSelectionIndustryEditAdapter mAdapterIndustry;
+
+
+    private List<CountryItem> arrCountryList = new ArrayList<CountryItem>();
+    private List<StateItem> arrStateList = new ArrayList<StateItem>();
+    private List<CityItem> arrCityList = new ArrayList<CityItem>();
+    private List<JobTitleItem> arrJobTitleList = new ArrayList<JobTitleItem>();
+    private List<IndustriesListItem> arrIndustryList = new ArrayList<IndustriesListItem>();
+
+    private int country_id_pos = 0;
+    private int state_id_pos = 0;
+    private int city_id_pos = 0;
+
+    private static EditProfileActivity instance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -176,14 +204,18 @@ public class EditProfileActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         context = EditProfileActivity.this;
+        instance = EditProfileActivity.this;
         myDialog_proffesionl_credential = new Dialog(context);
         myDialog_additional_qualification = new Dialog(context);
         mAPIService_new = ApiUtilsNew.getAPIService();
 
+        final Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up_new);
+
         Intent intent = getIntent();
         if (intent != null) {
             profile_pic_url = intent.getStringExtra("profile_pic");
-            Log.e("*+*+*","Profile pic while receiving is : "+profile_pic_url);
+            Log.e("*+*+*", "Profile pic while receiving is : " + profile_pic_url);
             firstname = intent.getStringExtra(getResources().getString(R.string.pass_fname));
             ctek = intent.getStringExtra(getResources().getString(R.string.pass_ctek_number));
             lastname = intent.getStringExtra(getResources().getString(R.string.pass_lname));
@@ -230,6 +262,157 @@ public class EditProfileActivity extends AppCompatActivity {
 
         binding.tvEditHeader.setText(context.getResources().getString(R.string.str_header_profile));
         binding.relbottom.setVisibility(View.GONE);
+
+        if (Constant.isNetworkAvailable(context)) {
+            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+            GetCountry();
+        } else {
+            Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
+
+        binding.txtCountryName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    binding.rvPopupCountryList.setVisibility(View.VISIBLE);
+                    binding.rvPopupStateList.setVisibility(View.GONE);
+                    binding.rvPopupCityList.setVisibility(View.GONE);
+                    binding.rvPopupJobTitleList.setVisibility(View.GONE);
+                    binding.rvPopupIndustryList.setVisibility(View.GONE);
+
+                    binding.linPopup.startAnimation(slide_up);
+                    binding.relCountryView.setVisibility(View.VISIBLE);
+
+                    binding.rvPopupCountryList.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(EditProfileActivity.this);
+                    binding.rvPopupCountryList.setLayoutManager(layoutManager);
+
+                    binding.txtPopupCName.setText(getResources().getString(R.string.view_profile_country));
+
+//                mAdapter = new PopupSingleItemSelectionAdapter(context, arrCountryList);
+                    mAdapter = new PopupSingleItemSelectionEditAdapter(context, arrCountryList);
+                    binding.rvPopupCountryList.setAdapter(mAdapter);
+                }
+            }
+        });
+
+        binding.txtStateName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    binding.rvPopupCountryList.setVisibility(View.GONE);
+                    binding.rvPopupStateList.setVisibility(View.VISIBLE);
+                    binding.rvPopupCityList.setVisibility(View.GONE);
+                    binding.rvPopupJobTitleList.setVisibility(View.GONE);
+                    binding.rvPopupIndustryList.setVisibility(View.GONE);
+
+                    binding.linPopup.startAnimation(slide_up);
+                    binding.relCountryView.setVisibility(View.VISIBLE);
+
+                    binding.rvPopupStateList.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(EditProfileActivity.this);
+                    binding.rvPopupStateList.setLayoutManager(layoutManager);
+
+                    binding.txtPopupCName.setText(getResources().getString(R.string.view_profile_state));
+
+//                mAdapter = new PopupSingleItemSelectionAdapter(context, arrCountryList);
+//                mAdapterState = new PopupSingleItemSelectionStateAdapter(context, arrStateList);
+                    mAdapterState = new PopupSingleItemSelectionStateEditAdapter(context, arrStateList);
+                    binding.rvPopupStateList.setAdapter(mAdapterState);
+                }
+            }
+        });
+
+        binding.txtCityName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    binding.rvPopupCountryList.setVisibility(View.GONE);
+                    binding.rvPopupStateList.setVisibility(View.GONE);
+                    binding.rvPopupCityList.setVisibility(View.VISIBLE);
+                    binding.rvPopupJobTitleList.setVisibility(View.GONE);
+                    binding.rvPopupIndustryList.setVisibility(View.GONE);
+
+                    binding.linPopup.startAnimation(slide_up);
+                    binding.relCountryView.setVisibility(View.VISIBLE);
+
+                    binding.rvPopupCityList.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(EditProfileActivity.this);
+                    binding.rvPopupCityList.setLayoutManager(layoutManager);
+
+                    binding.txtPopupCName.setText(getResources().getString(R.string.view_profile_city));
+
+//                mAdapterCity = new PopupSingleItemSelectionCityAdapter(context, arrCityList);
+                    mAdapterCity = new PopupSingleItemSelectionCityEditAdapter(context, arrCityList);
+                    binding.rvPopupCityList.setAdapter(mAdapterCity);
+                }
+            }
+        });
+
+        binding.txtJobTitleName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    binding.rvPopupCountryList.setVisibility(View.GONE);
+                    binding.rvPopupStateList.setVisibility(View.GONE);
+                    binding.rvPopupCityList.setVisibility(View.GONE);
+                    binding.rvPopupJobTitleList.setVisibility(View.VISIBLE);
+                    binding.rvPopupIndustryList.setVisibility(View.GONE);
+
+                    binding.linPopup.startAnimation(slide_up);
+                    binding.relCountryView.setVisibility(View.VISIBLE);
+
+                    binding.rvPopupJobTitleList.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(EditProfileActivity.this);
+                    binding.rvPopupJobTitleList.setLayoutManager(layoutManager);
+
+                    binding.txtPopupCName.setText("Job Title");
+
+                    mAdapterJobTitle = new PopupSingleItemSelectionJobTitleEditAdapter(context, arrJobTitleList);
+                    binding.rvPopupJobTitleList.setAdapter(mAdapterJobTitle);
+                }
+            }
+        });
+
+        binding.txtIndustryName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    binding.rvPopupCountryList.setVisibility(View.GONE);
+                    binding.rvPopupStateList.setVisibility(View.GONE);
+                    binding.rvPopupCityList.setVisibility(View.GONE);
+                    binding.rvPopupJobTitleList.setVisibility(View.GONE);
+                    binding.rvPopupIndustryList.setVisibility(View.VISIBLE);
+
+                    binding.linPopup.startAnimation(slide_up);
+                    binding.relCountryView.setVisibility(View.VISIBLE);
+
+                    binding.rvPopupIndustryList.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(EditProfileActivity.this);
+                    binding.rvPopupIndustryList.setLayoutManager(layoutManager);
+
+                    binding.txtPopupCName.setText("Industry");
+
+                    mAdapterIndustry = new PopupSingleItemSelectionIndustryEditAdapter(context, arrIndustryList);
+                    binding.rvPopupIndustryList.setAdapter(mAdapterIndustry);
+                }
+            }
+        });
+
+        binding.relCountryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // binding.relCountryView.setVisibility(View.GONE);
+                // Perform nothing on click for this layout so that will not allow to click on the background.
+            }
+        });
+
+        binding.txtPopupCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.relCountryView.setVisibility(View.GONE);
+            }
+        });
 
         binding.edtFirstname.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -470,9 +653,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 binding.edtPhoneNumber.setEnabled(true);
                 binding.edtZipcode.setEnabled(true);
                 binding.edtLastname.setEnabled(true);
-                binding.spinnerCountry.setEnabled(true);
-                binding.spinnerState.setEnabled(true);
-                binding.spinnerCity.setEnabled(true);
+                binding.relCountry.setEnabled(true);
+                binding.relState.setEnabled(true);
+                binding.relCity.setEnabled(true);
+//                binding.spinnerCountry.setEnabled(true);
+//                binding.spinnerState.setEnabled(true);
+//                binding.spinnerCity.setEnabled(true);
                 binding.spinnerJobTitile.setEnabled(true);
                 binding.spinnerIndustry.setEnabled(true);
                 binding.spinner.setEnabled(true);
@@ -481,14 +667,19 @@ public class EditProfileActivity extends AppCompatActivity {
                 binding.lvProfessionalCredential.setEnabled(true);
                 binding.additionalQualification.setEnabled(true);
                 binding.lvAdditionalQualification.setEnabled(true);
-                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
-                    binding.edtCTECNumber.setEnabled(false);
-                    binding.edtPtinNumber.setEnabled(false);
-                    binding.tvTitleState.setText("Province");
-                } else {
-                    binding.edtCTECNumber.setEnabled(true);
-                    binding.edtPtinNumber.setEnabled(true);
-                    binding.tvTitleState.setText("State");
+//                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {]
+                if (state_id == 0) {
+                    if (Constant.selectedCountryNameSU.equals("Canada")) {
+                        binding.edtCTECNumber.setEnabled(false);
+                        binding.edtPtinNumber.setEnabled(false);
+//                    binding.tvTitleState.setText("Province");
+                        binding.txtStateName.setText("Province");
+                    } else {
+                        binding.edtCTECNumber.setEnabled(true);
+                        binding.edtPtinNumber.setEnabled(true);
+//                    binding.tvTitleState.setText("State");
+                        binding.txtStateName.setText("State");
+                    }
                 }
             }
         });
@@ -581,7 +772,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+//                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                if (binding.txtCountryName.getText().toString().equalsIgnoreCase("Canada")) {
                     if (s.length() == 6) {
                         if (!Constant.isValidCanadianZipCode(binding.edtZipcode.getText().toString().trim())) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
@@ -632,7 +824,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+//                    if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                    if (binding.txtCountryName.getText().toString().equalsIgnoreCase("Canada")) {
                         if (!Constant.isValidCanadianZipCode(binding.edtZipcode.getText().toString().trim())) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
                             builder.setTitle(getResources().getString(R.string.str_alert));
@@ -676,7 +869,8 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+/*binding.spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -833,8 +1027,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
-
+        });*/
 
         /*binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -917,12 +1110,12 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        if (Constant.isNetworkAvailable(context)) {
+        /*if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetCountry();
         } else {
             Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-        }
+        }*/
 
 //        binding.btnsubmit.setOnClickListener(new View.OnClickListener() {
         binding.relbottom.setOnClickListener(new View.OnClickListener() {
@@ -998,7 +1191,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     selected_additional_qualification = commaSepValueBuilder.toString();
 
                     System.out.println(selected_additional_qualification);
-                    Log.e("*+*+*","Additional qualification : "+selected_additional_qualification);
+                    Log.e("*+*+*", "Additional qualification : " + selected_additional_qualification);
 
 
                 } else {
@@ -1160,7 +1353,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void SetData() {
 
-        if(!profile_pic_url.equalsIgnoreCase("") && profile_pic_url != null) {
+        if (!profile_pic_url.equalsIgnoreCase("") && profile_pic_url != null) {
             Picasso.with(context).load(profile_pic_url)
                     .placeholder(R.drawable.profile_place_holder)
                     .into(binding.ivprofilepicture);
@@ -1207,13 +1400,19 @@ public class EditProfileActivity extends AppCompatActivity {
 
         if (country_pos != 0) {
             country_id = country_pos;
+            Constant.selectedCountryIdSU = "" + country_id;
+            Log.e("*+*+*", "Country Id : " + country_id);
         }
         if (state_pos != 0) {
             state_id = state_pos;
+            Constant.selectedStateIdSU = "" + state_id;
+            Log.e("*+*+*", "State Id : " + state_pos);
         }
 
         if (city_pos != 0) {
             city_id = city_pos;
+            Constant.selectedCityIdSU = "" + city_id;
+            Log.e("*+*+*", "City Id : " + city_pos);
         }
 
         /*if (who_you_are_pos != 0) {
@@ -1222,15 +1421,19 @@ public class EditProfileActivity extends AppCompatActivity {
 
         if (jobtitle_id_pos != 0) {
             jobtitle_id = jobtitle_id_pos;
+            Constant.selectedJobTitleIdSU = "" + jobtitle_id;
         }
         if (industry_id_pos != 0) {
             industry_id = industry_id_pos;
+            Constant.selectedIndustryIdSU = "" + industry_id;
         }
 
-
-        binding.spinnerCountry.setEnabled(false);
-        binding.spinnerState.setEnabled(false);
-        binding.spinnerCity.setEnabled(false);
+        binding.relCountry.setEnabled(false);
+        binding.relState.setEnabled(false);
+        binding.relCity.setEnabled(false);
+//        binding.spinnerCountry.setEnabled(false);
+//        binding.spinnerState.setEnabled(false);
+//        binding.spinnerCity.setEnabled(false);
         binding.spinnerJobTitile.setEnabled(false);
         binding.spinnerIndustry.setEnabled(false);
         binding.spinner.setEnabled(false);
@@ -1432,70 +1635,277 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    public void ShowAdapter() {
+        if (arrayLististusertype.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
 
-    public void GetJobTitle() {
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayLististusertype);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinner.setAdapter(aa);
 
-        mAPIService_new.GetJobTitle(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ModelJobTitle>() {
+
+            if (who_you_are_pos == 0) {
+                binding.spinner.setSelection(0);
+            } else {
+                binding.spinner.setSelection(whoyouare_set + 1);
+            }
+
+
+        }
+    }
+
+
+    public void Show_JobTitle_Adapter() {
+        if (arrayListjobtitle.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayListjobtitle);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerJobTitile.setAdapter(aa);
+
+            if (jobtitle_id_pos == 0) {
+                binding.spinnerJobTitile.setSelection(0);
+            } else {
+                binding.spinnerJobTitile.setSelection(job_title_set + 1);
+            }
+
+
+        }
+    }
+
+
+    public void Show_Industry_Adapter() {
+        if (arrayListindustry.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayListindustry);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerIndustry.setAdapter(aa);
+
+            if (industry_id_pos == 0) {
+                binding.spinnerIndustry.setSelection(0);
+            } else {
+                binding.spinnerIndustry.setSelection(industry_set + 1);
+            }
+
+
+        }
+    }
+
+    /*public void Show_Country_Adapter() {
+        if (getcountryarraylist.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcountryarraylist);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerCountry.setAdapter(aa);
+
+
+            if (country_pos == 0) {
+                binding.spinnerCountry.setSelection(0);
+                binding.tvTitleState.setText("State");
+            } else {
+                binding.spinnerCountry.setSelection(country_set + 1);
+                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                    binding.tvTitleState.setText("Province");
+                } else {
+                    binding.tvTitleState.setText("State");
+                }
+            }
+
+
+        }
+
+
+    }
+
+
+    public void Show_City_else_Adapter() {
+        if (getcityarraylist.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcityarraylist);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerCity.setAdapter(aa);
+
+
+        }
+
+
+    }
+
+    public void Show_City_Adapter() {
+        if (getcityarraylist.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcityarraylist);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerCity.setAdapter(aa);
+            if (checkcityarray == true) {
+                binding.spinnerCity.setSelection(1);
+            } else {
+                if (city_pos == 0) {
+                    binding.spinnerCity.setSelection(0);
+                } else {
+                    binding.spinnerCity.setSelection(city_set + 1);
+                }
+
+
+            }
+
+
+        }
+
+
+    }
+
+
+    public void Show_State_Adapter() {
+        if (getstatearralist.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getstatearralist);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerState.setAdapter(aa);
+
+            if (checkstatearray == true) {
+                binding.spinnerState.setSelection(1);
+            } else {
+                if (state_pos == 0) {
+                    binding.spinnerState.setSelection(0);
+                } else {
+                    binding.spinnerState.setSelection(state_set + 1);
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+
+    public void Show_State_else_Adapter() {
+        if (getstatearralist.size() > 0) {
+            //Getting the instance of Spinner and applying OnItemSelectedListener on it
+
+            //Creating the ArrayAdapter instance having the user type list
+            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getstatearralist);
+            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            //Setting the ArrayAdapter data on the Spinner
+            binding.spinnerState.setAdapter(aa);
+
+
+        }
+
+
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+
+    public void GetCountry() {
+
+        mAPIService_new.GetCountry(getResources().getString(R.string.accept)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<CountryModel>() {
                     @Override
                     public void onCompleted() {
 
-                        if (Constant.isNetworkAvailable(context)) {
-                            GetIndustry();
-                        } else {
-                            Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                        if (!checkflagset) {
+                            if (Constant.isNetworkAvailable(context)) {
+                                GetState(country_pos);
+                            } else {
+                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            }
                         }
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
+
                         String message = Constant.GetReturnResponse(context, e);
+
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
                             Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
                         }
-
                     }
 
                     @Override
-                    public void onNext(ModelJobTitle modelJobTitle) {
+                    public void onNext(CountryModel CountryModel) {
 
-                        if (modelJobTitle.isSuccess()) {
-                            arrayListjobtitle.clear();
+                        if (CountryModel.isSuccess() == true) {
+                            getcountryarraylist.clear();
+                            getcountryarray.clear();
 
-                            arrayListjobtitle.add("Job Title");
+                            getcountryarraylist.add("Country");
 
+                            if (CountryModel.getPayload().getCountry().size() > 0) {
+                                arrCountryList = CountryModel.getPayload().getCountry();
+                                for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
+                                    getcountryarraylist.add(CountryModel.getPayload().getCountry().get(i).getName());
+                                }
 
-                            for (int i = 0; i < modelJobTitle.getPayload().getJobTitle().size(); i++) {
-                                arrayListjobtitle.add(modelJobTitle.getPayload().getJobTitle().get(i).getName());
-                                arrayListjobtitleid.add(modelJobTitle.getPayload().getJobTitle().get(i).getId());
-                            }
+                                for (int j = 0; j < CountryModel.getPayload().getCountry().size(); j++) {
+                                    CountryItem countryItem = new CountryItem();
+                                    for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
+                                        countryItem.setName(CountryModel.getPayload().getCountry().get(j).getName());
+                                        countryItem.setId(CountryModel.getPayload().getCountry().get(j).getId());
+                                    }
+                                    getcountryarray.add(countryItem);
+                                }
 
-
-                            if (jobtitle_id_pos == 0) {
-                                jobtitle_id_pos = 0;
-                                jobtitle_id = jobtitle_id_pos;
-                            } else {
-                                for (int i = 0; i < arrayListjobtitleid.size(); i++) {
-                                    if (jobtitle_id_pos == arrayListjobtitleid.get(i)) {
-                                        job_title_set = arrayListjobtitleid.indexOf(arrayListjobtitleid.get(i));
+                                if (country_id != 0) {
+                                    for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
+                                        if (country_id == CountryModel.getPayload().getCountry().get(i).getId()) {
+                                            binding.txtCountryName.setText("" + CountryModel.getPayload().getCountry().get(i).getName());
+                                        }
                                     }
                                 }
+
+                                if (country_pos == 0) {
+                                    country_pos = 0;
+                                    country_id = country_pos;
+                                } else {
+                                    for (int i = 0; i < getcountryarray.size(); i++) {
+                                        if (country_pos == getcountryarray.get(i).getId()) {
+                                            country_set = getcountryarray.indexOf(getcountryarray.get(i));
+                                        }
+                                    }
+                                }
+//                                Show_Country_Adapter();
                             }
-
-
-                            Show_JobTitle_Adapter();
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.btnsubmit, modelJobTitle.getMessage(), Snackbar.LENGTH_SHORT).show();
+
+                            Snackbar.make(binding.btnsubmit, CountryModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+
                         }
 
 
@@ -1504,66 +1914,114 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    public void GetCity(int state_id) {
 
-    public void GetIndustry() {
-
-        mAPIService_new.GetIndustryList(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Model_Industry>() {
+        mAPIService_new.GetCity(getResources().getString(R.string.accept), state_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<CityModel>() {
                     @Override
                     public void onCompleted() {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
+                        if (!checkflagset) {
+                            if (Constant.isNetworkAvailable(context)) {
+                                GetProffesionalCredential();
+                            } else {
+                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            }
                         }
 
-                        Show_Industry_Adapter();
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
+
                         String message = Constant.GetReturnResponse(context, e);
+
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
                             Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
-
                         }
                     }
 
                     @Override
-                    public void onNext(Model_Industry model_industry) {
+                    public void onNext(CityModel cityModel) {
 
-                        if (model_industry.isSuccess()) {
-                            arrayListindustry.clear();
-                            arrayListindustry.add("Industry");
+                        if (cityModel.isSuccess() == true) {
 
-
-                            for (int i = 0; i < model_industry.getPayload().getIndustriesList().size(); i++) {
-                                arrayListindustry.add(model_industry.getPayload().getIndustriesList().get(i).getName());
-                                arrayListindustryid.add(model_industry.getPayload().getIndustriesList().get(i).getId());
-                            }
-
-
-                            if (industry_id_pos == 0) {
-                                industry_id_pos = 0;
-                                industry_id = industry_id_pos;
-                            } else {
-                                for (int i = 0; i < arrayListindustryid.size(); i++) {
-                                    if (industry_id_pos == arrayListindustryid.get(i)) {
-                                        industry_set = arrayListindustryid.indexOf(arrayListindustryid.get(i));
-                                    }
+                            if (checkflagset == true) {
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
                                 }
                             }
+
+                            getcityarraylist.clear();
+                            getcityarray.clear();
+
+                            getcityarraylist.add("City");
+
+                            if (cityModel.getPayload().getCity().size() > 0) {
+
+                                arrCityList = cityModel.getPayload().getCity();
+
+                                for (int i = 0; i < cityModel.getPayload().getCity().size(); i++) {
+                                    getcityarraylist.add(cityModel.getPayload().getCity().get(i).getName());
+                                }
+
+                                for (int j = 0; j < cityModel.getPayload().getCity().size(); j++) {
+                                    CityItem cityItem = new CityItem();
+                                    for (int i = 0; i < cityModel.getPayload().getCity().size(); i++) {
+                                        cityItem.setId(cityModel.getPayload().getCity().get(j).getId());
+                                        cityItem.setName(cityModel.getPayload().getCity().get(j).getName());
+                                    }
+                                    getcityarray.add(cityItem);
+                                }
+
+                                if (city_id != 0) {
+                                    for (int i = 0; i < cityModel.getPayload().getCity().size(); i++) {
+                                        if (city_id == cityModel.getPayload().getCity().get(i).getId()) {
+                                            binding.txtCityName.setText("" + cityModel.getPayload().getCity().get(i).getName());
+                                        }
+                                    }
+                                }
+
+                                if (city_pos == 0) {
+                                    city_pos = 0;
+                                    city_id = city_pos;
+                                } else {
+                                    for (int i = 0; i < getcityarray.size(); i++) {
+                                        if (city_pos == getcityarray.get(i).getId()) {
+                                            city_set = getcityarray.indexOf(getcityarray.get(i));
+                                        }
+                                    }
+                                }
+
+                                checkcityarray = false;
+
+//                                Show_City_Adapter();
+
+                            } else {
+
+                                if (!City.equalsIgnoreCase("") && City != null) {
+                                    checkcityarray = true;
+                                    getcityarraylist.add(City);
+//                                    Show_City_Adapter();
+                                } else {
+//                                    Show_City_else_Adapter();
+                                }
+
+
+                            }
+
 
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            Snackbar.make(binding.btnsubmit, model_industry.getMessage(), Snackbar.LENGTH_SHORT).show();
+
+                            Snackbar.make(binding.btnsubmit, cityModel.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -1572,6 +2030,122 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    public void GetState(int country_id) {
+
+        mAPIService_new.GetState(getResources().getString(R.string.accept), country_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<StateModel>() {
+                    @Override
+                    public void onCompleted() {
+                        if (!checkflagset) {
+                            if (Constant.isNetworkAvailable(context)) {
+                                GetCity(state_pos);
+                            } else {
+                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        String message = Constant.GetReturnResponse(context, e);
+
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(StateModel stateModel) {
+
+
+                        if (stateModel.isSuccess() == true) {
+                            if (checkflagset == true) {
+                                if (progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                            }
+
+                            getstatearralist.clear();
+                            getstatearray.clear();
+
+//                            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
+                            if (Constant.selectedCountryNameSU.equals("Canada")) {
+                                getstatearralist.clear();
+                                getstatearray.clear();
+                                getstatearralist.add("Province");
+                            } else {
+                                getstatearralist.clear();
+                                getstatearray.clear();
+                                getstatearralist.add("State");
+                            }
+
+                            if (stateModel.getPayload().getState().size() > 0) {
+
+                                arrStateList = stateModel.getPayload().getState();
+
+                                for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
+                                    getstatearralist.add(stateModel.getPayload().getState().get(i).getName());
+
+                                }
+
+                                for (int j = 0; j < stateModel.getPayload().getState().size(); j++) {
+
+                                    StateItem stateItem = new StateItem();
+
+                                    for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
+                                        stateItem.setId(stateModel.getPayload().getState().get(j).getId());
+                                        stateItem.setName(stateModel.getPayload().getState().get(j).getName());
+
+                                    }
+                                    getstatearray.add(stateItem);
+                                }
+
+                                if (state_id != 0) {
+                                    for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
+                                        if (state_id == stateModel.getPayload().getState().get(i).getId()) {
+                                            binding.txtStateName.setText("" + stateModel.getPayload().getState().get(i).getName());
+                                        }
+                                    }
+                                }
+
+                                if (state_pos == 0) {
+                                    state_pos = 0;
+                                    state_id = state_pos;
+                                } else {
+                                    for (int i = 0; i < getstatearray.size(); i++) {
+                                        if (state_pos == getstatearray.get(i).getId()) {
+                                            state_set = getstatearray.indexOf(getstatearray.get(i));
+
+                                        }
+                                    }
+                                }
+                                checkstatearray = false;
+//                                Show_State_Adapter();
+                            } else {
+
+                                if (!State.equalsIgnoreCase("") && State != null) {
+                                    checkstatearray = true;
+                                    getstatearralist.add(State);
+//                                    Show_State_Adapter();
+                                } else {
+//                                    Show_State_else_Adapter();
+                                }
+                            }
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            Snackbar.make(binding.btnsubmit, stateModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
     public void GetProffesionalCredential() {
         mAPIService_new.Getproffesionalcredential(getResources().getString(R.string.accept)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -1747,280 +2321,79 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    public void GetJobTitle() {
 
-    public void ShowAdapter() {
-        if (arrayLististusertype.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayLististusertype);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinner.setAdapter(aa);
-
-
-            if (who_you_are_pos == 0) {
-                binding.spinner.setSelection(0);
-            } else {
-                binding.spinner.setSelection(whoyouare_set + 1);
-            }
-
-
-        }
-    }
-
-
-    public void Show_JobTitle_Adapter() {
-        if (arrayListjobtitle.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayListjobtitle);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerJobTitile.setAdapter(aa);
-
-            if (jobtitle_id_pos == 0) {
-                binding.spinnerJobTitile.setSelection(0);
-            } else {
-                binding.spinnerJobTitile.setSelection(job_title_set + 1);
-            }
-
-
-        }
-    }
-
-
-    public void Show_Industry_Adapter() {
-        if (arrayListindustry.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, arrayListindustry);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerIndustry.setAdapter(aa);
-
-            if (industry_id_pos == 0) {
-                binding.spinnerIndustry.setSelection(0);
-            } else {
-                binding.spinnerIndustry.setSelection(industry_set + 1);
-            }
-
-
-        }
-    }
-
-    public void Show_Country_Adapter() {
-        if (getcountryarraylist.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcountryarraylist);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerCountry.setAdapter(aa);
-
-
-            if (country_pos == 0) {
-                binding.spinnerCountry.setSelection(0);
-                binding.tvTitleState.setText("State");
-            } else {
-                binding.spinnerCountry.setSelection(country_set + 1);
-                if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
-                    binding.tvTitleState.setText("Province");
-                } else {
-                    binding.tvTitleState.setText("State");
-                }
-            }
-
-
-        }
-
-
-    }
-
-
-    public void Show_City_else_Adapter() {
-        if (getcityarraylist.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcityarraylist);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerCity.setAdapter(aa);
-
-
-        }
-
-
-    }
-
-    public void Show_City_Adapter() {
-        if (getcityarraylist.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getcityarraylist);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerCity.setAdapter(aa);
-            if (checkcityarray == true) {
-                binding.spinnerCity.setSelection(1);
-            } else {
-                if (city_pos == 0) {
-                    binding.spinnerCity.setSelection(0);
-                } else {
-                    binding.spinnerCity.setSelection(city_set + 1);
-                }
-
-
-            }
-
-
-        }
-
-
-    }
-
-
-    public void Show_State_Adapter() {
-        if (getstatearralist.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getstatearralist);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerState.setAdapter(aa);
-
-            if (checkstatearray == true) {
-                binding.spinnerState.setSelection(1);
-            } else {
-                if (state_pos == 0) {
-                    binding.spinnerState.setSelection(0);
-                } else {
-                    binding.spinnerState.setSelection(state_set + 1);
-                }
-
-            }
-
-
-        }
-
-
-    }
-
-
-    public void Show_State_else_Adapter() {
-        if (getstatearralist.size() > 0) {
-            //Getting the instance of Spinner and applying OnItemSelectedListener on it
-
-            //Creating the ArrayAdapter instance having the user type list
-            ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, getstatearralist);
-            aa.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            binding.spinnerState.setAdapter(aa);
-
-
-        }
-
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-
-    public void GetCountry() {
-
-        mAPIService_new.GetCountry(getResources().getString(R.string.accept)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<CountryModel>() {
+        mAPIService_new.GetJobTitle(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ModelJobTitle>() {
                     @Override
                     public void onCompleted() {
 
-                        if (!checkflagset) {
-                            if (Constant.isNetworkAvailable(context)) {
-                                GetState(country_pos);
-                            } else {
-                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                            }
+                        if (Constant.isNetworkAvailable(context)) {
+                            GetIndustry();
+                        } else {
+                            Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
-
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
-
                         String message = Constant.GetReturnResponse(context, e);
-
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
                             Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
-
                         }
-
 
                     }
 
                     @Override
-                    public void onNext(CountryModel CountryModel) {
+                    public void onNext(ModelJobTitle modelJobTitle) {
 
+                        if (modelJobTitle.isSuccess()) {
+                            arrayListjobtitle.clear();
 
-                        if (CountryModel.isSuccess() == true) {
-                            getcountryarraylist.clear();
-                            getcountryarray.clear();
+                            arrayListjobtitle.add("Job Title");
 
-                            getcountryarraylist.add("Country");
-
-
-                            if (CountryModel.getPayload().getCountry().size() > 0) {
-                                for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
-                                    getcountryarraylist.add(CountryModel.getPayload().getCountry().get(i).getName());
-                                }
-
-                                for (int j = 0; j < CountryModel.getPayload().getCountry().size(); j++) {
-                                    CountryItem countryItem = new CountryItem();
-                                    for (int i = 0; i < CountryModel.getPayload().getCountry().size(); i++) {
-                                        countryItem.setName(CountryModel.getPayload().getCountry().get(j).getName());
-                                        countryItem.setId(CountryModel.getPayload().getCountry().get(j).getId());
-                                    }
-                                    getcountryarray.add(countryItem);
-                                }
-
-
-                                if (country_pos == 0) {
-                                    country_pos = 0;
-                                    country_id = country_pos;
-                                } else {
-                                    for (int i = 0; i < getcountryarray.size(); i++) {
-                                        if (country_pos == getcountryarray.get(i).getId()) {
-                                            country_set = getcountryarray.indexOf(getcountryarray.get(i));
-                                        }
-                                    }
-
-                                }
-
-
-                                Show_Country_Adapter();
+                            if (modelJobTitle.getPayload().getJobTitle().size() > 0) {
+                                arrJobTitleList = modelJobTitle.getPayload().getJobTitle();
                             }
+
+                            for (int i = 0; i < modelJobTitle.getPayload().getJobTitle().size(); i++) {
+                                arrayListjobtitle.add(modelJobTitle.getPayload().getJobTitle().get(i).getName());
+                                arrayListjobtitleid.add(modelJobTitle.getPayload().getJobTitle().get(i).getId());
+                            }
+
+                            if (jobtitle_id != 0) {
+                                for (int i = 0; i < modelJobTitle.getPayload().getJobTitle().size(); i++) {
+                                    if (jobtitle_id == modelJobTitle.getPayload().getJobTitle().get(i).getId()) {
+                                        binding.txtJobTitleName.setText("" + modelJobTitle.getPayload().getJobTitle().get(i).getName());
+                                    }
+                                }
+                            }
+
+                            if (jobtitle_id_pos == 0) {
+                                jobtitle_id_pos = 0;
+                                jobtitle_id = jobtitle_id_pos;
+                            } else {
+                                for (int i = 0; i < arrayListjobtitleid.size(); i++) {
+                                    if (jobtitle_id_pos == arrayListjobtitleid.get(i)) {
+                                        job_title_set = arrayListjobtitleid.indexOf(arrayListjobtitleid.get(i));
+                                    }
+                                }
+                            }
+
+
+                            Show_JobTitle_Adapter();
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-
-                            Snackbar.make(binding.btnsubmit, CountryModel.getMessage(), Snackbar.LENGTH_SHORT).show();
-
+                            Snackbar.make(binding.btnsubmit, modelJobTitle.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -2029,114 +2402,75 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    public void GetIndustry() {
 
-    public void GetCity(int state_id) {
-
-        mAPIService_new.GetCity(getResources().getString(R.string.accept), state_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<CityModel>() {
+        mAPIService_new.GetIndustryList(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Model_Industry>() {
                     @Override
                     public void onCompleted() {
-                        if (!checkflagset) {
-                            if (Constant.isNetworkAvailable(context)) {
-                                GetProffesionalCredential();
-                            } else {
-                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                            }
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
                         }
 
+                        Show_Industry_Adapter();
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                         if (progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
-
                         String message = Constant.GetReturnResponse(context, e);
-
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
                             Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
+
                         }
-
-
                     }
 
                     @Override
-                    public void onNext(CityModel cityModel) {
+                    public void onNext(Model_Industry model_industry) {
 
+                        if (model_industry.isSuccess()) {
+                            arrayListindustry.clear();
+                            arrayListindustry.add("Industry");
 
-                        if (cityModel.isSuccess() == true) {
-
-                            if (checkflagset == true) {
-                                if (progressDialog.isShowing()) {
-                                    progressDialog.dismiss();
-                                }
-
+                            if (model_industry.getPayload().getIndustriesList().size() > 0) {
+                                arrIndustryList = model_industry.getPayload().getIndustriesList();
                             }
 
+                            for (int i = 0; i < model_industry.getPayload().getIndustriesList().size(); i++) {
+                                arrayListindustry.add(model_industry.getPayload().getIndustriesList().get(i).getName());
+                                arrayListindustryid.add(model_industry.getPayload().getIndustriesList().get(i).getId());
+                            }
 
-                            getcityarraylist.clear();
-                            getcityarray.clear();
-
-                            getcityarraylist.add("City");
-
-
-                            if (cityModel.getPayload().getCity().size() > 0) {
-                                for (int i = 0; i < cityModel.getPayload().getCity().size(); i++) {
-                                    getcityarraylist.add(cityModel.getPayload().getCity().get(i).getName());
-                                }
-
-                                for (int j = 0; j < cityModel.getPayload().getCity().size(); j++) {
-                                    CityItem cityItem = new CityItem();
-                                    for (int i = 0; i < cityModel.getPayload().getCity().size(); i++) {
-                                        cityItem.setId(cityModel.getPayload().getCity().get(j).getId());
-                                        cityItem.setName(cityModel.getPayload().getCity().get(j).getName());
+                            if (industry_id != 0) {
+                                for (int i = 0; i < model_industry.getPayload().getIndustriesList().size(); i++) {
+                                    if (industry_id == model_industry.getPayload().getIndustriesList().get(i).getId()) {
+                                        binding.txtIndustryName.setText("" + model_industry.getPayload().getIndustriesList().get(i).getName());
                                     }
-                                    getcityarray.add(cityItem);
-
                                 }
+                            }
 
-
-                                if (city_pos == 0) {
-                                    city_pos = 0;
-                                    city_id = city_pos;
-                                } else {
-                                    for (int i = 0; i < getcityarray.size(); i++) {
-                                        if (city_pos == getcityarray.get(i).getId()) {
-                                            city_set = getcityarray.indexOf(getcityarray.get(i));
-                                        }
-                                    }
-
-                                }
-
-
-                                checkcityarray = false;
-
-                                Show_City_Adapter();
-
+                            if (industry_id_pos == 0) {
+                                industry_id_pos = 0;
+                                industry_id = industry_id_pos;
                             } else {
-
-                                if (!City.equalsIgnoreCase("") && City != null) {
-                                    checkcityarray = true;
-                                    getcityarraylist.add(City);
-                                    Show_City_Adapter();
-                                } else {
-                                    Show_City_else_Adapter();
+                                for (int i = 0; i < arrayListindustryid.size(); i++) {
+                                    if (industry_id_pos == arrayListindustryid.get(i)) {
+                                        industry_set = arrayListindustryid.indexOf(arrayListindustryid.get(i));
+                                    }
                                 }
-
-
                             }
-
 
                         } else {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-
-                            Snackbar.make(binding.btnsubmit, cityModel.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(binding.btnsubmit, model_industry.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 
@@ -2144,132 +2478,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 });
 
     }
-
-    public void GetState(int country_id) {
-
-        mAPIService_new.GetState(getResources().getString(R.string.accept), country_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<StateModel>() {
-                    @Override
-                    public void onCompleted() {
-                        if (!checkflagset) {
-
-                            if (Constant.isNetworkAvailable(context)) {
-                                GetCity(state_pos);
-                            } else {
-                                Snackbar.make(binding.btnsubmit, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-
-                        String message = Constant.GetReturnResponse(context, e);
-
-                        if (Constant.status_code == 401) {
-                            MainActivity.getInstance().AutoLogout();
-                        } else {
-                            Snackbar.make(binding.btnsubmit, message, Snackbar.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onNext(StateModel stateModel) {
-
-
-                        if (stateModel.isSuccess() == true) {
-
-                            if (checkflagset == true) {
-                                if (progressDialog.isShowing()) {
-                                    progressDialog.dismiss();
-                                }
-
-                            }
-
-                            getstatearralist.clear();
-                            getstatearray.clear();
-
-                            if (binding.spinnerCountry.getSelectedItem().equals("Canada")) {
-                                getstatearralist.clear();
-                                getstatearray.clear();
-                                getstatearralist.add("Province");
-                            } else {
-                                getstatearralist.clear();
-                                getstatearray.clear();
-                                getstatearralist.add("State");
-                            }
-
-                            if (stateModel.getPayload().getState().size() > 0) {
-                                for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
-                                    getstatearralist.add(stateModel.getPayload().getState().get(i).getName());
-
-                                }
-
-                                for (int j = 0; j < stateModel.getPayload().getState().size(); j++) {
-
-                                    StateItem stateItem = new StateItem();
-
-                                    for (int i = 0; i < stateModel.getPayload().getState().size(); i++) {
-                                        stateItem.setId(stateModel.getPayload().getState().get(j).getId());
-                                        stateItem.setName(stateModel.getPayload().getState().get(j).getName());
-
-                                    }
-                                    getstatearray.add(stateItem);
-                                }
-
-
-                                if (state_pos == 0) {
-                                    state_pos = 0;
-                                    state_id = state_pos;
-                                } else {
-                                    for (int i = 0; i < getstatearray.size(); i++) {
-                                        if (state_pos == getstatearray.get(i).getId()) {
-                                            state_set = getstatearray.indexOf(getstatearray.get(i));
-
-                                        }
-                                    }
-                                }
-
-
-                                checkstatearray = false;
-
-
-                                Show_State_Adapter();
-                            } else {
-
-                                if (!State.equalsIgnoreCase("") && State != null) {
-                                    checkstatearray = true;
-                                    getstatearralist.add(State);
-                                    Show_State_Adapter();
-                                } else {
-                                    Show_State_else_Adapter();
-                                }
-
-
-                            }
-
-
-                        } else {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-
-                            Snackbar.make(binding.btnsubmit, stateModel.getMessage(), Snackbar.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-                });
-
-    }
-
 
     public Boolean Validation() {
         if (Constant.Trim(binding.edtFirstname.getText().toString()).isEmpty()) {
@@ -2280,9 +2488,7 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtMobileNumber.clearFocus();
 
             binding.edtFirmname.clearFocus();
-
             binding.edtPhoneNumber.clearFocus();
-
 
             Snackbar.make(binding.edtFirstname, getResources().getString(R.string.val_firstname), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -2308,7 +2514,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_phone_validate), Snackbar.LENGTH_SHORT).show();
 
-
             return false;
         } else if (Constant.Trim(binding.edtPhoneNumber.getText().toString()).isEmpty()) {
 
@@ -2318,7 +2523,6 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtPhoneNumber.requestFocus();
             binding.edtZipcode.clearFocus();
             binding.edtFirmname.clearFocus();
-
 
             Snackbar.make(binding.edtPhoneNumber, getResources().getString(R.string.val_phone_number), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -2341,7 +2545,6 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtMobileNumber.clearFocus();
             binding.edtFirmname.clearFocus();
             binding.edtPhoneNumber.clearFocus();
-
 
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.str_country), Snackbar.LENGTH_SHORT).show();
             return false;
@@ -2373,10 +2576,10 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtFirmname.clearFocus();
             binding.edtPhoneNumber.clearFocus();
 
-
             Snackbar.make(binding.edtMobileNumber, getResources().getString(R.string.val_zipcode), Snackbar.LENGTH_SHORT).show();
             return false;
-        } else if (binding.spinnerCountry.getSelectedItem().toString().equalsIgnoreCase("Canada")) {
+//        } else if (binding.spinnerCountry.getSelectedItem().toString().equalsIgnoreCase("Canada")) {
+        } else if (binding.txtCountryName.getText().toString().equalsIgnoreCase("Canada")) {
             boolean check = false;
             if (!Constant.isValidCanadianZipCode(binding.edtZipcode.getText().toString().trim())) {
                 Snackbar.make(binding.edtZipcode, getResources().getString(R.string.val_canadian_zip_code), Snackbar.LENGTH_SHORT).show();
@@ -2385,7 +2588,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 check = true;
             }
             return check;
-        } else if (binding.spinnerCountry.getSelectedItem().toString().equalsIgnoreCase("United States")) {
+//        } else if (binding.spinnerCountry.getSelectedItem().toString().equalsIgnoreCase("United States")) {
+        } else if (binding.txtCountryName.getText().toString().equalsIgnoreCase("United States")) {
             boolean check = false;
             if (binding.edtZipcode.getText().toString().length() == 5) {
                 check = true;
@@ -2422,7 +2626,6 @@ public class EditProfileActivity extends AppCompatActivity {
             binding.edtFirmname.requestFocus();
             binding.edtPhoneNumber.clearFocus();
 
-
             Snackbar.make(binding.edtFirmname, getResources().getString(R.string.val_firm_name_register), Snackbar.LENGTH_SHORT).show();
             return false;
         } else if (selected_proffesional_credential.equalsIgnoreCase("")) {
@@ -2439,9 +2642,106 @@ public class EditProfileActivity extends AppCompatActivity {
         } else {
             return true;
         }
-
-
     }
 
+    public static EditProfileActivity getInstance() {
+        return instance;
+    }
 
+    public void selectCountryEdit() {
+
+        Log.e("*+*+*", "EditProfile issue : Constant.selectedCountryNameSU : " + Constant.selectedCountryNameSU);
+        if (Constant.selectedCountryNameSU.equalsIgnoreCase("Country")) {
+//        if (binding.txtCountryName.getText().toString().equalsIgnoreCase("Country")) {
+            country_id = 0;
+            binding.txtStateName.setText("State");
+        } else {
+            // Now first set the country name in the text box..
+            binding.relCountryView.setVisibility(View.GONE);
+            binding.txtCountryName.setText(Constant.selectedCountryNameSU);
+
+            if (Constant.selectedCountryNameSU.equals("Canada")) {
+                binding.txtStateName.setText("Province");
+            } else {
+                binding.txtStateName.setText("State");
+            }
+
+            binding.txtCityName.setText("City");
+
+//            country_id = getcountryarray.get(position - 1).getId();
+//            country_id = getcountryarray.get(Integer.parseInt(Constant.selectedCountryPositionSU)).getId();
+            country_id = Integer.parseInt(Constant.selectedCountryIdSU);
+            country_id_pos = Integer.parseInt(Constant.selectedCountryPositionSU);
+
+            Log.e("countryid", "countryid" + country_id_pos);
+
+            if (Constant.isNetworkAvailable(context)) {
+                progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                GetState(country_id);
+            } else {
+                Snackbar.make(binding.relbottom, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void selectStateEdit() {
+//        if (getstatearralist.get(position).equalsIgnoreCase("State") || getstatearralist.get(position).equalsIgnoreCase("Province")) {
+        if (Constant.selectedStateNameSU.equalsIgnoreCase("State") || Constant.selectedStateNameSU.equalsIgnoreCase("Province")) {
+            state_id = 0;
+            binding.txtCityName.setText("City");
+        } else {
+//            state_id = getstatearray.get(position - 1).getId();
+//            state_id_pos = position;
+            binding.relCountryView.setVisibility(View.GONE);
+            binding.txtStateName.setText(Constant.selectedStateNameSU);
+
+            binding.txtCityName.setText("City");
+
+            state_id = Integer.parseInt(Constant.selectedStateIdSU);
+            state_id_pos = Integer.parseInt(Constant.selectedStatePositionSU);
+
+            if (Constant.isNetworkAvailable(context)) {
+                progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                GetCity(state_id);
+            } else {
+                Snackbar.make(binding.relbottom, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void selectCityEdit() {
+
+        binding.relCountryView.setVisibility(View.GONE);
+        binding.txtCityName.setText(Constant.selectedCityNameSU);
+
+//        if (getcityarraylist.get(position).equalsIgnoreCase("City")) {
+        if (Constant.selectedCityNameSU.equalsIgnoreCase("City")) {
+            city_id = 0;
+        } else {
+//            city_id = getcityarray.get(position - 1).getId();
+//            city_id_pos = position;
+            city_id = Integer.parseInt(Constant.selectedCityIdSU);
+            city_id_pos = Integer.parseInt(Constant.selectedCityPositionSU);
+        }
+    }
+
+    public void selectJobTitleEdit() {
+
+        binding.relCountryView.setVisibility(View.GONE);
+        binding.txtJobTitleName.setText(Constant.selectedJobTitleNameSU);
+
+//        if (Constant.selectedCityNameSU.equalsIgnoreCase("City")) {
+        if (Constant.selectedJobTitleNameSU.equalsIgnoreCase("Job Title")) {
+//            city_id = 0;
+            jobtitle_id = 0;
+        } else {
+//            city_id = getcityarray.get(position - 1).getId();
+//            city_id_pos = position;
+//            city_id = Integer.parseInt(Constant.selectedCityIdSU);
+            jobtitle_id = Integer.parseInt(Constant.selectedJobTitleIdSU);
+//            city_id_pos = Integer.parseInt(Constant.selectedCityPositionSU);
+            jobtitle_id_pos = Integer.parseInt(Constant.selectedJobTitlePositionSU);
+        }
+
+    }
 }

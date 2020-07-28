@@ -280,6 +280,7 @@
                 <!--</android.support.design.widget.TextInputLayout>-->
 
                 <RelativeLayout
+                    android:id="@+id/relCountry"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg">
@@ -330,6 +331,7 @@
                     android:background="@color/view_edit_profile" />-->
 
                 <RelativeLayout
+                    android:id="@+id/relState"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg">
@@ -380,6 +382,7 @@
                     android:background="@color/view_edit_profile" />-->
 
                 <RelativeLayout
+                    android:id="@+id/relCity"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/underline_bg">
