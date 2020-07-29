@@ -120,8 +120,9 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             Constant.Log("size", "" + mList.size());
             Log.e("*+*+*","Size for RecentList : "+recentList.size());
 
-            if(position == 0) {
-                if(recentList.size() > 0) {
+            if(position == 0 && mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_self_study))) {
+                if(recentList.size() > 0 ) {
                     ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
                     ((HomeViewHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
                     ((HomeViewHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);

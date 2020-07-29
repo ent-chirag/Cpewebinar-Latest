@@ -165,7 +165,8 @@
 
             <RelativeLayout
                 android:id="@+id/relWebinarRegister"
-                android:layout_width="@dimen/_115sdp"
+                android:minWidth="@dimen/_80sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/_15sdp"
@@ -186,9 +187,10 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/txtWebinarRegistrationState"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
                     android:src="@drawable/ic_right_aroow" />
 
             </RelativeLayout>
