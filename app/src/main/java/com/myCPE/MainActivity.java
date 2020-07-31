@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         iv_five.setOnClickListener(this);
 
         context = MainActivity.this;
-        Constant.setLightStatusBar(MainActivity.this);
+//        Constant.setLightStatusBar(MainActivity.this);
 
 //        iv_mycredit.setOnClickListener(new View.OnClickListener() {
 //        imgTabCertificate.setOnClickListener(new View.OnClickListener() {
@@ -446,9 +446,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void SetCreditScreen() {
-        setselectedtab = 0;
-        selectmywebinardtab = 0;
-        SetImageBackground(0);
+        setselectedtab = 2;
+        selectmywebinardtab = 2;
+        SetImageBackground(2);
         myCreditsFragment = new MyCreditsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, myCreditsFragment, getResources()
                 .getString(R.string.mycreditfragment)).addToBackStack(getResources().getString(R.string.add_to_back_stack)).commit();

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_notification_time"
             android:ems="16"
             android:inputType="textMultiLine"
             android:textColor="@color/color_text_black"
@@ -41,7 +42,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_3sdp"
-            android:layout_toLeftOf="@+id/tv_notification_title"
             android:textColor="@color/color_text_black_70"
             android:textSize="@dimen/_10sdp"
             android:fontFamily="@font/whitney_black" />

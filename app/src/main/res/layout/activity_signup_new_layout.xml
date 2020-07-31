@@ -35,7 +35,7 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent" />
 
-            <com.myCPE.view.CustomTextView
+            <TextView
                 android:id="@+id/str_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:text="@string/str_signup_n"
                 android:textColor="@color/black_full"
                 android:textSize="@dimen/_12sdp"
-                app:font_text="Whitney-Semibold.ttf" />
+                android:fontFamily="@font/whitney_semibold" />
 
         </RelativeLayout>
 
@@ -63,7 +63,7 @@
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
-                <com.myCPE.view.CustomTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_35sdp"
@@ -71,7 +71,7 @@
                     android:text="@string/str_register_yourself"
                     android:textColor="@color/theme_background"
                     android:textSize="@dimen/_22sdp"
-                    app:font_text="Whitney-Bold.ttf" />
+                    android:fontFamily="@font/whitney_bold" />
 
                 <!--<android.support.design.widget.TextInputLayout
                     android:id="@+id/input_firstname"
@@ -559,7 +559,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp">
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/txtPopupCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -568,9 +568,9 @@
                         android:text="@string/str_cancel_guest"
                         android:textColor="@color/black_full"
                         android:textSize="@dimen/_12sdp"
-                        app:font_text="Whitney-Semibold.ttf" />
+                        android:fontFamily="@font/whitney_semibold" />
 
-                    <com.myCPE.view.CustomTextView
+                    <TextView
                         android:id="@+id/txtPopupCName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -579,7 +579,7 @@
                         android:text="@string/view_profile_country"
                         android:textColor="@color/black_full"
                         android:textSize="@dimen/_14sdp"
-                        app:font_text="Whitney-Bold.ttf" />
+                        android:fontFamily="@font/whitney_bold" />
 
                 </RelativeLayout>
 

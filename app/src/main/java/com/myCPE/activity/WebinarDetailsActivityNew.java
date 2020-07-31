@@ -338,7 +338,7 @@ public class WebinarDetailsActivityNew extends AppCompatActivity implements View
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
-        Constant.setLightStatusBar(WebinarDetailsActivityNew.this);
+//        Constant.setLightStatusBar(WebinarDetailsActivityNew.this);
         Constant.hashmap_answer_state.clear();
         Constant.hashmap_asnwer_string_review_question.clear();
         Constant.hashmap_answer_string_final_question.clear();

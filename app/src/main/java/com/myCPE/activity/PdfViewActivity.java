@@ -69,7 +69,7 @@ public class PdfViewActivity extends AppCompatActivity {
         mProgressDialog = new ProgressDialog(context);
 
 
-        Constant.setLightStatusBar(PdfViewActivity.this);
+//        Constant.setLightStatusBar(PdfViewActivity.this);
 
         Intent intent = getIntent();
         if (intent != null) {

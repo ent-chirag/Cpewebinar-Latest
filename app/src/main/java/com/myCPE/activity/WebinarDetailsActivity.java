@@ -388,7 +388,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
-        Constant.setLightStatusBar(WebinarDetailsActivity.this);
+//        Constant.setLightStatusBar(WebinarDetailsActivity.this);
         Constant.hashmap_answer_state.clear();
         Constant.hashmap_asnwer_string_review_question.clear();
         Constant.hashmap_answer_string_final_question.clear();
@@ -1098,7 +1098,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         dialog.show();
     }
 
-    private void showAddReviewPopUp() {
+    /*private void showAddReviewPopUp() {
 
         myDialogaddreview = new Dialog(context);
         myDialogaddreview.setContentView(R.layout.rating_popup);
@@ -1251,11 +1251,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(View v) {
                 // Take API CALL here then on the success call add the following code there..
-                /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                *//*Intent i = new Intent(context, WebinarDetailsActivity.class);
                 i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
-                finish();*/
+                finish();*//*
 
                 // Check for validation..
                 strReview = edt_review.getText().toString();
@@ -1288,7 +1288,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         myDialogaddreview.show();
 
-    }
+    }*/
 
     private void GetSubmitReviewAnswer(int is_like, int rating, String strReview, int webinarid) {
 
@@ -1301,32 +1301,13 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-
-                        String message = Constant.GetReturnResponse(context, e);
-                        if (Constant.status_code == 401) {
-                            MainActivity.getInstance().AutoLogout();
-                        } else {
-                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
                     public void onNext(AddReview addReview) {
 
                         if (addReview.isSuccess() == true) {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
-                            if (myDialogaddreview.isShowing()) {
-                                myDialogaddreview.dismiss();
-                            }
-
-
+                            binding.relPopupReview.setVisibility(View.GONE);
                             showPopUp(addReview.getMessage(), true);
 
                             /*Intent i = new Intent(context, WebinarDetailsActivity.class);
@@ -1339,6 +1320,20 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
+
+                        String message = Constant.GetReturnResponse(context, e);
+                        if (Constant.status_code == 401) {
+                            MainActivity.getInstance().AutoLogout();
+                        } else {
+                            Snackbar.make(binding.ivback, message, Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -3937,6 +3932,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandDetails) {
                     collapseAllComponents();
                 } else {
+
                     isExpandDetails = true;
                     isExpandDescription = false;
                     isExpandOverviewOfTopics = false;
@@ -3962,6 +3958,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relDetails.getTop());
                 }
                 break;
 
@@ -3970,6 +3968,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandDescription) {
                     collapseAllComponents();
                 } else {
+
                     isExpandDescription = true;
                     isExpandDetails = false;
                     isExpandOverviewOfTopics = false;
@@ -3995,6 +3994,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relDescription.getTop());
                 }
                 break;
 
@@ -4002,6 +4003,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandOverviewOfTopics) {
                     collapseAllComponents();
                 } else {
+
                     isExpandOverviewOfTopics = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4027,6 +4029,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relOverviewOfTopics.getTop());
                 }
                 break;
 
@@ -4034,6 +4038,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandWhoShouldAttend) {
                     collapseAllComponents();
                 } else {
+
                     isExpandWhoShouldAttend = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4059,6 +4064,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relWhoShouldAttend.getTop());
                 }
                 break;
 
@@ -4067,6 +4074,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandPresenter) {
                     collapseAllComponents();
                 } else {
+
                     isExpandPresenter = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4092,6 +4100,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relPresenter.getTop());
                 }
                 break;
 
@@ -4100,6 +4110,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandCompany) {
                     collapseAllComponents();
                 } else {
+
                     isExpandCompany = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4125,6 +4136,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relCompany.getTop());
                 }
                 break;
 
@@ -4133,6 +4146,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandTestimonials) {
                     collapseAllComponents();
                 } else {
+
                     isExpandTestimonials = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4158,6 +4172,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_up_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relTestimonials.getTop());
                 }
                 break;
 
@@ -4166,6 +4182,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 if (isExpandOthers) {
                     collapseAllComponents();
                 } else {
+
                     isExpandOthers = true;
                     isExpandDetails = false;
                     isExpandDescription = false;
@@ -4191,6 +4208,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     binding.imgArrowCompany.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowTestimonials.setBackgroundResource(R.drawable.ic_arrow_down_svg);
                     binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_up_svg);
+
+//                    binding.scrollViewDetails.smoothScrollTo(0, binding.relOthers.getTop());
                 }
                 break;
 
@@ -4212,6 +4231,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
 //                        GetSubmitAnswer(questionsParams, ansParams, "" + percentage);
                         GetSubmitReviewAnswer(is_like, rating, strReview, webinarid);
+//                        GetSubmitReviewAnswer(0, 3, "Test Review testing here..", 163);
                     } else {
                         Snackbar.make(binding.relView, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }

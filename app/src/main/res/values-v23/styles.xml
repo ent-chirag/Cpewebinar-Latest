@@ -9,4 +9,43 @@
         <item name="android:windowFullscreen">false</item>
 
     </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" parent="@style/Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <!--<item name="android:statusBarColor">@color/webinar_statusbar_color</item>-->
+        <item name="android:statusBarColor">@color/color_rounded_grayblue</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/color_rounded_grayblue</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/color_bg</item>
+    </style>
+
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
