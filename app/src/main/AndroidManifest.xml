@@ -35,7 +35,7 @@
         <activity
             android:name=".activity.ActivityReviewQuestionNew"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
         <activity
             android:name=".activity.SpeakerCompanyWebinarList"
             android:screenOrientation="portrait"
