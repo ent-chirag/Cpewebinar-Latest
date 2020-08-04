@@ -73,7 +73,7 @@
         <activity
             android:name=".activity.ActivityFinalQuiz"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
         <!--<activity
             android:name=".activity.ActivityFinalQuizOld"
             android:screenOrientation="portrait"
