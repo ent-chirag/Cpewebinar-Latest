@@ -38,7 +38,7 @@ import com.myCPE.utility.Constant;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+//import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
 public class DetailsFragment extends Fragment {
 

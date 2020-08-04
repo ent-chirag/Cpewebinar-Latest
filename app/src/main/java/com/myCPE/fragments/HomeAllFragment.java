@@ -41,7 +41,6 @@ import com.myCPE.activity.NotificationActivity;
 import com.myCPE.activity.SignUpNextActivity;
 import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.adapter.TopicsFilterHomePopUpAdapter;
-import com.myCPE.databinding.FragmentAllBinding;
 import com.myCPE.databinding.FragmentAllNewBinding;
 import com.myCPE.model.homewebinarnew.RecentWebinarItem;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;

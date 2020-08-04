@@ -66,7 +66,6 @@ import com.google.android.exoplayer2.util.LibraryLoader;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
-import com.myCPE.databinding.ActivityWebinardetailsBinding;
 import com.myCPE.databinding.ActivityWebinardetailsNewBinding;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.review_answer.AddReview;

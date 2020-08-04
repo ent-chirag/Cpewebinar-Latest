@@ -30,9 +30,6 @@
     <color name="home_tab_color_unselected">#484848</color>
     <color name="theme_background">#193f70</color>
     <color name="uvv_gray">#969696</color>
-    <color name="forgot_password_header">#213B5B</color>
-    <color name="login_do_not_have_account">#C9C9C9</color>
-    <color name="background_topics">#C7C6CB</color>
     <color name="view_edit_profile">#A7A7A8</color>
     <color name="detail_heading">#fafafa</color>
     <color name="designation">#7b7b7d</color>
@@ -41,7 +38,6 @@
 
     <color name="sign_up_heading">#001944</color>
     <color name="edit_field_hint">#bcbcbc</color>
-    <color name="home_edit_search">#c3c3c3</color>
 
     <color name="home_filter_selection">#606060</color>
     <color name="home_filter_unselected_background">#f2f2f2</color>
@@ -120,20 +116,15 @@
     <color name="fav_date_time">#777777</color>
 
     //home
-    <color name="home_topbar_bgcolor">#193f70</color>
     <color name="webinar_status">#ed9e37</color>
 <!--    <color name="webinar_statusbar_color">#f8dcb4</color>-->
 <!--    <color name="webinar_statusbar_color">#d7671f</color>-->
 <!--    <color name="webinar_statusbar_color">#e98f24</color>-->
-    <color name="webinar_statusbar_color">#dedede</color>
 
 
     //account
 
     <color name="viewprofile_sections">#494949</color>
-
-
-    <color name="account_username">#193f70</color>
 
 
     //my credit
@@ -167,7 +158,6 @@
 
     //stripe
 
-    <color name="card_hint_number_color">#5008264c</color>
     <color name="card_text_number_color">#24272c</color>
 
 

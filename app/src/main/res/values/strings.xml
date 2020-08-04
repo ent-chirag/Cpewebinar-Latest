@@ -57,12 +57,10 @@
     <string name="str_guest_user_dialog_title">MY CPE</string>
     <string name="str_guest_user_dialog_title_new">myCPE</string>
     <string name="str_login_guest">Login</string>
-    <string name="str_login_guest_ul"><u>Login</u></string>
     <string name="str_cancel_guest">Cancel</string>
     <string name="str_sharing_not_avilable">Sharing link is not avilable.</string>
     <string name="str_joinlink_not_avilable">Join link is not avilable.</string>
     <string name="str_time_zone_not_found">Time Zone not Found</string>
-    <string name="str_btn_next">NEXT</string>
     <string name="str_download_link_not_found">Download link not found</string>
     <string name="str_key_terms_link_not_found">key Terms link not found</string>
     <string name="str_instruction_doc_not_found">Instruction document not found</string>
@@ -71,12 +69,8 @@
     <string name="str_payment_link_not_found">Paymetn receipt not found</string>
     <string name="str_who_should_attend_lable">Who Should Attend</string>
     <string name="str_next">Next</string>
-    <string name="str_done">Done</string>
     <string name="str_video_validation">Please Register the Webinar.</string>
     <string name="str_video_link_not_avilable">video link is not avilable.</string>
-
-    <string name="str_forceupdate_1">You must need to update the app for using further app.</string>
-    <string name="str_update_1">New version of application is available on the play store, would you like to update your app?</string>
 
     <string name="str_alert">Oops</string>
 
@@ -93,14 +87,11 @@
 
 
     //pre login
-    <string name="str_signup">SIGN UP</string>
-    <string name="str_logi_now">LOGIN</string>
     <string name="str_contactus">Contact Us</string>
 
     //login
     <string name="str_email">Email</string>
     <string name="str_password">Password</string>
-    <string name="do_not_have_account">Don"'"t have an account?</string>
     <string name="validate_email_id">Please Enter Email Address</string>
     <string name="validate_password">Please Enter Password</string>
     <string name="str_token">login token</string>
@@ -111,9 +102,7 @@
     <string name="str_register_yourself">Register\nYourself</string>
     <string name="str_signin">Sign In</string>
     <string name="str_signin_ul"><u>Sign In</u></string>
-    <string name="str_signup_ul"><u>Sign Up</u></string>
     <string name="str_signup_n">Sign Up</string>
-    <string name="str_fp_ul"><u>Forgot Password?</u></string>
 
 
     //dashboard
@@ -161,14 +150,11 @@
     <string name="view_profile_zipcode">Zipcode</string>
     <string name="view_profile_topics_interest">Topics of Interest</string>
     <string name="edit_profile_header">Edit Profile</string>
-    <string name="view_profile_job_title">Job Title</string>
-    <string name="view_profile_industry">Industry</string>
 
 
     //change password
 
     <string name="str_change_password">Change Password</string>
-    <string name="str_change_password_submit">SUBMIT</string>
     <string name="str_old_password">Old  Password</string>
     <string name="str_new_password">New  Password</string>
 
@@ -184,11 +170,7 @@
 
     //forgot password
 
-    <string name="forgot_password">Forgot Password?</string>
     <string name="forgot_password_header">Forgot Password</string>
-    <string name="forgot_password_submit_button">SUBMIT</string>
-    <string name="forgot_edit_email">Enter Your Email Address</string>
-    <string name="forgot_header_text">Please Enter Your Registered Email</string>
     <string name="forgot_header_text_new">Enter Your \nRegistered Email</string>
     action_settings
 
@@ -202,7 +184,6 @@
 
     //Register
 
-    <string name="str_register">REGISTER</string>
     <string name="str_confirm_password">Confirm Password</string>
     <string name="str_mobil_number">Mobile Number</string>
     <string name="str_phone_number">Phone Number</string>
@@ -210,13 +191,10 @@
     <string name="str_last_name">Last Name</string>
     <string name="str_email_id">Email ID</string>
     <string name="str_topics_interset">Topics of Interest</string>
-    <string name="str_who_you_are">Professional  Credentials?</string>
     <string name="str_profestional_credential">Professional Credentials</string>
     <string name="str_additional_qualification">Additional Qualifications</string>
-    <string name="str_topic_home">Topics</string>
     <string name="str_reg_password">Password</string>
     <string name="str_firm_name">Company Name</string>
-    <string name="str_alredy_account">Already have an account?</string>
     <string name="str_accepted">I accept these</string>
     <string name="str_accepted_condition">Terms and Conditions</string>
 
@@ -297,16 +275,8 @@
     <string name="pass_industry">industry</string>
     <string name="pass_state_text">statetext</string>
     <string name="pass_city_text">citytext</string>
-    <string name="pass_country_text">countrytext</string>
-    <string name="pass_job_title_text">jobtitletext</string>
-    <string name="pass_industry_text">industrytext</string>
     <string name="pass_zipcode">zipcode</string>
     <string name="pass_who_you_are">whoyouareposition</string>
-    <string name="pass_job_title_id">jobtitileposition</string>
-    <string name="pass_industry_id">industryposition</string>
-    <string name="pass_who_you_are_text">whoyouare</string>
-    <string name="pass_view_topics_of_interest">viewtopicsofinterest</string>
-    <string name="pass_selected_list">selectedlist</string>
     <string name="pass_who_you_are_list">whoyouarelist</string>
     <string name="pass_who_you_are_list_review_question">reviewquestion</string>
 
@@ -327,22 +297,11 @@
 
     //pass data from signup to topics of interest
 
-    <string name="reg_firstname">fname</string>
-    <string name="reg_lastname">lname</string>
-    <string name="reg_email">email</string>
-    <string name="reg_password">pass</string>
-    <string name="reg_confirm_password">cpass</string>
-    <string name="reg_firmname">firmname</string>
-    <string name="reg_mobilenumber">mnumber</string>
-    <string name="reg_whoyouare">whoyouare</string>
-    <string name="reg_isaccepted">isaccepted</string>
-
 
     //rating popup
     <string name="review_popup_header">Give us your Feedback</string>
     <string name="str_submit">SUBMIT</string>
     <string name="str_submit_lower">Submit</string>
-    <string name="str_your_name">Your Feedback</string>
     <string name="str_subject">Subject</string>
     <string name="val_subject">Please Enter Subject</string>
     <string name="val_review">Please Enter Review</string>
@@ -443,21 +402,18 @@
 
     //account screen
 
-    <string name="str_header_account">Account</string>
     <string name="str_lable_view">View and edit profile</string>
 
 
     <string name="str_noti">Notifications</string>
     <string name="str_testimonial_header">Testimonials</string>
     <string name="str_my_transaction">My Transactions</string>
-    <string name="str_payment_method">Payment Method</string>
     <string name="str_my_credit">My Credits</string>
     <string name="str_topics_of_interest">Topic Of Interest</string>
     <string name="str_privacy_policy">Privacy Policy</string>
     <string name="str_terms_condition">Terms &amp; Conditions</string>
     <string name="str_contact_us">Contact Us</string>
     <string name="str_faqs">FAQ"'"s</string>
-    <string name="str_share">Share</string>
     <string name="str_give_us_your_feedback">Give us your feedback</string>
     <string name="str_logout">Logout</string>
 
@@ -544,17 +500,12 @@
 
     //pass data between view profile and favorite screen
 
-    <string name="str_get_key_screen">getkey</string>
-    <string name="from_favorite">favorite</string>
-    <string name="from_view_profile">viewprofile</string>
-
 
     //pass data between home screen to topics of interest
 
     <string name="str_get_key_screen_key">getkey</string>
     <string name="from_edit_profile">editscreen</string>
     <string name="from_account_screen">accountscreen</string>
-    <string name="from_sign_up_screen">signupscreen</string>
 
     //Review Question
     <string name="str_review_question">Review Question</string>
@@ -570,16 +521,6 @@
 
 
     //stripe
-
-    <string name="str_hint_card_number">Card number</string>
-    <string name="str_card_holder_name">Card Holder Name</string>
-    <string name="str_month">MM/YY</string>
-    <string name="str_cvv">CVV</string>
-    <string name="str_add_card_header">Add Cards</string>
-    <string name="str_pay_now">PAY NOW</string>
-    <string name="str_pay_amount_header">Pay Amount</string>
-    <string name="str_add_card_label">ADD CARD</string>
-    <string name="str_my_cards">My Cards</string>
 
 
     //notification passing
@@ -632,7 +573,6 @@
     <string name="str_past">Past</string>
     <string name="str_topics">Topics</string>
     <string name="str_live_webinar">Live Webinars</string>
-    <string name="str_past_webinar">Past Webinars</string>
     <string name="str_self_on_demand">Self-Study</string>
     <string name="str_price">Price</string>
     <string name="str_date">Date</string>

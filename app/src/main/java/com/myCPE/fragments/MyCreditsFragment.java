@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.MyCreditAdapter;
-import com.myCPE.databinding.FragmentMycreditBinding;
 import com.myCPE.databinding.FragmentMycreditNewBinding;
 import com.myCPE.model.My_Credit_New.Model_My_Credit_New;
 import com.myCPE.model.My_Credit_New.MyCreditsItem;

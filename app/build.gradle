@@ -24,6 +24,7 @@ android {
            keyAlias 'MyCpe123'
            keyPassword 'MyCpe123'
            storeFile file('E:\backup_of_projects\CPE\April\08_04_2019\Phase_1\Keystore\MyCpe.jks')
+           storeFile file('C:\Kishan\Projects\MyCPE\JKS & KeyStore\MyCpe_PlayStore_Details\MyCpe.jks')
            storePassword 'MyCpe123'
        }
    }*/
@@ -89,8 +90,8 @@ dependencies {
     // testImplementation 'junit:junit:4.12'
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //circular image view
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     //crash analytics
@@ -106,33 +107,13 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-storage:9.2.1'
     implementation 'com.android.support:multidex:1.0.3'
 
-
-    //notification fcm library
-    /*implementation 'com.google.android.gms:play-services:11.2.2'
-   
-    implementation 'com.google.android.gms:play-services-maps:11.0.4'
-    implementation 'com.google.android.gms:play-services-location:11.0.4'*/
-
-
-//    implementation 'com.google.android.gms:play-services:11.4.0'
-    // implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
     implementation 'com.google.firebase:firebase-auth:9.2.1'
-//    implementation 'com.google.android.gms:play-services-maps:11.0.4'
-//    implementation 'com.google.android.gms:play-services-location:11.0.4'
 
-//    implementation 'com.linsea:universalvideoview:1.1.0@aar'
-
-
-    // implementation 'com.linsea:universalvideoview:1.1.0@aar'
-    //implementation 'com.stripe:stripe-android:6.1.2'
-
-    implementation 'com.stripe:stripe-android:8.1.0'
+//    implementation 'com.stripe:stripe-android:8.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.5'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    //implementation 'info.hoang8f:android-segmented:1.0.6'
     //picasso image loader
-    implementation 'com.github.reinaldoarrosi:maskededittext:1.1.0'
+//    implementation 'com.github.reinaldoarrosi:maskededittext:1.1.0'
     implementation files('libs/picasso-2.5.2.jar')
 
     //exo player
@@ -143,13 +124,11 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
     implementation 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
 
-
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-    implementation 'io.github.kexanie.library:MathView:0.0.6'
+//    implementation 'io.github.kexanie.library:MathView:0.0.6'
 
-    implementation 'es.voghdev.pdfviewpager:library:1.0.6'
+//    implementation 'es.voghdev.pdfviewpager:library:1.0.6'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

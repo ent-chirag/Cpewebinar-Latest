@@ -35,7 +35,6 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.activity.NotificationActivity;
 import com.myCPE.adapter.HomeMyWebinarAdapter;
-import com.myCPE.databinding.FragmentMywebinarBinding;
 import com.myCPE.databinding.FragmentMywebinarNewBinding;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.utility.AppSettings;
