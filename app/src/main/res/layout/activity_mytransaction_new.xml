@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.myCPE.activity.MyTransactionActivity" />
@@ -61,39 +60,6 @@
             android:layout_height="0.1dp"
             android:layout_below="@+id/rvtitle"
             android:background="@color/color_text_black" />
-
-        <!--<RelativeLayout
-            android:id="@+id/rel_titile"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:background="@color/webinar_status">
-
-            <RelativeLayout
-                android:id="@+id/relImgBack"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/back"
-                    android:layout_centerInParent="true"/>
-
-            </RelativeLayout>
-
-            <com.myCPE.view.CustomTextView
-                android:id="@+id/screentitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/str_my_transaction"
-                android:textColor="@color/White"
-                android:textSize="@dimen/_17sdp"
-                app:font_text="Montserrat-SemiBold.ttf" />
-
-
-        </RelativeLayout>-->
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"

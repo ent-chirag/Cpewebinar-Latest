@@ -15,7 +15,6 @@ import android.view.View;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityLoginBinding;
 import com.myCPE.databinding.ActivityLoginNewLayoutBinding;
 import com.myCPE.model.login.LoginModel;
 import com.myCPE.utility.AppSettings;

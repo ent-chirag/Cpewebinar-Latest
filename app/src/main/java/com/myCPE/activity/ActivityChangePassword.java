@@ -15,7 +15,6 @@ import android.view.View;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityChangePasswordBinding;
 import com.myCPE.databinding.ActivityChangePasswordNewBinding;
 import com.myCPE.model.changepassword.ChangePasswordModel;
 import com.myCPE.utility.AppSettings;

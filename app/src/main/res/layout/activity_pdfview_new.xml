@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.myCPE.activity.PdfViewActivity" />
@@ -63,51 +62,6 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/rvtitle"
                 android:background="@color/color_text_black" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/webinar_status"
-                android:visibility="gone"
-                android:padding="@dimen/_10sdp">
-
-                <com.myCPE.view.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/White"
-                    android:textSize="@dimen/_12sdp"
-                    app:font_text="Montserrat-Bold.ttf" />
-
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_18sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/download_svg"
-                    android:tint="@android:color/white" />
-
-                <com.myCPE.view.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/str_share"
-                    android:textColor="@color/White"
-                    android:textSize="@dimen/_12sdp"
-                    app:font_text="Montserrat-Bold.ttf" />
-
-            </RelativeLayout>
-
-            <WebView
-                android:id="@+id/webview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
-
-            </WebView>
 
             <com.github.barteksc.pdfviewer.PDFView
                 android:id="@+id/pdfView"

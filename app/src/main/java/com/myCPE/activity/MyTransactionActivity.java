@@ -16,7 +16,6 @@ import android.view.View;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.TransactionAdapter;
-import com.myCPE.databinding.ActivityMytransactionBinding;
 import com.myCPE.databinding.ActivityMytransactionNewBinding;
 import com.myCPE.model.payment_transcation.Model_Transcation;
 import com.myCPE.model.payment_transcation.TransactionItem;

@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityForgotpasswordBinding;
 import com.myCPE.databinding.ActivityForgotpasswordNewLayoutBinding;
 import com.myCPE.model.forgotpassword.Forgotpaawordmodel;
 import com.myCPE.utility.Constant;

@@ -19,7 +19,6 @@ import android.widget.CompoundButton;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityNotificationSettingBinding;
 import com.myCPE.databinding.ActivityNotificationSettingNewBinding;
 import com.myCPE.model.getnotificationsetting.GetNotificationModel;
 import com.myCPE.model.savenotificationsetting.SubmitNotification;

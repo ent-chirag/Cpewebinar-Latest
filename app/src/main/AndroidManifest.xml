@@ -59,17 +59,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.WelcomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity
             android:name=".activity.PreLoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <!--<activity
             android:name=".activity.ActivityReviewQuestion"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />-->
         <activity
             android:name=".activity.ActivityEvolutionForm"
             android:screenOrientation="portrait"
@@ -78,10 +74,10 @@
             android:name=".activity.ActivityFinalQuiz"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
-        <activity
+        <!--<activity
             android:name=".activity.ActivityFinalQuizOld"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".activity.WebinarDetailsActivity"
             android:configChanges="orientation|screenSize"
@@ -97,21 +93,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
         <activity
-            android:name=".activity.StripePaymentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.ActivityAddCard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.ActivityNotificationSetting"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
-        <activity
-            android:name=".activity.ViewTopicsOfInterestActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ActivityFavorite"
             android:screenOrientation="portrait"
@@ -120,10 +104,6 @@
             android:name=".activity.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
-        <activity
-            android:name=".activity.ViewProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
         <activity
             android:name=".activity.SignUpActivity"
             android:screenOrientation="portrait"
@@ -135,10 +115,6 @@
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
             android:name=".activity.TopicsOfInterestActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.TopicsofInterestSignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,20 +14,17 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.activity.ActivityAddCard;
 import com.myCPE.activity.ActivityChangePassword;
 import com.myCPE.activity.ActivityContactUs;
 import com.myCPE.activity.ActivityNotificationSetting;
@@ -40,7 +35,6 @@ import com.myCPE.activity.PreLoginActivity;
 import com.myCPE.activity.PrivacyPolicyActivity;
 import com.myCPE.activity.TermsandConditionActivity;
 import com.myCPE.activity.TopicsOfInterestActivity;
-import com.myCPE.databinding.FragmentAccountBinding;
 import com.myCPE.databinding.FragmentAccountNewBinding;
 import com.myCPE.model.logout.LogoutModel;
 import com.myCPE.model.postfeedback.PostFeedback;
@@ -530,9 +524,7 @@ public class AccountFragment extends Fragment {
         // Showing Alert Message
         alertDialog.show();
 
-
     }
-
 
     public void OnClick() {
 
@@ -542,18 +534,6 @@ public class AccountFragment extends Fragment {
                 ShowFeedBackPopUp();
             }
         });
-
-
-        binding.tvPaymentMethod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, ActivityAddCard.class);
-                context.startActivity(i);
-
-            }
-        });
-
 
         binding.rvNameProfilepic.setOnClickListener(new View.OnClickListener() {
             @Override

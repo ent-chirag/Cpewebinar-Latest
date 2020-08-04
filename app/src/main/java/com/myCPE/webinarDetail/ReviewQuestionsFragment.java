@@ -1,7 +1,6 @@
 package com.myCPE.webinarDetail;
 
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ import android.view.ViewGroup;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.activity.ActivityReviewQuestion;
-import com.myCPE.adapter.ReviewQuestionAdapter;
 import com.myCPE.databinding.FragmentReviewQuestionsBinding;
 import com.myCPE.model.review_question.ReviewQuestionsItem;
 import com.myCPE.model.review_question.Review_Question;
@@ -29,7 +26,6 @@ import com.myCPE.webservice.ApiUtilsNew;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -37,7 +33,6 @@ import rx.schedulers.Schedulers;
 
 import static com.myCPE.utility.Constant.arraylistselectedquestionreview;
 import static com.myCPE.utility.Constant.arraylistselectedreviewanswerreview;
-import static com.myCPE.utility.Constant.failure_message;
 
 public class ReviewQuestionsFragment extends Fragment implements View.OnClickListener {
 

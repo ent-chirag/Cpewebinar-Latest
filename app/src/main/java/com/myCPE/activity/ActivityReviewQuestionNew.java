@@ -7,7 +7,6 @@ import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -15,16 +14,13 @@ import android.widget.Toast;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.adapter.ReviewQuestionAdapter;
 import com.myCPE.databinding.ActivityReviewQuestionNew1Binding;
-import com.myCPE.databinding.ActivityReviewQuestionNewBinding;
 import com.myCPE.model.SubmitReviewAnswer.SubmitAnswerModel;
 import com.myCPE.model.review_question.ReviewQuestionsItem;
 import com.myCPE.model.review_question.Review_Question;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
-import com.myCPE.view.SimpleDividerItemDecoration;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
 
@@ -50,7 +46,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     private static final String TAG = ActivityReviewQuestionNew.class.getName();
     public Context context;
 
-    public ReviewQuestionAdapter adapter;
+//    public ReviewQuestionAdapter adapter;
     private static ActivityReviewQuestionNew instance;
     public int webinar_id = 0;
     public String webinar_type = "";

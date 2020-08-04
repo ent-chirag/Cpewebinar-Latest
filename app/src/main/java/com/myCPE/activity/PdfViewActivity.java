@@ -29,7 +29,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityPdfviewBinding;
 import com.myCPE.databinding.ActivityPdfviewNewBinding;
 import com.myCPE.utility.Constant;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;

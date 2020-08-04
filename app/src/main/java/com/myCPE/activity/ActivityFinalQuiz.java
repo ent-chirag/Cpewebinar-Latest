@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.FinalQuizAdapter;
-import com.myCPE.databinding.ActivityFinalQuizBinding;
 import com.myCPE.databinding.ActivityFinalQuizNewBinding;
 import com.myCPE.model.final_Quiz.FinalQuizQuestionsItem;
 import com.myCPE.model.final_Quiz.Final_Quiz;
@@ -65,7 +64,7 @@ public class ActivityFinalQuiz extends AppCompatActivity implements View.OnClick
     LinearLayoutManager linearLayoutManager;
     private APIService mAPIService;
     ProgressDialog progressDialog;
-    private static final String TAG = ActivityReviewQuestion.class.getName();
+//    private static final String TAG = ActivityReviewQuestion.class.getName();
     public Context context;
     public int webinar_id = 0;
     public FinalQuizAdapter adapter;

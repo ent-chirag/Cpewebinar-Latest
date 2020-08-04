@@ -16,7 +16,6 @@ import android.view.inputmethod.EditorInfo;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
-import com.myCPE.databinding.ActivityContactUsBinding;
 import com.myCPE.databinding.ActivityContactUsNewBinding;
 import com.myCPE.model.getcontactusinfo.GetContactUsInfo;
 import com.myCPE.model.postcontactus.PostContactQuery;

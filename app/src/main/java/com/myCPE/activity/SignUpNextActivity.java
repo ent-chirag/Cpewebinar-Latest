@@ -11,7 +11,6 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.chip.Chip;
 import android.support.design.chip.ChipGroup;
@@ -24,26 +23,20 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.AdditionalQualificationPopUpAdapter;
-import com.myCPE.adapter.PopupSingleItemSelectionAdapter;
 import com.myCPE.adapter.PopupSingleItemSelectionIndustryAdapter;
 import com.myCPE.adapter.PopupSingleItemSelectionJobTitleAdapter;
 import com.myCPE.adapter.ProffesionalCredentialPopUpAdapter;
-import com.myCPE.databinding.ActivitySignupNextBinding;
 import com.myCPE.databinding.ActivitySignupNextNewLayoutBinding;
 import com.myCPE.model.Job_title.JobTitleItem;
 import com.myCPE.model.Job_title.ModelJobTitle;
@@ -73,7 +66,6 @@ import rx.schedulers.Schedulers;
 
 public class SignUpNextActivity extends AppCompatActivity {
 
-    //    ActivitySignupNextBinding binding;
     ActivitySignupNextNewLayoutBinding binding;
 
     private APIService mAPIService_new;
