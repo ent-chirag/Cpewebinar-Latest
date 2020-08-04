@@ -153,7 +153,7 @@
         <activity
             android:name=".activity.NotificationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.MaterialFullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
         <activity
             android:name=".activity.TestimonialActivity"
             android:screenOrientation="portrait"

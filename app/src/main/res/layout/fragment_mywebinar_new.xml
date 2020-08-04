@@ -282,16 +282,16 @@
                 android:scrollbars="vertical" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <com.myCPE.view.CustomTextView
+        <TextView
             android:id="@+id/tv_nodatafound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/whitney_semibold"
             android:text="@string/no_data_found"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
-            android:visibility="gone"
-            app:font_text="Montserrat-Medium.ttf" />
+            android:visibility="gone" />
 
         <FrameLayout
             android:layout_width="match_parent"
