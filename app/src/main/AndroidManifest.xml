@@ -69,7 +69,7 @@
         <activity
             android:name=".activity.ActivityEvolutionForm"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
         <activity
             android:name=".activity.ActivityFinalQuiz"
             android:screenOrientation="portrait"

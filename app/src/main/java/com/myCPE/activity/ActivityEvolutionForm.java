@@ -55,31 +55,17 @@ public class ActivityEvolutionForm extends AppCompatActivity {
             Screen = intent.getStringExtra(getResources().getString(R.string.screen));
         }
 
+        binding.relImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPress();
+            }
+        });
 
         binding.ivback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (Screen.equalsIgnoreCase(getResources().getString(R.string.mywebinar))) {
-                    Intent i = new Intent(ActivityEvolutionForm.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                    finish();
-                } else if (Screen.equalsIgnoreCase(getResources().getString(R.string.favroitescreen))) {
-                    Intent i = new Intent(ActivityEvolutionForm.this, ActivityFavorite.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                    finish();
-                } else {
-                    Intent i = new Intent(ActivityEvolutionForm.this, WebinarDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
-                    i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                    finish();
-                }
-
-
+                backPress();
             }
         });
 
@@ -88,6 +74,27 @@ public class ActivityEvolutionForm extends AppCompatActivity {
             GetEvaluationForm();
         } else {
             Snackbar.make(binding.ivback, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    private void backPress() {
+        if (Screen.equalsIgnoreCase(getResources().getString(R.string.mywebinar))) {
+            Intent i = new Intent(ActivityEvolutionForm.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            finish();
+        } else if (Screen.equalsIgnoreCase(getResources().getString(R.string.favroitescreen))) {
+            Intent i = new Intent(ActivityEvolutionForm.this, ActivityFavorite.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            finish();
+        } else {
+            Intent i = new Intent(ActivityEvolutionForm.this, WebinarDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+            i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            finish();
         }
     }
 
