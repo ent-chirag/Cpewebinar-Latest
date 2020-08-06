@@ -95,7 +95,7 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             }
         });
 
-        webinar_id = Integer.parseInt(Constant.webinar_id);
+//        webinar_id = Integer.parseInt(Constant.webinar_id);
 
         binding.relNextSubmit.setOnClickListener(this);
         binding.relPrev.setOnClickListener(this);

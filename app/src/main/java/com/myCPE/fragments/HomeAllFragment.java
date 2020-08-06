@@ -1225,31 +1225,30 @@ public class HomeAllFragment extends Fragment {
         binding.btnTopics.setBackgroundResource(R.drawable.tag_unselected);
         binding.btnTopics.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
-        SubjectAreaFilter = "";
+        if(!SubjectAreaFilter.equalsIgnoreCase("")) {
+            SubjectAreaFilter = "";
 
-        if (Constant.isNetworkAvailable(context)) {
-            GetTopics();
-        } else {
-            Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-        }
+            if (Constant.isNetworkAvailable(context)) {
+                GetTopics();
+            } else {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            }
 
-        Constant.arraylistselectedsubjectareahomeID.clear();
-        Constant.hashmap_subject_home_area.clear();
+            Constant.arraylistselectedsubjectareahomeID.clear();
+            Constant.hashmap_subject_home_area.clear();
 
-        start = 0;
-        limit = 10;
-        loading = true;
+            start = 0;
+            limit = 10;
+            loading = true;
 
-
-        if (Constant.isNetworkAvailable(context)) {
-            progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-            GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
-        } else {
-            Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            if (Constant.isNetworkAvailable(context)) {
+                progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                GetHomeListNew(Constant.webinartype, SubjectAreaFilter, Constant.search, Constant.price_filter, Constant.date_filter, Constant.is_cpd, "", start, limit);
+            } else {
+                Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            }
         }
     }
-
-    ;
 
     public void checkTopics() {
         Log.e("*+*+*", "HomeAllFragment Size for arraylistselectedsubjectareahomeID : " + Constant.arraylistselectedsubjectareahomeID.size());
@@ -1312,7 +1311,7 @@ public class HomeAllFragment extends Fragment {
 
                 // Write your code here to invoke YES event
                 dialog.cancel();
-                getActivity().finish();
+                getActivity().finishAffinity();
                 System.exit(0);
 
 

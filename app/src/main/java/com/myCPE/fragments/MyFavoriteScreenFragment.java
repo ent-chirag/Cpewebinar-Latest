@@ -243,7 +243,7 @@ public class MyFavoriteScreenFragment extends Fragment {
 
                 // Write your code here to invoke YES event
                 dialog.cancel();
-                getActivity().finish();
+                getActivity().finishAffinity();
                 System.exit(0);
 
 

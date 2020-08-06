@@ -352,7 +352,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     private ImageView ivprofilepictureCompany;
 
     // Testimonials Components..
-    private TextView tv_view_more_testimonial;
+    private TextView tv_view_more_testimonial, tv_no_testimonial;
     private LinearLayout lv_testimonial_set;
 
     // Others Components..
@@ -847,6 +847,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         // Testimonials Components..
         tv_view_more_testimonial = (TextView) findViewById(R.id.tv_view_more_testimonial);
+        tv_no_testimonial = (TextView) findViewById(R.id.tv_no_testimonial);
         lv_testimonial_set = (LinearLayout) findViewById(R.id.lv_testimonial_set);
 
         // Others Components..
@@ -3410,6 +3411,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             }
 
             lv_testimonial_set.setVisibility(View.VISIBLE);
+            tv_no_testimonial.setVisibility(View.GONE);
 
             for (int i = 0; i < webinartestimonial.size(); i++) {
 
@@ -3484,6 +3486,8 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             }
         } else {
             lv_testimonial_set.setVisibility(View.GONE);
+            tv_view_more_testimonial.setVisibility(View.GONE);
+            tv_no_testimonial.setVisibility(View.VISIBLE);
         }
 
         tv_view_more_testimonial.setOnClickListener(new View.OnClickListener() {
