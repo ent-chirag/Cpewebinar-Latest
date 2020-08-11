@@ -124,6 +124,7 @@ public class Constant {
 
     public static ArrayList<String> arraylistselectedanswerfinal = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionfinal = new ArrayList<Integer>();
+    public static boolean isFromDeepLink;
 
 
     public static boolean isNetworkAvailable(Context con) {

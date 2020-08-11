@@ -12,6 +12,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
@@ -21,6 +24,8 @@ import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
+
+import java.util.List;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -39,6 +44,10 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getName();
     private String update_msg = "";
 
+    private String webinar_id_dl = "";
+    private String webinar_type_dl = "";
+    private String redirect_dl = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,47 @@ public class SplashActivity extends AppCompatActivity {
         Constant.isCpdSelected = false;
         Constant.is_cpd = 0;
         Constant.isFromCSPast = false;
+
+        // URL that we are getting is
+        // As of now we are just thinking about the live and self_study webinars..
+        // https://my-cpe.com/v2/dl/webinar_id:1423/webinar_type:live/mycpe://webinardetailsview
+        // https://my-cpe.com/v2/dl/webinar_id:1423/webinar_type:self_study/mycpe://webinardetailsview
+        Intent intent = getIntent();
+        Uri uri = intent.getData();
+        if (uri != null) {
+            List<String> params = uri.getPathSegments();
+
+            String webinar_id_part = params.get(2);
+            String webinar_type_part = params.get(3);
+            redirect_dl = params.get(params.size() - 1);
+
+            String[] arr_webinar_id = webinar_id_part.split(":");
+            Log.e("*+*+*", "Size for arr_webinar_id : " + arr_webinar_id.length);
+            if (arr_webinar_id.length > 1) {
+                webinar_id_dl = arr_webinar_id[1];
+                Log.e("*+*+*", "Data after webinar_id : " + webinar_id_dl);
+            }
+
+            String[] arr_webinar_type = webinar_type_part.split(":");
+            if (arr_webinar_type.length > 1) {
+                webinar_type_dl = arr_webinar_type[1];
+                Log.e("*+*+*", "Data after webinar_type : " + webinar_type_dl);
+            }
+
+            Log.e("*+*+*", "Data after redirect dl : " + redirect_dl);
+
+            Constant.isFromDeepLink = true;
+
+        }
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        int height = displayMetrics.heightPixels;
+//        int width = displayMetrics.widthPixels;
+
+        Constant.progWidth = displayMetrics.widthPixels;
+//        Constant.progHeigth = (float) (Constant.progWidth/1.69);
+        Constant.progHeigth = (float) (Constant.progWidth / 2);
 
 //        DisplayVersionName();
 
@@ -231,24 +281,90 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void newNavigation() {
-        if (getIntent().getExtras() != null && getIntent().hasExtra(getResources().getString(R.string.pass_webinar_id))) {
-            webinar_type = getIntent().getExtras().getString(getResources().getString(R.string.pass_webinar_type));
-            webinar_id = getIntent().getExtras().getInt(getResources().getString(R.string.pass_webinar_id), 0);
+        if (Constant.isFromDeepLink) {
+            Log.e("*+*+*", "Is from Deeplink : " + Constant.isFromDeepLink);
+            if (redirect_dl.equalsIgnoreCase("")) {
+                Constant.isFromDeepLink = false;
+                Log.e("*+*+*", "Data after newNavigation method Oops something went wrong");
+                Toast.makeText(context, "Oops something went wrong with the link", Toast.LENGTH_SHORT).show();
 
-            try {
-                Intent mIntent;
-                mIntent = new Intent(SplashActivity.this, WebinarDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mIntent.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
-                mIntent.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
-                mIntent.putExtra(getResources().getString(R.string.str_is_notification), true);
-                mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(mIntent);
-            } catch (Exception e) {
-                e.printStackTrace();
+                if (!AppSettings.get_login_token(context).isEmpty()) {
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            } else {
+                if (redirect_dl.equalsIgnoreCase("webinardetailsview")) {
+                    // Here we need to redirect user to the webinar details screen..
+                    // Based on the webinar type live or self-study..
+                    if (webinar_id_dl.equalsIgnoreCase("") || webinar_type_dl.equalsIgnoreCase("")) {
+                        Log.e("*+*+*", "Data after newNavigation method Oops something went wrong");
+                        Toast.makeText(context, "Oops something went wrong with the link", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (!AppSettings.get_login_token(context).isEmpty()) {
+                            Log.e("*+*+*", "Data after point 5");
+                            try {
+                                Log.e("*+*+*", "Data after point 6");
+                                webinar_type = webinar_type_dl;
+                                webinar_id = Integer.parseInt(webinar_id_dl);
 
+                                Intent mIntent;
+                                mIntent = new Intent(SplashActivity.this, WebinarDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                mIntent.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                                mIntent.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                                mIntent.putExtra(getResources().getString(R.string.str_is_notification), true);
+                                mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(mIntent);
+                            } catch (Exception e) {
+                                Log.e("*+*+*", "Data after point 7");
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Log.e("*+*+*", "Data after point 8");
+                            Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    }
+                } else {
+                    // As we don't have the logic for redirecting to the specific page..
+                    // So based on the default condition we have to check for the user is logged in or not..
+                    // Then have to redirect to either listing screen or Prelogin screen..
+
+                    if (!AppSettings.get_login_token(context).isEmpty()) {
+                        Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }
             }
-
         } else {
+            if (getIntent().getExtras() != null && getIntent().hasExtra(getResources().getString(R.string.pass_webinar_id))) {
+                webinar_type = getIntent().getExtras().getString(getResources().getString(R.string.pass_webinar_type));
+                webinar_id = getIntent().getExtras().getInt(getResources().getString(R.string.pass_webinar_id), 0);
+
+                try {
+                    Intent mIntent;
+                    mIntent = new Intent(SplashActivity.this, WebinarDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mIntent.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
+                    mIntent.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
+                    mIntent.putExtra(getResources().getString(R.string.str_is_notification), true);
+                    mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(mIntent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
+            } else {
 
             /*if (!AppSettings.get_walkthrough(context)) {
 
@@ -257,18 +373,19 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
 
             } else {*/
-            if (!AppSettings.get_login_token(context).isEmpty()) {
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            } else {
-                Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
-                startActivity(i);
-                finish();
-            }
+                if (!AppSettings.get_login_token(context).isEmpty()) {
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
 //            }
 
 
+            }
         }
     }
 }
