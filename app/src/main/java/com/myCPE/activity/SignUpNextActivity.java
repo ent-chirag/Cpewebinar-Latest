@@ -231,8 +231,21 @@ public class SignUpNextActivity extends AppCompatActivity {
                     }
 
                     if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
-                        binding.professionalCredential.setVisibility(View.GONE);
+//                        binding.professionalCredential.setVisibility(View.GONE);
+                        binding.professionalCredential.setTextColor(getResources().getColor(R.color.black));
                         binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+                        binding.chipGroupProfCreds.setVisibility(View.VISIBLE);
+
+                        binding.chipGroupProfCreds.removeAllViews();
+
+                        for (String chipText: Constant.arraylistselectedproffesionalcredential){
+                            Chip lChip = new Chip(SignUpNextActivity.this);
+                            lChip.setText(chipText);
+                            lChip.setTextColor(getResources().getColor(R.color.White));
+                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_btn_orange));
+                            binding.chipGroupProfCreds.addView(lChip);
+                        }
+
                         binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
                         binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
                         if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
@@ -246,6 +259,7 @@ public class SignUpNextActivity extends AppCompatActivity {
                     } else {
                         binding.professionalCredential.setVisibility(View.VISIBLE);
                         binding.lvProfessionalCredential.setVisibility(View.GONE);
+                        binding.chipGroupProfCreds.setVisibility(View.GONE);
                         binding.tvProfessionalCredential.setVisibility(View.GONE);
                         binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
                     }
@@ -612,6 +626,13 @@ public class SignUpNextActivity extends AppCompatActivity {
         });
 
         binding.lvProfessionalCredential.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowProfessionalCredsNew();
+            }
+        });
+
+        binding.imgAddProfCreds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowProfessionalCredsNew();

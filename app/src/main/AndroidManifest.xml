@@ -119,7 +119,7 @@
         <activity
             android:name=".activity.SignUpNextActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.DarkActionBarWhite"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
             android:name=".activity.TopicsOfInterestActivity"

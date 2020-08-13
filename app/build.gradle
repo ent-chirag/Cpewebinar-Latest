@@ -130,5 +130,6 @@ dependencies {
 //    implementation 'es.voghdev.pdfviewpager:library:1.0.6'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+//    implementation 'com.google.android.material:material:1.2.0'
 }
 apply plugin: 'com.google.gms.google-services'
