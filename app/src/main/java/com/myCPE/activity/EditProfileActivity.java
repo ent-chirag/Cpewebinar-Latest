@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.chip.Chip;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -188,7 +189,7 @@ public class EditProfileActivity extends AppCompatActivity {
     PopupSingleItemSelectionCityEditAdapter mAdapterCity;
     PopupSingleItemSelectionJobTitleEditAdapter mAdapterJobTitle;
     PopupSingleItemSelectionIndustryEditAdapter mAdapterIndustry;
-//    ProffesionalCredentialPopUpAdapter proffesionalCredentialPopUpAdapter;
+    //    ProffesionalCredentialPopUpAdapter proffesionalCredentialPopUpAdapter;
     ProffesionalCredentialEditPopUpAdapter proffesionalCredentialPopUpAdapter;
     AdditionalQualificationEditPopUpAdapter additionalQualificationPopUpAdapter;
 
@@ -271,6 +272,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
         binding.tvEditHeader.setText(context.getResources().getString(R.string.str_header_profile));
         binding.relbottom.setVisibility(View.GONE);
+        binding.imgAddProfCreds.setVisibility(View.GONE);
+        binding.imgAddAdditionalQualification.setVisibility(View.GONE);
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
@@ -548,6 +551,19 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        binding.imgAddProfCreds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    ShowProffesionlCredentialPopup();
+                } else {
+                    binding.professionalCredential.setFocusable(false);
+                    binding.professionalCredential.setFocusableInTouchMode(false);
+                    binding.professionalCredential.setClickable(false);
+                }
+            }
+        });
+
         binding.lvProfessionalCredential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -564,10 +580,10 @@ public class EditProfileActivity extends AppCompatActivity {
         binding.relBottomPopupSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(intPopupNumber == 1) {
+                if (intPopupNumber == 1) {
                     ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedproffesionalcredentialID));
 
-                    Log.e("*+*+*","Prof creds selected are : "+Constant.arraylistselectedproffesionalcredential.toString());
+                    Log.e("*+*+*", "Prof creds selected are : " + Constant.arraylistselectedproffesionalcredential.toString());
 
                     if (myArrayList.size() > 0) {
                         binding.relCountryView.setVisibility(View.GONE);
@@ -594,7 +610,21 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
                         binding.professionalCredential.setVisibility(View.GONE);
-                        binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+//                        binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+                        binding.chipGroupProfCreds.setVisibility(View.VISIBLE);
+
+                        binding.chipGroupProfCreds.removeAllViews();
+
+                        for (String chipText : Constant.arraylistselectedproffesionalcredential) {
+                            Chip lChip = new Chip(EditProfileActivity.this);
+                            lChip.setText(chipText);
+                            lChip.setTextColor(getResources().getColor(R.color.black_full));
+                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                            lChip.setTextAppearance(R.style.chiptext);
+                            lChip.setChipCornerRadius(17);
+                            binding.chipGroupProfCreds.addView(lChip);
+                        }
+
                         binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
                         binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
                         if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
@@ -611,7 +641,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         binding.tvProfessionalCredential.setVisibility(View.GONE);
                         binding.tvProfessionalCredentialMore.setVisibility(View.GONE);
                     }
-                } else if(intPopupNumber == 2) {
+                } else if (intPopupNumber == 2) {
                     // This is for the addidtional qualification..
                     ArrayList<Integer> myArrayList = new ArrayList<Integer>(new LinkedHashSet<Integer>(Constant.arraylistselectedadditionalqualificationID));
 
@@ -644,7 +674,20 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     if (Constant.arraylistselectedadditionalqualification.size() > 0) {
                         binding.additionalQualification.setVisibility(View.GONE);
-                        binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+//                        binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.chipGroupAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.chipGroupAdditionalQualification.removeAllViews();
+
+                        for (String chipText : Constant.arraylistselectedadditionalqualification) {
+                            Chip lChip = new Chip(EditProfileActivity.this);
+                            lChip.setText(chipText);
+                            lChip.setTextColor(getResources().getColor(R.color.black_full));
+                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                            lChip.setTextAppearance(R.style.chiptext);
+                            lChip.setChipCornerRadius(17);
+                            binding.chipGroupAdditionalQualification.addView(lChip);
+                        }
+
                         binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
                         binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
                         if (Constant.arraylistselectedadditionalqualification.size() > 1) {
@@ -681,6 +724,15 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
         binding.additionalQualification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isDetailsEditable) {
+                    ShowAdditionalQualification();
+                }
+            }
+        });
+
+        binding.imgAddAdditionalQualification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isDetailsEditable) {
@@ -754,6 +806,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 binding.tvEditHeader.setText(context.getResources().getString(R.string.edit_profile_header));
                 binding.relbottom.setVisibility(View.VISIBLE);
+                binding.imgAddProfCreds.setVisibility(View.VISIBLE);
+                binding.imgAddAdditionalQualification.setVisibility(View.VISIBLE);
 
                 if (ptin_number.equalsIgnoreCase("")) {
                     binding.edtPtinNumber.setText(prefix);
@@ -1619,7 +1673,22 @@ public class EditProfileActivity extends AppCompatActivity {
 
         if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
             binding.professionalCredential.setVisibility(View.GONE);
-            binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+//            binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+
+            binding.chipGroupProfCreds.setVisibility(View.VISIBLE);
+
+            binding.chipGroupProfCreds.removeAllViews();
+
+            for (String chipText : Constant.arraylistselectedproffesionalcredential) {
+                Chip lChip = new Chip(EditProfileActivity.this);
+                lChip.setText(chipText);
+                lChip.setTextColor(getResources().getColor(R.color.black_full));
+                lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                lChip.setTextAppearance(R.style.chiptext);
+                lChip.setChipCornerRadius(17);
+                binding.chipGroupProfCreds.addView(lChip);
+            }
+
             binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
             binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
             if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
@@ -1670,7 +1739,19 @@ public class EditProfileActivity extends AppCompatActivity {
 
         if (Constant.arraylistselectedadditionalqualification.size() > 0) {
             binding.additionalQualification.setVisibility(View.GONE);
-            binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+//            binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+            binding.chipGroupAdditionalQualification.setVisibility(View.VISIBLE);
+            binding.chipGroupAdditionalQualification.removeAllViews();
+
+            for (String chipText : Constant.arraylistselectedadditionalqualification) {
+                Chip lChip = new Chip(EditProfileActivity.this);
+                lChip.setText(chipText);
+                lChip.setTextColor(getResources().getColor(R.color.black_full));
+                lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                lChip.setTextAppearance(R.style.chiptext);
+                lChip.setChipCornerRadius(17);
+                binding.chipGroupAdditionalQualification.addView(lChip);
+            }
             binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
             binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
             if (Constant.arraylistselectedadditionalqualification.size() > 1) {

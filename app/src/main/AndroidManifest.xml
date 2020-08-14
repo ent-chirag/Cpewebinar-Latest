@@ -94,7 +94,7 @@
         <activity
             android:name=".activity.EditProfileActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.DarkActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.LoginActivity"

@@ -941,13 +941,27 @@
 
                 <!--</android.support.design.widget.TextInputLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="@string/str_profestional_credential"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_profestional_credential"
+                        android:textSize="@dimen/_13sdp"
+                        android:textColor="@color/black_full"
+                        android:fontFamily="@font/whitney_semibold" />
+
+                    <ImageView
+                        android:id="@+id/imgAddProfCreds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_tag_svg"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/professional_credential"
@@ -1015,13 +1029,37 @@
 
                 </LinearLayout>
 
-                <TextView
+                <android.support.design.chip.ChipGroup
+                    android:id="@+id/chipGroupProfCreds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="@string/str_additional_qualification"
-                    android:textSize="@dimen/_10sdp"
-                    android:fontFamily="@font/whitney_semibold" />
+                    android:layout_below="@+id/professional_credential"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_minus30sdp"
+                    android:minHeight="@dimen/_50sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_additional_qualification"
+                        android:textSize="@dimen/_13sdp"
+                        android:textColor="@color/black_full"
+                        android:fontFamily="@font/whitney_semibold" />
+
+                    <ImageView
+                        android:id="@+id/imgAddAdditionalQualification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_tag_svg"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/additional_qualification"
@@ -1035,6 +1073,16 @@
                     android:textColorHint="@color/edit_field_hint"
                     android:textSize="@dimen/_14sdp"
                     android:fontFamily="@font/whitney_semibold" />
+
+                <android.support.design.chip.ChipGroup
+                    android:id="@+id/chipGroupAdditionalQualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/professional_credential"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_minus30sdp"
+                    android:minHeight="@dimen/_50sdp" />
 
                 <LinearLayout
                     android:id="@+id/lv_additional_qualification"
