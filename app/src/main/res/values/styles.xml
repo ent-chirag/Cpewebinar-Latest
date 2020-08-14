@@ -61,6 +61,11 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">false</item>
     </style>
+    
+    <style name="chiptext" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">@dimen/_13sdp</item>
+        <item name="android:fontFamily">@font/whitney_semibold</item>
+    </style>
 
 
 </resources>

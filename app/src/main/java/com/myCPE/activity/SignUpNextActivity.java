@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -233,7 +234,7 @@ public class SignUpNextActivity extends AppCompatActivity {
                     if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
 //                        binding.professionalCredential.setVisibility(View.GONE);
                         binding.professionalCredential.setTextColor(getResources().getColor(R.color.black));
-                        binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+//                        binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
                         binding.chipGroupProfCreds.setVisibility(View.VISIBLE);
 
                         binding.chipGroupProfCreds.removeAllViews();
@@ -241,8 +242,10 @@ public class SignUpNextActivity extends AppCompatActivity {
                         for (String chipText: Constant.arraylistselectedproffesionalcredential){
                             Chip lChip = new Chip(SignUpNextActivity.this);
                             lChip.setText(chipText);
-                            lChip.setTextColor(getResources().getColor(R.color.White));
-                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_btn_orange));
+                            lChip.setTextColor(getResources().getColor(R.color.black_full));
+                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                            lChip.setTextAppearance(R.style.chiptext);
+                            lChip.setChipCornerRadius(17);
                             binding.chipGroupProfCreds.addView(lChip);
                         }
 
@@ -295,8 +298,21 @@ public class SignUpNextActivity extends AppCompatActivity {
                     }
 
                     if (Constant.arraylistselectedadditionalqualification.size() > 0) {
-                        binding.additionalQualification.setVisibility(View.GONE);
-                        binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.additionalQualification.setVisibility(View.VISIBLE);
+                        binding.additionalQualification.setTextColor(getResources().getColor(R.color.black_full));
+//                        binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.chipGroupAdditionalQualification.setVisibility(View.VISIBLE);
+                        binding.chipGroupAdditionalQualification.removeAllViews();
+
+                        for (String chipText: Constant.arraylistselectedadditionalqualification){
+                            Chip lChip = new Chip(SignUpNextActivity.this);
+                            lChip.setText(chipText);
+                            lChip.setTextColor(getResources().getColor(R.color.black_full));
+                            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                            lChip.setTextAppearance(R.style.chiptext);
+                            lChip.setChipCornerRadius(17);
+                            binding.chipGroupAdditionalQualification.addView(lChip);
+                        }
                         binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
                         binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
                         if (Constant.arraylistselectedadditionalqualification.size() > 1) {
@@ -619,6 +635,13 @@ public class SignUpNextActivity extends AppCompatActivity {
         });
 
         binding.additionalQualification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowAdditionalQualificationNew();
+            }
+        });
+
+        binding.imgAddAdditionalQualification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowAdditionalQualificationNew();
@@ -972,7 +995,7 @@ public class SignUpNextActivity extends AppCompatActivity {
 
                 if (Constant.arraylistselectedproffesionalcredential.size() > 0) {
                     binding.professionalCredential.setVisibility(View.GONE);
-                    binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
+//                    binding.lvProfessionalCredential.setVisibility(View.VISIBLE);
                     binding.tvProfessionalCredential.setVisibility(View.VISIBLE);
                     binding.tvProfessionalCredential.setText(Constant.arraylistselectedproffesionalcredential.get(0));
                     if (Constant.arraylistselectedproffesionalcredential.size() > 1) {
@@ -1134,7 +1157,20 @@ public class SignUpNextActivity extends AppCompatActivity {
 
                 if (Constant.arraylistselectedadditionalqualification.size() > 0) {
                     binding.additionalQualification.setVisibility(View.GONE);
-                    binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+//                    binding.lvAdditionalQualification.setVisibility(View.VISIBLE);
+                    binding.chipGroupAdditionalQualification.setVisibility(View.VISIBLE);
+
+                    binding.chipGroupAdditionalQualification.removeAllViews();
+
+                    for (String chipText: Constant.arraylistselectedadditionalqualification){
+                        Chip lChip = new Chip(SignUpNextActivity.this);
+                        lChip.setText(chipText);
+                        lChip.setTextColor(getResources().getColor(R.color.black_full));
+                        lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.color_rounded_grayblue));
+                        lChip.setTextAppearance(R.style.chiptext);
+                        lChip.setChipCornerRadius(17);
+                        binding.chipGroupAdditionalQualification.addView(lChip);
+                    }
                     binding.tvAdditionalQualification.setVisibility(View.VISIBLE);
                     binding.tvAdditionalQualification.setText(Constant.arraylistselectedadditionalqualification.get(0));
                     if (Constant.arraylistselectedadditionalqualification.size() > 1) {
