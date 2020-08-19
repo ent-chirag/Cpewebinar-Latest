@@ -68,27 +68,28 @@ public class SplashActivity extends AppCompatActivity {
         if (uri != null) {
             List<String> params = uri.getPathSegments();
 
-            String webinar_id_part = params.get(2);
-            String webinar_type_part = params.get(3);
-            redirect_dl = params.get(params.size() - 1);
+            if(params.size()>2) {
+                String webinar_id_part = params.get(2);
+                String webinar_type_part = params.get(3);
+                redirect_dl = params.get(params.size() - 1);
 
-            String[] arr_webinar_id = webinar_id_part.split(":");
-            Log.e("*+*+*", "Size for arr_webinar_id : " + arr_webinar_id.length);
-            if (arr_webinar_id.length > 1) {
-                webinar_id_dl = arr_webinar_id[1];
-                Log.e("*+*+*", "Data after webinar_id : " + webinar_id_dl);
+                String[] arr_webinar_id = webinar_id_part.split(":");
+                Log.e("*+*+*", "Size for arr_webinar_id : " + arr_webinar_id.length);
+                if (arr_webinar_id.length > 1) {
+                    webinar_id_dl = arr_webinar_id[1];
+                    Log.e("*+*+*", "Data after webinar_id : " + webinar_id_dl);
+                }
+
+                String[] arr_webinar_type = webinar_type_part.split(":");
+                if (arr_webinar_type.length > 1) {
+                    webinar_type_dl = arr_webinar_type[1];
+                    Log.e("*+*+*", "Data after webinar_type : " + webinar_type_dl);
+                }
+
+                Log.e("*+*+*", "Data after redirect dl : " + redirect_dl);
+
+                Constant.isFromDeepLink = true;
             }
-
-            String[] arr_webinar_type = webinar_type_part.split(":");
-            if (arr_webinar_type.length > 1) {
-                webinar_type_dl = arr_webinar_type[1];
-                Log.e("*+*+*", "Data after webinar_type : " + webinar_type_dl);
-            }
-
-            Log.e("*+*+*", "Data after redirect dl : " + redirect_dl);
-
-            Constant.isFromDeepLink = true;
-
         }
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
