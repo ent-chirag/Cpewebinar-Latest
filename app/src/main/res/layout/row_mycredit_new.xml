@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/morerounded_bg_gray_blue">
+        android:background="@drawable/morerounded_bg_gray_blue"
+        android:layout_marginRight="@dimen/_2sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +69,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_160sdp"
+                    android:layout_toRightOf="@+id/tv_speaker_name"
+                    android:layout_marginLeft="@dimen/_20sdp"
                     android:text="June 18"
                     android:textColor="@color/my_credit_header_email_id"
                     android:textSize="@dimen/_13sdp"
