@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -118,6 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         final Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide_up_new);
+        final Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -292,7 +294,16 @@ public class SignUpActivity extends AppCompatActivity {
         binding.txtPopupCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.relCountryView.setVisibility(View.GONE);
+//                binding.relCountryView.setVisibility(View.GONE);
+                binding.linPopup.startAnimation(slide_down);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.relCountryView.setVisibility(View.GONE);
+                    }
+                },499);
+
             }
         });
 
