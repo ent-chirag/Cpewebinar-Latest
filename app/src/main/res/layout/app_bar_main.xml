@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +10,9 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/include_layout"
+        android:layout_marginBottom="@dimen/_minus20sdp">
 
     </FrameLayout>
 
@@ -25,8 +27,10 @@
 
 
     <include
+        android:id="@+id/include_layout"
         layout="@layout/bottombar_layout_new"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="@dimen/_75sdp"
+        android:layout_alignParentBottom="true"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

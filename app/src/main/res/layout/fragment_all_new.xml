@@ -334,14 +334,13 @@
             android:id="@+id/swipeRefreshLayouthome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/scrollview">
+            android:layout_below="@+id/scrollview"
+            android:layout_above="@+id/progressBar">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvhome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingBottom="@dimen/_70sdp"
                 android:scrollbars="vertical" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -357,23 +356,29 @@
             android:textSize="@dimen/_12sdp"
             android:visibility="gone" />
 
-        <FrameLayout
+        <!--<FrameLayout
+            android:id="@+id/frmLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true">
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="@dimen/_10sdp"
+            android:clipToPadding="false">-->
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/_10sdp"
                 android:indeterminateTint="@color/theme_background"
                 android:indeterminateTintMode="src_atop"
                 android:visibility="gone" />
 
 
-        </FrameLayout>
+        <!--</FrameLayout>-->
 
         <!--<RelativeLayout
             android:id="@+id/relPopupView"
