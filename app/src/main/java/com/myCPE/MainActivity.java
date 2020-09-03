@@ -679,6 +679,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        linPopup.startAnimation(slide_up);
         relPopupView.setVisibility(View.VISIBLE);
+        linPopup.startAnimation(slide_up);
         rvPopupList.setVisibility(View.VISIBLE);
 
         rvPopupList.setHasFixedSize(true);

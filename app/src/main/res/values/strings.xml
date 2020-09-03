@@ -572,6 +572,7 @@
 
     <string name="str_upcoming">Upcoming</string>
     <string name="str_past">Past</string>
+    <string name="str_hottopics">Hot Topics</string>
     <string name="str_topics">Topics</string>
     <string name="str_live_webinar">Live Webinars</string>
     <string name="str_self_on_demand">Self-Study</string>

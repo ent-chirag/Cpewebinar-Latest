@@ -319,6 +319,13 @@ public class HomeAllFragment extends Fragment {
             }
         });
 
+        binding.btnHottopics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowTopicsPopup();
+            }
+        });
+
         binding.btnTopics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
