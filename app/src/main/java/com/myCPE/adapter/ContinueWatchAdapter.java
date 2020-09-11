@@ -66,7 +66,8 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
     private Context mContext;
     LayoutInflater mInflater;
     //    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
-    public List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList;
+//    public List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList;
+    public List<com.myCPE.model.webinar_list.RecentWebinarsItem> recentList;
     private APIService mAPIService;
     public Dialog dialogCertificate;
     public CertificatesListHomeMyWebinarPopUpAdapter certificatesListPopUpAdapter;
@@ -78,7 +79,8 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
     String join_url = "";
 
 
-    public ContinueWatchAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList) {
+//    public ContinueWatchAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList) {
+    public ContinueWatchAdapter(Context mContext, List<com.myCPE.model.webinar_list.RecentWebinarsItem> recentList) {
         this.mContext = mContext;
 //        this.mList = mList;
         this.recentList = recentList;
@@ -147,20 +149,24 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void add(com.myCPE.model.homewebinarnew.RecentWebinarItem recentWebinarItem) {
+//    public void add(com.myCPE.model.homewebinarnew.RecentWebinarItem recentWebinarItem) {
+    public void add(com.myCPE.model.webinar_list.RecentWebinarsItem recentWebinarItem) {
         recentList.add(recentWebinarItem);
         notifyItemInserted(recentList.size());
     }
 
-    public void addAll(List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentWebinarItems) {
-        for (com.myCPE.model.homewebinarnew.RecentWebinarItem mc : recentWebinarItems) {
+//    public void addAll(List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentWebinarItems) {
+    public void addAll(List<com.myCPE.model.webinar_list.RecentWebinarsItem> recentWebinarItems) {
+//        for (com.myCPE.model.homewebinarnew.RecentWebinarItem mc : recentWebinarItems) {
+        for (com.myCPE.model.webinar_list.RecentWebinarsItem mc : recentWebinarItems) {
             add(mc);
         }
     }
 
     public void addLoadingFooter() {
         isLoadingAdded = true;
-        add(new com.myCPE.model.homewebinarnew.RecentWebinarItem());
+//        add(new com.myCPE.model.homewebinarnew.RecentWebinarItem());
+        add(new com.myCPE.model.webinar_list.RecentWebinarsItem());
     }
 
     @Override

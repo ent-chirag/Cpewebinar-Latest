@@ -580,6 +580,14 @@
     <string name="str_date">Date</string>
     <string name="str_cpd">CPD</string>
 
+    // Filters for the MyWebinars..
+    <string name="str_my_completed">Completed</string>
+    <string name="str_my_upcoming">Upcoming Webinar</string>
+    <string name="str_my_selfstudy">Self Study</string>
+    <string name="str_my_pending_evaluation">Pending Evaluation</string>
+    <string name="str_my_didnt_attend">Did Not Attend</string>
+    <string name="str_my_pollmissedout">Poll Missed</string>
+
     <string name="str_premium">Premium</string>
     <string name="str_free">Free</string>
 

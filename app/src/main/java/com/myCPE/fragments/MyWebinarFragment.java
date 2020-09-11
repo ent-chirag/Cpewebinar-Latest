@@ -54,7 +54,7 @@ import rx.schedulers.Schedulers;
 import static com.myCPE.utility.Constant.arraylistselectedvalue;
 import static com.myCPE.utility.Constant.checkmywebinardotstatusset;
 
-public class MyWebinarFragment extends Fragment {
+public class MyWebinarFragment extends Fragment implements View.OnClickListener {
 
     View view;
     private FragmentMywebinarNewBinding binding;
@@ -101,6 +101,12 @@ public class MyWebinarFragment extends Fragment {
         binding.rvhomewebinar.setItemAnimator(new DefaultItemAnimator());
         binding.rvhomewebinar.setHasFixedSize(true);
 
+        binding.btnCompleted.setOnClickListener(this);
+        binding.btnSelfStudyWebinar.setOnClickListener(this);
+        binding.btnUpcomingwebinar.setOnClickListener(this);
+        binding.btnPendingEvolution.setOnClickListener(this);
+        binding.btnDidnotAttend.setOnClickListener(this);
+        binding.btnPollmissout.setOnClickListener(this);
 
         arrsavebooleanstateMyWebinar.add(0, false);
         arrsavebooleanstateMyWebinar.add(1, false);
@@ -790,4 +796,104 @@ public class MyWebinarFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_completed:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_selected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_unselected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.White));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                break;
+
+            case R.id.btn_self_study_webinar:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_selected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_unselected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.White));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                break;
+
+            case R.id.btn_upcomingwebinar:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_selected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_unselected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.White));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                break;
+
+            case R.id.btn_pending_evolution:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_selected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_unselected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.White));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                break;
+
+            case R.id.btn_didnot_attend:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_selected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_unselected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.White));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                break;
+
+            case R.id.btn_pollmissout:
+                binding.btnCompleted.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnSelfStudyWebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnUpcomingwebinar.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPendingEvolution.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnDidnotAttend.setBackgroundResource(R.drawable.tag_unselected);
+                binding.btnPollmissout.setBackgroundResource(R.drawable.tag_selected);
+
+                binding.btnCompleted.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnSelfStudyWebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnUpcomingwebinar.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+                binding.btnPollmissout.setTextColor(getResources().getColor(R.color.White));
+                break;
+        }
+    }
 }

@@ -46,6 +46,8 @@ import com.myCPE.model.homewebinarnew.RecentWebinarItem;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.model.subject_area.Subject_Area;
 import com.myCPE.model.subjects_store.Model_Subject_Area;
+import com.myCPE.model.webinar_list.RecentWebinarsItem;
+import com.myCPE.model.webinar_list.WebinarList;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
@@ -77,8 +79,10 @@ public class HomeAllFragment extends Fragment {
     private APIService mAPIService_new;
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
-    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
-    private List<com.myCPE.model.homewebinarnew.RecentWebinarItem> arrRecentlistnew = new ArrayList<RecentWebinarItem>();
+//    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
+    private List<com.myCPE.model.webinar_list.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.webinar_list.WebinarItem>();
+//    private List<com.myCPE.model.homewebinarnew.RecentWebinarItem> arrRecentlistnew = new ArrayList<RecentWebinarItem>();
+    private List<com.myCPE.model.webinar_list.RecentWebinarsItem> arrRecentlistnew = new ArrayList<RecentWebinarsItem>();
 
     public ArrayList<Model_Subject_Area> arraylistModelSubjectArea = new ArrayList<>();
 
@@ -1427,7 +1431,8 @@ public class HomeAllFragment extends Fragment {
         mAPIService_new.GetHomeWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), start, limit, subject_area, webinar_key_text,
                 filter_price, date_filter, webinartype, is_cpd, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Webinar_Home_New>() {
+//                .subscribe(new Subscriber<Webinar_Home_New>() {
+                .subscribe(new Subscriber<WebinarList>() {
                     @Override
                     public void onCompleted() {
 
@@ -1479,6 +1484,73 @@ public class HomeAllFragment extends Fragment {
                     }
 
                     @Override
+                    public void onNext(WebinarList webinar_home_new) {
+                        if (webinar_home_new.isSuccess() == true) {
+
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                    binding.swipeRefreshLayouthome.setRefreshing(false);
+                                }
+                            }
+
+                            arraylistselectedvalue.clear();
+
+
+                            islast = webinar_home_new.getPayload().isIsLast();
+
+
+                            if (start == 0 && limit == 10) {
+                                if (arrHomelistnew.size() > 0) {
+                                    arrHomelistnew.clear();
+                                }
+
+                            }
+
+
+                            if (start == 0 && limit == 10) {
+                                arrHomelistnew = webinar_home_new.getPayload().getWebinar();
+                                arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
+
+                            } else {
+
+                                if (arrHomelistnew.size() > 20) {
+                                    arrHomelistnew.remove(arrHomelistnew.size() - 1);
+                                }
+
+
+//                                List<com.myCPE.model.homewebinarnew.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+                                List<com.myCPE.model.webinar_list.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+//                                adapter.addAll(webinaritems);
+                                adapter.addAll(webinaritems);
+
+
+                            }
+
+
+                            if (arrHomelistnew.size() > 0 || arrRecentlistnew.size() > 0) {
+                                binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
+                                binding.tvNodatafound.setVisibility(View.GONE);
+                            } else {
+                                binding.swipeRefreshLayouthome.setVisibility(View.GONE);
+                                binding.tvNodatafound.setVisibility(View.VISIBLE);
+                            }
+
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                    binding.swipeRefreshLayouthome.setRefreshing(false);
+                                }
+                            }
+                            Snackbar.make(binding.rvhome, webinar_home_new.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    /*@Override
                     public void onNext(Webinar_Home_New webinar_home_new) {
 
                         if (webinar_home_new.isSuccess() == true) {
@@ -1544,7 +1616,7 @@ public class HomeAllFragment extends Fragment {
                         }
 
 
-                    }
+                    }*/
 
 
                 });
@@ -1562,7 +1634,8 @@ public class HomeAllFragment extends Fragment {
         mAPIService_new.GetHomeWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), start, limit, subject_area, webinar_key_text,
                 filter_price, date_filter, webinartype, is_cpd, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Webinar_Home_New>() {
+//                .subscribe(new Subscriber<Webinar_Home_New>() {
+                .subscribe(new Subscriber<WebinarList>() {
                     @Override
                     public void onCompleted() {
 
@@ -1620,6 +1693,73 @@ public class HomeAllFragment extends Fragment {
                     }
 
                     @Override
+                    public void onNext(WebinarList webinar_home_new) {
+                        if (webinar_home_new.isSuccess() == true) {
+
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                    binding.swipeRefreshLayouthome.setRefreshing(false);
+                                }
+                            }
+
+                            arraylistselectedvalue.clear();
+
+
+                            islast = webinar_home_new.getPayload().isIsLast();
+
+
+                            if (start == 0 && limit == 10) {
+                                if (arrHomelistnew.size() > 0) {
+                                    arrHomelistnew.clear();
+                                }
+
+                            }
+
+
+                            if (start == 0 && limit == 10) {
+                                arrHomelistnew = webinar_home_new.getPayload().getWebinar();
+                                arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
+
+                            } else {
+
+                                if (arrHomelistnew.size() > 20) {
+                                    arrHomelistnew.remove(arrHomelistnew.size() - 1);
+                                }
+
+
+//                                List<com.myCPE.model.homewebinarnew.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+                                List<com.myCPE.model.webinar_list.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+//                                adapter.addAll(webinaritems);
+                                adapter.addAll(webinaritems);
+
+
+                            }
+
+
+                            if (arrHomelistnew.size() > 0 || arrRecentlistnew.size() > 0) {
+                                binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
+                                binding.tvNodatafound.setVisibility(View.GONE);
+                            } else {
+                                binding.swipeRefreshLayouthome.setVisibility(View.GONE);
+                                binding.tvNodatafound.setVisibility(View.VISIBLE);
+                            }
+
+
+                        } else {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            } else {
+                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                    binding.swipeRefreshLayouthome.setRefreshing(false);
+                                }
+                            }
+                            Snackbar.make(binding.rvhome, webinar_home_new.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    /*@Override
                     public void onNext(Webinar_Home_New webinar_home_new) {
 
                         if (webinar_home_new.isSuccess() == true) {
@@ -1685,7 +1825,7 @@ public class HomeAllFragment extends Fragment {
                         }
 
 
-                    }
+                    }*/
 
 
                 });

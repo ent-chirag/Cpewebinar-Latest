@@ -116,11 +116,11 @@
         <HorizontalScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/view"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:scrollbars="none"
-            android:visibility="gone">
+            android:paddingTop="@dimen/_9sdp"
+            android:paddingBottom="@dimen/_9sdp"
+            android:scrollbars="none" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,79 +128,94 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_topics"
+                <TextView
+                    android:id="@+id/btn_completed"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home"
-                    android:text="@string/str_topics"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_completed"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/btn_self_study_webinar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_selfstudy"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/btn_upcomingwebinar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_selected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_upcoming"
                     android:textColor="@color/White"
-                    android:textSize="@dimen/_7sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+                    android:textSize="@dimen/_10sdp" />
 
-
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_live_webinar"
+                <TextView
+                    android:id="@+id/btn_pending_evolution"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home_unselected"
-                    android:text="@string/str_live_webinar"
-                    android:textColor="@color/home_tab_color_unselected"
-                    android:textSize="@dimen/_7sdp"
-                    app:font_edit="SFUIDisplay-Medium.ttf" />
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_pending_evaluation"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_10sdp" />
 
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_self_study"
+                <TextView
+                    android:id="@+id/btn_didnot_attend"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home_unselected"
-                    android:text="@string/str_self_on_demand"
-                    android:textSize="@dimen/_7sdp" />
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_didnt_attend"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_10sdp" />
 
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_premium"
+                <TextView
+                    android:id="@+id/btn_pollmissout"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
+                    android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home_unselected"
-                    android:text="@string/str_premium"
-                    android:textSize="@dimen/_7sdp" />
-
-
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_free"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home_unselected"
-                    android:text="@string/str_free"
-                    android:textSize="@dimen/_7sdp" />
-
-
-                <com.myCPE.view.CustomButtonView
-                    android:id="@+id/btn_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_22sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/chipsetview_filter_home_unselected"
-                    android:text="@string/str_date"
-                    android:textSize="@dimen/_7sdp" />
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/tag_unselected"
+                    android:fontFamily="@font/whitney_medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/_70sdp"
+                    android:text="@string/str_my_pollmissedout"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
-
         </HorizontalScrollView>
-
 
         <LinearLayout
             android:id="@+id/lv_my_webinar"
@@ -264,7 +279,6 @@
 
         </LinearLayout>
 
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayouthomemywebinar"
             android:layout_width="match_parent"
@@ -280,6 +294,7 @@
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70sdp"
                 android:scrollbars="vertical" />
+
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <TextView

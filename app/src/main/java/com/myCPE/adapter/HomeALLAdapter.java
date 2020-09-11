@@ -66,8 +66,10 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     private boolean isLoadingAdded = false;
     private Context mContext;
     LayoutInflater mInflater;
-    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
-    public List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList;
+//    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
+    public List<com.myCPE.model.webinar_list.WebinarItem> mList;
+//    public List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList;
+    public List<com.myCPE.model.webinar_list.RecentWebinarsItem> recentList;
     private APIService mAPIService;
     public Dialog dialogCertificate;
     public CertificatesListHomeMyWebinarPopUpAdapter certificatesListPopUpAdapter;
@@ -79,9 +81,12 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     String join_url = "";
     ContinueWatchAdapter continueWatchAdapter;
 
-    public HomeALLAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList, List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList) {
+//    public HomeALLAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList, List<com.myCPE.model.homewebinarnew.RecentWebinarItem> recentList) {
+    public HomeALLAdapter(Context mContext, List<com.myCPE.model.webinar_list.WebinarItem> mList, List<com.myCPE.model.webinar_list.RecentWebinarsItem> recentList) {
         this.mContext = mContext;
+//        this.mList = mList;
         this.mList = mList;
+//        this.recentList = recentList;
         this.recentList = recentList;
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -223,7 +228,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).rel_date_and_time.setVisibility(View.GONE);
             }
 
-            if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
 
 
                 if (Float.parseFloat(mList.get(position).getRatingaverage()) == 0.0) {
@@ -286,7 +291,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 //((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_line);
                 ((HomeViewHolder) viewHolder).iv_rating.setVisibility(View.GONE);
 
-            }
+            }*/
 
 
          /*   tv_lable = (TextView) itemView.findViewById(R.id.tv_lable);
@@ -296,7 +301,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             iv_rating = (ImageView) itemView.findViewById(R.id.iv_rating);*/
 
 
-            if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
 
                 if (Float.parseFloat(mList.get(position).getRatingaverage()) == 0.0) {
                     ((HomeViewHolder) viewHolder).tv_rating_number.setVisibility(View.GONE);
@@ -309,33 +314,33 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).tv_rating_number.setVisibility(View.GONE);
 
                 //((HomeViewHolder) viewHolder).tv_rating_number.setText("0");
-            }
+            }*/
 
 
-            if (mList.get(position).getRatingcount() != 0) {
+            /*if (mList.get(position).getRatingcount() != 0) {
                 ((HomeViewHolder) viewHolder).tv_rating_count.setVisibility(View.VISIBLE);
                 ((HomeViewHolder) viewHolder).tv_rating_count.setText("" + "(" + mList.get(position).getRatingcount() + ")");
             } else {
                 ((HomeViewHolder) viewHolder).tv_rating_count.setVisibility(View.GONE);
                 //((HomeViewHolder) viewHolder).tv_rating_count.setText("(0)");
-            }
+            }*/
 
 
-            if (mList.get(position).getEnrolled() != 0) {
+            /*if (mList.get(position).getEnrolled() != 0) {
                 ((HomeViewHolder) viewHolder).tv_enrolled.setVisibility(View.VISIBLE);
                 ((HomeViewHolder) viewHolder).tv_enrolled.setText("" + mList.get(position).getEnrolled() + " " +
                         "Enrolled");
             } else {
                 ((HomeViewHolder) viewHolder).tv_enrolled.setVisibility(View.INVISIBLE);
-            }
+            }*/
 
 
-            if (!mList.get(position).getWebinarlable().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarlable().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).tv_lable.setVisibility(View.VISIBLE);
                 ((HomeViewHolder) viewHolder).tv_lable.setText(mList.get(position).getWebinarlable());
             } else {
                 ((HomeViewHolder) viewHolder).tv_lable.setVisibility(View.INVISIBLE);
-            }
+            }*/
 
 
             if (!mList.get(position).getStatus().equalsIgnoreCase("")) {
@@ -358,13 +363,13 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).tv_webinar_price_status.setText("Free");
             }
 
-            if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
                 Picasso.with(mContext).load(mList.get(position).getWebinarThumbnailImage())
                         .placeholder(R.mipmap.webinar_placeholder)
                         .into(((HomeViewHolder) viewHolder).ivwebinar_thumbhel);
             } else {
                 ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.setImageResource(R.mipmap.webinar_placeholder);
-            }
+            }*/
 
             Log.e("*+*+*","Converted height from adapter is : "+Constant.progHeigth);
             Log.e("*+*+*","Converted height from Rounded value adapter is : "+Math.round(Constant.progHeigth));
@@ -432,9 +437,9 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 ((HomeViewHolder) viewHolder).tv_favorite_speaker_name.setText(mList.get(position).getSpeakerName());
             }
 
-            if (!mList.get(position).getCompanyName().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getCompanyName().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).tv_company_name.setText(mList.get(position).getCompanyName());
-            }
+            }*/
 
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext
@@ -454,18 +459,18 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (mList.get(position).getPeopleRegisterWebinar() == 0) {
+            /*if (mList.get(position).getPeopleRegisterWebinar() == 0) {
                 ((HomeViewHolder) viewHolder).tv_attend_views.setText("" + 0);
             } else {
                 ((HomeViewHolder) viewHolder).tv_attend_views.setText("" + mList.get(position).getPeopleRegisterWebinar());
-            }
+            }*/
 
 
-            if (mList.get(position).getFavWebinarCount() == 0) {
+            /*if (mList.get(position).getFavWebinarCount() == 0) {
                 ((HomeViewHolder) viewHolder).tv_favorite_count.setText("" + 0);
             } else {
                 ((HomeViewHolder) viewHolder).tv_favorite_count.setText("" + mList.get(position).getFavWebinarCount());
-            }
+            }*/
 
 
             if (!mList.get(position).getStartDate().equalsIgnoreCase("")) {
@@ -519,18 +524,20 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
 
                 ((HomeViewHolder) viewHolder).tv_webinar_date.setText(month + " " + day + ", " + year);
-                ((HomeViewHolder) viewHolder).txtWebinarDate.setText(month + " " + day + ", " + year);
+//                ((HomeViewHolder) viewHolder).txtWebinarDate.setText(month + " " + day + ", " + year);
+                ((HomeViewHolder) viewHolder).txtWebinarDate.setText(day + " " + month + ", " + mList.get(position).getStartTime()
+                        + " " + mList.get(position).getTimeZone());
 
 
             }
 
 
-            if (mList.get(position).getWebinarLike().equalsIgnoreCase(mContext
+            /*if (mList.get(position).getWebinarLike().equalsIgnoreCase(mContext
                     .getResources().getString(R.string.fav_yes))) {
                 ((HomeViewHolder) viewHolder).ivfavorite.setImageResource(R.mipmap.like_orange);
             } else {
                 ((HomeViewHolder) viewHolder).ivfavorite.setImageResource(R.drawable.like);
-            }
+            }*/
 
             if (!mList.get(position).getStartTime().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).tv_webinar_time.setText(mList.get(position).getStartTime()
@@ -538,7 +545,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             }
 
 
-            ((HomeViewHolder) viewHolder).ivshare.setOnClickListener(new View.OnClickListener() {
+            /*((HomeViewHolder) viewHolder).ivshare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -559,7 +566,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                     }
 
                 }
-            });
+            });*/
 
 
 //            ((HomeViewHolder) viewHolder).ivwebinar_thumbhel.setOnClickListener(new View.OnClickListener() {
@@ -585,7 +592,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            ((HomeViewHolder) viewHolder).relSpeakerDetails.setOnClickListener(new View.OnClickListener() {
+            // Speaker Details Click
+            /*((HomeViewHolder) viewHolder).relSpeakerDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, SpeakerProfileActivity.class);
@@ -613,9 +621,10 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                     intent.putExtra("company_id", mList.get(position).getCompanyId());
                     mContext.startActivity(intent);
                 }
-            });
+            });*/
 
-            ((HomeViewHolder) viewHolder).relCompanyDetails.setOnClickListener(new View.OnClickListener() {
+            // Company Details Click
+            /*((HomeViewHolder) viewHolder).relCompanyDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, CompanyProfileActivity.class);
@@ -643,7 +652,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                     intent.putExtra("company_id", mList.get(position).getCompanyId());
                     mContext.startActivity(intent);
                 }
-            });
+            });*/
 
 //            ((HomeViewHolder) viewHolder).webinar_status.setOnClickListener(new View.OnClickListener() {+++
             ((HomeViewHolder) viewHolder).relWebinarRegister.setOnClickListener(new View.OnClickListener() {
@@ -657,15 +666,17 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
                             if (!mList.get(position).getFee().equalsIgnoreCase("")) {
 
-                                if (mList.get(position).isCardSave()) {
+//                                if (mList.get(position).isCardSave()) {
+                                if (mList.get(position).isIsCardSave()) {
                                     if (Constant.isNetworkAvailable(mContext)) {
                                         progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
-                                        RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                        RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
                                     } else {
                                         Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    String url = "" + mList.get(position).getRedirectionUrl();
+//                                    String url = "" + mList.get(position).getRedirectionUrl();
+                                    String url = "" + mList.get(position).getPaymentLink();
                                     openDialogConfirmRedirect(url);
                                     /*try {
                                         Intent i = new Intent("android.intent.action.MAIN");
@@ -684,7 +695,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             } else {
                                 if (Constant.isNetworkAvailable(mContext)) {
                                     progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
-                                    RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                    RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
                                 } else {
                                     Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                                 }
@@ -694,7 +705,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_filter_live))) {
                             if (mList.get(position).getStatus().equalsIgnoreCase(
                                     mContext.getResources().getString(R.string.str_webinar_status_enroll))) {
-                                String url = mList.get(position).getJoinurl();
+                                String url = mList.get(position).getJoinUrl();
                                 if (!url.equalsIgnoreCase("")) {
                                     Intent i = new Intent(Intent.ACTION_VIEW);
                                     i.setData(Uri.parse(url));
@@ -708,7 +719,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                 }
                             } else if (mList.get(position).getStatus().equalsIgnoreCase(
                                     mContext.getResources().getString(R.string.str_webinar_status_in_progress))) {
-                                String url = mList.get(position).getJoinurl();
+                                String url = mList.get(position).getJoinUrl();
                                 if (!url.equalsIgnoreCase("")) {
                                     Intent i = new Intent(Intent.ACTION_VIEW);
                                     i.setData(Uri.parse(url));
@@ -721,7 +732,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                             } else if (mList.get(position).getStatus().equalsIgnoreCase(mContext
                                     .getResources().getString(R.string.str_webinar_status_certificate))) {
 
-                                if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                                /*if (mList.get(position).getMyCertificateLinks().size() == 0) {
                                     Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
 
                                 } else {
@@ -735,10 +746,10 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                     } else {
                                         displayCertificateDialog(mList.get(position).getMyCertificateLinks());
                                     }
-                                }
+                                }*/
                             }
                         } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_self_study_on_demand))) {
-                            if (mList.get(position).getStatus().equalsIgnoreCase(mContext
+                            /*if (mList.get(position).getStatus().equalsIgnoreCase(mContext
                                     .getResources().getString(R.string.str_webinar_status_certificate))) {
 
                                 if (mList.get(position).getMyCertificateLinks().size() == 0) {
@@ -755,7 +766,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                         displayCertificateDialog(mList.get(position).getMyCertificateLinks());
                                     }
                                 }
-                            }
+                            }*/
 
                         }
                     } else {
@@ -772,7 +783,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                     if (!AppSettings.get_login_token(mContext).isEmpty()) {
                         if (Constant.isNetworkAvailable(mContext)) {
                             ((HomeViewHolder) viewHolder).ivfavorite.setEnabled(false);
-                            WebinarFavoriteLikeDislike(((HomeViewHolder) viewHolder).tv_favorite_count, mList.get(position).getId(), ((HomeViewHolder) viewHolder).ivfavorite, position);
+//                            WebinarFavoriteLikeDislike(((HomeViewHolder) viewHolder).tv_favorite_count, mList.get(position).getId(), ((HomeViewHolder) viewHolder).ivfavorite, position);
                         } else {
                             Snackbar.make(((HomeViewHolder) viewHolder).ivfavorite, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                         }
@@ -951,13 +962,16 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
     }
 
 
-    public void add(com.myCPE.model.homewebinarnew.WebinarItem webinarItem) {
+//    public void add(com.myCPE.model.homewebinarnew.WebinarItem webinarItem) {
+    public void add(com.myCPE.model.webinar_list.WebinarItem webinarItem) {
         mList.add(webinarItem);
         notifyItemInserted(mList.size());
     }
 
-    public void addAll(List<com.myCPE.model.homewebinarnew.WebinarItem> mcList) {
-        for (com.myCPE.model.homewebinarnew.WebinarItem mc : mcList) {
+//    public void addAll(List<com.myCPE.model.homewebinarnew.WebinarItem> mcList) {
+    public void addAll(List<com.myCPE.model.webinar_list.WebinarItem> mcList) {
+//        for (com.myCPE.model.homewebinarnew.WebinarItem mc : mcList) {
+        for (com.myCPE.model.webinar_list.WebinarItem mc : mcList) {
             add(mc);
         }
     }
@@ -965,7 +979,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
     public void addLoadingFooter() {
         isLoadingAdded = true;
-        add(new com.myCPE.model.homewebinarnew.WebinarItem());
+//        add(new com.myCPE.model.homewebinarnew.WebinarItem());
+        add(new com.myCPE.model.webinar_list.WebinarItem());
     }
 
 
@@ -1065,7 +1080,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private void WebinarFavoriteLikeDislike(final TextView textView, final int webinar_id, final ImageView ImageView, final int position) {
+    /*private void WebinarFavoriteLikeDislike(final TextView textView, final int webinar_id, final ImageView ImageView, final int position) {
 
         mAPIService.PostWebinarLikeDislike(mContext.getResources().getString(R.string.accept),
                 mContext.getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(mContext),
@@ -1125,7 +1140,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 });
 
 
-    }
+    }*/
 
 
     public void RegisterWebinar(int webinar_id, int schedule_id, final Button button, final int position) {

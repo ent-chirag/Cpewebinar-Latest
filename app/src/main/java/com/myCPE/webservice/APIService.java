@@ -66,6 +66,7 @@ import com.myCPE.model.webinar_details.Webinar_Detail_Model;
 import com.myCPE.model.webinar_details_new.Webinar_details;
 import com.myCPE.model.webinar_like.Webinar_Like_Model;
 import com.myCPE.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
+import com.myCPE.model.webinar_list.WebinarList;
 import com.myCPE.model.webinarfavorites.Webinar_Favorite;
 
 import retrofit2.http.Field;
@@ -389,7 +390,8 @@ public interface APIService {
     //get home list
     @POST("webinar/list")
     @FormUrlEncoded
-    Observable<Webinar_Home_New> GetHomeWebinarListNew(
+//    Observable<Webinar_Home_New> GetHomeWebinarListNew(
+    Observable<WebinarList> GetHomeWebinarListNew(
             @Header("Accept") String accept,
             @Header("Authorization") String authorization,
             @Field("start") int start,
