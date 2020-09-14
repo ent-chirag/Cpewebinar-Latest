@@ -37,6 +37,7 @@ import com.myCPE.activity.NotificationActivity;
 import com.myCPE.adapter.HomeMyWebinarAdapter;
 import com.myCPE.databinding.FragmentMywebinarNewBinding;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
+import com.myCPE.model.myWebinarList.MyWebinarList;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
@@ -63,7 +64,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
     public Context context;
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
-    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomeMyWebinarlistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
+//    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomeMyWebinarlistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
+    private List<com.myCPE.model.myWebinarList.WebinarItem> arrHomeMyWebinarlistnew = new ArrayList<com.myCPE.model.myWebinarList.WebinarItem>();
     private List<Boolean> arrsavebooleanstateMyWebinar = new ArrayList();
     private List<String> arraysavefilterMyWebinar = new ArrayList<String>();
     private APIService mAPIService_new;
@@ -659,7 +661,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
         mAPIService_new.GetMyWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
                 start, limit, strMyWebinarType).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Webinar_Home_New>() {
+//                .subscribe(new Subscriber<Webinar_Home_New>() {
+                .subscribe(new Subscriber<MyWebinarList>() {
                     @Override
                     public void onCompleted() {
 
@@ -710,7 +713,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                     }
 
                     @Override
-                    public void onNext(Webinar_Home_New webinar_home_new) {
+//                    public void onNext(Webinar_Home_New webinar_home_new) {
+                    public void onNext(MyWebinarList webinar_home_new) {
 
                         if (webinar_home_new.isSuccess() == true) {
 
@@ -726,7 +730,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
                             islast = webinar_home_new.getPayload().isIsLast();
 
-                            isprogress = webinar_home_new.getPayload().isIsprogress();
+                            isprogress = webinar_home_new.getPayload().isIsProgress();
 
                             /*if (topicsofinterest.equalsIgnoreCase("")) {
                                 UserDashBoardFragment.getInstance().setupTabIcons(isprogress);
@@ -750,7 +754,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                                 }
 
 
-                                List<com.myCPE.model.homewebinarnew.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+//                                List<com.myCPE.model.homewebinarnew.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
+                                List<com.myCPE.model.myWebinarList.WebinarItem> webinaritems = webinar_home_new.getPayload().getWebinar();
                                 adapter.addAll(webinaritems);
                             }
 

@@ -39,6 +39,7 @@ import com.myCPE.model.instructor_like.Instructor_Like_Model;
 import com.myCPE.model.instructorfavorites.Instructor_Favorite;
 import com.myCPE.model.login.LoginModel;
 import com.myCPE.model.logout.LogoutModel;
+import com.myCPE.model.myWebinarList.MyWebinarList;
 import com.myCPE.model.myfavorites.ModelFavorites;
 import com.myCPE.model.notification.NotificationModel;
 import com.myCPE.model.payment_transcation.Model_Transcation;
@@ -423,7 +424,8 @@ public interface APIService {
     //get my webinar list
     @POST("webinar/my-webinar")
     @FormUrlEncoded
-    Observable<Webinar_Home_New> GetMyWebinarListNew(
+//    Observable<Webinar_Home_New> GetMyWebinarListNew(
+    Observable<MyWebinarList> GetMyWebinarListNew(
             @Header("Accept") String accept,
             @Header("Authorization") String authorization,
             @Field("start") int start,

@@ -67,7 +67,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     private boolean isLoadingAdded = false;
     private Context mContext;
     LayoutInflater mInflater;
-    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
+//    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
+    public List<com.myCPE.model.myWebinarList.WebinarItem> mList;
     private APIService mAPIService;
     ProgressDialog progressDialog;
     public String certificate_link = "";
@@ -82,7 +83,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
     private DownloadManager downloadManager;
 
-    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
+//    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
+    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.myWebinarList.WebinarItem> mList) {
         this.mContext = mContext;
         this.mList = mList;
         mAPIService = ApiUtilsNew.getAPIService();
@@ -243,7 +245,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (mList.get(position).getRatingcount() != 0) {
+            /*if (mList.get(position).getRatingcount() != 0) {
                 ((MyWebinarHolder) viewHolder).tv_rating_count.setVisibility(View.VISIBLE);
                 ((MyWebinarHolder) viewHolder).tv_rating_count.setText("" + "(" + mList.get(position).getRatingcount() + ")");
             } else {
@@ -264,26 +266,27 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 ((MyWebinarHolder) viewHolder).tv_rating_number.setVisibility(View.GONE);
 
                 //((HomeViewHolder) viewHolder).tv_rating_number.setText("0");
-            }
+            }*/
 
 
-            if (!mList.get(position).getWebinarlable().equalsIgnoreCase("")) {
+            // Webinar lable
+            /*if (!mList.get(position).getWebinarlable().equalsIgnoreCase("")) {
                 ((MyWebinarHolder) viewHolder).tv_lable.setVisibility(View.VISIBLE);
                 ((MyWebinarHolder) viewHolder).tv_lable.setText(mList.get(position).getWebinarlable());
             } else {
                 ((MyWebinarHolder) viewHolder).tv_lable.setVisibility(View.INVISIBLE);
-            }
+            }*/
 
-            if (mList.get(position).getEnrolled() != 0) {
+            /*if (mList.get(position).getEnrolled() != 0) {
                 ((MyWebinarHolder) viewHolder).tv_enrolled.setVisibility(View.VISIBLE);
                 ((MyWebinarHolder) viewHolder).tv_enrolled.setText("" + mList.get(position).getEnrolled() + " " +
                         "Enrolled");
             } else {
                 ((MyWebinarHolder) viewHolder).tv_enrolled.setVisibility(View.INVISIBLE);
-            }
+            }*/
 
 
-            if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getRatingaverage().equalsIgnoreCase("")) {
 
 
                 if (Float.parseFloat(mList.get(position).getRatingaverage()) == 0.0) {
@@ -346,7 +349,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 //((HomeViewHolder) viewHolder).iv_rating.setImageResource(R.mipmap.orange_star_line);
                 ((MyWebinarHolder) viewHolder).iv_rating.setVisibility(View.GONE);
 
-            }
+            }*/
 
 
             if (!mList.get(position).getFee().equalsIgnoreCase("")) {
@@ -356,13 +359,13 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getWebinarThumbnailImage().equalsIgnoreCase("")) {
                 Picasso.with(mContext).load(mList.get(position).getWebinarThumbnailImage())
                         .placeholder(R.mipmap.webinar_placeholder)
                         .into(((MyWebinarHolder) viewHolder).ivwebinar_thumbhel);
             } else {
                 ((MyWebinarHolder) viewHolder).ivwebinar_thumbhel.setImageResource(R.mipmap.webinar_placeholder);
-            }
+            }*/
 
 
             if (!mList.get(position).getCpaCredit().equalsIgnoreCase("")) {
@@ -379,9 +382,9 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 ((MyWebinarHolder) viewHolder).tv_favorite_speaker_name.setText(mList.get(position).getSpeakerName());
             }
 
-            if (!mList.get(position).getCompanyName().equalsIgnoreCase("")) {
+            /*if (!mList.get(position).getCompanyName().equalsIgnoreCase("")) {
                 ((MyWebinarHolder) viewHolder).tv_company_name.setText(mList.get(position).getCompanyName());
-            }
+            }*/
 
 
             if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext
@@ -402,18 +405,18 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (mList.get(position).getPeopleRegisterWebinar() == 0) {
+            /*if (mList.get(position).getPeopleRegisterWebinar() == 0) {
                 ((MyWebinarHolder) viewHolder).tv_attend_views.setText("" + 0);
             } else {
                 ((MyWebinarHolder) viewHolder).tv_attend_views.setText("" + mList.get(position).getPeopleRegisterWebinar());
-            }
+            }*/
 
 
-            if (mList.get(position).getFavWebinarCount() == 0) {
+            /*if (mList.get(position).getFavWebinarCount() == 0) {
                 ((MyWebinarHolder) viewHolder).tv_favorite_count.setText("" + 0);
             } else {
                 ((MyWebinarHolder) viewHolder).tv_favorite_count.setText("" + mList.get(position).getFavWebinarCount());
-            }
+            }*/
 
             if (!mList.get(position).getStartDate().equalsIgnoreCase("")) {
 
@@ -477,15 +480,15 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             }
 
 
-            if (mList.get(position).getWebinarLike().equalsIgnoreCase(mContext
+            /*if (mList.get(position).getWebinarLike().equalsIgnoreCase(mContext
                     .getResources().getString(R.string.fav_yes))) {
                 ((MyWebinarHolder) viewHolder).ivfavorite.setImageResource(R.mipmap.like_orange);
             } else {
                 ((MyWebinarHolder) viewHolder).ivfavorite.setImageResource(R.drawable.like);
-            }
+            }*/
 
 
-            ((MyWebinarHolder) viewHolder).ivshare.setOnClickListener(new View.OnClickListener() {
+            /*((MyWebinarHolder) viewHolder).ivshare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -501,7 +504,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
 
                 }
-            });
+            });*/
 
 
             ((MyWebinarHolder) viewHolder).ivwebinar_thumbhel.setOnClickListener(new View.OnClickListener() {
@@ -544,7 +547,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                         } else {
                             if (Constant.isNetworkAvailable(mContext)) {
                                 progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
-                                RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((MyWebinarHolder) viewHolder).webinar_status, position);
+//                                RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleid(), ((MyWebinarHolder) viewHolder).webinar_status, position);
+                                RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((MyWebinarHolder) viewHolder).webinar_status, position);
                             } else {
                                 Snackbar.make(((MyWebinarHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                             }
@@ -553,7 +557,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
                     } else if (mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources().getString(R.string.str_filter_live))) {
                         if (mList.get(position).getStatus().equalsIgnoreCase(mContext.getResources().getString(R.string.str_webinar_status_enroll))) {
-                            String url = mList.get(position).getJoinurl();
+//                            String url = mList.get(position).getJoinurl();
+                            String url = mList.get(position).getJoinUrl();
                             if (!url.equalsIgnoreCase("")) {
                                 Intent i = new Intent(Intent.ACTION_VIEW);
                                 i.setData(Uri.parse(url));
@@ -567,7 +572,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                             }
                         } else if (mList.get(position).getStatus().equalsIgnoreCase(
                                 mContext.getResources().getString(R.string.str_webinar_status_in_progress))) {
-                            String url = mList.get(position).getJoinurl();
+                            String url = mList.get(position).getJoinUrl();
                             if (!url.equalsIgnoreCase("")) {
                                 Intent i = new Intent(Intent.ACTION_VIEW);
                                 i.setData(Uri.parse(url));
@@ -591,7 +596,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                             // Left from here..
                             // checkAndroidVersion(mList.get(position).getCertificateLink());
 
-                            if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                            /*if (mList.get(position).getMyCertificateLinks().size() == 0) {
                                 Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
 
                             } else {
@@ -606,7 +611,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                     displayCertificateDialog(mList.get(position).getMyCertificateLinks());
                                 }
 
-                            }
+                            }*/
 
 
                         }
@@ -616,7 +621,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 //                            checkAndroidVersionCertificate();
                             // Left from here..
 
-                            if (mList.get(position).getMyCertificateLinks().size() == 0) {
+                            /*if (mList.get(position).getMyCertificateLinks().size() == 0) {
                                 Constant.toast(mContext, mContext.getResources().getString(R.string.str_certificate_link_not_found));
 
                             } else {
@@ -630,7 +635,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                                 } else {
                                     displayCertificateDialog(mList.get(position).getMyCertificateLinks());
                                 }
-                            }
+                            }*/
 
                         }
                     }
@@ -638,12 +643,12 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             });
 
 
-            ((MyWebinarHolder) viewHolder).ivfavorite.setOnClickListener(new View.OnClickListener() {
+            /*((MyWebinarHolder) viewHolder).ivfavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (Constant.isNetworkAvailable(mContext)) {
                         ((MyWebinarHolder) viewHolder).ivfavorite.setEnabled(false);
-                        /*progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));*/
+                        *//*progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));*//*
                         WebinarFavoriteLikeDislike(
                                 ((MyWebinarHolder) viewHolder).tv_favorite_count, mList.get(position).getId(), ((MyWebinarHolder) viewHolder).ivfavorite, position);
                     } else {
@@ -652,7 +657,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
 
                 }
-            });
+            });*/
 
 
         } /*else {
@@ -719,20 +724,24 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void add(com.myCPE.model.homewebinarnew.WebinarItem webinarItem) {
+//    public void add(com.myCPE.model.homewebinarnew.WebinarItem webinarItem) {
+    public void add(com.myCPE.model.myWebinarList.WebinarItem webinarItem) {
         mList.add(webinarItem);
         notifyItemInserted(mList.size());
     }
 
-    public void addAll(List<com.myCPE.model.homewebinarnew.WebinarItem> mcList) {
-        for (com.myCPE.model.homewebinarnew.WebinarItem mc : mcList) {
+//    public void addAll(List<com.myCPE.model.homewebinarnew.WebinarItem> mcList) {
+    public void addAll(List<com.myCPE.model.myWebinarList.WebinarItem> mcList) {
+//        for (com.myCPE.model.homewebinarnew.WebinarItem mc : mcList) {
+        for (com.myCPE.model.myWebinarList.WebinarItem mc : mcList) {
             add(mc);
         }
     }
 
     public void addLoadingFooter() {
         isLoadingAdded = true;
-        add(new com.myCPE.model.homewebinarnew.WebinarItem());
+//        add(new com.myCPE.model.homewebinarnew.WebinarItem());
+        add(new com.myCPE.model.myWebinarList.WebinarItem());
     }
 
 
@@ -831,7 +840,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private void WebinarFavoriteLikeDislike(final TextView textView, final int webinar_id, final ImageView ImageView, final int position) {
+    /*private void WebinarFavoriteLikeDislike(final TextView textView, final int webinar_id, final ImageView ImageView, final int position) {
 
         mAPIService.PostWebinarLikeDislike(mContext.getResources().getString(R.string.accept),
                 mContext.getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(mContext),
@@ -893,7 +902,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 });
 
 
-    }
+    }*/
 
 
     public void RegisterWebinar(int webinar_id, int schedule_id, final Button button, final int position) {
