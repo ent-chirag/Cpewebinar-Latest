@@ -69,6 +69,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
     private APIService mAPIService_new;
     private boolean loading = true;
     private String webinartypemywebinar = "";
+    private String strMyWebinarType = "2";
     public boolean islast = false;
     public boolean isprogress = false;
     public int start = 0, limit = 10;
@@ -118,7 +119,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
         arraysavefilterMyWebinar.add(2, "");
 
 
-        if (!AppSettings.get_login_token(context).equalsIgnoreCase("")) {
+        /*if (!AppSettings.get_login_token(context).equalsIgnoreCase("")) {
             binding.btnLive.setEnabled(true);
             binding.btnSelfstudy.setEnabled(true);
             binding.btnArchive.setEnabled(true);
@@ -126,18 +127,16 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
             binding.btnLive.setEnabled(false);
             binding.btnSelfstudy.setEnabled(false);
             binding.btnArchive.setEnabled(false);
-        }
+        }*/
 
 
         if (!AppSettings.get_login_token(context).isEmpty()) {
             if (Constant.isNetworkAvailable(context)) {
                 progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                GetMyWebinarListNew(strMyWebinarType, start, limit);
             } else {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
-
             }
-
         } else {
             binding.swipeRefreshLayouthomemywebinar.setVisibility(View.GONE);
             binding.tvNodatafound.setVisibility(View.VISIBLE);
@@ -162,7 +161,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 //                    binding.edtSearch.setText("");
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+//                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                        GetMyWebinarListNew(strMyWebinarType, start, limit);
                     } else {
                         Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -191,7 +191,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+//                        GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                        GetMyWebinarListNew(strMyWebinarType, start, limit);
                     } else {
                         Snackbar.make(binding.edtSearch, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                     }
@@ -361,7 +362,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
         });*/
 
 
-        binding.btnLive.setOnClickListener(new View.OnClickListener() {
+        /*binding.btnLive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -398,7 +399,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
                 if (Constant.isNetworkAvailable(context)) {
                     progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
-                    GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+//                    GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+                    GetMyWebinarListNew(strMyWebinarType, start, limit);
 
                 } else {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
@@ -506,7 +508,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
 
             }
-        });
+        });*/
 
 
         binding.getRoot().setFocusableInTouchMode(true);
@@ -630,7 +632,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
 
         if (Constant.isNetworkAvailable(context)) {
-            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+//            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+            GetMyWebinarListNew(strMyWebinarType, start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
@@ -641,7 +644,8 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
     private void loadNextPage() {
         if (Constant.isNetworkAvailable(context)) {
             binding.progressBar.setVisibility(View.VISIBLE);
-            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+//            GetMyWebinarListNew(webinartypemywebinar, topicsofinterest, start, limit);
+            GetMyWebinarListNew(strMyWebinarType, start, limit);
         } else {
             Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
@@ -649,11 +653,12 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
     }
 
 
-    public void GetMyWebinarListNew(final String webinartype, final String topicsofinterest, final int start, final int limit) {
+//    public void GetMyWebinarListNew(final String webinartype, final String topicsofinterest, final int start, final int limit) {
+    public void GetMyWebinarListNew(final String strMyWebinarType, final int start, final int limit) {
 
         mAPIService_new.GetMyWebinarListNew(getResources().getString(R.string.accept),
                 getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context),
-                start, limit, webinartype, topicsofinterest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                start, limit, strMyWebinarType).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Webinar_Home_New>() {
                     @Override
                     public void onCompleted() {
@@ -813,6 +818,10 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                strMyWebinarType = "1";
+                applyFilterWebinarType();
+
                 break;
 
             case R.id.btn_self_study_webinar:
@@ -829,6 +838,10 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                strMyWebinarType = "6";
+                applyFilterWebinarType();
+
                 break;
 
             case R.id.btn_upcomingwebinar:
@@ -845,6 +858,10 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                strMyWebinarType = "2";
+                applyFilterWebinarType();
+
                 break;
 
             case R.id.btn_pending_evolution:
@@ -861,6 +878,10 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.White));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                strMyWebinarType = "3";
+                applyFilterWebinarType();
+
                 break;
 
             case R.id.btn_didnot_attend:
@@ -877,6 +898,10 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.White));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
+
+                strMyWebinarType = "4";
+                applyFilterWebinarType();
+
                 break;
 
             case R.id.btn_pollmissout:
@@ -893,7 +918,28 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPendingEvolution.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnDidnotAttend.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.White));
+
+                strMyWebinarType = "5";
+                applyFilterWebinarType();
+
                 break;
         }
+    }
+
+    private void applyFilterWebinarType() {
+
+        if (!AppSettings.get_login_token(context).isEmpty()) {
+            if (Constant.isNetworkAvailable(context)) {
+                progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
+                GetMyWebinarListNew(strMyWebinarType, start, limit);
+            } else {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+            }
+        } else {
+            binding.swipeRefreshLayouthomemywebinar.setVisibility(View.GONE);
+            binding.tvNodatafound.setVisibility(View.VISIBLE);
+            binding.tvNodatafound.setText(getResources().getString(R.string.str_guest_user_dialog_msg));
+        }
+
     }
 }

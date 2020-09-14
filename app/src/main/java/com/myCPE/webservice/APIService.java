@@ -428,8 +428,9 @@ public interface APIService {
             @Header("Authorization") String authorization,
             @Field("start") int start,
             @Field("limit") int limit,
+            @Field("mywebinar_type") String mywebinar_type);/*,
             @Field("webinar_type") String webinar_type,
-            @Field("topic_of_interest") String topic_of_interest);
+            @Field("topic_of_interest") String topic_of_interest);*/
 
     //get my favorites
     @POST("webinar/favorite")
