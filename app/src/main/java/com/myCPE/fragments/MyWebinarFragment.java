@@ -38,6 +38,7 @@ import com.myCPE.adapter.HomeMyWebinarAdapter;
 import com.myCPE.databinding.FragmentMywebinarNewBinding;
 import com.myCPE.model.homewebinarnew.Webinar_Home_New;
 import com.myCPE.model.myWebinarList.MyWebinarList;
+import com.myCPE.model.myWebinarList.RecentWebinarsItem;
 import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
 import com.myCPE.view.DialogsUtils;
@@ -66,6 +67,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
     LinearLayoutManager linearLayoutManager;
 //    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomeMyWebinarlistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
     private List<com.myCPE.model.myWebinarList.WebinarItem> arrHomeMyWebinarlistnew = new ArrayList<com.myCPE.model.myWebinarList.WebinarItem>();
+    private List<com.myCPE.model.myWebinarList.RecentWebinarsItem> arrRecentlistnew = new ArrayList<RecentWebinarsItem>();
     private List<Boolean> arrsavebooleanstateMyWebinar = new ArrayList();
     private List<String> arraysavefilterMyWebinar = new ArrayList<String>();
     private APIService mAPIService_new;
@@ -677,7 +679,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
                         if (start == 0 && limit == 10) {
                             if (arrHomeMyWebinarlistnew.size() > 0) {
-                                adapter = new HomeMyWebinarAdapter(context, arrHomeMyWebinarlistnew);
+                                adapter = new HomeMyWebinarAdapter(context, arrHomeMyWebinarlistnew, arrRecentlistnew);
                                 binding.rvhomewebinar.setAdapter(adapter);
                             }
 
@@ -746,6 +748,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
 
                             if (start == 0 && limit == 10) {
                                 arrHomeMyWebinarlistnew = webinar_home_new.getPayload().getWebinar();
+                                arrRecentlistnew = webinar_home_new.getPayload().getRecentWebinars();
                             } else {
 
 
@@ -760,7 +763,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                             }
 
 
-                            if (arrHomeMyWebinarlistnew.size() > 0) {
+                            if (arrHomeMyWebinarlistnew.size() > 0 || arrRecentlistnew.size() > 0) {
                                 binding.swipeRefreshLayouthomemywebinar.setVisibility(View.VISIBLE);
                                 binding.tvNodatafound.setVisibility(View.GONE);
                             } else {

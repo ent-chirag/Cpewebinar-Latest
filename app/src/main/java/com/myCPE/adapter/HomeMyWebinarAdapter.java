@@ -69,6 +69,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     LayoutInflater mInflater;
 //    public List<com.myCPE.model.homewebinarnew.WebinarItem> mList;
     public List<com.myCPE.model.myWebinarList.WebinarItem> mList;
+    public List<com.myCPE.model.myWebinarList.RecentWebinarsItem> recentList;
     private APIService mAPIService;
     ProgressDialog progressDialog;
     public String certificate_link = "";
@@ -82,11 +83,14 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
     public static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
 
     private DownloadManager downloadManager;
+//    ContinueWatchAdapter continueWatchAdapter;
+    ContinueWatchMyWebinar1Adapter continueWatchAdapter;
 
 //    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.homewebinarnew.WebinarItem> mList) {
-    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.myWebinarList.WebinarItem> mList) {
+    public HomeMyWebinarAdapter(Context mContext, List<com.myCPE.model.myWebinarList.WebinarItem> mList, List<com.myCPE.model.myWebinarList.RecentWebinarsItem> recentList) {
         this.mContext = mContext;
         this.mList = mList;
+        this.recentList = recentList;
         mAPIService = ApiUtilsNew.getAPIService();
         mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -161,6 +165,53 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
         if (viewHolder instanceof MyWebinarHolder) {
 
+//            if(position == 0 && mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+//                    .getString(R.string.str_self_study))) {
+            Log.e("*+*+*","HomeMyWebinarAdater is called..");
+            Log.e("*+*+*","Position in HomemyWebinarAdapter is : "+position);
+            /*if(recentList.size() > 0) {
+                ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);
+                ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
+                *//*if(position == 0) {
+//                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
+                    ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);
+                    ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
+                } else {
+                    ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                    ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+                }*//*
+            } else {
+                ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+            }*/
+            if(position == 0) {
+                Log.e("*+*+*","Recent webinar size is : "+recentList.size());
+                if(recentList.size() > 0 ) {
+                    Log.e("*+*+*","Recent webinar size is > 0 visible the recycler view");
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
+                    ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
+                    ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.GONE);
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setLayoutManager(linearLayoutManager);
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.addItemDecoration(new SimpleDividerItemDecoration(mContext));
+                    continueWatchAdapter = new ContinueWatchMyWebinar1Adapter(mContext, recentList);
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setAdapter(continueWatchAdapter);
+
+                } else {
+                    Log.e("*+*+*","Recent webinar size is > 0 hide the recycler view");
+                    ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                    ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                    ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+                }
+            } else {
+                ((MyWebinarHolder) viewHolder).relBGShapeCard.setVisibility(View.VISIBLE);
+                ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+                ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+            }
+
             ((MyWebinarHolder) viewHolder).tvWebinarState.setText(mList.get(position).getWebinarType().toUpperCase());
             ((MyWebinarHolder) viewHolder).tvWebinarCredit.setText(mList.get(position).getCpaCredit());
             if (!mList.get(position).getFee().equalsIgnoreCase("")) {
@@ -184,8 +235,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 //            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
             ((MyWebinarHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
 
-            ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
-            ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
+//            ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
+//            ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);
 
             for (int i = 0; i < mList.size() ; i++) {
                 Log.e("*+*+*","Position is : "+position);

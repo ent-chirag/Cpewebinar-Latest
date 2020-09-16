@@ -125,8 +125,9 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
             Constant.Log("size", "" + mList.size());
             Log.e("*+*+*","Size for RecentList : "+recentList.size());
 
-            if(position == 0 && mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
-                    .getString(R.string.str_self_study))) {
+            /*if(position == 0 && mList.get(position).getWebinarType().equalsIgnoreCase(mContext.getResources()
+                    .getString(R.string.str_self_study))) {*/
+            if(position == 0) {
                 if(recentList.size() > 0 ) {
                     ((HomeViewHolder) viewHolder).rvContinueWatch.setVisibility(View.VISIBLE);
                     ((HomeViewHolder) viewHolder).relConWatch.setVisibility(View.VISIBLE);
@@ -160,10 +161,13 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 //            tvWebinarState, tvWebinarCredit, tvWebinarPrice, txtWebinarTitle, txtWebinarAuthor, txtWebinarDate
             ((HomeViewHolder) viewHolder).tvWebinarState.setText(mList.get(position).getWebinarType().toUpperCase());
             ((HomeViewHolder) viewHolder).tvWebinarCredit.setText(mList.get(position).getCpaCredit());
-            if (!mList.get(position).getFee().equalsIgnoreCase("")) {
-                ((HomeViewHolder) viewHolder).tvWebinarPrice.setText("$" + mList.get(position).getFee());
-            } else {
+//            if (!mList.get(position).getFee().equalsIgnoreCase("") || !mList.get(position).getFee().equalsIgnoreCase("Free")) {
+            if (mList.get(position).getFee().equalsIgnoreCase("") || mList.get(position).getFee().equalsIgnoreCase("Free")) {
+//                ((HomeViewHolder) viewHolder).tvWebinarPrice.setText("$" + mList.get(position).getFee());
                 ((HomeViewHolder) viewHolder).tvWebinarPrice.setText("Free");
+            } else {
+//                ((HomeViewHolder) viewHolder).tvWebinarPrice.setText("Free");
+                ((HomeViewHolder) viewHolder).tvWebinarPrice.setText("$" + mList.get(position).getFee());
             }
             ((HomeViewHolder) viewHolder).txtWebinarTitle.setText(mList.get(position).getWebinarTitle());
             ((HomeViewHolder) viewHolder).txtWebinarAuthor.setText(mList.get(position).getSpeakerName());
@@ -664,9 +668,49 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                         if (mList.get(position).getStatus().equalsIgnoreCase(mContext
                                 .getResources().getString(R.string.str_webinar_status_register))) {
 
-                            if (!mList.get(position).getFee().equalsIgnoreCase("")) {
+                            if (mList.get(position).getFee().equalsIgnoreCase("") || mList.get(position).getFee().equalsIgnoreCase("Free")) {
+
+                                if (Constant.isNetworkAvailable(mContext)) {
+                                    progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
+                                    RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                } else {
+                                    Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                }
 
 //                                if (mList.get(position).isCardSave()) {
+                                /*if (mList.get(position).isIsCardSave()) {
+                                    if (Constant.isNetworkAvailable(mContext)) {
+                                        progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
+                                        RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                    } else {
+                                        Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                    }
+                                } else {
+//                                    String url = "" + mList.get(position).getRedirectionUrl();
+                                    String url = "" + mList.get(position).getPaymentLink();
+                                    openDialogConfirmRedirect(url);
+                                    *//*try {
+                                        Intent i = new Intent("android.intent.action.MAIN");
+                                        i.setComponent(ComponentName.unflattenFromString("" + url));
+                                        i.addCategory("android.intent.category.LAUNCHER");
+                                        i.setData(Uri.parse(url));
+                                        mContext.startActivity(i);
+                                    } catch (ActivityNotFoundException e) {
+                                        // Chrome is not installed
+                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                        mContext.startActivity(i);
+                                    }*//*
+                                }*/
+
+
+                            } else {
+                                /*if (Constant.isNetworkAvailable(mContext)) {
+                                    progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
+                                    RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
+                                } else {
+                                    Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+                                }*/
+
                                 if (mList.get(position).isIsCardSave()) {
                                     if (Constant.isNetworkAvailable(mContext)) {
                                         progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
@@ -689,15 +733,6 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                         mContext.startActivity(i);
                                     }*/
-                                }
-
-
-                            } else {
-                                if (Constant.isNetworkAvailable(mContext)) {
-                                    progressDialog = DialogsUtils.showProgressDialog(mContext, mContext.getResources().getString(R.string.progrees_msg));
-                                    RegisterWebinar(mList.get(position).getId(), mList.get(position).getScheduleId(), ((HomeViewHolder) viewHolder).webinar_status, position);
-                                } else {
-                                    Snackbar.make(((HomeViewHolder) viewHolder).webinar_status, mContext.getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
                                 }
                             }
 
