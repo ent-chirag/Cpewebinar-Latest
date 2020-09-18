@@ -126,7 +126,7 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
             if (!recentList.get(position).getWebinarImage().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).imgBanner.setVisibility(View.VISIBLE);
                 /*Picasso.with(mContext).load(recentList.get(position).getWebinarImage())
-                        .placeholder(R.mipmap.webinar_placeholder)
+                            .placeholder(R.mipmap.webinar_placeholder)
                         .into(((HomeViewHolder) viewHolder).imgBanner);*/
             } else {
                 ((HomeViewHolder) viewHolder).imgBanner.setVisibility(View.GONE);
@@ -137,7 +137,9 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Log.e("*+*+*","Clicked on Play icon position is : "+position);
                     Intent i = new Intent(mContext, WebinarDetailsActivity.class);
-                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), 2086);
+//                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), 2086);
+                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), Integer.parseInt(recentList.get(position).getId()));
+                    Log.e("*+*+*","Webinar Id sending in intent : "+recentList.get(position).getId());
                     i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), "ON-DEMAND");
                     Constant.isFromSpeakerCompanyWebinarList = false;

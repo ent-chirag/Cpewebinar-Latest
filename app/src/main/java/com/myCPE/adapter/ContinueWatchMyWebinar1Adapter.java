@@ -105,7 +105,8 @@ public class ContinueWatchMyWebinar1Adapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Log.e("*+*+*","Clicked on Play icon position is : "+position);
                     Intent i = new Intent(mContext, WebinarDetailsActivity.class);
-                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), 2086);
+//                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), 2086);
+                    i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), recentList.get(position).getId());
                     i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
                     i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), "ON-DEMAND");
                     Constant.isFromSpeakerCompanyWebinarList = false;

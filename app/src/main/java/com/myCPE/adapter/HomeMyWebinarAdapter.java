@@ -2,12 +2,14 @@ package com.myCPE.adapter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -38,7 +40,9 @@ import android.widget.Toast;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.activity.ActivityEvolutionForm;
+import com.myCPE.activity.LoginActivity;
 import com.myCPE.activity.PdfViewActivity;
+import com.myCPE.activity.SignUpActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
 import com.myCPE.model.homewebinarnew.MyCertificateLinksItem;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
@@ -573,6 +577,28 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            ((MyWebinarHolder) viewHolder).relBGShapeCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!AppSettings.get_login_token(mContext).isEmpty()) {
+                        Intent i = new Intent(mContext, WebinarDetailsActivity.class);
+//                        Intent i = new Intent(mContext, WebinarDetailsActivityNew.class);
+                        i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
+                                .get(position).getId());
+                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                        i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
+                                .get(position).getWebinarType());
+                        Constant.isFromSpeakerCompanyWebinarList = false;
+                        mContext.startActivity(i);
+                        ((Activity) mContext).finish();
+                    } else {
+                        ShowPopUp();
+                    }
+
+
+                }
+            });
+
             ((MyWebinarHolder) viewHolder).webinar_status.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -715,6 +741,47 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             ((ProgressViewHolder) viewHolder).progressBar.setIndeterminate(true);
 
         }*/
+
+    }
+
+    public void ShowPopUp() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(mContext.getResources().getString(R.string.str_guest_user_dialog_title_new));
+        builder.setMessage(mContext.getResources().getString(R.string.str_guest_user_dialog_msg_new));
+
+//                        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton(mContext.getResources().getString(R.string.str_login_guest).toLowerCase(),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        arg0.dismiss();
+
+                        Intent i = new Intent(mContext, LoginActivity.class);
+                        mContext.startActivity(i);
+                        ((Activity) mContext).finish();
+
+                    }
+                });
+
+        builder.setNegativeButton(mContext.getResources().getString(R.string.str_create_account).toLowerCase(),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                        Intent i = new Intent(mContext, SignUpActivity.class);
+                        mContext.startActivity(i);
+                        ((Activity) mContext).finish();
+
+                    }
+                });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 

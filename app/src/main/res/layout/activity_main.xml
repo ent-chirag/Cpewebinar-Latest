@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#40000000"
+        android:clickable="true"
         android:visibility="gone">
 
         <LinearLayout
@@ -38,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:padding="@dimen/_15sdp"
                     android:text="@string/str_cancel_guest"
                     android:textColor="@color/black_full"
                     android:textSize="@dimen/_12sdp"
