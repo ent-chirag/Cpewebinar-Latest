@@ -44,7 +44,8 @@
     <string name="please_check_internet_condition">Please Check Internet Connection.</string>
     <string name="device_token">device token</string>
     <string name="device_i">device id</string>
-    <string name="no_data_found">No data available</string>
+<!--    <string name="no_data_found">No data available</string>-->
+    <string name="no_data_found">No records found</string>
     <string name="exit_validation">Are you sure you want to Exit?</string>
     <string name="logout_text">Are you sure you want to Logout?</string>
     <string name="password_length">Password must be at least 6 characters.</string>

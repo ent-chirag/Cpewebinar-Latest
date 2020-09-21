@@ -284,7 +284,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/scrollview"
-            android:background="@color/color_bg">
+            android:background="@color/color_bg"
+            android:layout_above="@+id/progressBar">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvhomewebinar"
@@ -308,23 +309,26 @@
             android:textSize="@dimen/_12sdp"
             android:visibility="gone" />
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true">-->
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/_10sdp"
                 android:indeterminateTint="@color/theme_background"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="gone" />
+                android:visibility="gone"  />
 
 
-        </FrameLayout>
+        <!--</FrameLayout>-->
 
 
     </RelativeLayout>
