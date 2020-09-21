@@ -518,6 +518,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 
 
                 ((MyWebinarHolder) viewHolder).tv_webinar_date.setText(month + " " + day + ", " + year);
+                ((MyWebinarHolder) viewHolder).txtWebinarDate.setText(day + " " + month + ", " + mList.get(position).getStartTime()
+                        + " " + mList.get(position).getTimeZone());
 
 
             }
@@ -579,12 +581,12 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
 //                        Intent i = new Intent(mContext, WebinarDetailsActivityNew.class);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                 .get(position).getId());
-                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 5);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
                         Constant.isFromSpeakerCompanyWebinarList = false;
                         mContext.startActivity(i);
-                        ((Activity) mContext).finish();
+//                        ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }

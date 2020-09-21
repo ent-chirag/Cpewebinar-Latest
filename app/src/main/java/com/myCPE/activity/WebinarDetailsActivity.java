@@ -420,6 +420,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         if (intent != null) {
             webinarid = intent.getIntExtra(getResources().getString(R.string.pass_webinar_id), 0);
             screen_details = intent.getIntExtra(getResources().getString(R.string.screen_detail), 0);
+            Log.e("*+*+*","screen_detailsm on getIntent is : "+screen_details);
             webinar_type = intent.getStringExtra(getResources().getString(R.string.pass_webinar_type));
 //            isFromSpeakerCompanyProfile = intent.getBooleanExtra("isFromCompanySpeakerList", false);
             isFromSpeakerCompanyProfile = Constant.isFromSpeakerCompanyWebinarList;
@@ -2798,9 +2799,11 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
                                 );
 
-                                binding.txtWebinarDate.setText(month + " " + day + ", " + year +
-                                        " | " + webinar_details.getPayload().getWebinarDetail().getStartTime());
+                                /*binding.txtWebinarDate.setText(month + " " + day + ", " + year +
+                                        " | " + webinar_details.getPayload().getWebinarDetail().getStartTime() + " " + webinar_details.getPayload().getWebinarDetail().getTimeZone());*/
 
+                                binding.txtWebinarDate.setText(day + " " + month + ", "+ webinar_details.getPayload().getWebinarDetail().getStartTime()
+                                + " " + webinar_details.getPayload().getWebinarDetail().getTimeZone());
                             }
 
 
@@ -4419,6 +4422,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     startActivity(i);
                     finish();
                 } else if (screen_details == 5) {
+                    Log.e("*+*+*","screen details on backpress is : 5");
                     finish();
                 }
 
