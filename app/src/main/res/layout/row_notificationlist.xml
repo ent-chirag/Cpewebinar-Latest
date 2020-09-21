@@ -2,16 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:layout_marginBottom="@dimen/_10sdp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/rel_notification_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:gravity="center_vertical"
         android:padding="@dimen/_5sdp">
 
@@ -24,27 +22,25 @@
 
         <TextView
             android:id="@+id/tv_notification_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/tv_notification_time"
             android:ems="16"
             android:inputType="textMultiLine"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/_12sdp"
-            android:fontFamily="@font/whitney_semibold" />
+            android:fontFamily="@font/whitney_book" />
 
         <TextView
             android:id="@+id/tv_notification_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:textColor="@color/color_text_black_70"
+            android:layout_below="@+id/tv_notification_title"
+            android:textColor="@color/color_answer_green"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:textSize="@dimen/_10sdp"
-            android:fontFamily="@font/whitney_black" />
+            android:fontFamily="@font/whitney_light" />
 
     </RelativeLayout>
 
