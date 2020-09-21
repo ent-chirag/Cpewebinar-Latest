@@ -230,14 +230,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
             } else {
                 ((MyWebinarHolder) viewHolder).txtWebinarDate.setVisibility(View.INVISIBLE);
             }
-            String inpWebStatus = mList.get(position).getStatus();
-            char charAt0 = inpWebStatus.charAt(0);
-            String reminingString = inpWebStatus.substring(1).toLowerCase();
 
-            String outputWebStaus = charAt0+reminingString;
-
-//            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
-            ((MyWebinarHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
+            ((MyWebinarHolder) viewHolder).txtWebinarRegistrationState.setText(Constant.toTitleCase(mList.get(position).getStatus().toString()));
 
 //            ((MyWebinarHolder) viewHolder).rvContinueWatch.setVisibility(View.GONE);
 //            ((MyWebinarHolder) viewHolder).relConWatch.setVisibility(View.GONE);

@@ -51,7 +51,7 @@
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Transparent"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,7 +70,7 @@
         <activity
             android:name=".activity.PreLoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
         <!--<activity
             android:name=".activity.ActivityReviewQuestion"
             android:screenOrientation="portrait"

@@ -81,7 +81,7 @@
                     android:paddingRight="@dimen/_5sdp"
                     android:text="Live"
                     android:textAllCaps="true"
-                    android:textColor="@color/color_text_green"
+                    android:textColor="@color/black_full"
                     android:textSize="@dimen/_11sdp" />
 
                 <TextView

@@ -182,8 +182,7 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 
             String outputWebStaus = charAt0+reminingString;
 
-//            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(mList.get(position).getStatus());
-            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(""+outputWebStaus);
+            ((HomeViewHolder) viewHolder).txtWebinarRegistrationState.setText(Constant.toTitleCase(mList.get(position).getStatus().toString()));
 
             for (int i = 0; i < mList.size() ; i++) {
                 Log.e("*+*+*","Position is : "+position);
