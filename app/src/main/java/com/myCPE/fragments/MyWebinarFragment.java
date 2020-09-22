@@ -828,6 +828,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 strMyWebinarType = "1";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;
@@ -848,6 +849,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 strMyWebinarType = "6";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;
@@ -868,6 +870,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 strMyWebinarType = "2";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;
@@ -888,6 +891,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 strMyWebinarType = "3";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;
@@ -908,6 +912,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.home_tab_color_unselected));
 
                 strMyWebinarType = "4";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;
@@ -928,6 +933,7 @@ public class MyWebinarFragment extends Fragment implements View.OnClickListener 
                 binding.btnPollmissout.setTextColor(getResources().getColor(R.color.White));
 
                 strMyWebinarType = "5";
+                start = 0;
                 applyFilterWebinarType();
 
                 break;

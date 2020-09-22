@@ -993,7 +993,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 }
             } */
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
+                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview && webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
                 // Load review Popup here..
                 if (!Constant.isFromCSPast) {
                     Log.e("*+*+*", "Popup webinar load from here 0");
@@ -3137,7 +3137,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             }
 
                             if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
-                                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview) {
+                                    .getResources().getString(R.string.str_webinar_status_completed)) && !isReview && webinar_type.equalsIgnoreCase(getResources().getString(R.string.str_self_study_on_demand))) {
                                 if (!Constant.isFromCSPast) {
                                     Log.e("*+*+*", "Popup webinar load from here 1");
 //                                    showAddReviewPopUp();
