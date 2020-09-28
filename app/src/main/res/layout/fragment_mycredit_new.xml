@@ -177,6 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/lv_filter"
+            android:background="@color/color_bg"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp">
@@ -188,7 +189,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:paddingTop="@dimen/_minus5sdp"
                 android:paddingRight="@dimen/_minus2sdp"
-                android:background="@color/White"
+                android:background="@color/color_bg"
                 android:scrollbars="none"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70sdp">
