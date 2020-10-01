@@ -595,7 +595,8 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            ((MyWebinarHolder) viewHolder).webinar_status.setOnClickListener(new View.OnClickListener() {
+//            ((MyWebinarHolder) viewHolder).webinar_status.setOnClickListener(new View.OnClickListener() {
+            ((MyWebinarHolder) viewHolder).relWebinarRegister.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
