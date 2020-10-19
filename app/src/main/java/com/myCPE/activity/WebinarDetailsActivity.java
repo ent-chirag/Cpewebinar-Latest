@@ -953,7 +953,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                 i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
-                finish();
+//                finish();
             } else if (binding.tvWebinarStatus.getText().toString().equalsIgnoreCase(context
                     .getResources().getString(R.string.str_webinar_status_enroll))) {
                 String url = join_url;

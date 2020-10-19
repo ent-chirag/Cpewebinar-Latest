@@ -663,7 +663,7 @@ public class HomeMyWebinarAdapter extends RecyclerView.Adapter {
                             i.putExtra(mContext.getResources().getString(R.string.pass_who_you_are_list_review_question), mList.get(position).getId());
                             i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList.get(position).getWebinarType());
                             mContext.startActivity(i);
-                            ((Activity) mContext).finish();
+//                            ((Activity) mContext).finish();
                         } else if (mList.get(position).getStatus().equalsIgnoreCase(mContext
                                 .getResources().getString(R.string.str_webinar_status_certificate))) {
 //                            checkAndroidVersionCertificate();

@@ -122,6 +122,12 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
 
 //            tvWebinarState, tvWebinarCredit, tvWebinarPrice, txtWebinarTitle, txtWebinarAuthor, txtWebinarDate
             ((HomeViewHolder) viewHolder).txtWebinarTitle.setText(recentList.get(position).getWebinarTitle());
+//            ((HomeViewHolder) viewHolder).progressLevel.setProgressBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.red_warning)));
+//            ((HomeViewHolder) viewHolder).progressLevel.setProgressTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.White)));
+            ((HomeViewHolder) viewHolder).progressLevel.setProgress(60);
+//            ((HomeViewHolder) viewHolder).progressLevel.setBackgroundColor(mContext.getResources().getColor(R.color.White));
+
+
 
             if (!recentList.get(position).getWebinarImage().equalsIgnoreCase("")) {
                 ((HomeViewHolder) viewHolder).imgBanner.setVisibility(View.VISIBLE);
@@ -186,6 +192,7 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
         TextView txtWebinarTitle;
         RelativeLayout relBGShapeCard;
         ImageView imgBanner, imgContinueWatchPlay;
+        ProgressBar progressLevel;
 
         private HomeViewHolder(View itemView) {
             super(itemView);
@@ -195,6 +202,7 @@ public class ContinueWatchAdapter extends RecyclerView.Adapter {
             relBGShapeCard = (RelativeLayout) itemView.findViewById(R.id.relBGShapeCard);
             imgBanner = (ImageView) itemView.findViewById(R.id.imgBanner);
             imgContinueWatchPlay = (ImageView) itemView.findViewById(R.id.imgContinueWatchPlay);
+            progressLevel = (ProgressBar) itemView.findViewById(R.id.progressLevel);
 
         }
     }
