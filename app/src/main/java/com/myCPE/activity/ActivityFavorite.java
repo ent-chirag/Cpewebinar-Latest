@@ -2,17 +2,13 @@ package com.myCPE.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.MyFavoriteAdapter;
@@ -57,21 +53,21 @@ public class ActivityFavorite extends AppCompatActivity {
         mAPIService_new = ApiUtilsNew.getAPIService();
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        binding.rvFavoritelist.setLayoutManager(linearLayoutManager);
-        binding.rvFavoritelist.addItemDecoration(new SimpleDividerItemDecoration(context));
-        binding.rvFavoritelist.setItemAnimator(new DefaultItemAnimator());
-        binding.rvFavoritelist.setHasFixedSize(true);
+//        binding.rvFavoritelist.setLayoutManager(linearLayoutManager);
+//        binding.rvFavoritelist.addItemDecoration(new SimpleDividerItemDecoration(context));
+//        binding.rvFavoritelist.setItemAnimator(new DefaultItemAnimator());
+//        binding.rvFavoritelist.setHasFixedSize(true);
 
 
         if (Constant.isNetworkAvailable(context)) {
             progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
             GetMyFavorites(webinartype, topicsofinterest, start, limit);
         } else {
-            Snackbar.make(binding.rvFavoritelist, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+//            Snackbar.make(binding.rvFavoritelist, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
 
         }
 
-        binding.rvFavoritelist.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*binding.rvFavoritelist.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (loading) {
@@ -101,7 +97,7 @@ public class ActivityFavorite extends AppCompatActivity {
             public void onRefresh() {
                 refreshItems();
             }
-        });
+        });*/
 
     }
 
@@ -124,26 +120,26 @@ public class ActivityFavorite extends AppCompatActivity {
         if (Constant.isNetworkAvailable(context)) {
             GetMyFavorites(webinartype, topicsofinterest, start, limit);
         } else {
-            Snackbar.make(binding.rvFavoritelist, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
+//            Snackbar.make(binding.rvFavoritelist, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
     }
 
-    boolean isLastVisible() {
+    /*boolean isLastVisible() {
         LinearLayoutManager layoutManager = ((LinearLayoutManager) binding.rvFavoritelist.getLayoutManager());
         int pos = layoutManager.findLastCompletelyVisibleItemPosition();
         int numItems = binding.rvFavoritelist.getAdapter().getItemCount() - 1;
         return (pos >= numItems);
-    }
+    }*/
 
 
-    private void loadNextPage() {
+    /*private void loadNextPage() {
         if (Constant.isNetworkAvailable(context)) {
             binding.progressBar.setVisibility(View.VISIBLE);
             GetMyFavorites(webinartype, topicsofinterest, start, limit);
         } else {
             Snackbar.make(binding.rvFavoritelist, getResources().getString(R.string.please_check_internet_condition), Snackbar.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     private void GetMyFavorites(final String webinartype, final String topicsofinterest, final int start, final int limit) {
 
@@ -163,7 +159,7 @@ public class ActivityFavorite extends AppCompatActivity {
                         if (start == 0 && limit == 10) {
                             if (arrmyfavorites.size() > 0) {
                                 adapter = new MyFavoriteAdapter(context, arrmyfavorites);
-                                binding.rvFavoritelist.setAdapter(adapter);
+//                                binding.rvFavoritelist.setAdapter(adapter);
 
                             }
                         } else {
@@ -192,7 +188,7 @@ public class ActivityFavorite extends AppCompatActivity {
                         if (Constant.status_code == 401) {
                             MainActivity.getInstance().AutoLogout();
                         } else {
-                            Snackbar.make(binding.rvFavoritelist, message, Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(binding.rvFavoritelist, message, Snackbar.LENGTH_SHORT).show();
                         }
 
                     }
@@ -204,9 +200,9 @@ public class ActivityFavorite extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             } else {
-                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                /*if (binding.swipeRefreshLayouthome.isRefreshing()) {
                                     binding.swipeRefreshLayouthome.setRefreshing(false);
-                                }
+                                }*/
                             }
 
 
@@ -241,10 +237,10 @@ public class ActivityFavorite extends AppCompatActivity {
 
 
                             if (arrmyfavorites.size() > 0) {
-                                binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
-                                binding.tvNodatafound.setVisibility(View.GONE);
+//                                binding.swipeRefreshLayouthome.setVisibility(View.VISIBLE);
+//                                binding.tvNodatafound.setVisibility(View.GONE);
                             } else {
-                                binding.swipeRefreshLayouthome.setVisibility(View.GONE);
+//                                binding.swipeRefreshLayouthome.setVisibility(View.GONE);
                                 binding.tvNodatafound.setVisibility(View.VISIBLE);
                             }
 
@@ -253,11 +249,11 @@ public class ActivityFavorite extends AppCompatActivity {
                             if (progressDialog.isShowing()) {
                                 progressDialog.dismiss();
                             } else {
-                                if (binding.swipeRefreshLayouthome.isRefreshing()) {
+                                /*if (binding.swipeRefreshLayouthome.isRefreshing()) {
                                     binding.swipeRefreshLayouthome.setRefreshing(false);
-                                }
+                                }*/
                             }
-                            Snackbar.make(binding.rvFavoritelist, modelFavorites.getMessage(), Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(binding.rvFavoritelist, modelFavorites.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
 
 

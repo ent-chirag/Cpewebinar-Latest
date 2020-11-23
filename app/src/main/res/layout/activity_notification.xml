@@ -60,13 +60,13 @@
             android:layout_height="0.5dp"
             android:background="@color/color_text_black" />
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/rel_titile">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_notificationlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,9 +74,9 @@
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_20sdp">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
             android:id="@+id/tv_nodatafound"

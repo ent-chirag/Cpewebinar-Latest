@@ -1,8 +1,9 @@
 package com.myCPE.view;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Tops on 8/25/2017.

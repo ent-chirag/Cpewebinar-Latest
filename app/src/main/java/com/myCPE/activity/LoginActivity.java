@@ -4,15 +4,17 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.databinding.ActivityLoginNewLayoutBinding;
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         mAPIService = ApiUtilsNew.getAPIService();
         context = LoginActivity.this;
 
+//        crashFunc();
 
         AppSettings.set_device_id(context, Constant.GetDeviceid(context));
 
@@ -132,6 +135,11 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void crashFunc() {
+        int i = 1;
+        Log.e("*+*+*","Crash is because : "+i%0);
     }
 
 

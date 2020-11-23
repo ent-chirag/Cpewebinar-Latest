@@ -306,7 +306,7 @@
                         android:textColor="@color/edit_field_hint"
                         android:textSize="@dimen/_13sdp" />
 
-                    <android.support.design.chip.ChipGroup
+                    <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupProfCreds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -392,7 +392,7 @@
                         android:textColor="@color/edit_field_hint"
                         android:textSize="@dimen/_13sdp" />
 
-                    <android.support.design.chip.ChipGroup
+                    <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupAdditionalQualification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -593,7 +593,7 @@
                     android:layout_height="1dp"
                     android:background="@color/black_full" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -601,7 +601,7 @@
                     android:paddingTop="@dimen/_4sdp"
                     android:visibility="gone" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupAdditionalQualification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -609,7 +609,7 @@
                     android:paddingTop="@dimen/_4sdp"
                     android:visibility="gone" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupJobTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -617,7 +617,7 @@
                     android:paddingTop="@dimen/_4sdp"
                     android:visibility="gone" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupIndustry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -9,6 +9,8 @@ buildscript {
     }*/
 }
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 //apply plugin: 'io.fabric'
 
 repositories {
@@ -29,10 +31,10 @@ android {
        }
    }*/
 
-    /*compileOptions {
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }*/
+    }
 
 
     compileSdkVersion 29
@@ -79,48 +81,32 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    //multidex
-    // implementation 'com.android.support:multidex:1.0.3'
-
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     //for font size
     implementation 'com.intuit.sdp:sdp-android:1.0.2'
     //rxjava
     implementation 'io.reactivex:rxjava:1.1.6'
     implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.9.0'
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // JSON Parsing
-    implementation 'com.google.code.gson:gson:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     // testImplementation 'junit:junit:4.12'
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
-//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //circular image view
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
-    //crash analytics
-    /*implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
-        transitive = true;
-    }*/
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
-//    implementation 'com.google.firebase:firebase-database:10.0.0'
-//    testImplementation 'junit:junit:4.12'
-    implementation 'com.firebase:firebase-client-android:2.3.1'
-
-//    implementation 'com.google.firebase:firebase-storage:9.2.1'
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'com.google.firebase:firebase-auth:9.2.1'
-
-//    implementation 'com.stripe:stripe-android:8.1.0'
-    implementation 'com.google.firebase:firebase-core:16.0.5'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    //picasso image loader
-//    implementation 'com.github.reinaldoarrosi:maskededittext:1.1.0'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-core:18.0.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation files('libs/picasso-2.5.2.jar')
 
     //exo player
@@ -131,12 +117,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
     implementation 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
-//    implementation 'io.github.kexanie.library:MathView:0.0.6'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
-//    implementation 'es.voghdev.pdfviewpager:library:1.0.6'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-//    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-//    implementation 'com.google.android.material:material:1.2.0'
 }
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

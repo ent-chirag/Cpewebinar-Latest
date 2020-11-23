@@ -127,7 +127,7 @@
         </HorizontalScrollView>
 
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/homeparenttabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             app:tabTextColor="@color/fav_tab_unselected_color" />
 
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -7,17 +7,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.activity.SplashActivity;
 import com.myCPE.utility.AppSettings;
-import com.myCPE.utility.Constant;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.myCPE.utility.Constant;
 
 import java.util.Random;
 

@@ -2,62 +2,30 @@ package com.myCPE.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.myCPE.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.myCPE.R;
-import com.myCPE.activity.CompanyProfileActivity;
-import com.myCPE.activity.LoginActivity;
-import com.myCPE.activity.PdfViewActivity;
-import com.myCPE.activity.SignUpActivity;
-import com.myCPE.activity.SpeakerProfileActivity;
 import com.myCPE.activity.WebinarDetailsActivity;
-import com.myCPE.model.homewebinarnew.MyCertificateLinksItem;
-import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
-import com.myCPE.model.webinar_like_dislike.Webinar_Like_Dislike_Model;
-import com.myCPE.utility.AppSettings;
 import com.myCPE.utility.Constant;
-import com.myCPE.view.DialogsUtils;
-import com.myCPE.view.SimpleDividerItemDecoration;
 import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
-import com.squareup.picasso.Picasso;
 
-import java.net.HttpURLConnection;
 import java.util.List;
-import java.util.StringTokenizer;
-
-import retrofit2.adapter.rxjava.HttpException;
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class ContinueWatchAdapter extends RecyclerView.Adapter {
 

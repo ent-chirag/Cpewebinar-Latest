@@ -358,7 +358,7 @@
                     android:layout_height="1dp"
                     android:background="@color/black_full" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupCountryList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -366,7 +366,7 @@
                     android:background="@color/color_bg"
                     android:visibility="gone"/>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupStateList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -374,7 +374,7 @@
                     android:background="@color/color_bg"
                     android:visibility="gone"/>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPopupCityList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
