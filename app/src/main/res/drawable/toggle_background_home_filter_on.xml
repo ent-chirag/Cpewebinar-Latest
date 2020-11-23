@@ -8,7 +8,8 @@
       android:height="@dimen/_15sdp" />
   <solid
       android:width="1dp"
-      android:color="@color/color_view_date_filter_checkbox_selected" />
+      android:color="@color/color_rounded_btn_orange" />
+<!--      android:color="@color/color_view_date_filter_checkbox_selected" />-->
 
   <corners android:radius="15dp" />
 </shape>
