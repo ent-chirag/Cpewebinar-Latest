@@ -28,6 +28,7 @@ import com.myCPE.webservice.ApiUtilsNew;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 public class LoginActivity extends AppCompatActivity {
 //    ActivityLoginBinding binding;
@@ -137,10 +138,16 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void crashFunc() {
-        int i = 1;
-        Log.e("*+*+*","Crash is because : "+i%0);
-    }
+    /*private void crashFunc() {
+        *//*int i = 1;
+        Log.e("*+*+*","Crash is because : "+i%0);*//*
+        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+
+        crashlytics.log("Firebase default crash");
+
+// To log a message to a crash report, use the following syntax:
+        crashlytics.log("E/TAG: my message");
+    }*/
 
 
     public void LoginPost(String username, String password, String device_id, String device_token, String device_type) {

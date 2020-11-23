@@ -2,6 +2,7 @@ package com.myCPE;
 
 import android.app.Application;
 import android.content.Context;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 //import com.crashlytics.android.Crashlytics;
 
@@ -16,6 +17,8 @@ public class MyCpe extends Application {
         super.onCreate();
 //        Fabric.with(this, new Crashlytics());
         smycpe = this;
+        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+        crashlytics.checkForUnsentReports();
     }
 
     public static MyCpe getMyCpe() {
