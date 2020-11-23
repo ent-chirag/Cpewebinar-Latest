@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -88,7 +89,7 @@ public class RecycleviewSectionTestAdapter extends RecyclerView.Adapter<Recyclev
     }
 
     @Override
-    public void onBindViewHolder(final SectionViewHolder holder, final int position) {
+    public void onBindViewHolder(final SectionViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
 
         holder.item_recycler_view.setNestedScrollingEnabled(false);

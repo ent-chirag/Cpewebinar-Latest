@@ -160,7 +160,7 @@
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_12sdp"
-                android:background="@drawable/underline_bg"
+                android:background="@drawable/underline_bg_white"
                 android:fontFamily="@font/whitney_semibold"
                 android:hint="@string/str_subject"
                 android:imeOptions="actionNext"
@@ -177,7 +177,7 @@
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_12sdp"
-                android:background="@drawable/underline_bg"
+                android:background="@drawable/underline_bg_white"
                 android:fontFamily="@font/whitney_semibold"
                 android:gravity="top"
                 android:hint="@string/str_msg"
@@ -196,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
             android:layout_alignParentBottom="true"
-            android:background="@color/color_bg">
+            android:background="@color/White">
 
             <RelativeLayout
                 android:id="@+id/relPopupSubmitFeedback"

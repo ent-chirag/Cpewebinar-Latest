@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -67,7 +68,7 @@ public class PopupSingleItemSelectionAdapter extends RecyclerView.Adapter {
 
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         if (viewHolder instanceof HomeViewHolder) {
 //            Constant.Log("size", "" + mList.size());

@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'https://maven.fabric.io/public' }
+//        maven { url 'https://maven.fabric.io/public' }
 
     }
 
@@ -12,7 +12,7 @@ apply plugin: 'com.android.application'
 //apply plugin: 'io.fabric'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
+//    maven { url 'https://maven.fabric.io/public' }
 
 
 }
@@ -66,6 +66,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    /*lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }*/
 }
 
 dependencies {
@@ -95,9 +102,9 @@ dependencies {
     //circular image view
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     //crash analytics
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
+    /*implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true;
-    }
+    }*/
 
 
 //    implementation 'com.google.firebase:firebase-database:10.0.0'
@@ -129,7 +136,7 @@ dependencies {
 
 //    implementation 'es.voghdev.pdfviewpager:library:1.0.6'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+//    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 //    implementation 'com.google.android.material:material:1.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

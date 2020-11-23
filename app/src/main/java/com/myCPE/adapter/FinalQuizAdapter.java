@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -42,7 +43,7 @@ public class FinalQuizAdapter extends RecyclerView.Adapter<FinalQuizAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         if (!finalquizquestion.get(position).getQuestionTitle().equalsIgnoreCase("")) {
             viewHolder.tv_question.setText(finalquizquestion.get(position).getQuestionTitle());

@@ -1,6 +1,7 @@
 package com.myCPE.adapter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
@@ -169,7 +170,7 @@ public class TransactionAdapter extends RecyclerView.Adapter implements Activity
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         if (viewHolder instanceof ViewHolder) {
 

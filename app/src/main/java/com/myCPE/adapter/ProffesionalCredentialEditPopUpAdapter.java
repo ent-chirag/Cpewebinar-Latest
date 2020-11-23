@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +42,7 @@ public class ProffesionalCredentialEditPopUpAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         final Model_proffesional_Credential model_proffesional_credential = arraylistModelProffesioanlCredential.get(position);
 

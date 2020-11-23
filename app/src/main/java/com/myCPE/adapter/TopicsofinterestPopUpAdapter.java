@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,7 @@ public class TopicsofinterestPopUpAdapter extends RecyclerView.Adapter<Topicsofi
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final com.myCPE.model.topics_subcategory.TopicOfInterestsItem tagsItem = mListrtopicsofinterestsubcategory.get(position);
 

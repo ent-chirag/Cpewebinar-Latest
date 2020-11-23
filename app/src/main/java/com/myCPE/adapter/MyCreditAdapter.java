@@ -1,6 +1,7 @@
 package com.myCPE.adapter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
@@ -115,7 +116,7 @@ public class MyCreditAdapter extends RecyclerView.Adapter implements ActivityCom
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         if (viewHolder instanceof ViewHolder) {
 

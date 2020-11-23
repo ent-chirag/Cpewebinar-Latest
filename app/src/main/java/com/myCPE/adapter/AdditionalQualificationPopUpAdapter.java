@@ -1,5 +1,6 @@
 package com.myCPE.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,7 @@ public class AdditionalQualificationPopUpAdapter extends RecyclerView.Adapter<Ad
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         final Model_additional_qualification model_additional_qualification = arraylistModeladditionalcredential.get(position);
 
