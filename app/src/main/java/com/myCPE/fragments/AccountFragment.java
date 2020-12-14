@@ -544,6 +544,12 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        binding.ivedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateeditprofile();
+            }
+        });
 
         binding.rvTopicsOfInterest.setOnClickListener(new View.OnClickListener() {
             @Override

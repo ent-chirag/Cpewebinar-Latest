@@ -33,6 +33,15 @@
                 android:textSize="@dimen/_14sdp"
                 app:font_text="Whitney-Semibold.ttf" />
 
+            <ImageView
+                android:id="@+id/ivedit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:src="@drawable/ic_edit" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -126,7 +135,7 @@
                             android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:text="@string/str_noti"
+                            android:text="@string/str_notification_settings"
                             android:textColor="@color/black_full"
                             android:textSize="@dimen/_12sdp"
                             app:font_text="Whitney-Medium.ttf" />

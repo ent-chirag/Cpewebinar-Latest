@@ -544,7 +544,7 @@ public class SignUpNextActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        }); */
 
         binding.ivcheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -560,7 +560,7 @@ public class SignUpNextActivity extends AppCompatActivity {
 
 
             }
-        });*/
+        });
 
 
         binding.spinnerJobTitile.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -743,10 +743,8 @@ public class SignUpNextActivity extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (Validation()) {
-
+//                    Log.e("*+*+*","Validated successfully");
                     if (Constant.isNetworkAvailable(context)) {
                         progressDialog = DialogsUtils.showProgressDialog(context, getResources().getString(R.string.progrees_msg));
                         RegisterPost();
@@ -755,7 +753,6 @@ public class SignUpNextActivity extends AppCompatActivity {
 
                     }
                 }
-
             }
         });
 
@@ -1444,6 +1441,9 @@ public class SignUpNextActivity extends AppCompatActivity {
             binding.edtCompanyName.clearFocus();
             binding.edtPtinNumber.clearFocus();
             Snackbar.make(binding.professionalCredential, getResources().getString(R.string.validation_professional_credential), Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else if(!checkprivacypolicystatus) {
+            Snackbar.make(binding.professionalCredential, getResources().getString(R.string.val_terms_condition), Snackbar.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

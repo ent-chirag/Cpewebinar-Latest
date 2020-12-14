@@ -224,6 +224,7 @@
     <string name="val_zip_code">Please Enter Zip code</string>
     <string name="val_canadian_zip_code">Please enter valid Canadian zip code</string>
     <string name="val_us_zip_code">Please enter valid United states zip code</string>
+    <string name="val_terms_condition">Please accept terms and conditions by accepting the checkbox</string>
 
 
     <string name="val_topics">Please select at least one topics of interest</string>
