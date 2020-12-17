@@ -217,7 +217,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        if(isTaskRoot()) {
+            Log.e("*+*+*","This is the probably last activity..");
+            Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Log.e("*+*+*","This is no the last activity..");
+            finish();
+        }
 
     }
 

@@ -67,7 +67,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
+import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.databinding.ActivityWebinardetailsNewBinding;
+import com.myCPE.fragments.HomeAllFragment;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.review_answer.AddReview;
 import com.myCPE.model.timezones;
@@ -149,6 +151,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     private APIService mAPIService;
     ProgressDialog progressDialog;
     private static final String TAG = WebinarDetailsActivity.class.getName();
+    public int int_position = 0;
     public int webinarid = 0;
     public String webinar_type = "";
     public String Webinar_title = "";
@@ -304,6 +307,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
     public String ctec_profile_pic = "";
 
     public List<WebinarTestimonialItem> webinartestimonial = new ArrayList<WebinarTestimonialItem>();
+//    public List<com.myCPE.model.webinar_list.WebinarItem> mList;
 
 
     private static WebinarDetailsActivity instance;
@@ -419,6 +423,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
         Intent intent = getIntent();
         if (intent != null) {
+            int_position = intent.getIntExtra("position", 0);
             webinarid = intent.getIntExtra(getResources().getString(R.string.pass_webinar_id), 0);
             screen_details = intent.getIntExtra(getResources().getString(R.string.screen_detail), 0);
             Log.e("*+*+*","screen_detailsm on getIntent is : "+screen_details);
@@ -427,6 +432,21 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             isFromSpeakerCompanyProfile = Constant.isFromSpeakerCompanyWebinarList;
 
             Constant.Log(TAG, "webinar_id" + webinarid);
+            Log.e("*+*+*","Position on getIntent is : "+int_position);
+            /*Bundle bundle = getIntent().getExtras();
+            mList = bundle.getParcelable("mArrarData");*/
+//            Bundle bundle = intent.getBundleExtra("BUNDLE");
+//            mList = (List<com.myCPE.model.webinar_list.WebinarItem>) bundle.getSerializable("mList");
+
+//            mList = (List<com.myCPE.model.webinar_list.WebinarItem>) intent.getSerializableExtra("mArrayData");
+//            Log.e("*+*+*","Now on getIntent size for mList is : "+mList.size());
+//            Log.e("*+*+*","Size for mList on getIntent is : "+mList.size());
+
+            Log.e("*+*+*","ArrayHomeListnew on getIntent is : "+ HomeAllFragment.getInstance().arrHomelistnew.size());
+//            HomeAllFragment.getInstance().arrHomelistnew.get(int_position).setStatus("Test");
+//            HomeAllFragment.getInstance().updateRvHome();
+//            Log.e("*+*+*","After Update valur for the specific position is : "+HomeAllFragment.getInstance().arrHomelistnew.get(int_position).getStatus());
+//            Constant.isStatusUpdated = true;
 
             if (getIntent().hasExtra(getResources().getString(R.string.str_is_notification))) {
                 isNotification = true;
@@ -1990,8 +2010,14 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                             Snackbar.make(button, modelRegisterWebinar.getMessage(), Snackbar.LENGTH_SHORT).show();
                             // recreate();
                             button.setText(modelRegisterWebinar.getPayload().getRegisterStatus());
+                            Log.e("*+*+*","Updated webinar Status is : "+modelRegisterWebinar.getPayload().getRegisterStatus());
+//                            mList.get(int_position).setStatus(modelRegisterWebinar.getPayload().getRegisterStatus());
+//                            Log.e("*+*+*","Updated webinar Status on model is : "+mList.get(int_position).getStatus());
+//                            HomeAllFragment.getInstance().arrHomelistnew.get(int_position).setStatus("Test");
+                            HomeAllFragment.getInstance().arrHomelistnew.get(int_position).setStatus(modelRegisterWebinar.getPayload().getRegisterStatus());
+                            Constant.isStatusUpdated = true;
+                            Log.e("*+*+*","Updated webinar Status on model is : "+ HomeAllFragment.getInstance().arrHomelistnew.size());
 //                            button.setBackgroundResource(R.drawable.rounded_webinar_status);
-
                             if (!modelRegisterWebinar.getPayload().getJoinUrl().equalsIgnoreCase("")) {
                                 join_url = modelRegisterWebinar.getPayload().getJoinUrl();
                                 webinar_status = modelRegisterWebinar.getPayload().getRegisterStatus();
@@ -2446,6 +2472,10 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             } else if (screen_details == 1) {
                 Intent i = new Intent(context, MainActivity.class);
                 startActivity(i);
+                finish();
+            } else if (screen_details == 6) {
+//                Intent i = new Intent(context, MainActivity.class);
+//                startActivity(i);
                 finish();
             } else if (screen_details == 2) {
                 Constant.isdataupdate = true;
@@ -3926,11 +3956,13 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
             case R.id.ivback:
                 Log.e("*+*+*", "click ivBack");
-                backpress();
+//                backpress();
+                onBackPressed();
                 break;
 
             case R.id.relImgBack:
-                backpress();
+//                backpress();
+                onBackPressed();
                 Log.e("*+*+*", "click relImgBack");
                 break;
 
@@ -4389,7 +4421,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
         binding.imgArrowOthers.setBackgroundResource(R.drawable.ic_arrow_down_svg);
     }
 
-    private void backpress() {
+    /*private void backpress() {
 
         if (isFromSpeakerCompanyProfile) {
             finish();
@@ -4411,6 +4443,10 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
                     Intent i = new Intent(context, MainActivity.class);
                     startActivity(i);
                     finish();
+                } else if (screen_details == 6) {
+//                Intent i = new Intent(context, MainActivity.class);
+//                startActivity(i);
+                    finish();
                 } else if (screen_details == 2) {
                     Constant.isdataupdate = true;
                     finish();
@@ -4429,7 +4465,7 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
 
             }
         }
-    }
+    }*/
 
     private class DownloadTask extends AsyncTask<String, Integer, String> {
 

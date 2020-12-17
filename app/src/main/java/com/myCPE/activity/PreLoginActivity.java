@@ -1,7 +1,9 @@
 package com.myCPE.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
@@ -182,8 +185,9 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+//        super.onBackPressed();
+//        finish();
+        ConfirmationPopup();
     }
 
 
@@ -199,6 +203,47 @@ public class PreLoginActivity extends AppCompatActivity implements Animation.Ani
 
     @Override
     public void onAnimationRepeat(Animation animation) {
+
+    }
+
+    public void ConfirmationPopup() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+        // alertDialog.setTitle("Confirm Delete...");
+
+        // Setting Dialog Message
+        alertDialog.setMessage(getResources().getString(R.string.exit_validation));
+
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Write your code here to invoke YES event
+                dialog.cancel();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAffinity();
+                    System.exit(0);
+                } else {
+                    finish();
+                }
+
+
+            }
+        });
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Write your code here to invoke NO event
+
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
 
     }
 }

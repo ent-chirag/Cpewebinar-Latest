@@ -10,8 +10,8 @@ public class ApiUtilsNew {
     // Base URL for Live API..
 //     public static final String BASE_URL = "https://my-cpe.com/api/";
 //    public static final String BASE_URL = "https://my-cpe.com/api/v2/";
-    public static final String BASE_URL = "https://my-cpe.com/api/v3/";
-//    public static final String BASE_URL = "https://testing-website.in/api/v3/";
+//    public static final String BASE_URL = "https://my-cpe.com/api/v3/";
+    public static final String BASE_URL = "https://testing-website.in/api/v3/";
 //
     // Base URL for TEST API..
 //    public static final String BASE_URL = "http://testing-website.in/api/";

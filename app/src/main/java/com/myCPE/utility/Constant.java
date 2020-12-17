@@ -104,6 +104,7 @@ public class Constant {
     public static ArrayList<Integer> arraylistselectedtopicsofinterest = new ArrayList<Integer>();
     public static boolean checkmywebinardotstatusset = false;
     public static boolean isdataupdate = false;
+    public static boolean isStatusUpdated = false;
     public static ArrayList<String> arraylistselectedreviewanswerreview = new ArrayList<String>();
     public static ArrayList<Integer> arraylistselectedquestionreview = new ArrayList<Integer>();
     public static HashMap<String, Boolean> hashmap_asnwer_review_question = new HashMap<String, Boolean>();

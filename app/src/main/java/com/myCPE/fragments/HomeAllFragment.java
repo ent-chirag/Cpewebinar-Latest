@@ -81,7 +81,7 @@ public class HomeAllFragment extends Fragment {
     ProgressDialog progressDialog;
     LinearLayoutManager linearLayoutManager;
 //    private List<com.myCPE.model.homewebinarnew.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.homewebinarnew.WebinarItem>();
-    private List<com.myCPE.model.webinar_list.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.webinar_list.WebinarItem>();
+    public List<com.myCPE.model.webinar_list.WebinarItem> arrHomelistnew = new ArrayList<com.myCPE.model.webinar_list.WebinarItem>();
 //    private List<com.myCPE.model.homewebinarnew.RecentWebinarItem> arrRecentlistnew = new ArrayList<RecentWebinarItem>();
     private List<com.myCPE.model.webinar_list.RecentWebinarsItem> arrRecentlistnew = new ArrayList<RecentWebinarsItem>();
 
@@ -1355,6 +1355,12 @@ public class HomeAllFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        Log.e("*+*+*","onResume from HomeAllAdapter is called..");
+        if(Constant.isStatusUpdated) {
+            Constant.isStatusUpdated = false;
+            updateRvHome();
+        }
+
       /*  if (arraylistselectedvalue.size() > 0) {
             topicsofinterest = "";
 
@@ -1402,6 +1408,14 @@ public class HomeAllFragment extends Fragment {
         }
     }
 
+    private void updateRvHome() {
+//        binding.rvhome.notify();
+        if (arrHomelistnew.size() > 0) {
+//            adapter = new HomeALLAdapter(context, arrHomelistnew, arrRecentlistnew);
+//            binding.rvhome.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    }
 
     public void refreshItems() {
         onItemsLoadComplete();
@@ -1842,6 +1856,5 @@ public class HomeAllFragment extends Fragment {
 
         return (pos >= numItems);
     }
-
 
 }

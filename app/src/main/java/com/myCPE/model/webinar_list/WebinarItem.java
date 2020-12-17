@@ -138,4 +138,8 @@ public class WebinarItem{
 	public void setScheduleId(int scheduleId) {
 		this.scheduleId = scheduleId;
 	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

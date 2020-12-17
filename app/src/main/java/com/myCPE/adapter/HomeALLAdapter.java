@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +52,9 @@ import com.myCPE.webservice.APIService;
 import com.myCPE.webservice.ApiUtilsNew;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -579,16 +583,20 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     if (!AppSettings.get_login_token(mContext).isEmpty()) {
+                        Log.e("*+*+*","Data while sending on intent is : "+mList.get(position));
+                        Log.e("*+*+*","Size on Intent call on Adapter is : "+mList.size());
                         Intent i = new Intent(mContext, WebinarDetailsActivity.class);
 //                        Intent i = new Intent(mContext, WebinarDetailsActivityNew.class);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_id), mList
                                 .get(position).getId());
-                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+//                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 1);
+                        i.putExtra(mContext.getResources().getString(R.string.screen_detail), 6);
                         i.putExtra(mContext.getResources().getString(R.string.pass_webinar_type), mList
                                 .get(position).getWebinarType());
+                        i.putExtra("position", position);
                         Constant.isFromSpeakerCompanyWebinarList = false;
                         mContext.startActivity(i);
-                        ((Activity) mContext).finish();
+//                        ((Activity) mContext).finish();
                     } else {
                         ShowPopUp();
                     }
@@ -690,7 +698,8 @@ public class HomeALLAdapter extends RecyclerView.Adapter {
 //                                    String url = "" + mList.get(position).getRedirectionUrl();
                                     String url = "" + mList.get(position).getPaymentLink();
                                     openDialogConfirmRedirect(url);
-                                    *//*try {
+                                    */
+                                /*try {
                                         Intent i = new Intent("android.intent.action.MAIN");
                                         i.setComponent(ComponentName.unflattenFromString("" + url));
                                         i.addCategory("android.intent.category.LAUNCHER");

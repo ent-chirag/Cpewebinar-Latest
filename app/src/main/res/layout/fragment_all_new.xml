@@ -42,7 +42,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/ivnotification"
-                    android:paddingRight="@dimen/_12sdp"
                     android:src="@drawable/ic_search_svg"
                     android:visibility="visible" />
 
@@ -52,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_12sdp"
                     android:src="@drawable/ic_bell"
                     android:visibility="visible" />
 
