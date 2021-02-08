@@ -33,21 +33,22 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.myCPE.utility.Constant.arraylistSelectedAnswerReview;
 import static com.myCPE.utility.Constant.arraylistSelectedQuestionReview;
+import static com.myCPE.utility.Constant.arraylistSelectedAnswerReview;
 
-public class ActivityReviewQuestionNew extends AppCompatActivity implements View.OnClickListener {
+public class ActivityReviewQuestion extends AppCompatActivity implements View.OnClickListener {
 
     ActivityReviewQuestionNew1Binding binding;
     public List<ReviewQuestionsItem> reviewquestion = new ArrayList<>();
     public List<Boolean> arrayboolean = new ArrayList<>();
+    LinearLayoutManager linearLayoutManager;
     private APIService mAPIService;
     ProgressDialog progressDialog;
-    private static final String TAG = ActivityReviewQuestionNew.class.getName();
+    private static final String TAG = ActivityReviewQuestion.class.getName();
     public Context context;
 
 //    public ReviewQuestionAdapter adapter;
-    private static ActivityReviewQuestionNew instance;
+    private static ActivityReviewQuestion instance;
     public int webinar_id = 0;
     public String webinar_type = "";
     private String watchedDuration = "";
@@ -65,9 +66,9 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
 //        setContentView(R.layout.activity_review_question_new);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_review_question_new_1);
 
-        context = ActivityReviewQuestionNew.this;
+        context = ActivityReviewQuestion.this;
         mAPIService = ApiUtilsNew.getAPIService();
-        instance = ActivityReviewQuestionNew.this;
+        instance = ActivityReviewQuestion.this;
 
         Constant.hashmap_submit_answers.clear();
         Constant.hashmap_answer_state.clear();
@@ -87,11 +88,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
             @Override
             public void onClick(View v) {
 
-                /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+                Intent i = new Intent(context, WebinarDetailsActivity.class);
                 i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
-                finish();*/
                 finish();
             }
         });
@@ -217,11 +217,10 @@ public class ActivityReviewQuestionNew extends AppCompatActivity implements View
     public void onBackPressed() {
         super.onBackPressed();
 
-        /*Intent i = new Intent(context, WebinarDetailsActivity.class);
+        Intent i = new Intent(context, WebinarDetailsActivity.class);
         i.putExtra(getResources().getString(R.string.pass_webinar_id), webinar_id);
         i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
         startActivity(i);
-        finish();*/
         finish();
 
     }

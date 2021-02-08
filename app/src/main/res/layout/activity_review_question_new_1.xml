@@ -6,7 +6,7 @@
 
         <variable
             name="activity"
-            type="com.myCPE.activity.ActivityReviewQuestionNew" />
+            type="com.myCPE.activity.ActivityReviewQuestion" />
     </data>
 
     <RelativeLayout
@@ -270,6 +270,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginTop="@dimen/_6sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
                                 android:ems="20"
                                 android:fontFamily="@font/whitney_medium"
                                 android:inputType="textMultiLine|textNoSuggestions"

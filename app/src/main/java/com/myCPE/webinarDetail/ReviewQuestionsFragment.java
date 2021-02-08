@@ -32,8 +32,8 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.myCPE.utility.Constant.arraylistselectedquestionreview;
-import static com.myCPE.utility.Constant.arraylistselectedreviewanswerreview;
+import static com.myCPE.utility.Constant.arraylistSelectedQuestionReview;
+import static com.myCPE.utility.Constant.arraylistSelectedAnswerReview;
 
 public class ReviewQuestionsFragment extends Fragment implements View.OnClickListener {
 
@@ -93,8 +93,8 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
 
     private void GetReviewQuestion() {
 
-        arraylistselectedreviewanswerreview.clear();
-        arraylistselectedquestionreview.clear();
+        arraylistSelectedAnswerReview.clear();
+        arraylistSelectedQuestionReview.clear();
 
         mAPIService.ReviewQuestion(getResources().getString(R.string.accept), getResources().getString(R.string.bearer) + " " + AppSettings.get_login_token(context), webinar_id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Review_Question>() {
@@ -148,17 +148,17 @@ public class ReviewQuestionsFragment extends Fragment implements View.OnClickLis
                                 Constant.hashmap_asnwer_review_question.put(reviewquestion.get(i).getQuestionTitle(), false);
                                 reviewquestion.get(i).setAnswerable(true);
                                 if (reviewquestion.get(i).getA().getIsAnswer().equalsIgnoreCase("true")) {
-                                    arraylistselectedreviewanswerreview.add("a");
-                                    arraylistselectedquestionreview.add(reviewquestion.get(i).getId());
+                                    arraylistSelectedAnswerReview.add("a");
+                                    arraylistSelectedQuestionReview.add(reviewquestion.get(i).getId());
                                 } else if (reviewquestion.get(i).getB().getIsAnswer().equalsIgnoreCase("true")) {
-                                    arraylistselectedreviewanswerreview.add("b");
-                                    arraylistselectedquestionreview.add(reviewquestion.get(i).getId());
+                                    arraylistSelectedAnswerReview.add("b");
+                                    arraylistSelectedQuestionReview.add(reviewquestion.get(i).getId());
                                 } else if (reviewquestion.get(i).getC().getIsAnswer().equalsIgnoreCase("true")) {
-                                    arraylistselectedreviewanswerreview.add("c");
-                                    arraylistselectedquestionreview.add(reviewquestion.get(i).getId());
+                                    arraylistSelectedAnswerReview.add("c");
+                                    arraylistSelectedQuestionReview.add(reviewquestion.get(i).getId());
                                 } else if (reviewquestion.get(i).getD().getIsAnswer().equalsIgnoreCase("true")) {
-                                    arraylistselectedreviewanswerreview.add("d");
-                                    arraylistselectedquestionreview.add(reviewquestion.get(i).getId());
+                                    arraylistSelectedAnswerReview.add("d");
+                                    arraylistSelectedQuestionReview.add(reviewquestion.get(i).getId());
                                 }
                             }
 

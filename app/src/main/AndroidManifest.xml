@@ -33,6 +33,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
+            android:name=".activity.ActivityReviewQuestion"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
+        <activity
             android:name=".activity.ActivityReviewQuestionNew"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBar" />
@@ -71,10 +75,6 @@
             android:name=".activity.PreLoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />
-        <!--<activity
-            android:name=".activity.ActivityReviewQuestion"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.DarkActionBarWhite" />-->
         <activity
             android:name=".activity.ActivityEvolutionForm"
             android:screenOrientation="portrait"

@@ -27,7 +27,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.CalendarContract;
 import android.text.Html;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +34,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,12 +58,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.exoplayer2.util.LibraryLoader;
 import com.google.android.material.snackbar.Snackbar;
 import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
-import com.myCPE.adapter.HomeALLAdapter;
 import com.myCPE.databinding.ActivityWebinardetailsNewBinding;
 import com.myCPE.fragments.HomeAllFragment;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
@@ -88,7 +82,6 @@ import com.myCPE.webinarDetail.DetailsFragment;
 import com.myCPE.webinarDetail.OtherFragment;
 import com.myCPE.webinarDetail.OverviewOfTopicsFragment;
 import com.myCPE.webinarDetail.PresenterFragment;
-import com.myCPE.webinarDetail.ReviewQuestionsFragment;
 import com.myCPE.webinarDetail.TestimonialFragment;
 import com.myCPE.webinarDetail.WhyYouShouldAttend;
 import com.myCPE.webservice.APIService;
@@ -136,7 +129,6 @@ import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -556,11 +548,12 @@ public class WebinarDetailsActivity extends AppCompatActivity implements View.On
             public void onClick(View v) {
 
 //                Intent i = new Intent(context, ActivityReviewQuestion.class);
+//                Intent i = new Intent(context, ActivityReviewQuestion.class);
                 Intent i = new Intent(context, ActivityReviewQuestionNew.class);
                 i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
-                finish();
+//                finish();
 
             }
         });

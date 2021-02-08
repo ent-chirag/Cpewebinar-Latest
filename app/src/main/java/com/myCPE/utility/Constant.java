@@ -105,8 +105,8 @@ public class Constant {
     public static boolean checkmywebinardotstatusset = false;
     public static boolean isdataupdate = false;
     public static boolean isStatusUpdated = false;
-    public static ArrayList<String> arraylistselectedreviewanswerreview = new ArrayList<String>();
-    public static ArrayList<Integer> arraylistselectedquestionreview = new ArrayList<Integer>();
+    public static ArrayList<String> arraylistSelectedAnswerReview = new ArrayList<String>();
+    public static ArrayList<Integer> arraylistSelectedQuestionReview = new ArrayList<Integer>();
     public static HashMap<String, Boolean> hashmap_asnwer_review_question = new HashMap<String, Boolean>();
     public static HashMap<String, String> hashmap_asnwer_string_review_question = new HashMap<String, String>();
     public static HashMap<String, String> hashmap_answer_string_final_question = new HashMap<String, String>();

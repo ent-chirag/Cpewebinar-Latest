@@ -89,7 +89,6 @@ import com.myCPE.MainActivity;
 import com.myCPE.R;
 import com.myCPE.adapter.CertificatesListWebinarDetailsPopUpAdapter;
 import com.myCPE.databinding.ActivityWebinardetailsNew1Binding;
-import com.myCPE.databinding.ActivityWebinardetailsNewBinding;
 import com.myCPE.model.registerwebinar.ModelRegisterWebinar;
 import com.myCPE.model.review_answer.AddReview;
 import com.myCPE.model.timezones;
@@ -462,7 +461,7 @@ public class WebinarDetailsActivityNew extends AppCompatActivity implements View
             public void onClick(View v) {
 
 //                Intent i = new Intent(context, ActivityReviewQuestion.class);
-                Intent i = new Intent(context, ActivityReviewQuestionNew.class);
+                Intent i = new Intent(context, ActivityReviewQuestion.class);
                 i.putExtra(getResources().getString(R.string.pass_who_you_are_list_review_question), webinarid);
                 i.putExtra(getResources().getString(R.string.pass_webinar_type), webinar_type);
                 startActivity(i);
